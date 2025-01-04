@@ -23,7 +23,7 @@ export default async function RootLayout({children, params}: LayoutProps) {
     // Устанавливаем локаль для запроса
 
     // SEO и OG данные для узбекского и русского языков
-    const siteUrl = "https://oqid.uz";
+    const siteUrl = "https://masterium-real.vercel.app";
 
     type Locales = "ru" | "uz";
 
@@ -37,14 +37,14 @@ export default async function RootLayout({children, params}: LayoutProps) {
         }
     > = {
         ru: {
-            title: "Oq Id | Ташкент",
-            description: "Единая система регистрации",
+            title: "Masterium | Ташкент",
+            description: "Единственный сайт по поиску услуг разнорабочих",
             imageUrl: `${siteUrl}/favicon.ico`,
             canonicalUrl: `${siteUrl}/ru`,
         },
         uz: {
-            title: "Oq Id | Toshkent",
-            description: "Yagona ro‘yxatga olish tizimi",
+            title: "Masterium | Toshkent",
+            description: "Santexnika bo'yicha yagona sayt",
             imageUrl: `${siteUrl}/favicon.ico`,
             canonicalUrl: `${siteUrl}/uz`,
         },
@@ -67,7 +67,7 @@ export default async function RootLayout({children, params}: LayoutProps) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <meta charSet="UTF-8"/>
             <meta name="robots" content="index, follow"/>
-            <meta name="author" content="Sammy"/>
+            <meta name="author" content="ABdukhakim Fayzullin"/>
             <link rel="canonical" href={canonicalUrl}/>
             <link rel="icon" href="/favicon.ico"/>
             {/* Open Graph (OG) теги */}
