@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from 'next/server'; // Импортируем NextResponse
 import createMiddleware from 'next-intl/middleware';
-import { routing } from './i18n/routing';
+import { routing } from '@/i18n/routing';
 
 // Основная логика middleware
 export default async function middleware(req: NextRequest) {
