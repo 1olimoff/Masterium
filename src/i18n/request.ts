@@ -8,6 +8,6 @@ export default getRequestConfig(async ({locale}) => {
 
     return {
         // Загружаем сообщения для текущей локали
-        messages: (await import(`../messages/${locale}.json`)).default,
+        messages: (await import(`../../messages/${locale}.json`)).default,
     };
 });

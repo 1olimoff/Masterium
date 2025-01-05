@@ -5,11 +5,12 @@ import { routing } from '@/i18n/routing';
 // Основная логика middleware
 export default async function middleware(req: NextRequest) {
     const url = req.nextUrl;
+    const region = req.cookies.get('region') || 'tashkent';
     const locale = req.cookies.get('locale') || 'ru'; // Проверяем куки, используем 'ru' по умолчанию
 
     // Если пользователь на корневом пути, перенаправляем его на /ru или /uz
-    if (url.pathname === '/') {
-        url.pathname = `/${locale}`;
+    if (url.pathname === '/'  ) {
+        url.pathname = `/${locale}/${region}`;
         return NextResponse.redirect(url);
     }
 
