@@ -67,7 +67,7 @@ export default async function RootLayout({children, params}: LayoutProps) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <meta charSet="UTF-8"/>
             <meta name="robots" content="index, follow"/>
-            <meta name="author" content="ABdukhakim Fayzullin"/>
+            <meta name="author" content="Abdukhakim Fayzullin"/>
             <link rel="canonical" href={canonicalUrl}/>
             <link rel="icon" href="/favicon.ico"/>
             {/* Open Graph (OG) теги */}
@@ -90,6 +90,7 @@ export default async function RootLayout({children, params}: LayoutProps) {
         {/*antialiased content-hidden*/}
         <body className={`${nunito.variable}`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
+
             {children}
         </NextIntlClientProvider>
         </body>
