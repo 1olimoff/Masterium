@@ -90,7 +90,6 @@ export default async function RootLayout({children, params}: LayoutProps) {
         {/*antialiased content-hidden*/}
         <body className={`${nunito.variable}`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-
             {children}
         </NextIntlClientProvider>
         </body>
