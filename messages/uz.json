@@ -1,3 +1,10 @@
 {
-
+  "Header": {
+    "Region": {
+      "title": "Shahar",
+      "tashkent": "Toshkent",
+      "fergana": "Farg'ona",
+      "Samarkand": "Samarqand"
+    }
+  }
 }

@@ -1,3 +1,10 @@
 {
-
+  "Header": {
+    "Region": {
+      "title": "Город",
+      "tashkent": "Ташкент",
+      "fergana": "Фергана",
+      "Samarkand": "Самарканд"
+    }
+  }
 }

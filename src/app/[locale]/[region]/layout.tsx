@@ -6,6 +6,7 @@ import {unstable_setRequestLocale} from "next-intl/server";
 //styles
 import "./globals.css";
 import React from "react";
+import {LayoutProvider} from "@/components/shared/tamplates/LayoutProvider/LayoutProvider";
 
 // Подключение Google Fonts (Raleway)
 const nunito = Nunito({
@@ -51,6 +52,7 @@ export default async function RootLayout({children, params}: LayoutProps) {
     };
 
     const resolvedParams = await params;
+    console.log("Params:", resolvedParams);
 
     const locale = resolvedParams?.locale === "uz" ? "uz" : "ru";
 
@@ -88,9 +90,11 @@ export default async function RootLayout({children, params}: LayoutProps) {
             <title>{title}</title>
         </head>
         {/*antialiased content-hidden*/}
-        <body className={`${nunito.variable}`}>
+        <body className={`${nunito.variable} bg-[#F8F9FA]`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-            {children}
+            <LayoutProvider params={resolvedParams}>
+                {children}
+            </LayoutProvider>
         </NextIntlClientProvider>
         </body>
         </html>

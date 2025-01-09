@@ -5,14 +5,14 @@ import Aside from "@/components/shared/tamplates/Aside";
 
 interface LayoutProps {
     children: React.ReactNode;
-    params: Promise<{ locale?: string }>; // Определяем params как промис
+    params: { locale?: string; region?: string }; // Определяем params как промис
     className?: string;
 }
 
 export const LayoutProvider = ({ className, children, params }: LayoutProps) => {
     return (
         <div className={cn(className)}>
-            <Header />
+            <Header params={params} />
             <div>
                 <Aside />
             {children}

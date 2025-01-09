@@ -7,9 +7,9 @@ interface Props {
 
 const Aside = ({ className }: Props) => {
     return (
-        <div className={cn(className)}>
-            Aside Fuck
-        </div>
+        <aside className={cn(className, "h-[20px] border-2 border-red-500 sticky top-0")}>
+
+        </aside>
     );
 };
 
