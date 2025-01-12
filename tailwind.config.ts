@@ -9,15 +9,19 @@ export default {
 	],
 	theme: {
 		extend: {
+			fontFamily: {
+				sans: ["SF Pro", "Arial", "sans-serif"], // Добавляем SF Pro
+				mono: ["Fira Code", "monospace"],
+			},
 			colors: {
 				/* Переменные из global.css */
-				"maket-primary": "rgb(var(--maket-primary))",
-				"maket-secondary": "rgb(var(--maket-secondary))",
-				"maket-bg": "rgb(var(--maket-bg))",
-				"maket-gray": "rgb(var(--maket-gray))",
-				"maket-green": "rgb(var(--maket-green))",
-				"maket-gold": "rgb(var(--maket-gold))",
-				"maket-batafsil": "rgb(var(--maket-batafsil))",
+				"maket-primary": "#001D55",
+				"maket-secondary": "#32ADE6",
+				"maket-bg": "#F8F9FA",
+				"maket-gray": "#677294",
+				"maket-green": "#34C759",
+				"maket-gold": "#F0E7D8",
+				"maket-batafsil": "rgba(50, 173, 230, 0.1)",
 
 				/* Существующие переменные */
 				background: "hsl(var(--background))",
