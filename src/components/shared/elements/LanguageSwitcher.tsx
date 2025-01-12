@@ -8,6 +8,7 @@ interface Props {
 }
 
 export const LanguageSwitcher = ({ className }: Props) => {
+
     return (
         <div className={cn(className)}>
             <div className={'flex gap-2 w-[120px] border cursor-pointer overflow-hidden justify-end px-2 group'}>

@@ -54,6 +54,8 @@ export default async function RootLayout({children, params}: LayoutProps) {
     const resolvedParams = await params;
     console.log("Params:", resolvedParams);
 
+    const localee: ["uz", "ru"] = resolvedParams.locale
+
     const locale = resolvedParams?.locale === "uz" ? "uz" : "ru";
 
     const {title, description, imageUrl, canonicalUrl} = seoData[locale];
