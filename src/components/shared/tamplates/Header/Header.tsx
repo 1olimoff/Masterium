@@ -13,7 +13,7 @@ const Header = ({className, params}: Props) => {
     const t = useTranslations("Header");
     return (
         <header
-            className={cn(className, "h-[36px] border-2 border-blue-400 flex justify-between items-center layout-width")}>
+            className={cn(className, "h-[36px] flex justify-between items-center layout-width")}>
             <div className={'flex gap-2'}>
                 <Image src={"/svg/header/location.svg"} alt={"Location Icon"} width={20} height={20}/>
                 <h2 className={"font-light"}>{t('Region.title')}: <span
@@ -31,8 +31,8 @@ const Header = ({className, params}: Props) => {
                     />
                     <a href="tel:+998991234567">+998 99 123 45 67</a>
                 </div>
-
-                <LanguageSwitcher />
+                <LanguageSwitcher currentLocale={params.locale || 'ru'}
+                                  currentRegion={params.region || 'tashkent'}/>
             </div>
         </header>
     );

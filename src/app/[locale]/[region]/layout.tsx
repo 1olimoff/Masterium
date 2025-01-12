@@ -1,100 +1,115 @@
-import {Nunito} from "next/font/google";
-import {NextIntlClientProvider} from "next-intl";
-import {getMessages} from "next-intl/server";
-import {unstable_setRequestLocale} from "next-intl/server";
+import {ReactNode} from 'react';
+import {NextIntlClientProvider} from 'next-intl';
+import {getMessages} from 'next-intl/server';
+import {unstable_setRequestLocale} from 'next-intl/server';
+import {notFound} from 'next/navigation';
+import "./globals.css"
 
-//styles
-import "./globals.css";
-import React from "react";
-import {LayoutProvider} from "@/components/shared/tamplates/LayoutProvider/LayoutProvider";
+import {LayoutProvider} from '@/components/shared/tamplates/LayoutProvider/LayoutProvider';
 
-// Подключение Google Fonts (Raleway)
-const nunito = Nunito({
-    subsets: ["latin", "cyrillic"],
-    weight: ["300", "400", "600", "700"], // Choose the weights you need
-    variable: "--font-nunito",
-});
-
+/**
+ * Types for layout props
+ */
 interface LayoutProps {
-    children: React.ReactNode;
-    params: Promise<{ locale?: string }>; // Определяем params как промис
+    children: ReactNode;
+    params: {
+        /** The locale param extracted from the route. */
+        locale?: 'ru' | 'uz';
+        /** Additional param e.g. region. */
+        region: string;
+    };
 }
 
-export default async function RootLayout({children, params}: LayoutProps) {
-    // Устанавливаем локаль для запроса
+/**
+ * This function allows you to dynamically define metadata based on your locale.
+ * Next.js will call this server-side before rendering.
+ */
+export async function generateMetadata({ params }: LayoutProps) {
+    // Extract locale & region
+    const { locale = 'ru', region } = params;
 
-    // SEO и OG данные для узбекского и русского языков
-    const siteUrl = "https://masterium-real.vercel.app";
+    // Or get it from any external source / logic if needed
+    const siteUrl = 'https://masterium-real.vercel.app';
 
-    type Locales = "ru" | "uz";
-
-    const seoData: Record<
-        Locales,
-        {
-            title: string;
-            description: string;
-            imageUrl: string;
-            canonicalUrl: string;
-        }
-    > = {
+    // Localized SEO data
+    const seoData = {
         ru: {
-            title: "Masterium | Ташкент",
-            description: "Единственный сайт по поиску услуг разнорабочих",
+            title: 'Masterium | Ташкент',
+            description: 'Единственный сайт по поиску услуг разнорабочих',
             imageUrl: `${siteUrl}/favicon.ico`,
             canonicalUrl: `${siteUrl}/ru`,
         },
         uz: {
-            title: "Masterium | Toshkent",
+            title: 'Masterium | Toshkent',
             description: "Santexnika bo'yicha yagona sayt",
             imageUrl: `${siteUrl}/favicon.ico`,
             canonicalUrl: `${siteUrl}/uz`,
         },
     };
 
-    const resolvedParams = await params;
-    console.log("Params:", resolvedParams);
+    // If locale is not recognized, default to 'ru'
+    const { title, description, imageUrl, canonicalUrl } = seoData[locale] ?? seoData.ru;
 
-    const localee: ["uz", "ru"] = resolvedParams.locale
+    return {
+        title,
+        description,
+        // This sets the <link rel="canonical" ...> tag
+        alternates: {
+            canonical: canonicalUrl,
+        },
+        openGraph: {
+            title,
+            description,
+            url: canonicalUrl,
+            images: [
+                {
+                    url: imageUrl,
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+            siteName: 'Oq Id',
+            type: 'website',
+            locale,
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title,
+            description,
+            images: [imageUrl],
+        },
+    };
+}
 
-    const locale = resolvedParams?.locale === "uz" ? "uz" : "ru";
+/**
+ * Main layout component
+ */
+export default async function RootLayout({ children, params }: LayoutProps) {
+    const { locale = 'ru', region } = params;
 
-    const {title, description, imageUrl, canonicalUrl} = seoData[locale];
+    // Optionally set the request locale (if needed by next-intl).
     unstable_setRequestLocale(locale);
 
-    const messages = await getMessages({locale});
+    // Load translations
+    let messages;
+    try {
+        messages = await getMessages({ locale });
+    } catch (err) {
+        // If we can't find messages for the locale, show 404 or fallback
+        notFound();
+    }
+
+    // Configure your custom Google Font
 
     return (
         <html lang={locale}>
-        <head>
-            {/* Базовые SEO-теги */}
-            <meta name="description" content={description}/>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-            <meta charSet="UTF-8"/>
-            <meta name="robots" content="index, follow"/>
-            <meta name="author" content="Abdukhakim Fayzullin"/>
-            <link rel="canonical" href={canonicalUrl}/>
-            <link rel="icon" href="/favicon.ico"/>
-            {/* Open Graph (OG) теги */}
-            <meta property="og:title" content={title}/>
-            <meta property="og:description" content={description}/>
-            <meta property="og:type" content="website"/>
-            <meta property="og:url" content={canonicalUrl}/>
-            <meta property="og:image" content={imageUrl}/>
-            <meta property="og:image:width" content="1200"/>
-            {/* Рекомендованные размеры */}
-            <meta property="og:image:height" content="630"/>
-            <meta property="og:site_name" content="Oq Id"/>
-            {/* Теги для Twitter */}
-            <meta name="twitter:card" content="summary_large_image"/>
-            <meta name="twitter:title" content={title}/>
-            <meta name="twitter:description" content={description}/>
-            <meta name="twitter:image" content={imageUrl}/>
-            <title>{title}</title>
-        </head>
-        {/*antialiased content-hidden*/}
-        <body className={`${nunito.variable} bg-[#F8F9FA]`}>
+        <body className={`bg-[#F8F9FA]`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-            <LayoutProvider params={resolvedParams}>
+            {/*
+            LayoutProvider can do region/locale-based logic too,
+            or you can pass them separately as props
+          */}
+            <LayoutProvider params={{ locale, region }}>
                 {children}
             </LayoutProvider>
         </NextIntlClientProvider>
