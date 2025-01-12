@@ -13,7 +13,7 @@ const Header = ({className, params}: Props) => {
     const t = useTranslations("Header");
     return (
         <header
-            className={cn(className, "h-[36px] flex justify-between items-center layout-width")}>
+            className={cn(className, "h-[36px] flex justify-between items-center layout-width px-2")}>
             <div className={'flex gap-2'}>
                 <Image src={"/svg/header/location.svg"} alt={"Location Icon"} width={20} height={20}/>
                 <h2 className={"font-light"}>{t('Region.title')}: <span
