@@ -17,5 +17,40 @@
       "xarezm": "Xorazm",
       "qaraqalpak": "Qoraqalpog'iston"
     }
+  },
+  "Aside": {
+    "catalog": "Katalog",
+    "search": {
+      "placeholder": "Xizmat yoki usta nomi bo'yich qidirish",
+      "button": "Qidirish"
+    },
+    "action": {
+      "announcement": "E'lon berish",
+      "account": {
+        "login": "Kirish"
+      }
+    }
+  },
+  "Account": {
+    "login": {
+      "title": "Tizimga kirish",
+      "inputs": {
+        "phone": {
+          "title": "Telefon raqam",
+          "placeholder": "Telefon raqamingizni kiriting"
+        },
+        "password": {
+          "title": "Parol",
+          "placeholder": "Parolingizni kiriting"
+        }
+      },
+      "forget": "Parolni unutdingizmi?",
+      "button": "Kirish",
+      "or": {
+        "title": "Yoki",
+        "google": "Google bilan kirish",
+        "apple": "Apple bilan kirish"
+      }
+    }
   }
 }

@@ -4,7 +4,7 @@ import Image from "next/image";
 import {useTranslations} from "next-intl";
 import {LanguageSwitcher} from "@/components/shared/elements/LanguageSwitcher/LanguageSwitcher";
 import {DialogTrigger, Dialog, DialogContent, DialogHeader, DialogTitle} from "@/components/ui/dialog";
-import {ChooseRegion} from "@/components/shared/elements/ChooseRegion";
+import {ChooseRegion} from "@/components/shared/elements/ChooseRegion/ChooseRegion";
 
 interface Props {
     className?: string;

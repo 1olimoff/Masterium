@@ -9,6 +9,8 @@ import {
 } from "@/components/ui/dropdown-menu"
 import {Input} from "@/components/ui/input"
 import {Button} from "@/components/ui/button";
+import {useTranslations} from "next-intl";
+import {LoginProviderDialog} from "@/components/shared/elements/account/login/LoginProviderDialog";
 
 
 interface Props {
@@ -16,6 +18,7 @@ interface Props {
 }
 
 const Aside = ({className}: Props) => {
+    const t = useTranslations("Aside");
     return (
         <aside
             className={cn(className, "py-3 px-2 shadow bg-white sticky top-0")}>
@@ -28,7 +31,7 @@ const Aside = ({className}: Props) => {
                         <DropdownMenuTrigger
                             className={"bg-maket-primary hover:bg-blue-900 text-white flex gap-2 justify-center items-center py-2 px-6 rounded-lg"}>
                             <Image src={"/svg/aside/catalog.svg"} alt={"Category Icon"} width={25} height={25}/>
-                            <p className={"font-light"}>Katalog</p>
+                            <p className={"font-light"}>{t('catalog')}</p>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent>
                             <DropdownMenuItem><Image src={'/svg/aside/tech.svg'} alt={'Tech Icon'} width={18}
@@ -63,21 +66,24 @@ const Aside = ({className}: Props) => {
                         />
                         <Input
                             type="search"
-                            placeholder="Xizmat yoki usta nomi bo’yicha qidirish"
+                            placeholder={t('search.placeholder')}
                             className="pl-10 rounded-lg border-[#CFD9FE] border-2 flex-1" // Отступ для текста, чтобы не перекрывал иконку
                         />
                     </div>
-                    <Button type={"submit"} className={"bg-maket-primary hover:bg-blue-900"}>Qidirish</Button>
+                    <Button type={"submit"}
+                            className={"bg-maket-primary hover:bg-blue-900"}>{t('search.button')}</Button>
                 </div>
-                <div>
+                <div className={"flex "}>
                     <Button variant={'ghost'}>
                         <Image src={'/svg/aside/add.svg'} alt={"Add Icon"} width={20} height={20}/>
-                        <p>E'lon berish</p>
+                        <p>{t('action.announcement')}</p>
                     </Button>
-                    <Button variant={'ghost'}>
-                        <Image src={'/svg/aside/user.svg'} alt={"Add Icon"} width={20} height={20}/>
-                        <p>Kirish</p>
-                    </Button>
+                    <LoginProviderDialog>
+                        <Button variant={'ghost'}>
+                            <Image src={'/svg/aside/user.svg'} alt={"Add Icon"} width={20} height={20}/>
+                            <p>{t('action.account.login')}</p>
+                        </Button>
+                    </LoginProviderDialog>
                 </div>
             </div>
         </aside>
