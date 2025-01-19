@@ -26,7 +26,7 @@ const Header = ({className, params}: Props) => {
                 <h2 className={"font-light"}>{t('Region.title')}: <DialogTrigger
                     className={"underline cursor-pointer hover:no-underline hover:bg-maket-primary rounded hover:text-white p-1 transition-all duration-300"}>{t(`Region.${params?.region}`) || "Неизвестно"}</DialogTrigger>
                 </h2>
-                    <DialogContent className={"max-h-[90%] overflow-y-auto"}>
+                    <DialogContent className={"max-h-[90%] overflow-y-auto custom-scrollbar"}>
                         <DialogHeader>
                             <DialogTitle>
                                 Shaharni tanlang
