@@ -3,18 +3,23 @@ import React from 'react';
 import {cn} from '@lib/utils';
 import {Button} from "@/components/ui/button";
 import {useTranslations} from "next-intl";
+import Cookies from "js-cookie";
 
 interface Props {
     className?: string;
     region: string;
     currentLocale: string;
-    currentRegion: string;
 }
 
-export const ChooseRegion = ({className, region, currentRegion, currentLocale}: Props) => {
+export const ChooseRegion = ({className, region, currentLocale}: Props) => {
     const t = useTranslations("Header.Region");
+    const saveRegionToCookies = () => {
+        Cookies.set("region", region); // Сохраняем выбранный регион в куки
+        Cookies.set("locale", currentLocale); // Обновляем текущую локаль
+    };
     return (
         <a
+            onClick={saveRegionToCookies}
             href={`/${currentLocale}/${region}`}
         >
             <Button

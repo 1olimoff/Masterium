@@ -95,13 +95,10 @@ export const LanguageSwitcher = ({className, currentLocale, currentRegion}: Prop
         }
     }
 
-    const handleFlagClick = () => {
-        setIsAnimating(false);
-    };
-
-    const selectLangForCookie = async (langKey: string) => {
+    const handleFlagClick = (langKey: string) => {
         Cookies.set("locale", langKey); // Сохраняем локаль в куки
         Cookies.set("region", currentRegion); // Сохраняем текущий регион в куки
+        setIsAnimating(false);
     };
 
     return (
@@ -113,7 +110,7 @@ export const LanguageSwitcher = ({className, currentLocale, currentRegion}: Prop
                 <a
                     key={index}
                     href={`/${data.key}/${currentRegion}`}
-                    onClick={() => handleFlagClick()}>
+                    onClick={() => handleFlagClick(data.key)}>
                     <Image
                         src={data.data.img}
                         alt={`Other language icon ${index}`}

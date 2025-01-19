@@ -35,7 +35,7 @@ const Header = ({className, params}: Props) => {
                             {
                                 regions.map((region: string, index: number) => (
                                     <ChooseRegion region={region} key={index} currentLocale={params.locale || 'ru'}
-                                                  currentRegion={params.region || 'tashkent'} />
+                                    />
                                 ))
                             }
                         </DialogHeader>
