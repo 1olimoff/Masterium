@@ -3,8 +3,10 @@
     "Region": {
       "title": "Город",
       "tashkent": "Ташкент",
+      "tashkent-region": "Ташкентская область",
       "fergana": "Фергана",
-      "Samarkand": "Самарканд"
+      "andijan": "Андижан",
+      "samarkand": "Самарканд"
     }
   }
 }

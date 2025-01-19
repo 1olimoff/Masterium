@@ -2,6 +2,7 @@
 import React, {useState} from 'react';
 import {cn} from '@lib/utils';
 import Image from "next/image";
+import Cookies from "js-cookie";
 
 interface Props {
     className?: string;
@@ -98,6 +99,11 @@ export const LanguageSwitcher = ({className, currentLocale, currentRegion}: Prop
         setIsAnimating(false);
     };
 
+    const selectLangForCookie = async (langKey: string) => {
+        Cookies.set("locale", langKey); // Сохраняем локаль в куки
+        Cookies.set("region", currentRegion); // Сохраняем текущий регион в куки
+    };
+
     return (
         <div
             className={cn(className, "w-[120px] flex gap-2 justify-end px-2")}
@@ -115,7 +121,6 @@ export const LanguageSwitcher = ({className, currentLocale, currentRegion}: Prop
                         height={20}
                         className={'animate-fade-in opacity-0 cursor-pointer'}
                     />
-
                 </a>
             ))}
             <button

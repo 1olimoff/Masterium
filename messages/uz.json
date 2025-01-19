@@ -3,8 +3,19 @@
     "Region": {
       "title": "Shahar",
       "tashkent": "Toshkent",
+      "tashkent-region": "Toshkent viloyati",
       "fergana": "Farg'ona",
-      "Samarkand": "Samarqand"
+      "andijan": "Andijon",
+      "namangan": "Namangan",
+      "sirdarya": "Sirdaryo",
+      "jizzax": "Jizzax",
+      "samarqand": "Samarqand",
+      "qashqadarya": "Qashqadaryo",
+      "surxandarya": "Surxondaryo",
+      "buxara": "Buxoro",
+      "navai": "Navoiy",
+      "xarezm": "Xorazm",
+      "qaraqalpak": "Qoraqalpog'iston"
     }
   }
 }
