@@ -8,6 +8,9 @@ import Image from "next/image";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
+//Toaster
+import toast, { Toaster } from 'react-hot-toast';
+
 // shadcn
 import {Dialog, DialogContent, DialogTitle, DialogTrigger} from "@/components/ui/dialog";
 import {Input} from "@/components/ui/input";
@@ -67,7 +70,7 @@ export const LoginProviderDialog = ({className, children}: Props) => {
         <div className={cn(className)}>
             <Dialog>
                 <DialogTrigger>{children}</DialogTrigger>
-                <DialogContent className={"max-w-[400px] max-sm:max-w-[300px] max-h-[90%] overflow-y-auto "}>
+                <DialogContent className={"max-w-[400px] max-sm:max-w-[300px] max-h-[90%] overflow-y-auto custom-scrollbar"}>
                     <DialogTitle>
                         <h3 className="text-2xl text-center">
                             {t('login.title')}
