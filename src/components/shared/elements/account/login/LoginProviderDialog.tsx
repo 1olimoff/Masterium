@@ -124,7 +124,7 @@ export const LoginProviderDialog = ({className, children}: Props) => {
                             onClick={handleSubmit}
                             className="w-full bg-maket-primary hover:bg-blue-900 text-lg rounded-xl py-6"
                         >
-                            {loading ? "Loading..." : t('login.button')}
+                            {loading ? t('login.button.loading') : t('login.button.title')}
                         </Button>
 
                         {/* Кнопки входа через Google / Apple */}

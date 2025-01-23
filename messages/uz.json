@@ -45,15 +45,23 @@
         }
       },
       "forget": "Parolni unutdingizmi?",
-      "button": "Kirish",
+      "button": {
+        "title": "Kirish",
+        "loading": "Kuting..."
+      },
       "or": {
         "title": "Yoki",
         "google": "Google bilan kirish",
         "apple": "Apple bilan kirish"
       },
-      "register": {
+      "regisnpmter": {
         "text": "Hisobingiz yo'qmi?",
         "action": "Ro'yxatdan otish"
+      },
+      "errors": {
+        "phone": "Nomerni to'liq kiriting",
+        "password": "Kamida 8ta belgi",
+        "phone-or-psw": "Nomer yoki notog'ri"
       }
     }
   }
