@@ -67,7 +67,7 @@ export const LoginProviderDialog = ({className, children}: Props) => {
         <div className={cn(className)}>
             <Dialog>
                 <DialogTrigger>{children}</DialogTrigger>
-                <DialogContent className={"max-w-[400px] max-sm:max-w-[300px] max-h-[90%] overflow-y-auto"}>
+                <DialogContent className={"max-w-[400px] max-sm:max-w-[300px] max-h-[90%] overflow-y-auto "}>
                     <DialogTitle>
                         <h3 className="text-2xl text-center">
                             {t('login.title')}
@@ -81,7 +81,7 @@ export const LoginProviderDialog = ({className, children}: Props) => {
                                     country={'uz'}
                                     value={phone}
                                     onChange={(phone) => setPhone(phone)}
-                                    inputClass="!w-full !h-[44px] !border-[#CFD9FE] !rounded-xl !text-[#677294] !placeholder-[#677294]"
+                                    inputClass="!w-full !h-[44px] !border-[#CFD9FE]  !text-[#677294] !placeholder-[#677294]"
                                     containerClass="!w-full"
                                     buttonClass="!bg-transparent"
                                 />
