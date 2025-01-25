@@ -58,9 +58,17 @@
         "text": "Hisobingiz yo'qmi?",
         "action": "Ro'yxatdan otish"
       },
+      "success": "Siz tizimga kirdingiz :)",
       "errors": {
-        "phone": "Nomerni to'liq kiriting",
-        "password": "Kamida 8ta belgi",
+        "phone": {
+          "required": "Telefon nomeri majburiy!",
+          "invalid": "Telefon nomerni to'liq kiriting"
+        },
+        "password": {
+          "required": "Parol majburiy!",
+          "minLength": "Kamida 8-ta belgi bo'lishi shart"
+        },
+        "unknown": "Uzur, server bilan bir nima bo'ldi. Qayta takrorlang",
         "phone-or-psw": "Nomer yoki parol notog'ri"
       }
     }
