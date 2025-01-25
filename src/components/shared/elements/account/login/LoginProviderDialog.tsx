@@ -173,6 +173,7 @@ export const LoginProviderDialog = ({className, children}: Props) => {
                     </div>
                 </DialogContent>
             </Dialog>
+            <Toaster />
         </div>
     );
 };
