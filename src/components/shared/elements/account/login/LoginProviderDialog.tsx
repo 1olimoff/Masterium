@@ -30,29 +30,65 @@ export const LoginProviderDialog = ({className, children}: Props) => {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [phoneError, setPhoneError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+
+    const validatePhone = () => {
+        if (!phone) {
+            setPhoneError(t("login.errors.phone.required"));
+            return false;
+        }
+        if (phone.length < 10 || !/^\+?\d+$/.test(phone)) {
+            setPhoneError(t("login.errors.phone.invalid"));
+            return false;
+        }
+        setPhoneError("");
+        return true;
+    };
+
+    const validatePassword = () => {
+        if (!password) {
+            setPasswordError(t("login.errors.password.required"));
+            return false;
+        }
+        if (password.length < 6) {
+            setPasswordError(t("login.errors.password.minLength"));
+            return false;
+        }
+        setPasswordError("");
+        return true;
+    };
 
     const handleSubmit = async () => {
         setLoading(true);
         setError("");
+
+        const isPhoneValid = validatePhone();
+        const isPasswordValid = validatePassword();
+
+        if (!isPhoneValid || !isPasswordValid) {
+            setLoading(false);
+            return;
+        }
+
         try {
-            // signIn возвращает промис, в который можно передать callbackUrl и другие параметры
             const result = await signIn("credentials", {
                 phone,
                 password,
-                redirect: false // чтобы управлять редиректом самостоятельно
+                redirect: false
             });
 
             if (result?.error) {
                 setError(result.error);
+                toast.error(t("login.errors.phone-or-psw"));
             } else {
                 // Успешный логин
-                // Например, можно редиректнуть на главную:
-                // router.push("/") (если используете useRouter() из next/navigation)
-                // или закрыть диалог и показать сообщение об успехе
+                toast.success(t("login.success"));
+                // Дополнительная логика, например, редирект
             }
         } catch (err: any) {
-            setError(err.message || "Unknown error");
+            setError(err.message || t("login.errors.unknown"));
         } finally {
             setLoading(false);
         }
@@ -84,10 +120,12 @@ export const LoginProviderDialog = ({className, children}: Props) => {
                                     country={'uz'}
                                     value={phone}
                                     onChange={(phone) => setPhone(phone)}
+                                    onBlur={validatePhone}
                                     inputClass="!w-full !h-[44px] !border-[#CFD9FE]  !text-[#677294] !placeholder-[#677294]"
                                     containerClass="!w-full"
                                     buttonClass="!bg-transparent"
                                 />
+                                {phoneError && <p className="text-red-500 text-sm">{phoneError}</p>}
                             </div>
                             <div className="flex flex-col gap-1">
                                 <p className="text-sm">{t('login.inputs.password.title')}</p>
@@ -96,6 +134,7 @@ export const LoginProviderDialog = ({className, children}: Props) => {
                                         type={showPassword ? "text" : "password"}
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
+                                        onBlur={validatePassword}
                                         className="border-[#CFD9FE] rounded-xl text-[#677294] placeholder-[#677294] pr-10"
                                         placeholder={t('login.inputs.password.placeholder')}
                                     />
@@ -112,16 +151,10 @@ export const LoginProviderDialog = ({className, children}: Props) => {
                                         />
                                     </button>
                                 </div>
+                                {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
                             </div>
                         </div>
                         <p className="my-4 text-sm font-thin text-end">{t('login.forget')}</p>
-
-                        {error && (
-                            <p className="text-red-500 text-center mb-2">
-                                {error}
-                            </p>
-                        )}
-
                         <Button
                             disabled={loading}
                             onClick={handleSubmit}
@@ -171,9 +204,9 @@ export const LoginProviderDialog = ({className, children}: Props) => {
                             <span className={"font-bold text-maket-secondary"}>{t('login.register.action')}</span>
                         </p>
                     </div>
+                    <Toaster />
                 </DialogContent>
             </Dialog>
-            <Toaster />
         </div>
     );
 };

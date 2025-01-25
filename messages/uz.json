@@ -61,7 +61,7 @@
       "errors": {
         "phone": "Nomerni to'liq kiriting",
         "password": "Kamida 8ta belgi",
-        "phone-or-psw": "Nomer yoki notog'ri"
+        "phone-or-psw": "Nomer yoki parol notog'ri"
       }
     }
   }
