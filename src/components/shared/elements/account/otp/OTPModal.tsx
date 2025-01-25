@@ -1,24 +1,19 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { cn } from "@lib/utils";
 import { Dialog, DialogContent, DialogTitle, DialogHeader } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import { OTPInput } from "./OTPInput";
+import { toast } from "react-hot-toast";
 
 interface Props {
     className?: string;
-    /** Управляет открытием/закрытием модалки */
     isOpen: boolean;
-    /** Телефон, который нужно подтвердить */
     phoneNumber: string;
-    /** Что делать при закрытии окна (например, поставить isOpen=false в родителе) */
     onClose: (open: boolean) => void;
-    /** Колбэк, срабатывающий при нажатии кнопки подтверждения (передаёт введённый код) */
-    setOpenOTP: state
-
-    /** Колбэк, срабатывающий при нажатии кнопки подтверждения (передаёт введённый код) */
+    setOpenOTP: Dispatch<SetStateAction<boolean>>;
     onConfirm?: (code: string) => void;
 }
 
@@ -27,20 +22,19 @@ export const OTPModal = ({
                              isOpen,
                              phoneNumber,
                              onClose,
-                             onConfirm
+                             onConfirm,
+                             setOpenOTP,
                          }: Props) => {
     const t = useTranslations("OTP");
-    // Храним код в виде массива из 5 символов
     const [code, setCode] = useState(["", "", "", "", ""]);
-    // Таймер для повторной отправки кода, например 90 секунд
     const [timeLeft, setTimeLeft] = useState(90);
+    const [isAnimating, setIsAnimating] = useState(false);
 
-    // При открытии окна запускаем таймер
     useEffect(() => {
         let timer: NodeJS.Timeout;
         if (isOpen && timeLeft > 0) {
             timer = setInterval(() => {
-                setTimeLeft(prev => prev - 1);
+                setTimeLeft((prev) => prev - 1);
             }, 1000);
         }
         return () => {
@@ -48,37 +42,39 @@ export const OTPModal = ({
         };
     }, [isOpen, timeLeft]);
 
-    // Форматируем время в mm:ss
     const formatTime = (seconds: number) => {
         const m = Math.floor(seconds / 60);
         const s = seconds % 60;
         return `${m}:${s < 10 ? "0" : ""}${s}`;
     };
 
-    // Когда пользователь нажимает «Tasdiqlash»:
     const handleSubmit = () => {
         const otpValue = code.join("");
-        // Проверка минимальной длины кода
-        if (otpValue.length < 5) {
-            // В реальном проекте тут можно показывать toast или что-то другое
-            console.warn(t("errors.minLength"));
+
+        if (otpValue.trim() === "") {
+            toast.error(t("errors.empty"));
             return;
         }
-        // Вызываем родительский колбэк, передавая введённый код
+
+        if (otpValue.length < 5) {
+            toast.error(t("errors.incomplete"));
+            return;
+        }
+
+        // Анимация успешного ввода
+        setIsAnimating(true);
+        setTimeout(() => setIsAnimating(false), 1500);
+
         onConfirm?.(otpValue);
     };
 
-    // Повторная отправка кода
     const handleResend = () => {
-        // Здесь логика отправки SMS повторно
-        // ...
-        // Сбросим таймер заново
         setTimeLeft(90);
     };
 
     return (
         <Dialog open={isOpen} onOpenChange={(open) => onClose(open)}>
-            <DialogContent className={cn(className, "max-w-[400px]")} >
+            <DialogContent className={cn(className, "max-w-[400px]")}>
                 <DialogHeader>
                     <DialogTitle className="text-center text-3xl font-semibold">
                         {t("title")}
@@ -86,37 +82,35 @@ export const OTPModal = ({
                 </DialogHeader>
 
                 <div className="text-center mt-2">
-                    {/* Пример: +998 99 997 99 77 raqamingizga yuborilgan SMS kodni kiriting. */}
                     <p>
                         +{phoneNumber} {t("description")}
                     </p>
-                    {/* «Телефон раqamни o’zgатириш» – можно сделать кликабельной ссылкой */}
-                    <button onClick={} className="text-sky-500 cursor-pointer mt-2">
+                    <button onClick={() => setOpenOTP(false)} className="text-sky-500 cursor-pointer mt-2">
                         {t("try-phone")}
                     </button>
                 </div>
 
-                {/* Сам ввод OTP – 5 окошек */}
-                <div className="flex justify-center mt-4">
-                    <OTPInput length={6} code={code} setCode={setCode} />
+                <div className="flex justify-center">
+                    <OTPInput length={6} code={code} setCode={setCode} isAnimating={isAnimating} />
                 </div>
 
-                {/* Таймер или кнопка «повторить» */}
-                <div className="text-center mt-4">
+                <div className="text-center">
                     {timeLeft > 0 ? (
                         <span>
-              {formatTime(timeLeft)} {t("timer-text")}
-            </span>
+                            {formatTime(timeLeft)} {t("timer-text")}
+                        </span>
                     ) : (
-                        // Когда таймер обнулился, показываем кнопку для повторной отправки
                         <button className="text-sky-500" onClick={handleResend}>
-                            {t("try-phone")} {/* или \"Qaytadan yuborish\" */}
+                            {t("try-code")}
                         </button>
                     )}
                 </div>
 
-                <div className="mt-6">
-                    <Button className="w-full" onClick={handleSubmit}>
+                <div className="mt-2">
+                    <Button
+                        className="w-full bg-maket-primary py-6 rounded-xl hover:bg-sky-800"
+                        onClick={handleSubmit}
+                    >
                         {t("accept")}
                     </Button>
                 </div>

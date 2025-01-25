@@ -9,7 +9,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
 //Toaster
-import toast, {Toaster} from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 
 // shadcn
 import {Dialog, DialogContent, DialogTitle, DialogTrigger} from "@/components/ui/dialog";
@@ -26,7 +26,7 @@ interface Props {
     children?: React.ReactNode;
 }
 
-export const LoginProviderDialog = ({className, children}: Props) => {
+export const RegProviderDialog = ({className, children}: Props) => {
     const t = useTranslations("Account");
 
     const [phone, setPhone] = useState("");
@@ -37,9 +37,6 @@ export const LoginProviderDialog = ({className, children}: Props) => {
     const [passwordError, setPasswordError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [openOTP, setOpenOTP] = useState(false);
-
-    // Vremenno
-    console.log(error)
 
     const handleConfirmCode = (code: string) => {
         console.log('Введённый код:', code);
@@ -102,12 +99,8 @@ export const LoginProviderDialog = ({className, children}: Props) => {
                 toast.success(t("login.success"));
                 // Дополнительная логика, например, редирект
             }
-        } catch (err) {
-            if (err instanceof Error) {
-                setError(err.message || t("login.errors.unknown"));
-            } else {
-                setError(t("login.errors.unknown"));
-            }
+        } catch (err: any) {
+            setError(err.message || t("login.errors.unknown"));
         } finally {
             setLoading(false);
         }
@@ -125,8 +118,7 @@ export const LoginProviderDialog = ({className, children}: Props) => {
         <div className={cn(className)}>
             <Dialog>
                 <DialogTrigger>{children}</DialogTrigger>
-                <DialogContent
-                    className={"max-w-[400px] max-sm:max-w-[300px] max-h-[90%] overflow-y-auto custom-scrollbar"}>
+                <DialogContent className={"max-w-[400px] max-sm:max-w-[300px] max-h-[90%] overflow-y-auto custom-scrollbar"}>
                     <DialogTitle>
                         <h3 className="text-2xl text-center">
                             {t('login.title')}
@@ -174,13 +166,7 @@ export const LoginProviderDialog = ({className, children}: Props) => {
                                 {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
                             </div>
                         </div>
-                        <button
-                            onClick={() => {
-                                validatePhone();
-                            }}
-                            className="my-4 text-sm font-thin text-end flex justify-end w-full">
-                            {t('login.forget')}
-                        </button>
+                        <p className="my-4 text-sm font-thin text-end">{t('login.forget')}</p>
                         <Button
                             disabled={loading}
                             onClick={handleSubmit}
@@ -230,10 +216,8 @@ export const LoginProviderDialog = ({className, children}: Props) => {
                             <span className={"font-bold text-maket-secondary"}>{t('login.register.action')}</span>
                         </p>
                     </div>
-                    <Toaster/>
-                    <OTPModal isOpen={openOTP} phoneNumber={phone} onClose={(open) => {
-                        setOpenOTP(open)
-                    }} setOpenOTP={setOpenOTP} onConfirm={handleConfirmCode}/>
+                    <Toaster />
+                    <OTPModal isOpen={openOTP} phoneNumber={phone} onClose={(open) => {setOpenOTP(open)}} setOpenOTP={setOpenOTP} onConfirm={handleConfirmCode} />
                 </DialogContent>
             </Dialog>
         </div>

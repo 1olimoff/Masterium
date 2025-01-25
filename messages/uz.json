@@ -77,6 +77,7 @@
     "title": "SMS tasdiqlash",
     "description": "raqamingizga yuborilgan SMS kodni kiriting.",
     "try-phone": "Telefon raqamni o’zgatirish",
+    "try-code": "Qaytadan tekshirish kodini so'rash",
     "timer-text": "dan so’ng qayta yuborish",
     "accept": "Tasdiqlash",
     "errors": {

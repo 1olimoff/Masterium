@@ -138,6 +138,10 @@ body {
   animation: fade-in 0.3s forwards;
 }
 
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-animation 1.5s ease-in-out;
+}
 
 /*Animation keyframes*/
 @keyframes fade-in {
@@ -165,5 +169,15 @@ body {
   }
   100% {
     transform: rotate(0deg);
+  }
+}
+
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
   }
 }
