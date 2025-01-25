@@ -16,6 +16,9 @@ import {Dialog, DialogContent, DialogTitle, DialogTrigger} from "@/components/ui
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 
+// Otp Modal
+import {OTPModal} from "@/components/shared/elements/account/otp/OTPModal";
+
 import {signIn} from "next-auth/react";
 
 interface Props {
@@ -33,6 +36,13 @@ export const LoginProviderDialog = ({className, children}: Props) => {
     const [phoneError, setPhoneError] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [openOTP, setOpenOTP] = useState(false);
+
+    const handleConfirmCode = (code: string) => {
+        console.log('Введённый код:', code);
+        // Отправить на сервер или сделать нужные действия
+        setOpenOTP(false);
+    };
 
     const validatePhone = () => {
         if (!phone) {
@@ -52,7 +62,7 @@ export const LoginProviderDialog = ({className, children}: Props) => {
             setPasswordError(t("login.errors.password.required"));
             return false;
         }
-        if (password.length < 6) {
+        if (password.length < 9) {
             setPasswordError(t("login.errors.password.minLength"));
             return false;
         }
@@ -82,8 +92,10 @@ export const LoginProviderDialog = ({className, children}: Props) => {
             if (result?.error) {
                 setError(result.error);
                 toast.error(t("login.errors.phone-or-psw"));
+                setOpenOTP(true)
             } else {
                 // Успешный логин
+
                 toast.success(t("login.success"));
                 // Дополнительная логика, например, редирект
             }
@@ -205,6 +217,7 @@ export const LoginProviderDialog = ({className, children}: Props) => {
                         </p>
                     </div>
                     <Toaster />
+                    <OTPModal isOpen={openOTP} phoneNumber={phone} onClose={(open) => {setOpenOTP(open)}} setOpenOTP={setOpenOTP} onConfirm={handleConfirmCode} />
                 </DialogContent>
             </Dialog>
         </div>
