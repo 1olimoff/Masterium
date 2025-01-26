@@ -20,12 +20,12 @@ const data = [
     {
         src: "/img/advertising/plumbing.png",
         alt: "Plumbing Repair & Maintanence",
-        objectFit: "cover",
+        objectFit: "contain",
     },
     {
         src: "/img/advertising/gas.png",
         alt: "Plumbing Repair & Maintanence",
-        objectFit: "contain",
+        objectFit: "cover",
     },
     {
         src: "/img/advertising/plumbing.png",
@@ -83,6 +83,7 @@ export const AdCarousel = ({ className }: Props) => {
                         </CarouselItem>
                     ))}
 
+                </CarouselContent>
                     {/* Кнопка "Назад" */}
                     <CarouselPrevious
                         className={cn(
@@ -117,13 +118,12 @@ export const AdCarousel = ({ className }: Props) => {
                                     className={cn(
                                         "cursor-pointer h-2 rounded-full transition-all duration-300",
                                         // Если активная – растянута и белая, иначе – круглая и серая
-                                        isActive ? "w-6 bg-white" : "w-2 bg-gray-300"
+                                        isActive ? "w-8 bg-white" : "w-2 bg-gray-300"
                                     )}
                                 />
                             );
                         })}
                     </div>
-                </CarouselContent>
             </Carousel>
         </div>
     );
