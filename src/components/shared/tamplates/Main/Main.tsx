@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@lib/utils';
+import {AdCarousel} from "@/components/shared/advertising/AdCarousel";
 
 interface Props {
     className?: string;
@@ -7,6 +8,8 @@ interface Props {
 
 export const Main = ({ className }: Props) => {
     return (
-        <div className={cn(className)}></div>
+        <div className={cn(className,)}>
+            <AdCarousel />
+        </div>
     );
 };
