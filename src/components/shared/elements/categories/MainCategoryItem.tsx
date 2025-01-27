@@ -8,13 +8,25 @@ interface Props {
     title: string;
 }
 
-export const MainCategoryItem = ({className, iconPath, title}: Props) => {
+
+export const MainCategoryItem = ({ className, iconPath, title }: Props) => {
     return (
-        <div className={cn(className, "relative w-[132px] h-[120px] px-2 py-4 flex flex-col gap-6 rounded-xl")}>
-            <div className={'w-12 h-12 relative'}>
-                <Image src={iconPath} alt={`${title} Icon`} fill objectFit={"contain"}/>
+        <div
+            className={cn(
+                className,
+                "relative flex flex-col",
+                "w-[132px] h-[120px]",
+                "rounded-xl my-custom-shadow px-3 py-4"
+            )}
+        >
+            <div className="w-8 h-8 relative mb-2">
+                <Image src={iconPath} alt={`${title} Icon`} fill style={{ objectFit: "contain" }} />
             </div>
-            <p>{title}</p>
+            {/* Текст в одну строку, с обрезкой, чтобы не ломать высоту */}
+            <p className=" w-full">
+                {title}
+            </p>
         </div>
-    );
-};
+    )
+}
+

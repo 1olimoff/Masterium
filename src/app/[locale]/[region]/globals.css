@@ -122,6 +122,34 @@ body {
 }
 
 
+/*No scrollbar*/
+
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Safari и Chrome */
+}
+
+
+/*Custom shadow*/
+
+.my-custom-shadow {
+  box-shadow:
+    /* Первый слой: Blur 10px, 10% прозрачность */
+          0 0 10px rgba(0, 29, 85, 0.10),
+            /* Второй слой: Blur 6px, 6% прозрачность */
+          0 0 6px rgba(0, 29, 85, 0.06),
+            /* Третий слой: Blur 2px, 3% прозрачность */
+          0 0 2px rgba(0, 29, 85, 0.03),
+            /* Четвёртый слой: Blur 1px, 2.5% прозрачность */
+          0 0 1px rgba(0, 29, 85, 0.025);
+  /* при желании можно добавить border-radius: 12px или другое оформление */
+}
+
+
 
 /*Animates*/
 .call-animate {
