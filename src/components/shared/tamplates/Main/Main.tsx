@@ -8,7 +8,7 @@ interface Props {
 
 export const Main = ({ className }: Props) => {
     return (
-        <div className={cn(className,)}>
+        <div className={cn(className, "flex flex-col gap-4 p-6")}>
             <AdCarousel />
         </div>
     );
