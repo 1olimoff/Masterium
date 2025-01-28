@@ -84,5 +84,13 @@
       "required": "Son kiritishingiz shart",
       "minLength": "Tekshirib to'liq kiriting"
     }
+  },
+  "Main": {
+    "sections": {
+      "OpenWorks": {
+        "title": "Ochiq ishlar",
+        "more": "Barchasini ko'rish"
+      }
+    }
   }
 }
