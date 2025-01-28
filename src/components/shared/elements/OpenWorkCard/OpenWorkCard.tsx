@@ -71,11 +71,11 @@ export const OpenWorkCard = ({className, data}: Props) => {
         });
     }, [api]);
     return (
-        <div className={cn(className, "w-full max-w-[350px] rounded-3xl overflow-hidden")}>
+        <div className={cn(className, "w-full max-w-[350px] rounded-xl overflow-hidden")}>
             <Carousel
                 setApi={setApi}
             >
-                <CarouselContent className="relative w-full h-[300px]">
+                <CarouselContent className="relative w-full h-full max-h-[150px]">
                     {images.map((item, i) => (
                         <CarouselItem
                             key={i}
@@ -111,6 +111,9 @@ export const OpenWorkCard = ({className, data}: Props) => {
                     })}
                 </div>
             </Carousel>
+            <div className={"p-2"}>
+
+            </div>
         </div>
     );
 };

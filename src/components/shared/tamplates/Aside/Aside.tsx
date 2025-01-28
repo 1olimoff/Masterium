@@ -21,7 +21,7 @@ const Aside = ({className}: Props) => {
     const t = useTranslations("Aside");
     return (
         <aside
-            className={cn(className, "py-3 px-2 shadow bg-white sticky top-0")}>
+            className={cn(className, "py-3 px-2 shadow bg-white sticky top-0 z-[99999]")}>
             <div className={'layout-width flex justify-between items-center gap-8'}>
                 <a href={'/'}>
                     <Image src={"/svg/aside/logo.svg"} alt={"masterium logo"} width={200} height={50}/>

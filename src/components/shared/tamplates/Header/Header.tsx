@@ -5,7 +5,6 @@ import {useTranslations} from "next-intl";
 import {LanguageSwitcher} from "@/components/shared/elements/LanguageSwitcher/LanguageSwitcher";
 import {DialogTrigger, Dialog, DialogContent, DialogHeader, DialogTitle} from "@/components/ui/dialog";
 import {ChooseRegion} from "@/components/shared/elements/ChooseRegion/ChooseRegion";
-import {createPortal} from "react-dom";
 
 interface Props {
     className?: string;
@@ -18,7 +17,7 @@ const regions = [
 
 const Header = ({className, params}: Props) => {
     const t = useTranslations("Header");
-    return createPortal(
+    return (
         <header
             className={cn(className, "h-[36px] flex justify-between items-center layout-width px-2")}>
             <div className={'flex gap-2'}>
@@ -57,7 +56,7 @@ const Header = ({className, params}: Props) => {
                 <LanguageSwitcher currentLocale={params.locale || 'ru'}
                                   currentRegion={params.region || 'tashkent'}/>
             </div>
-        </header> ,document.body
+        </header>
     )
 };
 
