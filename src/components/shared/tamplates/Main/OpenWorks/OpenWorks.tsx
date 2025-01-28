@@ -7,7 +7,7 @@ interface Props {
 
 export const OpenWorks = ({ className }: Props) => {
     return (
-        <section className={cn(className, "w-full")}>
+        <section className={cn(className, "w-full flex ")}>
 
         </section>
     );
