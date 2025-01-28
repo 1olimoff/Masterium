@@ -90,7 +90,13 @@
       "OpenWorks": {
         "title": "Ochiq ishlar",
         "more": "Barchasini ko'rish"
+      },
+      "OpenWorkCard": {
+        "more": "Batafsil"
       }
     }
+  },
+  "price": {
+    "sum": "so'm"
   }
 }

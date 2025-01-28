@@ -6,10 +6,10 @@ import {
     type CarouselApi,
     CarouselContent,
     CarouselItem,
-    CarouselNext,
-    CarouselPrevious
 } from "@/components/ui/carousel";
 import Image from "next/image";
+import {useTranslations} from "next-intl";
+import {Button} from "@/components/ui/button";
 
 type Item = {
     title: string;
@@ -59,6 +59,7 @@ const images = [
 ]
 
 export const OpenWorkCard = ({className, data}: Props) => {
+    const t = useTranslations();
     const [api, setApi] = useState<CarouselApi>();
     const [current, setCurrent] = useState(0);
 
@@ -71,11 +72,11 @@ export const OpenWorkCard = ({className, data}: Props) => {
         });
     }, [api]);
     return (
-        <div className={cn(className, "w-full max-w-[350px] rounded-xl overflow-hidden")}>
+        <div className={cn(className, "w-full max-w-[350px] rounded-xl overflow-hidden bg-white my-custom-shadow ")}>
             <Carousel
                 setApi={setApi}
             >
-                <CarouselContent className="relative w-full h-full max-h-[150px]">
+                <CarouselContent className="relative w-full h-[200px]">
                     {images.map((item, i) => (
                         <CarouselItem
                             key={i}
@@ -103,16 +104,30 @@ export const OpenWorkCard = ({className, data}: Props) => {
                                 key={idx}
                                 onClick={() => api?.scrollTo(idx)}
                                 className={cn(
-                                    "cursor-pointer h-2 rounded-full transition-all duration-300",
-                                    isActive ? "w-8 bg-white" : "w-2 bg-gray-300"
+                                    "cursor-pointer h-1 rounded-full transition-all duration-300",
+                                    isActive ? "w-4 bg-white" : "w-1 bg-gray-300"
                                 )}
                             />
                         );
                     })}
                 </div>
             </Carousel>
-            <div className={"p-2"}>
-
+            <div className={"p-2 flex flex-col gap-3"}>
+                <div>
+                    <h3 className={"text-xl font-semibold"}>{data.title}</h3>
+                    <p className={"text-maket-gray"}>{data.category}</p>
+                </div>
+                <span className={"text-xl text-maket-secondary font-bold"}>{data.price}{" "}{t('price.sum')}</span>
+                <div className={"flex flex-col gap-1"}>
+                    <div className={"flex gap-4"}>
+                        <div className={"h-12 w-12 rounded-full relative"}>
+                            <Image src={data.client.avatar.src} alt={data.client.avatar.alt} fill objectFit={"cover"} className={"rounded-full"} />
+                        </div>
+                    </div>
+                    <Button className={"bg-maket-batafsil text-maket-secondary text-xl font-semibold py-6 rounded-xl hover:bg-maket-secondary hover:text-white transition-all duration-200"}>
+                        {t('Main.sections.OpenWorkCard.more')}
+                    </Button>
+                </div>
             </div>
         </div>
     );
