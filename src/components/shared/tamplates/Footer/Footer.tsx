@@ -12,25 +12,45 @@ export const Footer = ({className}: Props) => {
     const t = useTranslations("Footer");
     return (
         <FooterProvider>
-            <div className={cn(className, "grid grid-cols-4")}>
+            <div className={cn(className, "grid grid-cols-4 gap-8")}>
                 <div className={"flex flex-col gap-6"}>
                     <Image src={"/svg/footer/logo.svg"} alt={"Footer logo of Masterium"} width={500}
                            height={100} className={"w-full max-w-[350px] h-auto"} quality={100}/>
                     <h3 className={"text-maket-gold"}>{t("logo.title")}</h3>
                 </div>
-                <div className={"flex flex-col gap-6"}>
-                    <h4>
-                        {t('info.title')}
-                    </h4>
-                    <ul>
-                        {
-                            t.raw("info.list").map((item: string, i: number) => (
-                                <li className={"text-white"} key={i}>
-                                    {item}
-                                </li>
-                            ))
-                        }
-                    </ul>
+                <div className={"flex justify-center"}>
+                    <div className={"flex flex-col gap-4"}>
+                        <h4 className={"text-maket-gold text-xl font-semibold"}>
+                            {t('info.title')}
+                        </h4>
+                        <ul className={"flex flex-col gap-2"}>
+                            {
+                                t.raw("info.list").map((item: string, i: number) => (
+                                    <li className={"text-maket-gold"} key={i}>
+                                        {item}
+                                    </li>
+                                ))
+                            }
+                        </ul>
+
+                    </div>
+                </div>
+                <div className={"flex justify-center"}>
+                    <div className={"flex flex-col gap-4"}>
+                        <h4 className={"text-maket-gold text-xl font-semibold"}>
+                            {t('download.title')}
+                        </h4>
+                        <ul className={"flex flex-col gap-2"}>
+                            {
+                                t.raw("info.list").map((item: string, i: number) => (
+                                    <li className={"text-maket-gold"} key={i}>
+                                        {item}
+                                    </li>
+                                ))
+                            }
+                        </ul>
+
+                    </div>
                 </div>
             </div>
             <div>
