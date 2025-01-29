@@ -38,4 +38,4 @@ export const Footer = ({className}: Props) => {
             </div>
         </FooterProvider>
     );
-};
+};g
