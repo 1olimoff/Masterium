@@ -36,20 +36,14 @@ export const Footer = ({className}: Props) => {
                     </div>
                 </div>
                 <div className={"flex justify-center"}>
-                    <div className={"flex flex-col gap-4"}>
+                    <div className={"flex flex-col gap-4 items-start"}>
                         <h4 className={"text-maket-gold text-xl font-semibold"}>
                             {t('download.title')}
                         </h4>
-                        <ul className={"flex flex-col gap-2"}>
-                            {
-                                t.raw("info.list").map((item: string, i: number) => (
-                                    <li className={"text-maket-gold"} key={i}>
-                                        {item}
-                                    </li>
-                                ))
-                            }
-                        </ul>
-
+                        <div className={"flex flex-col gap-4"}>
+                                <Image src={"/svg/footer/Apple.svg"} alt={"Download from Apple Store Icon"} width={200} height={100} quality={100} className={"h-10 w-auto"} />
+                            <Image src={"/svg/footer/GooglePlay.svg"} alt={"Download from Apple Store Icon"} width={200} height={100} quality={100} className={"h-10 w-auto"} />
+                        </div>
                     </div>
                 </div>
             </div>
