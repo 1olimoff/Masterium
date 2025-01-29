@@ -31,6 +31,27 @@
       }
     }
   },
+  "Footer": {
+    "logo": {
+      "title": "MASTERIUM - ustalar markazi"
+    },
+    "info": {
+      "title": "Masters Hub",
+      "list": [
+        "Xizmat ko’rsatuvchilar uchun",
+        "Korxonalar uchun",
+        "Biz haqimizda",
+        "Ko’p beriladigan savollar"
+      ]
+    },
+    "download": {
+      "title": "Ilovani yuklab olish"
+    },
+    "contact": {
+      "title": "Biz bilan bogʻlanish"
+    },
+    "security": "© 2024 MasterHub.uz. Barcha huquqlar himoyalangan"
+  },
   "Account": {
     "login": {
       "title": "Tizimga kirish",
