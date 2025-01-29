@@ -25,7 +25,7 @@ export const Footer = ({className}: Props) => {
                     <ul>
                         {
                             t.raw("info.list").map((item: string, i: number) => (
-                                <li key={i}>
+                                <li className={"text-white"} key={i}>
                                     {item}
                                 </li>
                             ))
@@ -38,4 +38,4 @@ export const Footer = ({className}: Props) => {
             </div>
         </FooterProvider>
     );
-};g
+};
