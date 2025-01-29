@@ -18,8 +18,9 @@ const data = [
                 src: "/img/advertising/gas.png",
                 alt: "Eshonov Baxodir",
             },
+            name: "Eshonov Baxodir",
             type: "Mijoz",
-            status: "online",
+            online: true,
         }
     },
     {
@@ -31,8 +32,9 @@ const data = [
                 src: "/img/advertising/gas.png",
                 alt: "Eshonov Baxodir",
             },
+            name: "Eshonov Baxodir",
             type: "Mijoz",
-            status: "offline",
+            online: false,
         }
     },
     {
@@ -44,8 +46,9 @@ const data = [
                 src: "/img/advertising/gas.png",
                 alt: "Eshonov Baxodir",
             },
+            name: "Eshonov Baxodir",
             type: "Mijoz",
-            status: "online",
+            online: true,
         }
     },
     {
@@ -55,10 +58,11 @@ const data = [
         client: {
             avatar: {
                 src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
+                alt: "Eshonov Baxodir's Image",
             },
+            name: "Eshonov Baxodir",
             type: "Mijoz",
-            status: "online",
+            online: true,
         }
     },
 ]

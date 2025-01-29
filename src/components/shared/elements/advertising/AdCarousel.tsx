@@ -58,7 +58,7 @@ export const AdCarousel = ({ className }: Props) => {
     }, [api]);
 
     return (
-        <div className={cn("relative w-full overflow-hidden", className)}>
+        <section className={cn("relative w-full overflow-hidden", className)}>
             <Carousel
                 setApi={setApi}
             >
@@ -115,6 +115,6 @@ export const AdCarousel = ({ className }: Props) => {
                     })}
                 </div>
             </Carousel>
-        </div>
+        </section>
     );
 };

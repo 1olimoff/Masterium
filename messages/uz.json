@@ -93,10 +93,19 @@
       },
       "OpenWorkCard": {
         "more": "Batafsil"
+      },
+      "DailyWorkers": {
+        "title": "Kunlik ishchilar",
+        "Card": {
+          "comments": "izohlar"
+        }
       }
     }
   },
   "price": {
-    "sum": "so'm"
+    "sum": {
+      "title": "so'm",
+      "starting-from": "so'mdan boshlab"
+    }
   }
 }

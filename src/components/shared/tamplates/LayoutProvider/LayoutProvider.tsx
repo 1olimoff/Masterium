@@ -2,6 +2,7 @@ import React from 'react';
 import { cn } from '@lib/utils';
 import Header from "@/components/shared/tamplates/Header";
 import Aside from "@/components/shared/tamplates/Aside";
+import {Footer} from "@/components/shared/tamplates/Footer/Footer";
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -17,6 +18,7 @@ export const LayoutProvider = ({ className, children, params }: LayoutProps) => 
                 <Aside />
             {children}
             </div>
+            <Footer />
         </div>
     );
 };
