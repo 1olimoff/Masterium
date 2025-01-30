@@ -34,8 +34,8 @@ export const AdGrid = ({ className }: Props) => {
         <div className={cn(className, "grid grid-cols-4 gap-4")}>
             {
                 data.map((item, index) => (
-                    <div className={"h-[200px] w-full"} key={index}>
-                        <Image src={item.src} alt={item.alt} fill objectFit={item.objectFit} />
+                    <div className={"h-[200px] w-full relative rounded-3xl"} key={index}>
+                        <Image src={item.src} alt={item.alt} fill objectFit={item.objectFit} className={"rounded-3xl"} />
                     </div>
                 ))
             }
