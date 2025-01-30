@@ -73,7 +73,7 @@ export const OpenWorks = ({className}: Props) => {
         <section className={cn(className, "w-full flex flex-col gap-4")}>
             <div className={"w-full flex justify-between gap-2"}>
                 <h3 className={"text-3xl font-semibold"}>{t("OpenWorks.title")}</h3>
-                <MoreButton title={t("OpenWorks.more")} link={"/open-works"} />
+                <MoreButton title={t("OpenWorks.more")} link={"open-works"} />
             </div>
             <div className={"w-full grid grid-cols-4 gap-4"}>
                 {

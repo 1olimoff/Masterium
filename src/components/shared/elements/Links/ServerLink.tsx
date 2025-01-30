@@ -8,9 +8,9 @@ type ServerLinkProps = {
     className?: string;
 } & PropsWithChildren;
 
-export default function ServerLink({ path, className, children }: ServerLinkProps) {
+export default async function ServerLink({ path, className, children }: ServerLinkProps) {
     // Достаём куки на сервере:
-    const store = cookies();
+    const store = await cookies();
     const locale = store.get("locale")?.value || "ru";
     const region = store.get("region")?.value || "tashkent";
 
