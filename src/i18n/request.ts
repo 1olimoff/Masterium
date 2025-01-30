@@ -4,7 +4,7 @@ import {routing} from './routing';
 
 export default getRequestConfig(async ({locale}) => {
     // Валидация локали
-    if (!routing.locales.includes(locale as any)) notFound();
+    if (!routing.locales.includes(locale as never)) notFound();
 
     return {
         // Загружаем сообщения для текущей локали

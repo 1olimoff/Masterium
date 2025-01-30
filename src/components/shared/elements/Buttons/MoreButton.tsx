@@ -9,6 +9,7 @@ interface Props {
 }
 
 export const MoreButton = ({className, title, link = "/"}: Props) => {
+    console.log(link);
     return (
         <button className={cn(className, "flex gap-4 hover:gap-6 transition-all duration-200 items-center")}>
             <p className={"text-lg text-maket-secondary"}>
