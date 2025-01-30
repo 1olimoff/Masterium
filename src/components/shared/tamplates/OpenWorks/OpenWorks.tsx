@@ -2,6 +2,7 @@ import React from 'react';
 import { cn } from '@lib/utils';
 import {AdGrid} from "@/components/shared/elements/advertising/AdGrid";
 import {Title} from "./Title/Title"
+import {Filter} from "./Filter/Filter";
 
 interface Props {
     className?: string;
@@ -12,6 +13,7 @@ export const OpenWorks = ({ className }: Props) => {
         <div className={cn(className, "w-full flex flex-col gap-12 py-6")}>
             <AdGrid />
             <Title />
+            <Filter />
         </div>
     );
 };
