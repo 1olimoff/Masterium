@@ -28,6 +28,8 @@ export async function generateMetadata({ params }: LayoutProps) {
     // Extract locale & region
     const { locale = 'ru', region } = params;
 
+    console.log("LAYOUT.tsx Region", region)
+
     // Or get it from any external source / logic if needed
     const siteUrl = 'https://masterium-real.vercel.app';
 
@@ -96,6 +98,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
         messages = await getMessages({ locale });
     } catch (err) {
         // If we can't find messages for the locale, show 404 or fallback
+        console.log("Layout ERROR",err);
         notFound();
     }
 

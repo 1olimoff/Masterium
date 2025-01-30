@@ -17,6 +17,8 @@ export const authOptions: NextAuthOptions = {
             },
             async authorize(credentials, req) {
                 try {
+
+                    console.log(req)
                     // Здесь можно сделать запрос к вашему бэкенду
                     // для валидации телефона/пароля:
                     const { phone, password } = credentials as {
@@ -68,6 +70,7 @@ export const authOptions: NextAuthOptions = {
     callbacks: {
         // Если требуется дообогатить токен – например, положить туда role
         async jwt({ token, user, account }) {
+            console.log(account);
             if (user) {
                 token.id = user.id;
                 // Можно сохранить и другие поля, если возвращает ваш бэкенд
@@ -76,7 +79,8 @@ export const authOptions: NextAuthOptions = {
         },
         async session({ session, token }) {
             if (token) {
-                session.user.id = token.id;
+                console.log("ROUTE.ts SESSION AND TOKEN",token, session);
+                // session.user.id = token.id;
                 // Также можно передать role, permissions и т.д.
             }
             return session;

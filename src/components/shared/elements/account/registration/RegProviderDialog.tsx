@@ -38,6 +38,8 @@ export const RegProviderDialog = ({className, children}: Props) => {
     const [showPassword, setShowPassword] = useState(false);
     const [openOTP, setOpenOTP] = useState(false);
 
+    console.log("ERROR", error)
+
     const handleConfirmCode = (code: string) => {
         console.log('Введённый код:', code);
         // Отправить на сервер или сделать нужные действия
@@ -99,8 +101,12 @@ export const RegProviderDialog = ({className, children}: Props) => {
                 toast.success(t("login.success"));
                 // Дополнительная логика, например, редирект
             }
-        } catch (err: any) {
-            setError(err.message || t("login.errors.unknown"));
+        } catch (err) {
+            if (err instanceof Error) {
+                setError(err.message || t("login.errors.unknown"));
+            } else {
+                setError(t("login.errors.unknown"));
+            }
         } finally {
             setLoading(false);
         }
