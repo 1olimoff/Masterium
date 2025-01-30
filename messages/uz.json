@@ -128,5 +128,11 @@
       "title": "so'm",
       "starting-from": "so'mdan boshlab"
     }
+  },
+  "OpenWorks": {
+    "breadcrumb": {
+      "home": "Bosh sahifa",
+      "openWorks": "Ochiq ishlar"
+    }
   }
 }

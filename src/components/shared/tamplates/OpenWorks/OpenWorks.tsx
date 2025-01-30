@@ -8,7 +8,7 @@ interface Props {
 
 export const OpenWorks = ({ className }: Props) => {
     return (
-        <div className={cn(className)}>
+        <div className={cn(className, "w-full flex flex-col gap-12 py-6")}>
             <AdGrid />
         </div>
     );
