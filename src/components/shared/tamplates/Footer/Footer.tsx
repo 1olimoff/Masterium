@@ -8,7 +8,7 @@ import Link from "next/link";
 interface Props {
     className?: string;
 }
-f
+
 export const Footer = ({className}: Props) => {
     const t = useTranslations("Footer");
     return (
@@ -51,9 +51,40 @@ export const Footer = ({className}: Props) => {
                         </div>
                     </div>
                 </div>
+                <div className={"flex justify-center"}>
+                    <div className={"flex flex-col gap-4 items-start"}>
+                        <h4 className={"text-maket-gold text-xl font-semibold"}>
+                            {t('contact.title')}
+                        </h4>
+                        <div className={"flex flex-col gap-2"}>
+                            <a href="tel:+998991234578" className={"text-maket-gold text-lg"}>+998 99 123 45 78</a>
+                            <a href="tel:+998991234578" className={"text-maket-gold text-lg"}>+998 99 123 45 78</a>
+                            <a href="mailto:info@mastershub.uz" className={"text-maket-gold text-lg"}>info@mastershub.uz</a>
+                            <div className={"flex gap-4"}>
+                                <a href={"/"} className={"h-10 w-10 rounded-full relative"}>
+                                    <Image src={'/svg/footer/social/Telegram_white.svg'} alt={"Masterium's Telegramm Link Icon"} fill objectFit={"contain"} />
+                                </a>
+                                <a href={"/"} className={"h-10 w-10 rounded-full relative"}>
+                                    <Image src={'/svg/footer/social/Instagram.svg'} alt={"Masterium's Telegramm Link Icon"} fill objectFit={"contain"} />
+                                </a>
+                                <a href={"/"} className={"h-10 w-10 rounded-full relative"}>
+                                    <Image src={'/svg/footer/social/Facebook.svg'} alt={"Masterium's Telegramm Link Icon"} fill objectFit={"contain"} />
+                                </a>
+                                <a href={"/"} className={"h-10 w-10 rounded-full relative"}>
+                                    <Image src={'/svg/footer/social/Youtube.svg'} alt={"Masterium's Telegramm Link Icon"} fill objectFit={"contain"} />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-
+            <div className={"text-maket-gold"}>
+                <hr />
+                <div className={"flex w-full justify-center items-center pt-4 text-lg"}>
+                    <p>
+                        {t('security')}
+                    </p>
+                </div>
             </div>
         </FooterProvider>
     );
