@@ -77,10 +77,12 @@ const authOptions: NextAuthOptions = {
          * Обычно используют, чтобы положить в токен user.id, role и т.д.
          */
         async jwt({ token, user, account }) {
+
             if (user) {
                 // Если бэкенд вернул user.id
-                (token as any).id = user.id;
+                // (token as any).id = user.id;
                 // Можно добавить и другие поля
+                console.log("ROUTE.ts ACCOUNT", account)
             }
             return token;
         },
