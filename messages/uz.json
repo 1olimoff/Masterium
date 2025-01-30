@@ -133,6 +133,26 @@
     "breadcrumb": {
       "home": "Bosh sahifa",
       "openWorks": "Ochiq ishlar"
-    }
+    },
+    "filter": {
+      "title": "Filter",
+      "catalog": {
+        "title": "Katalog",
+        "placeholder": "Barcha kataloglar"
+      },
+      "price": {
+        "title": "Narx",
+        "from": "dan",
+        "to": "gacha"
+      },
+      "period": {
+        "title": "Ish muddati"
+      },
+      "location": {
+        "title": "Joylashuvi",
+        "placeholder": "Butun O'zbekiston"
+      }
+    },
+    "more": "Yana ko'rsatish"
   }
 }
