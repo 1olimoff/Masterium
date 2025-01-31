@@ -138,7 +138,8 @@
       "title": "Filter",
       "catalog": {
         "title": "Katalog",
-        "placeholder": "Barcha kataloglar"
+        "placeholder": "Barcha kataloglar",
+        "search": "Qidirish"
       },
       "price": {
         "title": "Narx",

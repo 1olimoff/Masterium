@@ -1,7 +1,7 @@
 import React from 'react';
 import { cn } from '@lib/utils';
 import {useTranslations} from "next-intl";
-import {FilterBar} from "@/components/shared/tamplates/OpenWorks/Filter/FilterBar";
+import {FilterBar} from "@/components/shared/tamplates/OpenWorks/Filter/FilterBar/FilterBar";
 
 interface Props {
     className?: string;

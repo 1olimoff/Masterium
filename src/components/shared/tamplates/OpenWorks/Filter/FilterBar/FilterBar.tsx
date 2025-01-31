@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Command, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
-import { ChevronsUpDown } from "lucide-react";
+import Image from "next/image";
 
 const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
 
@@ -29,10 +29,10 @@ export const FilterBar = ({ className }: Props) => {
                             className="w-full py-6 text-left md:text-lg md:font-thin border-2 border-[#CFD9FE] rounded-xl flex justify-between items-center"
                         >
                             {selected ? selected : t("OpenWorks.filter.catalog.placeholder")}
-                            <ChevronsUpDown className="ml-2 h-4 w-4 text-gray-500" />
+                            <Image src={"/svg/open-works/arrow-down.svg"} alt={"Arrow down icon for list"} width={20} height={20} />
                         </Button>
                     </PopoverTrigger>
-                    <PopoverContent className="w-full p-2">
+                    <PopoverContent className="p-2">
                         <Command>
                             <CommandInput placeholder={t("OpenWorks.filter.catalog.search")} className="border-0 focus:ring-0" />
                             <CommandList>
