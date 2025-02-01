@@ -8,6 +8,10 @@ import {Input} from "@/components/ui/input"; // Предположим, у ва�
 import Image from "next/image";
 import {cn} from "@/lib/utils";
 
+
+//utils
+import {formatAndValidatePrice} from "@/utils/PriceForrmater";
+
 interface FilterBarClientProps {
     className?: string;
     catalogs: string[];
@@ -45,66 +49,66 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
     return (
         <div className={cn(className, "w-full flex gap-4 border-b pb-4")}>
             {/* Первая строка: Каталог */}
-                <div className="w-[27%] flex flex-col gap-2">
-                    <p>{t("OpenWorks.filter.catalog.title")}</p>
-                    <Popover open={catalogOpen} onOpenChange={setCatalogOpen}>
-                        <PopoverTrigger asChild>
-                            <Button
-                                variant="outline"
-                                className="w-full py-3 text-left border-2 border-[#CFD9FE] rounded-xl flex justify-between items-center"
-                            >
-                                {selectedCatalog
-                                    ? selectedCatalog
-                                    : t("OpenWorks.filter.catalog.placeholder")}
-                                <Image
-                                    src={"/svg/open-works/arrow-down.svg"}
-                                    alt="Arrow down icon"
-                                    width={20}
-                                    height={20}
-                                />
-                            </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="p-2 w-full md:w-48">
-                            <Command>
-                                <CommandInput placeholder={t("OpenWorks.filter.catalog.search")}/>
-                                <CommandList>
-                                    {catalogs.map((catalog) => (
-                                        <CommandItem
-                                            key={catalog}
-                                            value={catalog}
-                                            onSelect={(value) => {
-                                                setSelectedCatalog(value);
-                                                setCatalogOpen(false);
-                                            }}
-                                            className="cursor-pointer hover:bg-gray-100 rounded-md p-2"
-                                        >
-                                            {catalog}
-                                        </CommandItem>
-                                    ))}
-                                </CommandList>
-                            </Command>
-                        </PopoverContent>
-                    </Popover>
-                </div>
+            <div className="w-[27%] flex flex-col gap-1">
+                <p>{t("OpenWorks.filter.catalog.title")}</p>
+                <Popover open={catalogOpen} onOpenChange={setCatalogOpen}>
+                    <PopoverTrigger asChild>
+                        <Button
+                            variant="outline"
+                            className="w-full py-3 text-left border-2 border-[#CFD9FE] rounded-xl flex justify-between items-center"
+                        >
+                            {selectedCatalog
+                                ? selectedCatalog
+                                : t("OpenWorks.filter.catalog.placeholder")}
+                            <Image
+                                src={"/svg/open-works/arrow-down.svg"}
+                                alt="Arrow down icon"
+                                width={20}
+                                height={20}
+                            />
+                        </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="p-2 w-full md:w-48">
+                        <Command>
+                            <CommandInput placeholder={t("OpenWorks.filter.catalog.search")}/>
+                            <CommandList>
+                                {catalogs.map((catalog) => (
+                                    <CommandItem
+                                        key={catalog}
+                                        value={catalog}
+                                        onSelect={(value) => {
+                                            setSelectedCatalog(value);
+                                            setCatalogOpen(false);
+                                        }}
+                                        className="cursor-pointer hover:bg-gray-100 rounded-md p-2"
+                                    >
+                                        {catalog}
+                                    </CommandItem>
+                                ))}
+                            </CommandList>
+                        </Command>
+                    </PopoverContent>
+                </Popover>
+            </div>
 
-                {/* Цена: от/до */}
-                <div className="w-[23%] flex flex-col gap-4">
-                    <div className="flex-1">
-                        <p className="mb-1">{t("OpenWorks.filter.price.label")}</p>
-                        <div className="flex gap-2">
-                            <Input
-                                placeholder={t("OpenWorks.filter.price.from")}
-                                value={priceFrom}
-                                onChange={(e) => setPriceFrom(e.target.value)}
-                            />
-                            <Input
-                                placeholder={t("OpenWorks.filter.price.to")}
-                                value={priceTo}
-                                onChange={(e) => setPriceTo(e.target.value)}
-                            />
-                        </div>
-                    </div>
+            {/* Цена: от/до */}
+            <div className="w-[23%] flex flex-col gap-1">
+                <p>{t("OpenWorks.filter.price.title")}</p>
+                <div className="flex gap-2">
+                    <Input
+                        placeholder={t("OpenWorks.filter.price.from")}
+                        value={priceFrom}
+                        onChange={(e) => setPriceFrom(e.target.value)}
+                        onBlur={() => setPriceFrom(formatAndValidatePrice(priceFrom))}
+                    />
+                    <Input
+                        placeholder={t("OpenWorks.filter.price.to")}
+                        value={priceTo}
+                        onChange={(e) => setPriceTo(e.target.value)}
+                        onBlur={() => setPriceTo(formatAndValidatePrice(priceTo))}
+                    />
                 </div>
+            </div>
 
             {/* Вторая строка: Даты + Локация */}
 
