@@ -1,19 +1,20 @@
 "use client";
-import React, { useState } from "react";
-import { useTranslations } from "next-intl";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Command, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input"; // Предположим, у вас есть такой
+import React, {useState} from "react";
+import {useTranslations} from "next-intl";
+import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
+import {Command, CommandInput, CommandItem, CommandList} from "@/components/ui/command";
+import {Button} from "@/components/ui/button";
+import {Input} from "@/components/ui/input"; // Предположим, у вас есть такой
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import {cn} from "@/lib/utils";
 
 interface FilterBarClientProps {
+    className?: string;
     catalogs: string[];
     locations: string[];
 }
 
-export default function FilterBarClient({ catalogs, locations }: FilterBarClientProps) {
+export default function FilterBarClient({catalogs, locations, className}: FilterBarClientProps) {
     const t = useTranslations();
 
     // Состояния, выбранные пользователем
@@ -30,24 +31,21 @@ export default function FilterBarClient({ catalogs, locations }: FilterBarClient
     const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
 
     // Пример обработчика «Применить»:
-    function handleApplyFilters() {
-        // Здесь вы вызываете нужные методы,
-        // делаете push в query-параметры роутера и т.д.
-        console.log("Filters:", {
-            catalog: selectedCatalog,
-            price: { from: priceFrom, to: priceTo },
-            dates: { from: dateFrom, to: dateTo },
-            location: selectedLocation,
-        });
-    }
+    // function handleApplyFilters() {
+    //     // Здесь вы вызываете нужные методы,
+    //     // делаете push в query-параметры роутера и т.д.
+    //     console.log("Filters:", {
+    //         catalog: selectedCatalog,
+    //         price: { from: priceFrom, to: priceTo },
+    //         dates: { from: dateFrom, to: dateTo },
+    //         location: selectedLocation,
+    //     });
+    // }
 
     return (
-        <div className="w-full flex flex-col gap-4 border-b pb-4">
-            <h2 className="text-xl font-semibold mb-2">Filter</h2>
-
+        <div className={cn(className, "w-full flex gap-4 border-b pb-4")}>
             {/* Первая строка: Каталог */}
-            <div className="flex flex-col md:flex-row md:items-center gap-4">
-                <div className="md:w-1/3">
+                <div className="w-[27%] flex flex-col gap-2">
                     <p className="mb-1">{t("OpenWorks.filter.catalog.title")}</p>
                     <Popover open={catalogOpen} onOpenChange={setCatalogOpen}>
                         <PopoverTrigger asChild>
@@ -68,7 +66,7 @@ export default function FilterBarClient({ catalogs, locations }: FilterBarClient
                         </PopoverTrigger>
                         <PopoverContent className="p-2 w-full md:w-48">
                             <Command>
-                                <CommandInput placeholder={t("OpenWorks.filter.catalog.search")} />
+                                <CommandInput placeholder={t("OpenWorks.filter.catalog.search")}/>
                                 <CommandList>
                                     {catalogs.map((catalog) => (
                                         <CommandItem
@@ -90,7 +88,7 @@ export default function FilterBarClient({ catalogs, locations }: FilterBarClient
                 </div>
 
                 {/* Цена: от/до */}
-                <div className="flex-1 flex flex-col md:flex-row items-center gap-4">
+                <div className="w-[23%] flex flex-col gap-4">
                     <div className="flex-1">
                         <p className="mb-1">{t("OpenWorks.filter.price.label")}</p>
                         <div className="flex gap-2">
@@ -107,76 +105,67 @@ export default function FilterBarClient({ catalogs, locations }: FilterBarClient
                         </div>
                     </div>
                 </div>
-            </div>
 
             {/* Вторая строка: Даты + Локация */}
-            <div className="flex flex-col md:flex-row md:items-center gap-4">
-                <div className="md:w-1/3">
-                    <p className="mb-1">{t("OpenWorks.filter.date.label")}</p>
-                    <div className="flex gap-2">
-                        <Input
-                            type="date"
-                            placeholder={t("OpenWorks.filter.date.from")}
-                            value={dateFrom}
-                            onChange={(e) => setDateFrom(e.target.value)}
-                        />
-                        <Input
-                            type="date"
-                            placeholder={t("OpenWorks.filter.date.to")}
-                            value={dateTo}
-                            onChange={(e) => setDateTo(e.target.value)}
-                        />
-                    </div>
-                </div>
 
-                <div className="flex-1">
-                    <p className="mb-1">{t("OpenWorks.filter.location.title")}</p>
-                    <Popover open={locationOpen} onOpenChange={setLocationOpen}>
-                        <PopoverTrigger asChild>
-                            <Button
-                                variant="outline"
-                                className="w-full py-3 text-left border-2 border-[#CFD9FE] rounded-xl flex justify-between items-center"
-                            >
-                                {selectedLocation
-                                    ? selectedLocation
-                                    : t("OpenWorks.filter.location.placeholder")}
-                                <Image
-                                    src={"/svg/open-works/arrow-down.svg"}
-                                    alt="Arrow down icon"
-                                    width={20}
-                                    height={20}
-                                />
-                            </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="p-2 w-full md:w-48">
-                            <Command>
-                                <CommandInput placeholder={t("OpenWorks.filter.location.search")} />
-                                <CommandList>
-                                    {locations.map((loc) => (
-                                        <CommandItem
-                                            key={loc}
-                                            value={loc}
-                                            onSelect={(value) => {
-                                                setSelectedLocation(value);
-                                                setLocationOpen(false);
-                                            }}
-                                            className="cursor-pointer hover:bg-gray-100 rounded-md p-2"
-                                        >
-                                            {loc}
-                                        </CommandItem>
-                                    ))}
-                                </CommandList>
-                            </Command>
-                        </PopoverContent>
-                    </Popover>
+            <div className="md:w-1/3">
+                <p className="mb-1">{t("OpenWorks.filter.date.label")}</p>
+                <div className="flex gap-2">
+                    <Input
+                        type="date"
+                        placeholder={t("OpenWorks.filter.date.from")}
+                        value={dateFrom}
+                        onChange={(e) => setDateFrom(e.target.value)}
+                    />
+                    <Input
+                        type="date"
+                        placeholder={t("OpenWorks.filter.date.to")}
+                        value={dateTo}
+                        onChange={(e) => setDateTo(e.target.value)}
+                    />
                 </div>
             </div>
 
-            {/* Кнопка «Применить фильтры» */}
-            <div className="mt-4">
-                <Button onClick={handleApplyFilters} className="px-6 py-3">
-                    {t("OpenWorks.filter.button.apply")}
-                </Button>
+            <div className="flex-1">
+                <p className="mb-1">{t("OpenWorks.filter.location.title")}</p>
+                <Popover open={locationOpen} onOpenChange={setLocationOpen}>
+                    <PopoverTrigger asChild>
+                        <Button
+                            variant="outline"
+                            className="w-full py-3 text-left border-2 border-[#CFD9FE] rounded-xl flex justify-between items-center"
+                        >
+                            {selectedLocation
+                                ? selectedLocation
+                                : t("OpenWorks.filter.location.placeholder")}
+                            <Image
+                                src={"/svg/open-works/arrow-down.svg"}
+                                alt="Arrow down icon"
+                                width={20}
+                                height={20}
+                            />
+                        </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="p-2 w-full md:w-48">
+                        <Command>
+                            <CommandInput placeholder={t("OpenWorks.filter.location.search")}/>
+                            <CommandList>
+                                {locations.map((loc) => (
+                                    <CommandItem
+                                        key={loc}
+                                        value={loc}
+                                        onSelect={(value) => {
+                                            setSelectedLocation(value);
+                                            setLocationOpen(false);
+                                        }}
+                                        className="cursor-pointer hover:bg-gray-100 rounded-md p-2"
+                                    >
+                                        {loc}
+                                    </CommandItem>
+                                ))}
+                            </CommandList>
+                        </Command>
+                    </PopoverContent>
+                </Popover>
             </div>
         </div>
     );
