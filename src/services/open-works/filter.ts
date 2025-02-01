@@ -3,7 +3,7 @@
 // Пример: возвращаем списки каталогов или локаций
 export async function getCatalogs(): Promise<string[]> {
     // Тут можно сходить на ваш бекенд, GraphQL, REST API и т.д.
-    return ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
+    return ["Santexnik", "Beton quyuvchi", "Malyar", "patalog kiluvchi", "elektrik"];
 }
 
 export async function getLocations(): Promise<string[]> {

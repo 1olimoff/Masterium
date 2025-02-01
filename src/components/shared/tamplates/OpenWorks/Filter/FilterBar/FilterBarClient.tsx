@@ -46,7 +46,7 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
         <div className={cn(className, "w-full flex gap-4 border-b pb-4")}>
             {/* Первая строка: Каталог */}
                 <div className="w-[27%] flex flex-col gap-2">
-                    <p className="mb-1">{t("OpenWorks.filter.catalog.title")}</p>
+                    <p>{t("OpenWorks.filter.catalog.title")}</p>
                     <Popover open={catalogOpen} onOpenChange={setCatalogOpen}>
                         <PopoverTrigger asChild>
                             <Button
