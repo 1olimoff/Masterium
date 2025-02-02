@@ -134,20 +134,68 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
             {/* Вторая строка: Даты + Локация */}
 
             <div className="md:w-1/3">
-                <p className="mb-1">{t("OpenWorks.filter.date.label")}</p>
+                <p className="mb-1">{t("OpenWorks.filter.period.title")}</p>
                 <div className="flex gap-2">
-                    <Input
-                        type="date"
-                        placeholder={t("OpenWorks.filter.date.from")}
-                        value={dateFrom}
-                        onChange={(e) => setDateFrom(e.target.value)}
-                    />
-                    <Input
-                        type="date"
-                        placeholder={t("OpenWorks.filter.date.to")}
-                        value={dateTo}
-                        onChange={(e) => setDateTo(e.target.value)}
-                    />
+                    <Popover open={dateFromOpen} onOpenChange={setDateFromOpen}>
+                        <PopoverTrigger asChild>
+                            <Button
+                                variant="outline"
+                                className="w-full py-3 text-left border-2 border-[#CFD9FE] rounded-xl flex justify-between items-center"
+                            >
+                                {dateFrom
+                                    ? dateFrom.toLocaleDateString() // либо форматируйте через date-fns
+                                    : t("OpenWorks.filter.price.from")}
+                                <Image
+                                    src={"/svg/open-works/calendar.svg"}
+                                    alt="Calendar icon"
+                                    width={20}
+                                    height={20}
+                                />
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="p-2 w-auto" align="start">
+                            <Calendar
+                                mode="single"
+                                selected={dateFrom}
+                                onSelect={(day) => {
+                                    setDateFrom(day);
+                                    setDateFromOpen(false);
+                                }}
+                                initialFocus
+                            />
+                        </PopoverContent>
+                    </Popover>
+
+                    {/* Поле "gacha" */}
+                    <Popover open={dateToOpen} onOpenChange={setDateToOpen}>
+                        <PopoverTrigger asChild>
+                            <Button
+                                variant="outline"
+                                className="w-full py-3 text-left border-2 border-[#CFD9FE] rounded-xl flex justify-between items-center"
+                            >
+                                {dateTo
+                                    ? dateTo.toLocaleDateString()
+                                    : t("OpenWorks.filter.price.to")}
+                                <Image
+                                    src={"/svg/open-works/calendar.svg"}
+                                    alt="Calendar icon"
+                                    width={20}
+                                    height={20}
+                                />
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="p-2 w-auto" align="start">
+                            <Calendar
+                                mode="single"
+                                selected={dateTo}
+                                onSelect={(day) => {
+                                    setDateTo(day);
+                                    setDateToOpen(false);
+                                }}
+                                initialFocus
+                            />
+                        </PopoverContent>
+                    </Popover>
                 </div>
             </div>
 
