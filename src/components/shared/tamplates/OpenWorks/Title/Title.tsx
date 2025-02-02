@@ -3,7 +3,6 @@ import { cn } from '@lib/utils';
 import {useTranslations} from "next-intl";
 import {Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbSeparator} from "@/components/ui/breadcrumb";
 import ServerLink from "@/components/shared/elements/Links/ServerLink";
-import {Slash} from "lucide-react";
 
 interface Props {
     className?: string;
