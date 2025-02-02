@@ -14,9 +14,9 @@ export const Filter = async ({className}: Props) => {
 
 
     return (
-        <div className={cn(className, "w-full rounded-2xl bg-white p-6 flex flex-col gap-6")}>
+        <section className={cn(className, "w-full rounded-2xl bg-white p-6 flex flex-col gap-6")}>
             <FilterHeader />
             <FilterBarServer catalogs={catalogs} locations={locations} />
-        </div>
+        </section>
     );
 };

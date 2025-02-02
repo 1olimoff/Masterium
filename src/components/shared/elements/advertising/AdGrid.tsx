@@ -31,7 +31,7 @@ const data = [
 
 export const AdGrid = ({ className }: Props) => {
     return (
-        <div className={cn(className, "grid grid-cols-4 gap-4")}>
+        <section className={cn(className, "grid grid-cols-4 gap-4")}>
             {
                 data.map((item, index) => (
                     <div className={"h-[170px] w-full relative rounded-3xl"} key={index}>
@@ -39,6 +39,6 @@ export const AdGrid = ({ className }: Props) => {
                     </div>
                 ))
             }
-        </div>
+        </section>
     );
 };

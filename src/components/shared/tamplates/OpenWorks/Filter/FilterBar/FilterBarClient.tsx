@@ -139,7 +139,7 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
 
             {/* Вторая строка: Даты + Локация */}
 
-            <div className="md:w-1/3">
+            <div className="w-[30%]">
                 <p className="mb-1">{t("OpenWorks.filter.period.title")}</p>
                 <div className="flex gap-2">
                     <Popover open={dateFromOpen} onOpenChange={setDateFromOpen}>
@@ -205,13 +205,14 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                 </div>
             </div>
 
-            <div className="flex-1">
+            {/*Location*/}
+            <div className="w-[20%]">
                 <p className="mb-1">{t("OpenWorks.filter.location.title")}</p>
                 <Popover open={locationOpen} onOpenChange={setLocationOpen}>
                     <PopoverTrigger asChild>
                         <Button
                             variant="outline"
-                            className="w-full py-3 text-left border-2 border-[#CFD9FE] rounded-xl flex justify-between items-center"
+                            className={"w-full py-6 text-left text-md border-2 border-[#CFD9FE] rounded-xl flex justify-between items-center"}
                         >
                             {selectedLocation
                                 ? selectedLocation
