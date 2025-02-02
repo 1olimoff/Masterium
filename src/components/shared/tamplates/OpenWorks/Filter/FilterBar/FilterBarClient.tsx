@@ -7,6 +7,8 @@ import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input"; // Предположим, у вас есть такой
 import Image from "next/image";
 import {cn} from "@/lib/utils";
+import { Calendar } from "@/components/ui/calendar"
+
 
 //toaster
 import {useToast} from "@/hooks/use-toast"
@@ -32,8 +34,10 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
     const [priceFrom, setPriceFrom] = useState("");
     const [priceTo, setPriceTo] = useState("");
 
-    const [dateFrom, setDateFrom] = useState("");
-    const [dateTo, setDateTo] = useState("");
+    const [dateFrom, setDateFrom] = useState<Date | null>(null);
+    const [dateTo, setDateTo] = useState<Date | null>(null);
+    const [dateFromOpen, setDateFromOpen] = useState(false);
+    const [dateToOpen, setDateToOpen] = useState(false);
 
     const [locationOpen, setLocationOpen] = useState(false);
     const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
@@ -52,7 +56,7 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
     // }
 
     return (
-        <div className={cn(className, "w-full flex gap-4 border-b pb-4")}>
+        <div className={cn(className, "w-full flex gap-4")}>
             {/* Первая строка: Каталог */}
             <div className="w-[27%] flex flex-col gap-1">
                 <p>{t("OpenWorks.filter.catalog.title")}</p>
@@ -60,7 +64,7 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                     <PopoverTrigger asChild>
                         <Button
                             variant="outline"
-                            className="w-full py-3 text-left border-2 border-[#CFD9FE] rounded-xl flex justify-between items-center"
+                            className="w-full py-6 text-left text-md border-2 border-[#CFD9FE] rounded-xl flex justify-between items-center"
                         >
                             {selectedCatalog
                                 ? selectedCatalog
@@ -101,28 +105,30 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                 <p>{t("OpenWorks.filter.price.title")}</p>
                 <div className="flex gap-2">
                     <Input
+                        className={"w-full py-6 text-left text-md border-2 border-[#CFD9FE] rounded-xl flex justify-between items-center"}
                         placeholder={t("OpenWorks.filter.price.from")}
                         value={priceFrom}
                         onChange={async (e) => {
                             const {formatted, hasInvalid} = await processPriceInput(e.target.value);
                             if (hasInvalid) {
                                 toast({
-                                    title: "Ошибка ввода",
-                                    description: "Введите только цифры",
+                                    title: t('OpenWorks.filter.price.error.title'),
+                                    description: t('OpenWorks.filter.price.error.description'),
                                 });
                             }
                             setPriceFrom(formatted);
                         }}
                     />
                     <Input
+                        className={"w-full py-6 text-left text-md border-2 border-[#CFD9FE] rounded-xl flex justify-between items-center"}
                         placeholder={t("OpenWorks.filter.price.to")}
                         value={priceTo}
                         onChange={(e) => {
                             const {formatted, hasInvalid} = processPriceInput(e.target.value);
                             if (hasInvalid) {
                                 toast({
-                                    title: "Ошибка ввода",
-                                    description: "Введите только цифры",
+                                    title: t('OpenWorks.filter.price.error.title'),
+                                    description: t('OpenWorks.filter.price.error.description'),
                                 });
                             }
                             setPriceTo(formatted);

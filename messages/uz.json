@@ -144,7 +144,11 @@
       "price": {
         "title": "Narx",
         "from": "dan",
-        "to": "gacha"
+        "to": "gacha",
+        "error": {
+          "title": "Narx kiritishta xatolik",
+          "description": "Faqat son kiriting"
+        }
       },
       "period": {
         "title": "Ish muddati"
