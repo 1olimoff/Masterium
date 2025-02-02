@@ -146,7 +146,7 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                         <PopoverTrigger asChild>
                             <Button
                                 variant="outline"
-                                className="w-full py-3 text-left border-2 border-[#CFD9FE] rounded-xl flex justify-between items-center"
+                                className={"w-full py-6 text-left text-md border-2 border-[#CFD9FE] rounded-xl flex justify-between items-center"}
                             >
                                 {dateFrom
                                     ? dateFrom.toLocaleDateString() // либо форматируйте через date-fns
@@ -154,8 +154,8 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                                 <Image
                                     src={"/svg/open-works/calendar.svg"}
                                     alt="Calendar icon"
-                                    width={20}
-                                    height={20}
+                                    width={25}
+                                    height={25}
                                 />
                             </Button>
                         </PopoverTrigger>
@@ -177,7 +177,7 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                         <PopoverTrigger asChild>
                             <Button
                                 variant="outline"
-                                className="w-full py-3 text-left border-2 border-[#CFD9FE] rounded-xl flex justify-between items-center"
+                                className={"w-full py-6 text-left text-md border-2 border-[#CFD9FE] rounded-xl flex justify-between items-center"}
                             >
                                 {dateTo
                                     ? dateTo.toLocaleDateString()
@@ -185,8 +185,8 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                                 <Image
                                     src={"/svg/open-works/calendar.svg"}
                                     alt="Calendar icon"
-                                    width={20}
-                                    height={20}
+                                    width={25}
+                                    height={25}
                                 />
                             </Button>
                         </PopoverTrigger>
