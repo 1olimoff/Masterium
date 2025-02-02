@@ -8,9 +8,12 @@ import {Input} from "@/components/ui/input"; // Предположим, у ва�
 import Image from "next/image";
 import {cn} from "@/lib/utils";
 
+//toaster
+import {useToast} from "@/hooks/use-toast"
+
 
 //utils
-import {formatAndValidatePrice} from "@/utils/PriceForrmater";
+import {processPriceInput} from "@/utils/PriceForrmater";
 
 interface FilterBarClientProps {
     className?: string;
@@ -20,6 +23,7 @@ interface FilterBarClientProps {
 
 export default function FilterBarClient({catalogs, locations, className}: FilterBarClientProps) {
     const t = useTranslations();
+    const {toast} = useToast()
 
     // Состояния, выбранные пользователем
     const [catalogOpen, setCatalogOpen] = useState(false);
@@ -33,6 +37,7 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
 
     const [locationOpen, setLocationOpen] = useState(false);
     const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
+
 
     // Пример обработчика «Применить»:
     // function handleApplyFilters() {
@@ -98,14 +103,30 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                     <Input
                         placeholder={t("OpenWorks.filter.price.from")}
                         value={priceFrom}
-                        onChange={(e) => setPriceFrom(e.target.value)}
-                        onBlur={() => setPriceFrom(formatAndValidatePrice(priceFrom))}
+                        onChange={async (e) => {
+                            const {formatted, hasInvalid} = await processPriceInput(e.target.value);
+                            if (hasInvalid) {
+                                toast({
+                                    title: "Ошибка ввода",
+                                    description: "Введите только цифры",
+                                });
+                            }
+                            setPriceFrom(formatted);
+                        }}
                     />
                     <Input
                         placeholder={t("OpenWorks.filter.price.to")}
                         value={priceTo}
-                        onChange={(e) => setPriceTo(e.target.value)}
-                        onBlur={() => setPriceTo(formatAndValidatePrice(priceTo))}
+                        onChange={(e) => {
+                            const {formatted, hasInvalid} = processPriceInput(e.target.value);
+                            if (hasInvalid) {
+                                toast({
+                                    title: "Ошибка ввода",
+                                    description: "Введите только цифры",
+                                });
+                            }
+                            setPriceTo(formatted);
+                        }}
                     />
                 </div>
             </div>

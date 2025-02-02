@@ -3,13 +3,18 @@
 /**
  * Функция для очистки ввода:
  * - Убирает лишние пробелы.
- * - Оставляет только цифры.
- * - Возвращает, были ли обнаружены недопустимые символы.
+ * - Разрешает символы цифр и запятую.
+ * - Выставляет флаг hasInvalid, если встречаются символы, отличные от цифр и запятой.
+ * - Удаляет запятые для получения чистого числа.
  */
-export const sanitizePriceInput = (price: string): { sanitized: string; hasInvalid: boolean } => {
+export const sanitizePriceInput = (
+    price: string
+): { sanitized: string; hasInvalid: boolean } => {
     const trimmed = price.trim();
-    const hasInvalid = /[^\d]/.test(trimmed);
-    const sanitized = trimmed.replace(/[^\d]/g, '');
+    // Разрешаем только цифры и запятую
+    const hasInvalid = /[^0-9,]/.test(trimmed);
+    // Удаляем всё, кроме цифр (то есть убираем запятые), чтобы получить число для преобразования
+    const sanitized = trimmed.replace(/[^0-9]/g, '');
     return { sanitized, hasInvalid };
 };
 
@@ -26,7 +31,7 @@ export const formatPrice = (price: string): string => {
 
 /**
  * Объединённая функция для обработки ввода:
- * - Очищает ввод.
+ * - Очищает ввод (с учётом разрешённых символов).
  * - Форматирует число.
  * - Возвращает флаг, если в исходном вводе были недопустимые символы.
  */

@@ -3,6 +3,7 @@ import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import {unstable_setRequestLocale} from 'next-intl/server';
 import {notFound} from 'next/navigation';
+import { Toaster } from "@/components/ui/toaster"
 import "./globals.css"
 
 import {LayoutProvider} from '@/components/shared/tamplates/LayoutProvider/LayoutProvider';
@@ -116,6 +117,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
                 {children}
             </LayoutProvider>
         </NextIntlClientProvider>
+        <Toaster />
         </body>
         </html>
     );
