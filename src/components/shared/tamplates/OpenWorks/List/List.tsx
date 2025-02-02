@@ -241,7 +241,7 @@ const data = [
 
 export const List = ({className}: Props) => {
     const t = useTranslations()
-    const [showMore, setShowMore] = React.useState(false);
+    const [showMore, setShowMore] = useState(false);
     return (
         <section className={cn(className)}>
             <div className="w-full grid grid-cols-4 gap-x-4 gap-y-10">
