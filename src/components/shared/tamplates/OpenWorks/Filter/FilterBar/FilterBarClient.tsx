@@ -161,11 +161,12 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                         </PopoverTrigger>
                         <PopoverContent className="p-2 w-auto" align="start">
                             <Calendar
-                                // @ts-ignore
+                                // @ts-expect-error: Koroche tam calendar dayot oshibku dlya mode
                                 mode="single"
                                 selected={dateFrom}
+                                // @ts-expect-error: react-day-picker неверно типизирует `day`
                                 onSelect={(day) => {
-                                    setDateFrom(day || null);
+                                    setDateFrom(day);
                                     setDateFromOpen(false);
                                 }}
                                 initialFocus
@@ -193,9 +194,10 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                         </PopoverTrigger>
                         <PopoverContent className="p-2 w-auto" align="start">
                             <Calendar
-                                // @ts-ignore
+                                // @ts-expect-error: Koroche tam calendar dayot oshibku dlya mode
                                 mode="single"
                                 selected={dateTo}
+                                // @ts-expect-error: react-day-picker неверно типизирует `day`
                                 onSelect={(day) => {
                                     setDateTo(day);
                                     setDateToOpen(false);
