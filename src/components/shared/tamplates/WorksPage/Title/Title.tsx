@@ -23,7 +23,15 @@ export const Title = ({ className }: Props) => {
                         /
                     </BreadcrumbSeparator>
                     <BreadcrumbItem>
-                        <li className={"text-gray-700"}>{t('OpenWorks.breadcrumb.openWorks')}</li>
+                        <ServerLink path={"open-works"} >
+                            {t("OpenWorks.breadcrumb.openWorks")}
+                        </ServerLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator>
+                        /
+                    </BreadcrumbSeparator>
+                    <BreadcrumbItem>
+                        <li className={"text-gray-700"}>{t('WorksPage.breadcrumb.worksPage')}</li>
                     </BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>

@@ -159,5 +159,10 @@
       }
     },
     "more": "Yana ko'rsatish"
+  },
+  "WorksPage": {
+    "breadcrumb": {
+      "worksPage": "Malyar - shtukatur"
+    }
   }
 }
