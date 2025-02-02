@@ -161,10 +161,11 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                         </PopoverTrigger>
                         <PopoverContent className="p-2 w-auto" align="start">
                             <Calendar
+                                // @ts-ignore
                                 mode="single"
                                 selected={dateFrom}
                                 onSelect={(day) => {
-                                    setDateFrom(day);
+                                    setDateFrom(day || null);
                                     setDateFromOpen(false);
                                 }}
                                 initialFocus
@@ -192,6 +193,7 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                         </PopoverTrigger>
                         <PopoverContent className="p-2 w-auto" align="start">
                             <Calendar
+                                // @ts-ignore
                                 mode="single"
                                 selected={dateTo}
                                 onSelect={(day) => {
