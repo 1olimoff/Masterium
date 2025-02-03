@@ -154,8 +154,8 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                                 <Image
                                     src={"/svg/open-works/calendar.svg"}
                                     alt="Calendar icon"
-                                    width={25}
-                                    height={25}
+                                    width={20}
+                                    height={20}
                                 />
                             </Button>
                         </PopoverTrigger>
