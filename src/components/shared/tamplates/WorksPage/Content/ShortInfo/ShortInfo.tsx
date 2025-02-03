@@ -11,7 +11,7 @@ interface Props {
 export const ShortInfo = ({ className }: Props) => {
     const t = useTranslations();
     return (
-        <div className={cn(className, "w-full max-w-[400px] h-full flex flex-col gap-3")}>
+        <div className={cn(className, "w-[330px] h-full flex flex-col gap-3")}>
             <p className={"text-sm text-maket-gray"}>
                 {t('WorksPage.content.shortInfo.createdDateTitle')} 25.11.2024 09:45
             </p>

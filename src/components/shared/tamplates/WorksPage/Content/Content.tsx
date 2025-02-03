@@ -4,6 +4,7 @@ import {ShortInfo} from "@/components/shared/tamplates/WorksPage/Content/ShortIn
 import {Employer} from "@/components/shared/tamplates/WorksPage/Content/Employer/Employer";
 import {Gallery} from "@/components/shared/tamplates/WorksPage/Content/Gallery/Gallery";
 import {Location} from "@/components/shared/tamplates/WorksPage/Content/Location/Location";
+import {Description} from "@/components/shared/tamplates/WorksPage/Content/Description/Description";
 
 interface Props {
     className?: string;
@@ -27,7 +28,7 @@ export const Content = ({className}: Props) => {
             </div>
             <div className={cn(className, "flex gap-6")}>
                 <div className={"p-4 bg-white rounded-xl shadow relative flex-1 flex-grow"}>
-
+                <Description />
                 </div>
                 <div className={"flex flex-col gap-6"}>
                     <div className={"p-4 bg-white rounded-xl shadow"}>
