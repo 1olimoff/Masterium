@@ -189,6 +189,13 @@
       "more": "Barchasini ko’rish"
     }
   },
+  "Services": {
+    "ServicesPage": {
+      "breadcrumb": {
+        "allServices": "Malyar - shtukatur"
+      }
+    }
+  },
   "price": {
     "sum": {
       "title": "so'm",
