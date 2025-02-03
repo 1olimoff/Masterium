@@ -60,7 +60,7 @@ export const Gallery = ({ className }: Props) => {
 
 
     return (
-        <section className={cn("relative w-full overflow-hidden", className)}>
+        <section className={cn("relative h-full w-full overflow-hidden", className)}>
             <Carousel
                 setApi={setApi}
             >
