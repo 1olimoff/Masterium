@@ -6,7 +6,7 @@ import {Button} from "@/components/ui/button";
 
 type Item = {
     src: string;
-    categories: [string];
+    categories: string[];
     client: {
         avatar: {
             src: string;
@@ -28,7 +28,7 @@ interface Props {
 export const ServiceCard = ({className, data}: Props) => {
     const t = useTranslations('')
     return (
-        <div className={cn(className, "p-4 rounded-2xl shadow flex flex-col gap-3")}>
+        <div className={cn(className, "p-4 rounded-2xl shadow flex flex-col gap-3 bg-white")}>
             <div className={"flex gap-3"}>
                 <div className={"h-16 w-16 rounded-full relative"}>
                     <Image src={data.client.avatar.src} alt={data.client.avatar.alt} fill objectFit={"cover"}
@@ -54,8 +54,13 @@ export const ServiceCard = ({className, data}: Props) => {
                     </div>
                 </div>
             </div>
+            <div className={"flex flex-wrap gap-2"}>
+                {data.categories.map((category:string, i:number) => (
+                    <p className={"text-maket-gray bg-maket-bg rounded-full px-4 py-1"} key={i}>{category}</p>
+                ))}
+            </div>
             <Button
-                className={"bg-maket-batafsil text-maket-secondary text-xl font-medium py-6 rounded-xl hover:bg-maket-secondary hover:text-white transition-all duration-200"}>
+                className={"bg-maket-batafsil text-maket-secondary text-xl font-medium py-6 rounded-2xl hover:bg-maket-secondary hover:text-white transition-all duration-200"}>
                 {t('Main.sections.OpenWorkCard.more')}
             </Button>
         </div>

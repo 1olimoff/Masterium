@@ -269,71 +269,7 @@ const data = [
             rateMiddle: 4.5,
             commentsCount: 30
         }
-    },{
-        src: "eshonov-bahodir",
-        categories: [
-            "24/7", "Shoshilinch qo'ng'iroq", "Santexnik", "Isitish", "Gidroizolyatsiya"
-        ],
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            specialistic: "Santexnik",
-            online: true,
-            rateMiddle: 4.5,
-            commentsCount: 30
-        }
-    },{
-        src: "eshonov-bahodir",
-        categories: [
-            "24/7", "Shoshilinch qo'ng'iroq", "Santexnik", "Isitish", "Gidroizolyatsiya"
-        ],
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            specialistic: "Santexnik",
-            online: true,
-            rateMiddle: 4.5,
-            commentsCount: 30
-        }
-    },{
-        src: "eshonov-bahodir",
-        categories: [
-            "24/7", "Shoshilinch qo'ng'iroq", "Santexnik", "Isitish", "Gidroizolyatsiya"
-        ],
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            specialistic: "Santexnik",
-            online: true,
-            rateMiddle: 4.5,
-            commentsCount: 30
-        }
-    },{
-        src: "eshonov-bahodir",
-        categories: [
-            "24/7", "Shoshilinch qo'ng'iroq", "Santexnik", "Isitish", "Gidroizolyatsiya"
-        ],
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            specialistic: "Santexnik",
-            online: true,
-            rateMiddle: 4.5,
-            commentsCount: 30
-        }
-    },
+    }
 ]
 
 export const List = ({className}: Props) => {
