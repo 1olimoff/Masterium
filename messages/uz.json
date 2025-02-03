@@ -176,6 +176,12 @@
           "subtitle": "yildan beri bor"
         },
         "other": "Muallifning boshqa e'lonlari ko’rish"
+      },
+      "description": {
+        "title": "Tavsif"
+      },
+      "location": {
+        "title": "Joylashuv"
       }
     }
   },
