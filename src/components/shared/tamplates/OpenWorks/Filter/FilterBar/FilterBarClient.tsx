@@ -161,7 +161,6 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                         </PopoverTrigger>
                         <PopoverContent className="p-2 w-auto" align="start">
                             <Calendar
-                                // @ts-expect-error: Koroche tam calendar dayot oshibku dlya mode
                                 mode="single"
                                 selected={dateFrom}
                                 // @ts-expect-error: react-day-picker неверно типизирует `day`
