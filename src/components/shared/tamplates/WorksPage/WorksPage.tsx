@@ -3,6 +3,7 @@ import { cn } from '@lib/utils';
 import {AdGrid} from "@/components/shared/elements/advertising/AdGrid";
 import {Title} from "@/components/shared/tamplates/WorksPage/Title/Title";
 import {Content} from "@/components/shared/tamplates/WorksPage/Content/Content";
+import {Similar} from "@/components/shared/tamplates/WorksPage/Similar/Similar";
 
 interface Props {
     className?: string;
@@ -14,6 +15,7 @@ export const WorksPage = ({ className }: Props) => {
             <AdGrid />
             <Title />
             <Content />
+            <Similar />
         </div>
     );
 };
