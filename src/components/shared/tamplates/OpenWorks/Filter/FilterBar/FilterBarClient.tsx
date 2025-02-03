@@ -35,7 +35,7 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
     const [priceTo, setPriceTo] = useState("");
 
     const [dateFrom, setDateFrom] = useState<Date | undefined>(undefined);
-    const [dateTo, setDateTo] = useState<Date | null>(null);
+    const [dateTo, setDateTo] = useState<Date | undefined>(undefined);
     const [dateFromOpen, setDateFromOpen] = useState(false);
     const [dateToOpen, setDateToOpen] = useState(false);
 
@@ -163,7 +163,6 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                             <Calendar
                                 mode="single"
                                 selected={dateFrom}
-                                // @ts-expect-error: react-day-picker неверно типизирует `day`
                                 onSelect={(day) => {
                                     setDateFrom(day);
                                     setDateFromOpen(false);
@@ -193,10 +192,8 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                         </PopoverTrigger>
                         <PopoverContent className="p-2 w-auto" align="start">
                             <Calendar
-                                // @ts-expect-error: Koroche tam calendar dayot oshibku dlya mode
                                 mode="single"
                                 selected={dateTo}
-                                // @ts-expect-error: react-day-picker неверно типизирует `day`
                                 onSelect={(day) => {
                                     setDateTo(day);
                                     setDateToOpen(false);
