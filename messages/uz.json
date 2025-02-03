@@ -123,12 +123,6 @@
       }
     }
   },
-  "price": {
-    "sum": {
-      "title": "so'm",
-      "starting-from": "so'mdan boshlab"
-    }
-  },
   "OpenWorks": {
     "breadcrumb": {
       "home": "Bosh sahifa",
@@ -163,6 +157,32 @@
   "WorksPage": {
     "breadcrumb": {
       "worksPage": "Malyar - shtukatur"
+    },
+    "content": {
+      "shortInfo": {
+        "createdDateTitle": "Joylashtirildi:",
+        "period": {
+          "title": "Ish muddati: ",
+          "days": "kun",
+          "from": "dan",
+          "to": "gacha"
+        },
+        "sendOfferButton": "Ish uchun so’rov yuborish"
+      },
+      "employer": {
+        "title": "ish beruvchi",
+        "period": {
+          "title": "MASTERIUMda ",
+          "subtitle": "yildan beri bor"
+        },
+        "other": "Muallifning boshqa e'lonlari ko’rish"
+      }
+    }
+  },
+  "price": {
+    "sum": {
+      "title": "so'm",
+      "starting-from": "so'mdan boshlab"
     }
   }
 }
