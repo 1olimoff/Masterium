@@ -190,9 +190,10 @@
     }
   },
   "Services": {
-    "ServicesPage": {
+    "Service": {
       "breadcrumb": {
-        "allServices": "Malyar - shtukatur"
+        "allServices": "Barcha xizmatlar",
+        "santex": "Santexniklar"
       }
     }
   },
