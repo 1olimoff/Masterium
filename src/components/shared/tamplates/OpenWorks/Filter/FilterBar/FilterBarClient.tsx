@@ -34,7 +34,7 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
     const [priceFrom, setPriceFrom] = useState("");
     const [priceTo, setPriceTo] = useState("");
 
-    const [dateFrom, setDateFrom] = useState<Date | null>(null);
+    const [dateFrom, setDateFrom] = useState<Date | undefined>(undefined);
     const [dateTo, setDateTo] = useState<Date | null>(null);
     const [dateFromOpen, setDateFromOpen] = useState(false);
     const [dateToOpen, setDateToOpen] = useState(false);
