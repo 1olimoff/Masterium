@@ -14,17 +14,20 @@ const WORKS_TO_DISPLAY = 8;
 
 const data = [
     {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
+        src: "eshonov-bahodir",
+        categories: [
+            "24/7", "Shoshilinch qo'ng'iroq", "Santexnik", "Isitish", "Gidroizolyatsiya"
+        ],
         client: {
             avatar: {
                 src: "/img/advertising/gas.png",
                 alt: "Eshonov Baxodir",
             },
             name: "Eshonov Baxodir",
-            type: "Mijoz",
+            specialistic: "Santexnik",
             online: true,
+            rateMiddle: 4.5,
+            commentsCount: 30
         }
     },
     {
