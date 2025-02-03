@@ -194,6 +194,9 @@
       "breadcrumb": {
         "allServices": "Barcha xizmatlar",
         "santex": "Santexniklar"
+      },
+      "ServicePerson": {
+        "sendOffer": "Ish taklif qilish"
       }
     }
   },
