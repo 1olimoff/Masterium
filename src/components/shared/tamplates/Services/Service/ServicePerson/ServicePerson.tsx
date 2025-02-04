@@ -3,6 +3,7 @@ import { cn } from '@lib/utils';
 import {AdGrid} from "@/components/shared/elements/advertising/AdGrid";
 import {Title} from "@/components/shared/tamplates/Services/Service/ServicePerson/Title/Title";
 import {Header} from "@/components/shared/tamplates/Services/Service/ServicePerson/Header/Header";
+import {Content} from "@/components/shared/tamplates/Services/Service/ServicePerson/Content/Content";
 
 interface Props {
     className?: string;
@@ -10,10 +11,11 @@ interface Props {
 
 export const ServicePerson = ({ className }: Props) => {
     return (
-        <div className={cn(className, "w-full flex flex-col gap-12 pt-6 pb-24")}>
+        <div className={cn(className, "w-full flex flex-col gap-12 pt-6")}>
             <AdGrid />
             <Title />
             <Header />
+            <Content />
         </div>
     );
 };
