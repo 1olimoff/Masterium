@@ -1,113 +1,96 @@
 "use client"
-import React, { useState } from 'react';
-import { cn } from '@lib/utils';
+import React from "react";
+import { cn } from "@lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
+
+interface TabItem {
+    key: string;
+    label: string;
+    content: React.ReactNode;
+}
+
+const TABS: TabItem[] = [
+    {
+        key: "malumot",
+        label: "Ma'lumot",
+        content: <div>Сюда добавите «Уста haqida» и прочие блоки</div>,
+    },
+    {
+        key: "xizmatlar",
+        label: "Xizmatlar",
+        content: <div>Раздел со списком услуг</div>,
+    },
+    {
+        key: "videolar",
+        label: "Videolar",
+        content: <div>Здесь будут видео</div>,
+    },
+    {
+        key: "rasmlar",
+        label: "Rasmlar",
+        content: <div>Галерея фотографий</div>,
+    },
+    {
+        key: "izohlar",
+        label: "Izohlar",
+        content: <div>Блок отзывов (рейтинг + список)</div>,
+    },
+];
 
 interface Props {
     className?: string;
 }
 
-/**
- * Примерные данные вкладок: заголовок и контент.
- * Вместо текстового контента вы можете подключить свои компоненты,
- * например блок «Уста haqida», «Ish tajribasi», «Izohlar», и т.д.
- */
-const TABS = [
-    {
-        label: 'Ma’lumot',
-        content: (
-            <div>
-                <h2 className="text-xl font-semibold mb-2">Уста haqida</h2>
-                <p className="text-sm">
-                    Gravida elementum diam fames dignissim sed donec nisi diam. Quisque feugiat ut
-                    rutrum fringilla id urna vitae pharetra amet.
-                </p>
-            </div>
-        ),
-    },
-    {
-        label: 'Xizmatlar',
-        content: (
-            <div>
-                <h2 className="text-xl font-semibold mb-2">Xizmatlar</h2>
-                <ul className="list-disc list-inside">
-                    <li>Santexnik</li>
-                    <li>Isitish</li>
-                    <li>Gidroizolyatsiya</li>
-                </ul>
-            </div>
-        ),
-    },
-    {
-        label: 'Videolar',
-        content: (
-            <div>
-                <h2 className="text-xl font-semibold mb-2">Videolar</h2>
-                <p>Здесь может быть список видео или видео-плеер.</p>
-            </div>
-        ),
-    },
-    {
-        label: 'Rasmlar',
-        content: (
-            <div>
-                <h2 className="text-xl font-semibold mb-2">Rasmlar</h2>
-                <p>Здесь может быть галерея изображений.</p>
-            </div>
-        ),
-    },
-    {
-        label: 'Izohlar (15)',
-        content: (
-            <div>
-                <h2 className="text-xl font-semibold mb-2">Izohlar</h2>
-                <p>Здесь может быть рейтинг, комментарии и т.п.</p>
-            </div>
-        ),
-    },
-];
-
 export const Content = ({ className }: Props) => {
-    // Храним индекс активной вкладки (по умолчанию 0 – «Ma’lumot»)
-    const [activeTab, setActiveTab] = useState(0);
+    const [activeTab, setActiveTab] = React.useState<string>("malumot");
 
     return (
-        <div className={cn(className, 'w-full flex flex-col pt-6')}>
-            {/* Заголовки вкладок */}
-            <nav className="flex gap-6 border-b border-gray-200 mb-4">
-                {TABS.map((tab, index) => {
-                    const isActive = index === activeTab;
+        <div className={cn(className, "w-full flex flex-col")}>
+            {/* Шапка с кнопками табов */}
+            <div className="flex gap-6 border-b border-gray-200">
+                {TABS.map((tab) => {
+                    const isActive = tab.key === activeTab;
                     return (
                         <button
-                            key={tab.label}
+                            key={tab.key}
+                            onClick={() => setActiveTab(tab.key)}
                             className={cn(
-                                'relative pb-2 text-sm font-medium',
-                                'transition-colors duration-300',
+                                "relative py-2 text-base transition-colors duration-200",
                                 isActive
-                                    ? 'text-black after:content-[""] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-maket-primary'
-                                    : 'text-gray-500 hover:text-gray-700'
+                                    ? "text-blue-600 font-semibold"
+                                    : "text-gray-500 hover:text-gray-600"
                             )}
-                            onClick={() => setActiveTab(index)}
                         >
                             {tab.label}
+                            {/* Подчёркивание активного таба */}
+                            {isActive && (
+                                <motion.span
+                                    className="absolute left-0 -bottom-px h-[2px] w-full bg-blue-600"
+                                    layoutId="underline"
+                                />
+                            )}
                         </button>
                     );
                 })}
-            </nav>
+            </div>
 
-            {/* Блок плавного переключения контента */}
-            <div className="relative min-h-[200px]">
-                {TABS.map((tab, index) => (
-                    <div
-                        key={tab.label}
-                        className={cn(
-                            'absolute w-full transition-all duration-300',
-                            // Если вкладка не активна – скрываем ее через opacity/позиционирование
-                            activeTab === index ? 'opacity-100 relative static' : 'opacity-0 pointer-events-none'
-                        )}
-                    >
-                        {tab.content}
-                    </div>
-                ))}
+            {/* Контейнер с анимированным контентом */}
+            <div className="relative mt-6">
+                <AnimatePresence mode="wait">
+                    {/* Ищем контент для выбранного таба и рендерим его */}
+                    {TABS.filter((tab) => tab.key === activeTab).map((tab) => (
+                        <motion.div
+                            key={tab.key}
+                            initial={{ opacity: 0, x: 30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -30 }}
+                            transition={{ duration: 0.2 }}
+                            className="absolute w-full"
+                        >
+                            {tab.content}
+                        </motion.div>
+                    ))}
+                </AnimatePresence>
             </div>
         </div>
     );
