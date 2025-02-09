@@ -196,7 +196,10 @@
         "santex": "Santexniklar"
       },
       "ServicePerson": {
-        "sendOffer": "Ish taklif qilish"
+        "sendOffer": "Ish taklif qilish",
+        "infoTab": {
+          "infoTitle": "Usta haqida"
+        }
       }
     }
   },
