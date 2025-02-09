@@ -1,7 +1,7 @@
 "use client"
 import React from "react";
-import { cn } from "@lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
+import {cn} from "@lib/utils";
+import {motion, AnimatePresence} from "framer-motion";
 
 interface TabItem {
     key: string;
@@ -41,7 +41,7 @@ interface Props {
     className?: string;
 }
 
-export const Content = ({ className }: Props) => {
+export const Content = ({className}: Props) => {
     const [activeTab, setActiveTab] = React.useState<string>("malumot");
 
     return (
@@ -55,12 +55,22 @@ export const Content = ({ className }: Props) => {
                             key={tab.key}
                             onClick={() => setActiveTab(tab.key)}
                             className={cn(
-                                "relative py-2 text-base transition-colors duration-200",
+                                "relative py-2 text-base transition-colors flex gap-3 duration-200",
                                 isActive
                                     ? "text-blue-600 font-semibold"
                                     : "text-gray-500 hover:text-gray-600"
                             )}
                         >
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2Z"
+                                    stroke={`${isActive? "#677294" : "#000"}`} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 16V11" stroke="#677294" stroke-width="1.8" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                                <path d="M12.0054 8H11.9964" stroke="#677294" stroke-width="1.8" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                            </svg>
                             {tab.label}
                             {/* Подчёркивание активного таба */}
                             {isActive && (
@@ -78,13 +88,14 @@ export const Content = ({ className }: Props) => {
             <div className="relative mt-6">
                 <AnimatePresence mode="wait">
                     {/* Ищем контент для выбранного таба и рендерим его */}
+                    ввв
                     {TABS.filter((tab) => tab.key === activeTab).map((tab) => (
                         <motion.div
                             key={tab.key}
-                            initial={{ opacity: 0, x: 30 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: -30 }}
-                            transition={{ duration: 0.2 }}
+                            initial={{opacity: 0, x: 30}}
+                            animate={{opacity: 1, x: 0}}
+                            exit={{opacity: 0, x: -30}}
+                            transition={{duration: 0.2}}
                             className="absolute w-full"
                         >
                             {tab.content}
