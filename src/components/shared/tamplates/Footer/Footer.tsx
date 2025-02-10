@@ -78,7 +78,7 @@ export const Footer = ({className}: Props) => {
                     </div>
                 </div>
             </div>
-            <div className={"text-maket-gold"}>
+            <div className={"text-maket-primary bg-white"}>
                 <hr />
                 <div className={"flex w-full justify-center items-center pt-4 text-lg"}>
                     <p>

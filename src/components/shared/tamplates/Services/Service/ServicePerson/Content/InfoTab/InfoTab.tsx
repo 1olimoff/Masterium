@@ -9,7 +9,7 @@ interface Props {
     className?: string;
 }
 
-export const InfoTab = ({ className }: Props) => {
+export const InfoTab = ({ className, infoText, experienceText, tags }: Props) => {
     const t = useTranslations();
     return (
         <div className={cn(className, "w-full h-full py-8 flex flex-col gap-8")}>
@@ -17,6 +17,9 @@ export const InfoTab = ({ className }: Props) => {
                 <h2>
                     {t('Services.Service.ServicePerson.infoTab.infoTitle')}
                 </h2>
+                <p>
+                    {infoText}
+                </p>
             </div>
         </div>
     );

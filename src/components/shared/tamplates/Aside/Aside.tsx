@@ -21,15 +21,15 @@ const Aside = ({className}: Props) => {
     const t = useTranslations("Aside");
     return (
         <aside
-            className={cn(className, "py-3 px-2 shadow bg-white sticky top-0 z-[50]")}>
+            className={cn(className, "py-3 px-2 shadow bg-maket-primary sticky top-0 z-[50]")}>
             <div className={'layout-width flex justify-between items-center gap-8'}>
                 <a href={'/'}>
-                    <Image src={"/svg/aside/logo.svg"} alt={"masterium logo"} width={200} height={50}/>
+                    <Image src={"/svg/footer/logo.svg"} alt={"masterium logo"} width={250} height={80}/>
                 </a>
                 <div className={"flex justify-between items-center gap-4 flex-1"}>
                     <DropdownMenu>
                         <DropdownMenuTrigger
-                            className={"bg-maket-primary hover:bg-blue-900 text-white flex gap-2 justify-center items-center py-2 px-6 rounded-lg"}>
+                            className={"bg-white hover:bg-gray-400 text-maket-primaryke flex gap-2 justify-center items-center py-2 px-6 rounded-lg"}>
                             <Image src={"/svg/aside/catalog.svg"} alt={"Category Icon"} width={25} height={25}/>
                             <p className={"font-light"}>{t('catalog')}</p>
                         </DropdownMenuTrigger>
@@ -71,15 +71,15 @@ const Aside = ({className}: Props) => {
                         />
                     </div>
                     <Button type={"submit"}
-                            className={"bg-maket-primary hover:bg-blue-900"}>{t('search.button')}</Button>
+                            className={"bg-white text-maket-primary hover:bg-blue-900"}>{t('search.button')}</Button>
                 </div>
-                <div className={"flex "}>
-                    <Button variant={'ghost'}>
+                <div className={"flex gap-2"}>
+                    <Button className={"bg-white text-maket-primary"}>
                         <Image src={'/svg/aside/add.svg'} alt={"Add Icon"} width={20} height={20}/>
                         <p>{t('action.announcement')}</p>
                     </Button>
                     <LoginProviderDialog>
-                        <Button variant={'ghost'}>
+                        <Button className={"bg-white text-maket-primary"}>
                             <Image src={'/svg/aside/user.svg'} alt={"Add Icon"} width={20} height={20}/>
                             <p>{t('action.account.login')}</p>
                         </Button>
