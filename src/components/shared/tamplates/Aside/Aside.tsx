@@ -29,8 +29,9 @@ const Aside = ({className}: Props) => {
                 <div className={"flex justify-between items-center gap-4 flex-1"}>
                     <DropdownMenu>
                         <DropdownMenuTrigger
-                            className={"bg-white hover:bg-gray-400 text-maket-primaryke flex gap-2 justify-center items-center py-2 px-6 rounded-lg"}>
-                            <Image src={"/svg/aside/catalog.svg"} alt={"Category Icon"} width={25} height={25}/>
+                            className={"bg-white hover:bg-maket-primary border border-white hover:text-white text-maket-primary transition-all duration-200 flex gap-2 group justify-center items-center py-2 px-6 rounded-lg"}>
+                            <Image src={"/svg/aside/catalog.svg"} alt={"Category Icon"} width={25} height={25} className={"group-hover:hidden"}/>
+                            <Image src={"/svg/aside/catalog-white.svg"} alt={"Category Icon"} width={25} height={25} className={"group-hover:block hidden"}/>
                             <p className={"font-light"}>{t('catalog')}</p>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent>
@@ -71,16 +72,18 @@ const Aside = ({className}: Props) => {
                         />
                     </div>
                     <Button type={"submit"}
-                            className={"bg-white text-maket-primary hover:bg-blue-900"}>{t('search.button')}</Button>
+                            className={"bg-white text-maket-primary border border-white hover:bg-maket-primary hover:text-white"}>{t('search.button')}</Button>
                 </div>
                 <div className={"flex gap-2"}>
-                    <Button className={"bg-white text-maket-primary"}>
-                        <Image src={'/svg/aside/add.svg'} alt={"Add Icon"} width={20} height={20}/>
+                    <Button className={"bg-white text-maket-primary group hover:bg-maket-primary hover:text-white border border-white"}>
+                        <Image src={'/svg/aside/add.svg'} alt={"Add Icon"} width={20} height={20} className={"group-hover:hidden"}/>
+                        <Image src={'/svg/aside/add-white.svg'} alt={"Add Icon"} width={20} height={20} className={"group-hover:block hidden"}/>
                         <p>{t('action.announcement')}</p>
                     </Button>
                     <LoginProviderDialog>
-                        <Button className={"bg-white text-maket-primary"}>
-                            <Image src={'/svg/aside/user.svg'} alt={"Add Icon"} width={20} height={20}/>
+                        <Button className={"bg-white group text-maket-primary hover:bg-maket-primary hover:text-white border border-white"}>
+                            <Image src={'/svg/aside/user.svg'} alt={"Add Icon"} width={20} height={20} className={"group-hover:hidden"}/>
+                            <Image src={'/svg/aside/user-white.svg'} alt={"Add Icon"} width={20} height={20} className={"group-hover:block hidden"}/>
                             <p>{t('action.account.login')}</p>
                         </Button>
                     </LoginProviderDialog>
