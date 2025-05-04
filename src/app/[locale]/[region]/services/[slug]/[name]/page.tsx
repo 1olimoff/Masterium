@@ -1,4 +1,4 @@
-import {ServicePerson} from "@/components/shared/tamplates/Services/Service/ServicePerson/ServicePerson";
+import {ServicePerson} from "@/root/components/shared/tamplates/Services/Service/ServicePerson/ServicePerson";
 
 export default function HomeServicePerson() {
     return (
