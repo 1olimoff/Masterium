@@ -1,1 +1,5 @@
-npx ts-node ./src/scripts/createPages/createPages.ts (type) (subtype) (where/name)
+# Логика использование скрипта для постройки архитектуры
+
+1. npx ts-node ./src/scripts/createPages/createPages.ts (type) (subtype) (where/name)
+
+
