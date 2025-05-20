@@ -1,4 +1,4 @@
-import {OpenWorks} from "@/root/components/shared/tamplates/OpenWorks/OpenWorks";
+import {OpenWorks} from "@/root/ui/dev/components/shared/tamplates/OpenWorks/OpenWorks";
 
 
 export default function HomeOpenWorks() {

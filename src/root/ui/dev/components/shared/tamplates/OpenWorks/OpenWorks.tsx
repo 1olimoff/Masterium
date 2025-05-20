@@ -1,9 +1,9 @@
 import React from 'react';
 import { cn } from '@/root/business/lib/utils';
-import {AdGrid} from "@/root/components/shared/elements/advertising/AdGrid";
+import {AdGrid} from "@/root/ui/dev/components/shared/elements/advertising/AdGrid";
 import {Title} from "./Title/Title"
 import {Filter} from "./Filter/Filter";
-import {List} from "@/root/components/shared/tamplates/OpenWorks/List/List";
+import {List} from "@/root/ui/dev/components/shared/tamplates/OpenWorks/List/List";
 
 interface Props {
     className?: string;

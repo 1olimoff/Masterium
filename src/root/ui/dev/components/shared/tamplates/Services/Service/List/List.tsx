@@ -1,10 +1,10 @@
 "use client"
 import React, {useState} from 'react';
 import {cn} from '@/root/business/lib/utils';
-import {Button} from "@/root/components/ui/button";
+import {Button} from "@/root/ui/dev/components/ui/button";
 import {useTranslations} from "next-intl";
-import {AdCarousel} from "@/root/components/shared/elements/advertising/AdCarousel";
-import {ServiceCard} from "@/root/components/shared/elements/Services/Service/ServiceCard";
+import {AdCarousel} from "@/root/ui/dev/components/shared/elements/advertising/AdCarousel";
+import {ServiceCard} from "@/root/ui/dev/components/shared/elements/Services/Service/ServiceCard";
 
 interface Props {
     className?: string;

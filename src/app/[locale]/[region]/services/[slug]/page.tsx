@@ -1,4 +1,4 @@
-import {Service} from "@/root/components/shared/tamplates/Services/Service/Service";
+import {Service} from "@/root/ui/dev/components/shared/tamplates/Services/Service/Service";
 
 export default function HomeServicePage() {
     return (

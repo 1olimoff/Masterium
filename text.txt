@@ -3,3 +3,6 @@
 1. npx ts-node ./src/scripts/createPages/createPages.ts (type) (subtype) (where/name)
 
 
+
+1. Все системные файлы прочекал. Не надо перепроверять кроме middleware. Middleware надо будет настроить
+2.

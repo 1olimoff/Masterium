@@ -3,10 +3,10 @@ import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import {unstable_setRequestLocale} from 'next-intl/server';
 import {notFound} from 'next/navigation';
-import { Toaster } from "@/root/components/ui/toaster"
+import {Toaster} from "@/root/ui/dev/components/ui/toaster"
 import "./globals.css"
 
-import {LayoutProvider} from '@/root/components/shared/tamplates/LayoutProvider/LayoutProvider';
+import {LayoutProvider} from '@/root/ui/dev/components/shared/tamplates/LayoutProvider/LayoutProvider';
 
 /**
  * Types for layout props
@@ -25,9 +25,9 @@ interface LayoutProps {
  * This function allows you to dynamically define metadata based on your locale.
  * Next.js will call this server-side before rendering.
  */
-export async function generateMetadata({ params }: LayoutProps) {
+export async function generateMetadata({params}: LayoutProps) {
     // Extract locale & region
-    const { locale = 'ru', region } = params;
+    const {locale = 'ru', region} = params;
 
     console.log("LAYOUT.tsx Region", region)
 
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: LayoutProps) {
     };
 
     // If locale is not recognized, default to 'ru'
-    const { title, description, imageUrl, canonicalUrl } = seoData[locale] ?? seoData.ru;
+    const {title, description, imageUrl, canonicalUrl} = seoData[locale] ?? seoData.ru;
 
     return {
         title,
@@ -87,8 +87,8 @@ export async function generateMetadata({ params }: LayoutProps) {
 /**
  * Main layout component
  */
-export default async function RootLayout({ children, params }: LayoutProps) {
-    const { locale = 'ru', region } = params;
+export default async function RootLayout({children, params}: LayoutProps) {
+    const {locale = 'ru', region} = params;
 
     // Optionally set the request locale (if needed by next-intl).
     unstable_setRequestLocale(locale);
@@ -96,10 +96,10 @@ export default async function RootLayout({ children, params }: LayoutProps) {
     // Load translations
     let messages;
     try {
-        messages = await getMessages({ locale });
+        messages = await getMessages({locale});
     } catch (err) {
         // If we can't find messages for the locale, show 404 or fallback
-        console.log("Layout ERROR",err);
+        console.log("Layout ERROR", err);
         notFound();
     }
 
@@ -113,11 +113,11 @@ export default async function RootLayout({ children, params }: LayoutProps) {
             LayoutProvider can do region/locale-based logic too,
             or you can pass them separately as props
           */}
-            <LayoutProvider params={{ locale, region }}>
+            <LayoutProvider params={{locale, region}}>
                 {children}
             </LayoutProvider>
         </NextIntlClientProvider>
-        <Toaster />
+        <Toaster/>
         </body>
         </html>
     );

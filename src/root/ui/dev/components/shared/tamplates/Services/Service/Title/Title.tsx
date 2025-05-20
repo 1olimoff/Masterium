@@ -1,8 +1,8 @@
 import React from 'react';
 import { cn } from '@/root/business/lib/utils';
 import {useTranslations} from "next-intl";
-import {Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbSeparator} from "@/root/components/ui/breadcrumb";
-import ServerLink from "@/root/components/shared/elements/Links/ServerLink";
+import {Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbSeparator} from "@/root/ui/dev/components/ui/breadcrumb";
+import ServerLink from "@/root/ui/dev/components/shared/elements/Links/ServerLink";
 
 interface Props {
     className?: string;

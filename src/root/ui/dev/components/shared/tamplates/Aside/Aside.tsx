@@ -6,11 +6,11 @@ import {
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
-} from "@/root/components/ui/dropdown-menu"
-import {Input} from "@/root/components/ui/input"
-import {Button} from "@/root/components/ui/button";
+} from "@/root/ui/dev/components/ui/dropdown-menu"
+import {Input} from "@/root/ui/dev/components/ui/input"
+import {Button} from "@/root/ui/dev/components/ui/button";
 import {useTranslations} from "next-intl";
-import {LoginProviderDialog} from "@/root/components/shared/elements/account/login/LoginProviderDialog";
+import {LoginProviderDialog} from "@/root/ui/dev/components/shared/elements/account/login/LoginProviderDialog";
 
 
 interface Props {

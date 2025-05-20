@@ -2,12 +2,12 @@
 import React from "react";
 import {cn} from "@/root/business/lib/utils";
 import {motion, AnimatePresence} from "framer-motion";
-import {InfoTab} from "@/root/components/shared/tamplates/Services/Service/ServicePerson/Content/InfoTab/InfoTab";
-import {VideoTab} from "@/root/components/shared/tamplates/Services/Service/ServicePerson/Content/VideoTab/VideoTab";
-import {ImageTab} from "@/root/components/shared/tamplates/Services/Service/ServicePerson/Content/ImageTab/ImageTab";
+import {InfoTab} from "@/root/ui/dev/components/shared/tamplates/Services/Service/ServicePerson/Content/InfoTab/InfoTab";
+import {VideoTab} from "@/root/ui/dev/components/shared/tamplates/Services/Service/ServicePerson/Content/VideoTab/VideoTab";
+import {ImageTab} from "@/root/ui/dev/components/shared/tamplates/Services/Service/ServicePerson/Content/ImageTab/ImageTab";
 import {
     FeedBackTab
-} from "@/root/components/shared/tamplates/Services/Service/ServicePerson/Content/FeedbackTab/FeedBackTab";
+} from "@/root/ui/dev/components/shared/tamplates/Services/Service/ServicePerson/Content/FeedbackTab/FeedBackTab";
 
 interface TabItem {
     key: string;

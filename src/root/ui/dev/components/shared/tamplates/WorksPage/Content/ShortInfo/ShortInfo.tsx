@@ -1,7 +1,7 @@
 import React from 'react';
 import { cn } from '@/root/business/lib/utils';
 import {useTranslations} from "next-intl";
-import {Button} from "@/root/components/ui/button";
+import {Button} from "@/root/ui/dev/components/ui/button";
 import Image from "next/image";
 
 interface Props {

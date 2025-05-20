@@ -1,10 +1,10 @@
 import React from 'react';
 import {cn} from '@/root/business/lib/utils';
-import {ShortInfo} from "@/root/components/shared/tamplates/WorksPage/Content/ShortInfo/ShortInfo";
-import {Employer} from "@/root/components/shared/tamplates/WorksPage/Content/Employer/Employer";
-import {Gallery} from "@/root/components/shared/tamplates/WorksPage/Content/Gallery/Gallery";
-import {Location} from "@/root/components/shared/tamplates/WorksPage/Content/Location/Location";
-import {Description} from "@/root/components/shared/tamplates/WorksPage/Content/Description/Description";
+import {ShortInfo} from "@/root/ui/dev/components/shared/tamplates/WorksPage/Content/ShortInfo/ShortInfo";
+import {Employer} from "@/root/ui/dev/components/shared/tamplates/WorksPage/Content/Employer/Employer";
+import {Gallery} from "@/root/ui/dev/components/shared/tamplates/WorksPage/Content/Gallery/Gallery";
+import {Location} from "@/root/ui/dev/components/shared/tamplates/WorksPage/Content/Location/Location";
+import {Description} from "@/root/ui/dev/components/shared/tamplates/WorksPage/Content/Description/Description";
 
 interface Props {
     className?: string;

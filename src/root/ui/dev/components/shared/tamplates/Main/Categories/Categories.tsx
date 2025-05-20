@@ -1,6 +1,6 @@
 import React from 'react';
 import {cn} from '@/root/business/lib/utils';
-import {MainCategoryItem} from "@/root/components/shared/elements/categories/MainCategoryItem";
+import {MainCategoryItem} from "@/root/ui/dev/components/shared/elements/categories/MainCategoryItem";
 
 interface Props {
     className?: string;

@@ -1,4 +1,4 @@
-import {Main} from "@/root/components/shared/tamplates/Main/Main";
+import {Main} from "@/root/ui/dev/components/shared/tamplates/Main/Main";
 
 
 export default function Home() {

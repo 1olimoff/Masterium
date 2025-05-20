@@ -1,8 +1,8 @@
 import React from 'react';
 import {cn} from '@/root/business/lib/utils';
-import {FilterHeader} from "@/root/components/shared/tamplates/OpenWorks/Filter/FilterHeader";
+import {FilterHeader} from "@/root/ui/dev/components/shared/tamplates/OpenWorks/Filter/FilterHeader";
 import { getCatalogs, getLocations } from "@/services/open-works/filter";
-import FilterBarServer from "@/root/components/shared/tamplates/OpenWorks/Filter/FilterBar/FilterBarServer";
+import FilterBarServer from "@/root/ui/dev/components/shared/tamplates/OpenWorks/Filter/FilterBar/FilterBarServer";
 const catalogs = await getCatalogs();
 const locations = await getLocations();
 

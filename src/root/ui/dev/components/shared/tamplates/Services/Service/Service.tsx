@@ -1,8 +1,8 @@
 import React from 'react';
 import { cn } from '@/root/business/lib/utils';
-import {AdGrid} from "@/root/components/shared/elements/advertising/AdGrid";
-import {Title} from "@/root/components/shared/tamplates/Services/Service/Title/Title";
-import {List} from "@/root/components/shared/tamplates/Services/Service/List/List";
+import {AdGrid} from "@/root/ui/dev/components/shared/elements/advertising/AdGrid";
+import {Title} from "@/root/ui/dev/components/shared/tamplates/Services/Service/Title/Title";
+import {List} from "@/root/ui/dev/components/shared/tamplates/Services/Service/List/List";
 
 interface Props {
     className?: string;

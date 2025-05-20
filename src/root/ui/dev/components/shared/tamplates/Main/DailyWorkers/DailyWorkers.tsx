@@ -1,8 +1,8 @@
 import React from 'react';
 import { cn } from '@/root/business/lib/utils';
-import {MoreButton} from "@/root/components/shared/elements/Buttons/MoreButton";
+import {MoreButton} from "@/root/ui/dev/components/shared/elements/Buttons/MoreButton";
 import {useTranslations} from "next-intl";
-import {DailyWorkersCard} from "@/root/components/shared/elements/DailyWorkersCard/DailyWorkersCard";
+import {DailyWorkersCard} from "@/root/ui/dev/components/shared/elements/DailyWorkersCard/DailyWorkersCard";
 
 interface Props {
     className?: string;

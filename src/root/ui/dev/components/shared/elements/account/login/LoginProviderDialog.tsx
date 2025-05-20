@@ -12,12 +12,12 @@ import "react-phone-input-2/lib/style.css";
 import toast, {Toaster} from 'react-hot-toast';
 
 // shadcn
-import {Dialog, DialogContent, DialogTitle, DialogTrigger} from "@/root/components/ui/dialog";
-import {Input} from "@/root/components/ui/input";
-import {Button} from "@/root/components/ui/button";
+import {Dialog, DialogContent, DialogTitle, DialogTrigger} from "@/root/ui/dev/components/ui/dialog";
+import {Input} from "@/root/ui/dev/components/ui/input";
+import {Button} from "@/root/ui/dev/components/ui/button";
 
 // Otp Modal
-import {OTPModal} from "@/root/components/shared/elements/account/otp/OTPModal";
+import {OTPModal} from "@/root/ui/dev/components/shared/elements/account/otp/OTPModal";
 
 import {signIn} from "next-auth/react";
 

@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { cn } from "@/root/business/lib/utils";
-import { Dialog, DialogContent, DialogTitle, DialogHeader } from "@/root/components/ui/dialog";
-import { Button } from "@/root/components/ui/button";
+import { Dialog, DialogContent, DialogTitle, DialogHeader } from "@/root/ui/dev/components/ui/dialog";
+import { Button } from "@/root/ui/dev/components/ui/button";
 import { useTranslations } from "next-intl";
 import { OTPInput } from "./OTPInput";
 import { toast } from "react-hot-toast";

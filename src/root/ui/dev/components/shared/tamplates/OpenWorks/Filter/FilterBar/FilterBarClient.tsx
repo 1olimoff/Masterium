@@ -1,13 +1,13 @@
 "use client";
 import React, {useState} from "react";
 import {useTranslations} from "next-intl";
-import {Popover, PopoverContent, PopoverTrigger} from "@/root/components/ui/popover";
-import {Command, CommandInput, CommandItem, CommandList} from "@/root/components/ui/command";
-import {Button} from "@/root/components/ui/button";
-import {Input} from "@/root/components/ui/input"; // Предположим, у вас есть такой
+import {Popover, PopoverContent, PopoverTrigger} from "@/root/ui/dev/components/ui/popover";
+import {Command, CommandInput, CommandItem, CommandList} from "@/root/ui/dev/components/ui/command";
+import {Button} from "@/root/ui/dev/components/ui/button";
+import {Input} from "@/root/ui/dev/components/ui/input"; // Предположим, у вас есть такой
 import Image from "next/image";
 import {cn} from "@/root/business/lib/utils";
-import { Calendar } from "@/root/components/ui/calendar"
+import { Calendar } from "@/root/ui/dev/components/ui/calendar"
 
 
 //toaster
