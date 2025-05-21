@@ -1,6 +1,6 @@
 import React from 'react';
 import {cn} from '@/root/business/lib/utils';
-import {Button} from "@/root/ui/dev/components/ui/button";
+import {Button} from "@/root/ui/dev/shadcn/ui/button";
 import Image from "next/image";
 import {useTranslations} from "next-intl";
 

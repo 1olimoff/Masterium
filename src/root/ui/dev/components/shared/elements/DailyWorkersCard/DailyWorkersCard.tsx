@@ -6,7 +6,7 @@ import {
     type CarouselApi,
     CarouselContent,
     CarouselItem,
-} from "@/root/ui/dev/components/ui/carousel";
+} from "@/root/ui/dev/shadcn/ui/carousel";
 import Image from "next/image";
 import {useTranslations} from "next-intl";
 

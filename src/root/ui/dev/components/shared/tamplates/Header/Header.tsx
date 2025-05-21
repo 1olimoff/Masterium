@@ -3,7 +3,7 @@ import {cn} from '@/root/business/lib/utils';
 import Image from "next/image";
 import {useTranslations} from "next-intl";
 import {LanguageSwitcher} from "@/root/ui/dev/components/shared/elements/LanguageSwitcher/LanguageSwitcher";
-import {DialogTrigger, Dialog, DialogContent, DialogHeader, DialogTitle} from "@/root/ui/dev/components/ui/dialog";
+import {DialogTrigger, Dialog, DialogContent, DialogHeader, DialogTitle} from "@/root/ui/dev/shadcn/ui/dialog";
 import {ChooseRegion} from "@/root/ui/dev/components/shared/elements/ChooseRegion/ChooseRegion";
 
 interface Props {

@@ -3,6 +3,20 @@
 1. npx ts-node ./src/scripts/createPages/createPages.ts (type) (subtype) (where/name)
 
 
-
 1. Все системные файлы прочекал. Не надо перепроверять кроме middleware. Middleware надо будет настроить
 2.
+
+
+DDCB - Done - Dont Come Back
+
+### Idea for create Arch ###
+
+##### Pages #####
+
+All of ui for Pages will create in src/root/ui/dev/pages
+
+1. Все папки должны называться так же как и называется сама страницы
+2. Объязательно должен быть index.ts для того чтобы тупо редиректить сам page.
+3. Должен быть корневой файл с расширением .page.tsx
+
+# Структура этого Page #

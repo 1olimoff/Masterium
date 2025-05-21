@@ -12,9 +12,9 @@ import "react-phone-input-2/lib/style.css";
 import toast, {Toaster} from 'react-hot-toast';
 
 // shadcn
-import {Dialog, DialogContent, DialogTitle, DialogTrigger} from "@/root/ui/dev/components/ui/dialog";
-import {Input} from "@/root/ui/dev/components/ui/input";
-import {Button} from "@/root/ui/dev/components/ui/button";
+import {Dialog, DialogContent, DialogTitle, DialogTrigger} from "@/root/ui/dev/shadcn/ui/dialog";
+import {Input} from "@/root/ui/dev/shadcn/ui/input";
+import {Button} from "@/root/ui/dev/shadcn/ui/button";
 
 // Otp Modal
 import {OTPModal} from "@/root/ui/dev/components/shared/elements/account/otp/OTPModal";

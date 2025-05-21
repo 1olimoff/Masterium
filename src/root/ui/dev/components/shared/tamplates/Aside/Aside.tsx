@@ -6,9 +6,9 @@ import {
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
-} from "@/root/ui/dev/components/ui/dropdown-menu"
-import {Input} from "@/root/ui/dev/components/ui/input"
-import {Button} from "@/root/ui/dev/components/ui/button";
+} from "@/root/ui/dev/shadcn/ui/dropdown-menu"
+import {Input} from "@/root/ui/dev/shadcn/ui/input"
+import {Button} from "@/root/ui/dev/shadcn/ui/button";
 import {useTranslations} from "next-intl";
 import {LoginProviderDialog} from "@/root/ui/dev/components/shared/elements/account/login/LoginProviderDialog";
 
