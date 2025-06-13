@@ -14,11 +14,11 @@ export const LayoutProvider = ({ className, children, params }: LayoutProps) => 
     return (
         <div className={cn(className)}>
             <Header params={params} />
-            {/*<main>*/}
-            {/*    <Aside />*/}
-            {/*{children}*/}
-            {/*</main>*/}
-            {/*<Footer />*/}
+            <main>
+               <Aside />
+            {children}
+            </main>
+            <Footer />
         </div>
     );
 };

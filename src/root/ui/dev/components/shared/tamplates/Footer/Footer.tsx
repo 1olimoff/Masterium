@@ -36,6 +36,7 @@ export const Footer = ({className}: Props) => {
                             }
                         </ul>
 
+
                     </div>
                 </div>
                 <div className={"flex justify-center"}>
@@ -65,13 +66,13 @@ export const Footer = ({className}: Props) => {
                                     <Image src={'/svg/footer/social/Telegram_white.svg'} alt={"Masterium's Telegramm Link Icon"} fill objectFit={"contain"} />
                                 </a>
                                 <a href={"/"} className={"h-10 w-10 rounded-full relative"}>
-                                    <Image src={'/svg/footer/social/Instagram.svg'} alt={"Masterium's Telegramm Link Icon"} fill objectFit={"contain"} />
+                                    <Image src={'/svg/footer/social/Instagram.svg'} alt={"Masterium's Instagrams Link Icon"} fill objectFit={"contain"} />
                                 </a>
                                 <a href={"/"} className={"h-10 w-10 rounded-full relative"}>
-                                    <Image src={'/svg/footer/social/Facebook.svg'} alt={"Masterium's Telegramm Link Icon"} fill objectFit={"contain"} />
+                                    <Image src={'/svg/footer/social/Facebook.svg'} alt={"Masterium's Facebook Link Icon"} fill objectFit={"contain"} />
                                 </a>
                                 <a href={"/"} className={"h-10 w-10 rounded-full relative"}>
-                                    <Image src={'/svg/footer/social/Youtube.svg'} alt={"Masterium's Telegramm Link Icon"} fill objectFit={"contain"} />
+                                    <Image src={'/svg/footer/social/Youtube.svg'} alt={"Masterium's You Tube Link Icon"} fill objectFit={"contain"} />
                                 </a>
                             </div>
                         </div>
