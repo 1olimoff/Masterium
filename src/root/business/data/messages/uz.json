@@ -198,10 +198,69 @@
       "ServicePerson": {
         "sendOffer": "Ish taklif qilish",
         "infoTab": {
-          "infoTitle": "Usta haqida"
+          "infoTitle": "Usta haqida",
+          "infoExperience": "Ish tajribasi"
+        },
+        "infoData": {
+          "infoText": "Gravida elementum diam fames dignissim sed donec nisi diam. Quisque feugiat ut rutrum fringilla id urna vitae pharetra amet.\n Lorem ipsum dolor sit amet consectetur. Accumsan phasellus aenean eget velit non interdum erat in semper. Lobortis turpis metus turpis risus congue amet ullamcorper. Vitae diam senectus feugiat amet. Rutrum ac nulla sollicitudin libero pellentesque. Non magna libero consectetur velit. Facilisi et tellus tristique vel ut enim. Vel sapien tristique ultrices ac at quis nulla ultrices. Cursus massa facilisis et pharetra varius nullam. Est id id leo sed vestibulum eros massa. Volutpat dolor tellus a a purus aliquam. Hendrerit justo suspendisse laoreet tincidunt scelerisque.",
+          "infoExperience": "Gravida elementum diam fames dignissim sed donec nisi diam. Quisque feugiat ut rutrum fringilla id urna vitae pharetra amet."
         }
       }
     }
+  },
+  "VideoTab": {
+    "videoId": [
+      "V62RciuVMiw",
+      "qDvYkFwTeXM",
+      "y53RXRSPF1o",
+      "qDvYkFwTeXM",
+      "y53RXRSPF1o",
+      "qDvYkFwTeXM"
+    ]
+  },
+  "ImageTab": {
+    "images": [
+      "https://images.livemint.com/img/2022/06/20/600x338/labour1--621x414_1655737046895.JPG",
+      "https://images.livemint.com/img/2022/06/20/600x338/labour1--621x414_1655737046895.JPG",
+      "https://images.livemint.com/img/2022/06/20/600x338/labour1--621x414_1655737046895.JPG",
+      "https://images.livemint.com/img/2022/06/20/600x338/labour1--621x414_1655737046895.JPG",
+      "https://images.livemint.com/img/2022/06/20/600x338/labour1--621x414_1655737046895.JPG",
+      "https://images.livemint.com/img/2022/06/20/600x338/labour1--621x414_1655737046895.JPG"
+    ]
+  },
+  "ReviewTab": {
+    "averageRating": 4.5,
+    "totalReviews": 523,
+    "ratings": {
+      "5": 488,
+      "4": 74,
+      "3": 14,
+      "2": 0,
+      "1": 0
+    },
+    "reviews": [
+      {
+        "name": "Courtney Henry",
+        "date": "14 noyabr 2024",
+        "rating": 4,
+        "profile_pic": "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D",
+        "comment": "They are a great partner on both Strategic and Implementation. They have proven to be fair and resp. The partner been progressing well with the business change environment, talents of new skill set mi"
+      },
+      {
+        "name": "Robert Fox",
+        "date": "14 noyabr 2024",
+        "rating": 4,
+        "profile_pic": "https://media.istockphoto.com/id/1587604256/photo/portrait-lawyer-and-black-woman-with-tablet-smile-and-happy-in-office-workplace-african.jpg?s=612x612&w=0&k=20&c=n9yulMNKdIYIQC-Qns8agFj6GBDbiKyPRruaUTh4MKs=",
+        "comment": "The partner been progressing well with the business change environment, talents of new skill set mi"
+      },
+      {
+        "name": "Courtney Henry",
+        "date": "14 noyabr 2024",
+        "rating": 4,
+        "profile_pic": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
+        "comment": "Incredible group of people and talented professionals. Focused on the development of flexible and i"
+      }
+    ]
   },
   "price": {
     "sum": {

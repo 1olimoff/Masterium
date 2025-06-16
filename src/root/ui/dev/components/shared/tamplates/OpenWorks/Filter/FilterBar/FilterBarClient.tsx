@@ -15,7 +15,7 @@ import {useToast} from "@/root/business/hooks/use-toast"
 
 
 //utils
-import {processPriceInput} from "@/utils/PriceForrmater";
+import {processPriceInput} from "@/root/business/utils/PriceForrmater";
 
 interface FilterBarClientProps {
     className?: string;
