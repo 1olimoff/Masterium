@@ -1,10 +1,16 @@
 import React from 'react';
-import {cn} from '@/root/business/lib/utils';
+import { cn } from '@/root/business/lib/utils';
 import Image from "next/image";
-import {useTranslations} from "next-intl";
-import {LanguageSwitcher} from "@/root/ui/dev/components/shared/elements/LanguageSwitcher/LanguageSwitcher";
-import {DialogTrigger, Dialog, DialogContent, DialogHeader, DialogTitle} from "@/root/ui/dev/shadcn/ui/dialog";
-import {ChooseRegion} from "@/root/ui/dev/components/shared/elements/ChooseRegion/ChooseRegion";
+import { useTranslations } from "next-intl";
+import { LanguageSwitcher } from "@/root/ui/dev/components/shared/elements/LanguageSwitcher/LanguageSwitcher";
+import {
+    DialogTrigger,
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle
+} from "@/root/ui/dev/shadcn/ui/dialog";
+import { ChooseRegion } from "@/root/ui/dev/components/shared/elements/ChooseRegion/ChooseRegion";
 
 interface Props {
     className?: string;
@@ -12,53 +18,65 @@ interface Props {
 }
 
 const regions = [
-    "tashkent", "tashkent-region", "fergana", "andijan", "namangan", "sirdarya", "jizzax", "samarqand", "qashqadarya", "surxandarya", "buxara", "navai", "xarezm", "qaraqalpak"
+    "tashkent", "tashkent-region", "fergana", "andijan", "namangan", "sirdarya",
+    "jizzax", "samarqand", "qashqadarya", "surxandarya", "buxara", "navai", "xarezm", "qaraqalpak"
 ]
 
-const Header = ({className, params}: Props) => {
+const Header = ({ className, params }: Props) => {
     const t = useTranslations("Header");
+
     return (
-        <header
-            className={cn(className, "h-[36px] flex justify-between items-center layout-width px-2")}>
-            <div className={'flex gap-2'}>
+        <header className={cn(className, "flex justify-between items-center layout-width p-2 md:px-4 md:py-3 bg-white shadow-md")}>            
+            <div className="flex items-center gap-3 md:gap-4">
                 <Dialog>
-                    <Image src={"/svg/header/location.svg"} alt={"Location Icon"} width={20} height={20}/>
-                    <h2 className={"font-light"}>{t('Region.title')}: <DialogTrigger
-                        className={"underline cursor-pointer hover:no-underline hover:bg-maket-primary rounded hover:text-white p-1 transition-all duration-300"}>{t(`Region.${params?.region}`) || "Неизвестно"}</DialogTrigger>
-                    </h2>
-                    <DialogContent className={"max-h-[90%] overflow-y-auto custom-scrollbar"}>
+                    <div className="flex items-center gap-1">
+                        <Image src="/svg/header/location.svg" alt="Location Icon" width={24} height={24} className="w-5 h-5 md:w-6 md:h-6"/>
+                        <h2 className="font-medium text-xs md:text-sm lg:text-base">
+                            {t('Region.title')}:
+                            <DialogTrigger className="underline cursor-pointer ml-1 hover:no-underline hover:bg-maket-primary rounded hover:text-white px-1 py-0.5 md:px-2 md:py-1 text-xs md:text-sm lg:text-base transition-all duration-300">
+                                {t(`Region.${params?.region}`) || "Неизвестно"}
+                            </DialogTrigger>
+                        </h2>
+                    </div>
+
+                    <DialogContent className="max-h-[90%] overflow-y-auto custom-scrollbar">
                         <DialogHeader>
-                            <DialogTitle>
-                                Shaharni tanlang
-                            </DialogTitle>
-                            <hr/>
-                            {
-                                regions.map((region: string, index: number) => (
-                                    <ChooseRegion region={region} key={index} currentLocale={params.locale || 'ru'}
+                            <DialogTitle className="text-base md:text-lg">Shaharni tanlang</DialogTitle>
+                            <hr className="my-2"/>
+                            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                                {regions.map((region, index) => (
+                                    <ChooseRegion
+                                        region={region}
+                                        key={index}
+                                        currentLocale={params.locale || 'ru'}
                                     />
-                                ))
-                            }
+                                ))}
+                            </div>
                         </DialogHeader>
                     </DialogContent>
                 </Dialog>
             </div>
-            <div className={'flex gap-4'}>
-                <div className={'flex gap-2 call__animation-container'}>
+
+            <div className="flex items-center gap-3 md:gap-5">
+                <a href="tel:+998991234567" className="flex items-center gap-2 call__animation-container text-xs md:text-sm lg:text-base">
                     <Image
-                        className={"call-animate"}
-                        src={"/svg/header/call.svg"}
-                        alt={"Call Icon"}
+                        className="call-animate w-5 h-5 md:w-6 md:h-6"
+                        src="/svg/header/call.svg"
+                        alt="Call Icon"
                         width={20}
                         height={20}
                     />
-                    <a href="tel:+998991234567">+998 99 123 45 67</a>
+                    <span className="hidden md:inline-block font-medium">+998 99 123 45 67</span>
+                </a>
+                <div className="text-xs md:text-sm lg:text-base">
+                    <LanguageSwitcher
+                        currentLocale={params.locale || 'ru'}
+                        currentRegion={params.region || 'tashkent'}
+                    />
                 </div>
-                <LanguageSwitcher currentLocale={params.locale || 'ru'}
-                                  currentRegion={params.region || 'tashkent'}/>
             </div>
         </header>
-    )
+    );
 };
-
 
 export default Header;

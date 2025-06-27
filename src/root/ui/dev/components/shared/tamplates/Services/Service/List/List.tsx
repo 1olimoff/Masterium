@@ -272,33 +272,42 @@ const data = [
     }
 ]
 
-export const List = ({className}: Props) => {
+export const List = ({ className }: Props) => {
     const t = useTranslations()
     const [showMore, setShowMore] = useState(false);
+
     return (
         <section className={cn(className)}>
-            <div className="w-full grid grid-cols-4 gap-x-4 gap-y-10">
+            {/* Dastlabki kartalar */}
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10">
                 {data.slice(0, WORKS_TO_DISPLAY).map((item, i) => (
-                    <ServiceCard data={item} key={i}/>
+                    <ServiceCard data={item} key={i} />
                 ))}
             </div>
+
+            {/* Reklama karusel */}
             <div className="py-10">
-                <AdCarousel/>
+                <AdCarousel />
             </div>
-            <div className="w-full grid grid-cols-4 gap-x-4 gap-y-10">
+
+            {/* Qolgan kartalar */}
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10">
                 {data.slice(WORKS_TO_DISPLAY).map((item, i) => (
-                    <ServiceCard data={item} key={i + WORKS_TO_DISPLAY}/>
+                    <ServiceCard data={item} key={i + WORKS_TO_DISPLAY} />
                 ))}
             </div>
+
+            {/* Show More */}
             {showMore && (
-                <div className="w-full grid grid-cols-4 gap-x-4 gap-y-10 mt-10">
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10 mt-10">
                     {data.slice(WORKS_TO_DISPLAY).map((item, i) => (
-                        <ServiceCard data={item} key={i + WORKS_TO_DISPLAY}/>
+                        <ServiceCard data={item} key={i + WORKS_TO_DISPLAY} />
                     ))}
                 </div>
             )}
 
-            <Button
+            {/* Button */}
+            <Button 
                 className="bg-maket-primary text-white rounded-xl my-4 py-6 w-full font-semibold hover:bg-sky-800"
                 onClick={() => setShowMore(!showMore)}
             >

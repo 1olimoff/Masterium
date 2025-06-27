@@ -11,10 +11,8 @@ interface Props {
 }
 
 export const Filter = async ({className}: Props) => {
-
-
     return (
-        <section className={cn(className, "w-full rounded-2xl bg-white p-6 flex flex-col gap-6")}>
+        <section className={cn(className, "w-full rounded-2xl bg-white p-4 md:p-4 flex flex-col gap-4 md:gap-6")}>
             <FilterHeader />
             <FilterBarServer catalogs={catalogs} locations={locations} />
         </section>

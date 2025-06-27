@@ -13,7 +13,7 @@ export const ImageTab = ({ className }: Props) => {
 
   return (
     <div className={cn(className)}>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 sm:px-2 lg:grid-cols-3 gap-4 mb-4">
         {imageUrls.map((url, index) => (
           <div
             key={index}

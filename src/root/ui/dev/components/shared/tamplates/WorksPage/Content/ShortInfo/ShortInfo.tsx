@@ -1,8 +1,9 @@
 import React from 'react';
 import { cn } from '@/root/business/lib/utils';
-import {useTranslations} from "next-intl";
-import {Button} from "@/root/ui/dev/shadcn/ui/button";
+import { useTranslations } from "next-intl";
+import { Button } from "@/root/ui/dev/shadcn/ui/button";
 import Image from "next/image";
+import { Link } from '@/i18n/routing';
 
 interface Props {
     className?: string;
@@ -10,30 +11,55 @@ interface Props {
 
 export const ShortInfo = ({ className }: Props) => {
     const t = useTranslations();
+
     return (
-        <div className={cn(className, "w-[330px] h-full flex flex-col gap-3")}>
-            <p className={"text-sm text-maket-gray"}>
+        <div
+            className={cn(
+                className,
+                "w-full h-full flex flex-col gap-3",
+                "max-w-full sm:max-w-[480px]"
+            )}
+        >
+            {/* Created Date */}
+            <p className="text-[11px] sm:text-xs md:text-sm text-maket-gray">
                 {t('WorksPage.content.shortInfo.createdDateTitle')} 25.11.2024 09:45
             </p>
-            <h1 className={"text-xl font-semibold"}>
-                Oshxonani  yevro remont qilish kerak
+
+            {/* Title */}
+            <h1 className="text-sm sm:text-base md:text-lg font-semibold leading-snug">
+                Oshxonani yevro remont qilish kerak
             </h1>
-            <h2 className={"text-3xl font-semibold "}>
+
+            {/* Price */}
+            <h2 className="text-xl sm:text-2xl font-bold text-maket-black">
                 12 850 000 {t('price.sum.title')}
             </h2>
-            <div className={"p-4 flex flex-col gap-2 rounded-xl bg-maket-batafsil"}>
-                <p className={"text-lg font-semibold text-maket-secondary uppercase"}>
-                    <span>{t('WorksPage.content.shortInfo.period.title')}</span>
-                    23 <span>{t('WorksPage.content.shortInfo.period.days')}</span>
+
+            {/* Period Info Box */}
+            <div className="p-3 sm:p-4 flex flex-col gap-1.5 rounded-xl bg-maket-batafsil text-sm sm:text-base">
+                <p className="text-maket-secondary font-semibold uppercase">
+                    {t('WorksPage.content.shortInfo.period.title')} 23 {t('WorksPage.content.shortInfo.period.days')}
                 </p>
-                <p className={'text-maket-secondary'}>
-                    25.11.2024 {t('WorksPage.content.shortInfo.period.from')} - 18.12.2024 {t('WorksPage.content.shortInfo.period.to')}
+                <p className="text-maket-secondary">
+                    25.11.2024 {t('WorksPage.content.shortInfo.period.from')} – 18.12.2024 {t('WorksPage.content.shortInfo.period.to')}
                 </p>
             </div>
-            <Button className={"text-maket-gold rounded-xl flex gap-2 bg-maket-primary hover:bg-sky-800"}>
-                <Image src={"/svg/worksPage/send.svg"} alt={"Send this work Icon"} width={20} height={20} />
-                <p>{t('WorksPage.content.shortInfo.sendOfferButton')}</p>
-            </Button>
+
+            {/* Button */}
+            <Link
+                href="/tashkent/offer-works"
+                className="text-maket-gold rounded-xl flex items-center justify-center gap-2 bg-maket-primary hover:bg-sky-800 text-sm sm:text-base py-2"
+            >
+                <Image
+                    src="/svg/worksPage/send.svg"
+                    alt="Send Icon"
+                    width={20}
+                    height={20}
+                />
+                <span>{t("WorksPage.content.shortInfo.sendOfferButton")}</span>
+            </Link>
         </div>
     );
 };
+
+

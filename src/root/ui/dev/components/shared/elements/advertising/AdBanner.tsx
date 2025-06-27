@@ -8,8 +8,8 @@ interface Props {
 
 export const AdBanner = ({ className }: Props) => {
     return (
-        <section className={cn(className,"w-full h-[300px] rounded-3xl relative")}>
-            <Image src={"/img/advertising/image.png"} alt={"Advertising Banner"} fill objectFit={"cover"} className={"rounded-3xl my-custom-shadow"} />
+        <section className={cn(className,"w-full h-[300px] md:flex hidden rounded-3xl relative")}>
+            <Image src={"/img/advertising/image.png"} alt={"Advertising Banner"} fill objectFit={"cover"} className={"rounded-3xl w-[100%] my-custom-shadow"} />
         </section>
     );
 };

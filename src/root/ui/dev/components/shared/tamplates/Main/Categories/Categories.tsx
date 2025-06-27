@@ -1,6 +1,6 @@
 import React from 'react';
-import {cn} from '@/root/business/lib/utils';
-import {MainCategoryItem} from "@/root/ui/dev/components/shared/elements/categories/MainCategoryItem";
+import { cn } from '@/root/business/lib/utils';
+import { MainCategoryItem } from "@/root/ui/dev/components/shared/elements/categories/MainCategoryItem";
 
 interface Props {
     className?: string;
@@ -69,10 +69,10 @@ const data = [
     },
 ]
 
-export const Categories = ({className}: Props) => {
+export const Categories = ({ className }: Props) => {
     return (
-        <section className={cn(className, "py-4 overflow-x-auto no-scrollbar")}>
-            <div className={"flex gap-4 px-2 min-w-max"}>
+        <section className={cn(className, "py-4 overflow-x-auto no-scrollbar md:py-6")}>
+            <div className={"flex gap-4 px-2 min-w-max md:gap-6 md:px-4"}>
                 {
                     data.map((item, i) => (
                         <MainCategoryItem key={i} iconPath={item.src} title={item.title} />
@@ -80,5 +80,6 @@ export const Categories = ({className}: Props) => {
                 }
             </div>
         </section>
+
     );
 };

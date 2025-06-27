@@ -208,6 +208,129 @@
       }
     }
   },
+  "Privacy": { 
+    "Policy": {
+      "breadcrumb": {
+        "home": "Bosh sahifa",
+        "allServices": "Barcha xizmatlar",
+        "privacy": "Maxfiylik siyosati",
+        "policy": "Privacy and policy"
+      }
+    },
+    "PrivacyBtn":{
+      "confirm":"Tasdiqlayman",
+      "back":"Orqaga"
+    }
+  },
+  "OfferWork": {
+    "Offers": {
+      "breadcrumb": {
+        "home": "Bosh sahifa",
+        "santex": "Santexniklar",
+        "allServices": "Barcha xizmatlar",
+        "offers": "Ish taklif qilish",
+        "offerData": {
+          "offersTitle": "Ish taklif qilish"
+        }
+      },
+      "PersonProfile": {
+        "WorkTitle": {
+          "titleInfo": "Ish sarlavhasini kiriting...",
+          "title": "Ish sarlavhasi"
+        },
+        "Category": {
+          "titleInfo": "Kategoriyani tanlang",
+          "title": "Kategoriya"
+        },
+        "Definition": {
+          "title": "Tavsif",
+          "titleInfo": "O’zingizni shu tavsifni ko’rayotgan odam o’rniga qo’ying va tavsif yozing"
+        },
+        "Date": {
+          "titleStart": "Ish boshlanish sanasi:",
+          "titleEnd": "Ish tugash sanasi:"
+        }
+      },
+      "Picture": {
+        "picInfo": "Rasmni tanlang yoki sudrab olib tashlang "
+      }
+
+    },
+    "Advertise":{
+      "breadcrumb":{
+        "home": "Bosh sahifa",
+        "advertise": "E'lon berish"
+      },
+      "Description":{
+        "title": "Bizga e'loningiz haqida gapirib bering"
+      },
+      "Buttons":{
+        "PaymentType": "100% oldindan to'lov",
+        "GiveAdvertise": "E'lon joylashtirish"
+      }
+
+    },
+    "Contacts": {
+      "title": "Kontakt ma'lumotlari",
+      "callPerson": "Murojaat qiluvchi shaxs",
+      "callPersonPlaceholder": "Murojaat qiluvchi shaxs ism sharifini kiriting:",
+      "phone": "Telefon raqami:",
+      "phonePlaceholder": "Telefon raqamingizni kiriting:",
+      "location": "Joylashuv",
+      "locationPlaceholder": "Tuman, shahar, ko'cha nomini yozing...",
+      "selectLocation": "Joylashuv xaritani belgilang..",
+      "buttons":{
+        "cancelBtn": "Bekor qilish",
+        "submitBtn": "Davom etish"
+      }
+    },
+    "Pictures": {
+      "Picture": {
+        "title": "Rasmlar",
+        "titleInfo": "Birinchi surat e’loningiz asosiy rasmi bo’ladi. Suratlar tartibini ularning ustiga bosib va olib o’tish bilan o’zgartirishingiz mumkin."
+      }
+    },
+    "PriceandInfo": {
+      "title": "Narx va qo'shimcha ma'lumotlar",
+      "titleInfo": "Xususiy yoki biznes",
+      "Btn": {
+        "titleBtn": {
+          "physical": "Jismoniy shaxs",
+          "business": "Biznes"
+        },
+        "PaymentType": {
+          "title": "To'lov usuli",
+          "stepbystep": "Bosqichma bosqich to'lov",
+          "advpayment": "Oldindan avans",
+          "afterjob": "Ish tugaganidan keyin"
+        },
+        "Price": {
+          "error":{
+            "title":"Xatolik faqat raqam kiriting!!!"
+          },
+          "title": "Narxi:",
+          "description": "Narxni kiriting:"
+        }
+      },
+
+      "PicTitle": {
+        "title": "Rasmlar",
+        "titleInfo": "Birinchi surat e’loningiz asosiy rasmi bo’ladi. Suratlar tartibini ularning ustiga bosib va olib o’tish bilan o’zgartirishingiz mumkin."
+      }
+    }
+  },
+  "MyAds": {
+      "breadcrumb":{
+        "home":"Bosh sahifa",
+        "myAds": "Mening e'lonlarim",
+        "workTitle": "Oshxonani yevro remont qilish kerak"
+      },
+      "title": "Mening e'lonlarim",
+      "myAdsBtn":{
+        "btnTitle":"Ko'rish va o'zgartirish"
+      }
+  },
+
   "VideoTab": {
     "videoId": [
       "V62RciuVMiw",

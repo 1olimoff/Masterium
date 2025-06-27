@@ -11,11 +11,11 @@ interface Props {
 export const Title = ({ className }: Props) => {
     const t = useTranslations();
     return (
-        <div className={cn(className, "flex flex-col gap-4")}>
+        <div className={cn(className, "hidden sm:flex flex-col gap-4")}>
             <Breadcrumb>
                 <BreadcrumbList className={"text-lg text-maket-gray"}>
                     <BreadcrumbItem>
-                        <ServerLink path={""} >
+                        <ServerLink path={"/"} >
                             {t("OpenWorks.breadcrumb.home")}
                         </ServerLink>
                     </BreadcrumbItem>

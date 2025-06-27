@@ -42,23 +42,9 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
     const [locationOpen, setLocationOpen] = useState(false);
     const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
 
-
-    // Пример обработчика «Применить»:
-    // function handleApplyFilters() {
-    //     // Здесь вы вызываете нужные методы,
-    //     // делаете push в query-параметры роутера и т.д.
-    //     console.log("Filters:", {
-    //         catalog: selectedCatalog,
-    //         price: { from: priceFrom, to: priceTo },
-    //         dates: { from: dateFrom, to: dateTo },
-    //         location: selectedLocation,
-    //     });
-    // }
-
     return (
-        <div className={cn(className, "w-full flex gap-4")}>
-            {/* Первая строка: Каталог */}
-            <div className="w-[27%] flex flex-col gap-1">
+        <div className={cn(className, "w-full flex flex-col lg:flex-row gap-4")}>
+            <div className="basis-full md:basis-[27%] flex flex-col gap-1">
                 <p>{t("OpenWorks.filter.catalog.title")}</p>
                 <Popover open={catalogOpen} onOpenChange={setCatalogOpen}>
                     <PopoverTrigger asChild>
@@ -79,7 +65,7 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                     </PopoverTrigger>
                     <PopoverContent className="p-2 w-full md:w-48">
                         <Command>
-                            <CommandInput placeholder={t("OpenWorks.filter.catalog.search")}/>
+                            <CommandInput placeholder={t("OpenWorks.filter.catalog.search")} />
                             <CommandList>
                                 {catalogs.map((catalog) => (
                                     <CommandItem
@@ -99,9 +85,8 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                     </PopoverContent>
                 </Popover>
             </div>
-
-            {/* Цена: от/до */}
-            <div className="w-[23%] flex flex-col gap-1">
+    
+            <div className="basis-full md:basis-[23%] flex flex-col gap-1">
                 <p>{t("OpenWorks.filter.price.title")}</p>
                 <div className="flex gap-2">
                     <Input
@@ -109,7 +94,7 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                         placeholder={t("OpenWorks.filter.price.from")}
                         value={priceFrom}
                         onChange={async (e) => {
-                            const {formatted, hasInvalid} = await processPriceInput(e.target.value);
+                            const { formatted, hasInvalid } = await processPriceInput(e.target.value);
                             if (hasInvalid) {
                                 toast({
                                     title: t('OpenWorks.filter.price.error.title'),
@@ -124,7 +109,7 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                         placeholder={t("OpenWorks.filter.price.to")}
                         value={priceTo}
                         onChange={(e) => {
-                            const {formatted, hasInvalid} = processPriceInput(e.target.value);
+                            const { formatted, hasInvalid } = processPriceInput(e.target.value);
                             if (hasInvalid) {
                                 toast({
                                     title: t('OpenWorks.filter.price.error.title'),
@@ -136,10 +121,8 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                     />
                 </div>
             </div>
-
-            {/* Вторая строка: Даты + Локация */}
-
-            <div className="w-[30%]">
+    
+            <div className="basis-full md:basis-[30%]">
                 <p className="mb-1">{t("OpenWorks.filter.period.title")}</p>
                 <div className="flex gap-2">
                     <Popover open={dateFromOpen} onOpenChange={setDateFromOpen}>
@@ -149,7 +132,7 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                                 className={"w-full py-6 text-left text-md border-2 border-[#CFD9FE] rounded-xl flex justify-between items-center"}
                             >
                                 {dateFrom
-                                    ? dateFrom.toLocaleDateString() // либо форматируйте через date-fns
+                                    ? dateFrom.toLocaleDateString()
                                     : t("OpenWorks.filter.price.from")}
                                 <Image
                                     src={"/svg/open-works/calendar.svg"}
@@ -171,8 +154,7 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                             />
                         </PopoverContent>
                     </Popover>
-
-                    {/* Поле "gacha" */}
+    
                     <Popover open={dateToOpen} onOpenChange={setDateToOpen}>
                         <PopoverTrigger asChild>
                             <Button
@@ -204,9 +186,8 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                     </Popover>
                 </div>
             </div>
-
-            {/*Location*/}
-            <div className="w-[20%]">
+    
+            <div className="basis-full md:basis-[20%]">
                 <p className="mb-1">{t("OpenWorks.filter.location.title")}</p>
                 <Popover open={locationOpen} onOpenChange={setLocationOpen}>
                     <PopoverTrigger asChild>
@@ -227,7 +208,7 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
                     </PopoverTrigger>
                     <PopoverContent className="p-2 w-full md:w-48">
                         <Command>
-                            <CommandInput placeholder={t("OpenWorks.filter.location.search")}/>
+                            <CommandInput placeholder={t("OpenWorks.filter.location.search")} />
                             <CommandList>
                                 {locations.map((loc) => (
                                     <CommandItem
@@ -249,4 +230,5 @@ export default function FilterBarClient({catalogs, locations, className}: Filter
             </div>
         </div>
     );
+    
 }

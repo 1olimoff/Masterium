@@ -12,6 +12,7 @@ const data = [
     {
         title: "Oshxonani  yevro remont qilish kerak",
         category: "Malyar - shtukatur",
+        applicationCount: 5,
         price: 12850000,
         client: {
             avatar: {
@@ -26,6 +27,7 @@ const data = [
     {
         title: "Oshxonani  yevro remont qilish kerak",
         category: "Malyar - shtukatur",
+        applicationCount: 5,
         price: 12850000,
         client: {
             avatar: {
@@ -40,6 +42,7 @@ const data = [
     {
         title: "Oshxonani  yevro remont qilish kerak",
         category: "Malyar - shtukatur",
+        applicationCount: 5,
         price: 12850000,
         client: {
             avatar: {
@@ -54,6 +57,7 @@ const data = [
     {
         title: "Oshxonani  yevro remont qilish kerak",
         category: "Malyar - shtukatur",
+        applicationCount: 5,
         price: 12850000,
         client: {
             avatar: {
@@ -66,20 +70,25 @@ const data = [
         }
     }
 ]
+export const Similar = ({ className }: Props) => {
+    const t = useTranslations('');
 
-export const Similar = ({className}: Props) => {
-    const t = useTranslations('')
     return (
-        <section className={cn(className, "flex flex-col gap-6")}>
-            <div className={"w-full flex justify-between"}>
-                <h3 className={"text-3xl font-semibold"}>
+        <section className={cn(
+            className,
+            "hidden sm:flex flex-col gap-6" // 👈 faqat sm+ ekranlarda ko‘rinadi
+        )}>
+            <div className="w-full flex justify-between items-center">
+                <h3 className="text-3xl font-semibold">
                     {t('WorksPage.similar.title')}
                 </h3>
-                <MoreButton title={t('WorksPage.similar.more')} link={"open-works"} />
+                <MoreButton title={t('WorksPage.similar.more')} link="open-works" />
             </div>
-            <div className="w-full grid grid-cols-4 gap-x-4 gap-y-10">
+
+            {/* Grid view, scroll emas — sm+ ekranlar uchun */}
+            <div className="grid gap-4 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {data.map((item, i) => (
-                    <OpenWorkCard data={item} key={i}/>
+                    <OpenWorkCard data={item} key={i} />
                 ))}
             </div>
         </section>

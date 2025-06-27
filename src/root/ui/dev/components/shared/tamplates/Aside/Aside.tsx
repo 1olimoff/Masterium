@@ -11,6 +11,7 @@ import {Input} from "@/root/ui/dev/shadcn/ui/input"
 import {Button} from "@/root/ui/dev/shadcn/ui/button";
 import {useTranslations} from "next-intl";
 import {LoginProviderDialog} from "@/root/ui/dev/components/shared/elements/account/login/LoginProviderDialog";
+import { Link } from '@/i18n/routing';
 
 
 interface Props {
@@ -75,17 +76,17 @@ const Aside = ({className}: Props) => {
                             className={"bg-white text-maket-primary border border-white hover:bg-maket-primary hover:text-white"}>{t('search.button')}</Button>
                 </div>
                 <div className={"flex gap-2"}>
-                    <Button className={"bg-white text-maket-primary group hover:bg-maket-primary hover:text-white border border-white"}>
+                    <Link href="tashkent/advertise" className={"bg-white flex justify-center gap-1 items-center p-2 rounded-[5px] text-maket-primary group hover:bg-maket-primary hover:text-white border border-white"}>
                         <Image src={'/svg/aside/add.svg'} alt={"Add Icon"} width={20} height={20} className={"group-hover:hidden"}/>
                         <Image src={'/svg/aside/add-white.svg'} alt={"Add Icon"} width={20} height={20} className={"group-hover:block hidden"}/>
                         <p>{t('action.announcement')}</p>
-                    </Button>
+                    </Link>
                     <LoginProviderDialog>
-                        <Button className={"bg-white group text-maket-primary hover:bg-maket-primary hover:text-white border border-white"}>
+                        <div  className={"bg-white group text-maket-primary hover:bg-maket-primary hover:text-white border border-white"}>
                             <Image src={'/svg/aside/user.svg'} alt={"Add Icon"} width={20} height={20} className={"group-hover:hidden"}/>
                             <Image src={'/svg/aside/user-white.svg'} alt={"Add Icon"} width={20} height={20} className={"group-hover:block hidden"}/>
                             <p>{t('action.account.login')}</p>
-                        </Button>
+                        </div>
                     </LoginProviderDialog>
                 </div>
             </div>

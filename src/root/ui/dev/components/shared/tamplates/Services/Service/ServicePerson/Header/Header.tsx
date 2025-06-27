@@ -1,22 +1,25 @@
 import React from 'react';
-import {cn} from '@/root/business/lib/utils';
-import {Button} from "@/root/ui/dev/shadcn/ui/button";
+import { cn } from '@/root/business/lib/utils';
+import { Button } from "@/root/ui/dev/shadcn/ui/button";
 import Image from "next/image";
-import {useTranslations} from "next-intl";
+import { useTranslations } from "next-intl";
+import { Link } from '@/root/business/locales/i18n/routing';
+
+
 
 interface Props {
     className?: string;
 }
 
-export const Header = ({className}: Props) => {
+export const Header = ({ className }: Props) => {
     const t = useTranslations('')
     return (
-        <section className={cn(className, "w-full flex justify-between gap-4")}>
+        <section className={cn(className, "w-full  flex justify-between gap-4")}>
             <div className={"flex gap-3"}>
-                <div className={"rounded-full border-2 border-maket-green"}>
-                    <div className={"h-20 w-20 rounded-full relative border-2 border-white"}>
+                <div className={"rounded-full max-h-[84px] border-2 border-maket-green"}>
+                    <div className={"h-20 w-20  rounded-full relative border-2 border-white"}>
                         <Image src={"/img/advertising/gas.png"} alt={"Eshonov Baxodir"} fill objectFit={"cover"}
-                               className={"rounded-full"}/>
+                            className={"rounded-full"} />
                         <div
                             className={"absolute bottom-0 right-0 h-5 w-5 border-2 border-white rounded-full bg-maket-green"}>
                         </div>
@@ -29,17 +32,29 @@ export const Header = ({className}: Props) => {
                     <div className={"flex gap-1 items-center"}>
                         <div className={"relative h-4 w-4 flex items-center justify-center"}>
                             <Image src={"/svg/main/dailyWorkersCard/star-fill.svg"} alt={"This is star fill for rate"}
-                                   fill objectFit={"contain"}/>
+                                fill objectFit={"contain"} />
                         </div>
                         <p className={"text-maket-primary"}>4.5</p>
                         <p className={"text-sm text-maket-gray"}>(30 {t("Main.sections.DailyWorkers.Card.comments")})</p>
                     </div>
                 </div>
             </div>
-            <Button className={"text-maket-gold p-6 text-xl rounded-xl flex gap-2 bg-maket-primary hover:bg-sky-800"}>
-                <Image src={"/svg/worksPage/send.svg"} alt={"Send this work Icon"} width={25} height={25}/>
-                <p>{t('Services.Service.ServicePerson.sendOffer')}</p>
-            </Button>
+ 
+            <Link
+                href="/tashkent/offer-works"
+                className="hidden sm:inline-flex items-center max-w-[250px] h-[50px] gap-2 px-4 py-2 rounded-xl bg-maket-primary text-maket-gold text-lg font-medium hover:bg-sky-800 transition-colors duration-200"
+            >
+                <Image
+                    src="/svg/worksPage/send.svg"
+                    alt="Send this work icon"
+                    width={24}
+                    height={24}
+                    className="object-contain"
+                />
+                <span>{t('Services.Service.ServicePerson.sendOffer')}</span>
+            </Link>
+
+
         </section>
     );
 };

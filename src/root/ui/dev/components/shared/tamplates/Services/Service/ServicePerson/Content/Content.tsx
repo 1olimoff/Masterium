@@ -50,9 +50,9 @@ export const Content = ({className}: Props) => {
     const [activeTab, setActiveTab] = React.useState<string>("malumot");
 
     return (
-        <div className={cn(className, "w-full flex flex-col")}>
+        <div className={cn(className, "w-full flex  flex-col")}>
             {/* Шапка с кнопками табов */}
-            <div className="flex gap-6 border-b border-gray-200">
+            <div className="flex gap-6 border-b  overflow-x-auto scrollbar-hide border-gray-200">
                 {TABS.map((tab) => {
                     const isActive = tab.key === activeTab;
                     return (
@@ -91,7 +91,7 @@ export const Content = ({className}: Props) => {
             </div>
 
             {/* Контейнер с анимированным контентом */}
-            <div className="relative mt-6">
+            <div className="relative mt-6 ">
                 <AnimatePresence mode="wait">
                     {/* Ищем контент для выбранного таба и рендерим его */}
                     {TABS.filter((tab) => tab.key === activeTab).map((tab) => (

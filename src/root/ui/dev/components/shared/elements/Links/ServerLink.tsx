@@ -11,7 +11,7 @@ type ServerLinkProps = {
 export default async function ServerLink({ path, className, children }: ServerLinkProps) {
     // Достаём куки на сервере:
     const store = await cookies();
-    const locale = store.get("locale")?.value || "ru";
+    const locale = store.get("locale")?.value || "uz";
     const region = store.get("region")?.value || "tashkent";
 
     // Формируем финальный путь

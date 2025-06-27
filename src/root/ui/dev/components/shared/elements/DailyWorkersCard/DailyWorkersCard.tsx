@@ -74,7 +74,7 @@ export const DailyWorkersCard = ({className, data}: Props) => {
         });
     }, [api]);
     return (
-        <div className={cn(className, "w-full max-w-[350px] rounded-xl overflow-hidden bg-white my-custom-shadow ")}>
+        <div className={cn(className, "w-full max-w-[350px]  rounded-xl overflow-hidden bg-white my-custom-shadow ")}>
             <Carousel
                 setApi={setApi}
             >
@@ -97,7 +97,7 @@ export const DailyWorkersCard = ({className, data}: Props) => {
 
                 {/* Точки (dots) */}
                 <div
-                    className="absolute bottom-4 left-0 w-full flex items-center justify-center gap-2 z-10"
+                    className="absolute bottom-4  left-0 w-full flex items-center justify-center gap-2 z-10"
                 >
                     {images.map((_, idx) => {
                         const isActive = idx === current;

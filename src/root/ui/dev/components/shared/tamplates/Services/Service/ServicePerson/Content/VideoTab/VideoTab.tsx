@@ -15,7 +15,7 @@ export const VideoTab = ({ className }: Props) => {
 
   return (
     <div className={cn(className)}>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 sm:px-2 lg:grid-cols-3 gap-4 mb-4">
         {videoIds.map((id, index) => (
           <div
             key={index}

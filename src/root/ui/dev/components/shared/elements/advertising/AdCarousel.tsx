@@ -62,7 +62,8 @@ export const AdCarousel = ({ className }: Props) => {
             <Carousel
                 setApi={setApi}
             >
-                <CarouselContent className="relative w-full h-[300px]">
+
+                <CarouselContent className="relative w-full h-[200px] sm:h-[250px] md:h-[300px] lg:h-[350px]">
                     {data.map((item, i) => (
                         <CarouselItem
                             key={i}
@@ -73,12 +74,13 @@ export const AdCarousel = ({ className }: Props) => {
                                 alt={item.alt}
                                 fill
                                 objectFit={item.objectFit}
-                                className="rounded-3xl"
+                                className="rounded-xl sm:rounded-2xl md:rounded-3xl"
                                 priority={i === 0}
                             />
                         </CarouselItem>
                     ))}
                 </CarouselContent>
+
 
                 {/* Кнопка "Назад" */}
                 <CarouselPrevious
@@ -97,9 +99,7 @@ export const AdCarousel = ({ className }: Props) => {
                 />
 
                 {/* Точки (dots) */}
-                <div
-                    className="absolute bottom-4 left-0 w-full flex items-center justify-center gap-2 z-10"
-                >
+                <div className="absolute bottom-2 md:bottom-4 left-0 w-full flex items-center justify-center gap-2 z-10">
                     {data.map((_, idx) => {
                         const isActive = idx === current;
                         return (
@@ -108,7 +108,7 @@ export const AdCarousel = ({ className }: Props) => {
                                 onClick={() => api?.scrollTo(idx)}
                                 className={cn(
                                     "cursor-pointer h-2 rounded-full transition-all duration-300",
-                                    isActive ? "w-8 bg-white" : "w-2 bg-gray-300"
+                                    isActive ? "w-6 md:w-8 bg-white" : "w-2 bg-gray-300"
                                 )}
                             />
                         );

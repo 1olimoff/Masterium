@@ -1,4 +1,3 @@
-// Gallery.tsx
 "use client"
 
 import React, { useState, useEffect } from "react"
@@ -43,24 +42,29 @@ export const Gallery = ({ className }: Props) => {
     }, [api])
 
     return (
-        <section className={cn("relative w-full h-full flex-grow", className)}>
-            <Carousel setApi={setApi} className="w-full h-full border-2 border-black flex-grow">
-                <CarouselContent className="relative w-full h-full border-4 border-red-500 flex-grow">
+        <section className={cn("relative w-full flex-grow", className)}>
+            <Carousel setApi={setApi} className="w-full h-full flex-grow">
+                <CarouselContent className="relative w-full h-full flex-grow">
                     {data.map((item, i) => (
-                        <CarouselItem key={i} className="relative w-full h-full border-2 border-green-400 flex-grow">
+                        <CarouselItem
+                            key={i}
+                            className={cn(
+                                "relative w-full",
+                                "h-[220px] sm:h-[280px] md:h-[360px] lg:h-[500px] xl:h-[560px]"
+                            )}
+                        >
                             <Image
                                 src={item.src}
                                 alt={item.alt}
                                 fill
-                                objectFit={"cover"}
-                                className={"flex-grow"}
-                                priority={i === 0}
+                                className="object-cover rounded-xl transition-all duration-300 ease-in-out"
                             />
+
                         </CarouselItem>
                     ))}
                 </CarouselContent>
 
-                {/* Кнопка «Назад» */}
+                {/* Previous */}
                 <CarouselPrevious
                     className={cn(
                         "absolute left-4 top-1/2 -translate-y-1/2 z-10",
@@ -68,7 +72,7 @@ export const Gallery = ({ className }: Props) => {
                     )}
                 />
 
-                {/* Кнопка «Вперёд» */}
+                {/* Next */}
                 <CarouselNext
                     className={cn(
                         "absolute right-4 top-1/2 -translate-y-1/2 z-10",
@@ -76,7 +80,7 @@ export const Gallery = ({ className }: Props) => {
                     )}
                 />
 
-                {/* Точки (dots) */}
+                {/* Dots */}
                 <div className="absolute bottom-4 left-0 w-full flex items-center justify-center gap-2 z-10">
                     {data.map((_, idx) => (
                         <div

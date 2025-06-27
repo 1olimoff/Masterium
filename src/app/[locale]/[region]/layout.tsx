@@ -25,14 +25,8 @@ export default async function RootLayout({children, params}: LayoutProps) {
     unstable_setRequestLocale(locale);
 
     // Load translations
-    let messages;
-    try {
-        messages = await getMessages({locale});
-    } catch (err) {
-        // If we can't find messages for the locale, show 404 or fallback
-        console.log("Layout ERROR", err);
-        notFound();
-    }
+    let messages = await getMessages({locale});
+
 
     return (
         <html lang={locale}>
