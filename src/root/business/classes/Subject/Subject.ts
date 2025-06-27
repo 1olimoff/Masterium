@@ -1,4 +1,5 @@
-import {useSubject} from '@/utils/useSubject/useSubject';
+import { useSubject } from "../../utils/useSubject/useSubject";
+
 
 type ElementOfArray<T> = T extends (infer R)[] ? R : never;
 
