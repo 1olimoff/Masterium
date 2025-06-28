@@ -22,15 +22,15 @@ const Aside = ({className}: Props) => {
     const t = useTranslations("Aside");
     return (
         <aside
-            className={cn(className, "py-3 px-2 shadow bg-maket-primary sticky top-0 z-[50]")}>
+            className={cn(className, "py-3 px-2 sm:shadow  sticky sm:bg-maket-primary bg-white top-0 z-[50]")}>
             <div className={'layout-width flex justify-between items-center gap-8'}>
-                <a href={'/'}>
+                <a href={'/'} className='max-w-[250px] w-full hidden sm:flex'>
                     <Image src={"/svg/footer/logo.svg"} alt={"masterium logo"} width={250} height={80}/>
                 </a>
                 <div className={"flex justify-between items-center gap-4 flex-1"}>
                     <DropdownMenu>
                         <DropdownMenuTrigger
-                            className={"bg-white hover:bg-maket-primary border border-white hover:text-white text-maket-primary transition-all duration-200 flex gap-2 group justify-center items-center py-2 px-6 rounded-lg"}>
+                            className={"bg-white hover:bg-maket-primary sm:flex hidden border border-white hover:text-white text-maket-primary transition-all duration-200 gap-2 group justify-center items-center py-2 px-6 rounded-lg"}>
                             <Image src={"/svg/aside/catalog.svg"} alt={"Category Icon"} width={25} height={25} className={"group-hover:hidden"}/>
                             <Image src={"/svg/aside/catalog-white.svg"} alt={"Category Icon"} width={25} height={25} className={"group-hover:block hidden"}/>
                             <p className={"font-light"}>{t('catalog')}</p>
@@ -58,7 +58,7 @@ const Aside = ({className}: Props) => {
                                                      height={18}/>Santehniklar</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
-                    <div className="relative w-full">
+                    <div className="relative w-full ">
                         <Image
                             src="/svg/aside/search.svg"
                             alt="Search Icon"
@@ -73,9 +73,9 @@ const Aside = ({className}: Props) => {
                         />
                     </div>
                     <Button type={"submit"}
-                            className={"bg-white text-maket-primary border border-white hover:bg-maket-primary hover:text-white"}>{t('search.button')}</Button>
+                            className={"bg-white hidden sm:flex text-maket-primary border border-white hover:bg-maket-primary hover:text-white"}>{t('search.button')}</Button>
                 </div>
-                <div className={"flex gap-2"}>
+                <div className={"hidden sm:flex gap-2"}>
                     <Link href="tashkent/advertise" className={"bg-white flex justify-center gap-1 items-center p-2 rounded-[5px] text-maket-primary group hover:bg-maket-primary hover:text-white border border-white"}>
                         <Image src={'/svg/aside/add.svg'} alt={"Add Icon"} width={20} height={20} className={"group-hover:hidden"}/>
                         <Image src={'/svg/aside/add-white.svg'} alt={"Add Icon"} width={20} height={20} className={"group-hover:block hidden"}/>

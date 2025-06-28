@@ -11,7 +11,7 @@ interface Props {
 
 export const WorksPage = ({ className }: Props) => {
     return (
-        <div className={cn(className, "w-full flex flex-col gap-12 pt-6 pb-24")}>
+        <div className={cn(className, "w-full flex flex-col gap-12 pt-6")}>
             <AdGrid />
             <Title />
             <Content />

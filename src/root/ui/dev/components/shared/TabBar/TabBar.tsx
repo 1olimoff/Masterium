@@ -19,8 +19,8 @@ export default function TabBar() {
             icon: 'catalog',
         },
         {
-            href: '/uz/tashkent/services/service',
-            label: "Qo'shish",
+            href: '/uz/tashkent/advertise',
+            label: "Qo'shish", 
             icon: 'add',
         },
         {
@@ -29,14 +29,14 @@ export default function TabBar() {
             icon: 'ads',
         },
         {
-            href: '/uz/tashkent/offer-works',
+            href: '/uz/tashkent',
             label: 'Profil',
             icon: 'profile',
         },
     ];
 
     return (
-        <div className='fixed bottom-0 left-0 z-50 w-full bg-white sm:hidden shadow-[0_-4px_12px_-1px_rgba(0,0,0,0.1)]'>
+        <div className='sticky bottom-0 left-0 z-50 w-full bg-white sm:hidden shadow-[0_-4px_12px_-1px_rgba(0,0,0,0.1)]'>
             <div className='flex items-center justify-between px-2 py-2'>
                 {tabItemArr.map((item) => (
                     <TabItem

@@ -16,7 +16,7 @@ export const LayoutProvider = ({ className, children, params }: LayoutProps) => 
         <div className={cn(className)}>
             <Header params={params} />
             <main>
-               {/* <Aside /> */}
+               <Aside />
             {children}
             </main>
             {/* <Footer /> */}
