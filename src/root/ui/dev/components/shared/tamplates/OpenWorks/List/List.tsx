@@ -25,7 +25,8 @@ const data = [
             name: "Eshonov Baxodir",
             type: "Mijoz",
             online: true,
-        }
+        },
+        applicationCount: 5,
     },
     {
         title: "Oshxonani  yevro remont qilish kerak",
@@ -39,7 +40,8 @@ const data = [
             name: "Eshonov Baxodir",
             type: "Mijoz",
             online: false,
-        }
+        },
+        applicationCount: 3,
     },
     {
         title: "Oshxonani  yevro remont qilish kerak",
@@ -53,7 +55,8 @@ const data = [
             name: "Eshonov Baxodir",
             type: "Mijoz",
             online: true,
-        }
+        },
+        applicationCount: 7,
     },
     {
         title: "Oshxonani  yevro remont qilish kerak",
@@ -67,7 +70,8 @@ const data = [
             name: "Eshonov Baxodir",
             type: "Mijoz",
             online: true,
-        }
+        },
+        applicationCount: 5,
     },
     {
         title: "Oshxonani  yevro remont qilish kerak",
@@ -81,7 +85,9 @@ const data = [
             name: "Eshonov Baxodir",
             type: "Mijoz",
             online: true,
-        }
+        },
+        applicationCount: 5,
+
     },
     {
         title: "Oshxonani  yevro remont qilish kerak",
@@ -95,7 +101,9 @@ const data = [
             name: "Eshonov Baxodir",
             type: "Mijoz",
             online: false,
-        }
+        },
+        applicationCount: 5,
+
     },
     {
         title: "Oshxonani  yevro remont qilish kerak",
@@ -109,7 +117,9 @@ const data = [
             name: "Eshonov Baxodir",
             type: "Mijoz",
             online: true,
-        }
+        },
+        applicationCount: 5,
+
     },
     {
         title: "Oshxonani  yevro remont qilish kerak",
@@ -123,7 +133,9 @@ const data = [
             name: "Eshonov Baxodir",
             type: "Mijoz",
             online: true,
-        }
+        },
+        applicationCount: 5,
+
     },
     {
         title: "Oshxonani  yevro remont qilish kerak",
@@ -137,7 +149,9 @@ const data = [
             name: "Eshonov Baxodir",
             type: "Mijoz",
             online: true,
-        }
+        },
+        applicationCount: 5,
+
     },
     {
         title: "Oshxonani  yevro remont qilish kerak",
@@ -151,7 +165,9 @@ const data = [
             name: "Eshonov Baxodir",
             type: "Mijoz",
             online: false,
-        }
+        },
+        applicationCount: 5,
+
     },
     {
         title: "Oshxonani  yevro remont qilish kerak",
@@ -165,7 +181,9 @@ const data = [
             name: "Eshonov Baxodir",
             type: "Mijoz",
             online: true,
-        }
+        },
+        applicationCount: 5,
+
     },
     {
         title: "Oshxonani  yevro remont qilish kerak",
@@ -179,7 +197,9 @@ const data = [
             name: "Eshonov Baxodir",
             type: "Mijoz",
             online: true,
-        }
+        },
+        applicationCount: 5,
+
     },
     {
         title: "Oshxonani  yevro remont qilish kerak",
@@ -193,7 +213,9 @@ const data = [
             name: "Eshonov Baxodir",
             type: "Mijoz",
             online: true,
-        }
+        },
+        applicationCount: 5,
+
     },
     {
         title: "Oshxonani  yevro remont qilish kerak",
@@ -207,7 +229,9 @@ const data = [
             name: "Eshonov Baxodir",
             type: "Mijoz",
             online: false,
-        }
+        },
+        applicationCount: 5,
+
     },
     {
         title: "Oshxonani  yevro remont qilish kerak",
@@ -221,7 +245,9 @@ const data = [
             name: "Eshonov Baxodir",
             type: "Mijoz",
             online: true,
-        }
+        },
+        applicationCount: 5,
+
     },
     {
         title: "Oshxonani  yevro remont qilish kerak",
@@ -235,7 +261,8 @@ const data = [
             name: "Eshonov Baxodir",
             type: "Mijoz",
             online: true,
-        }
+        },
+        applicationCount: 5,
     },
 ]
 

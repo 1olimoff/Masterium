@@ -1,6 +1,6 @@
-import {createPage} from "@/root/business/createUI/pages/createPage";
+// import {createPage} from "@/root/business/createUI/pages/createPage";
 
 
-export const MainPage = createPage(() => {
+// export const MainPage = createPage(() => {
     
-})
+// })
