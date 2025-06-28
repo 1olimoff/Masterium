@@ -1,51 +1,51 @@
-import { useSubject } from "../../utils/useSubject/useSubject";
 
 
-type ElementOfArray<T> = T extends (infer R)[] ? R : never;
 
-export class Subject<T> {
-    public currentId: number;
-    public _value: T;
-    public readonly subscriptions: Record<number, () => void>;
-    public constructor(value: T) {
-        this.subscriptions = {};
-        this.currentId = 0;
-        this._value = value;
-    }
-    public get value(): T {
-        return this._value;
-    }
-    public set value(nextValue: T) {
-        const prevValue = this._value;
+// type ElementOfArray<T> = T extends (infer R)[] ? R : never;
 
-        this._value = nextValue;
+// export class Subject<T> {
+//     public currentId: number;
+//     public _value: T;
+//     public readonly subscriptions: Record<number, () => void>;
+//     public constructor(value: T) {
+//         this.subscriptions = {};
+//         this.currentId = 0;
+//         this._value = value;
+//     }
+//     public get value(): T {
+//         return this._value;
+//     }
+//     public set value(nextValue: T) {
+//         const prevValue = this._value;
 
-        if (prevValue !== nextValue) {
-            this.callAllSubscriptions();
-        }
-    }
-    public readonly callAllSubscriptions = (): void => {
-        Object.values(this.subscriptions).forEach(callback => {
-            callback();
-        });
-    };
-    public readonly push = (newValue: ElementOfArray<T>): void => {
-        this.value = [...(this.value as any), newValue] as any;
-    };
-    public readonly subscribe = (callback: () => void): (() => void) => {
-        const id = this.currentId;
+//         this._value = nextValue;
 
-        this.subscriptions[id] = callback;
+//         if (prevValue !== nextValue) {
+//             this.callAllSubscriptions();
+//         }
+//     }
+//     public readonly callAllSubscriptions = (): void => {
+//         Object.values(this.subscriptions).forEach(callback => {
+//             callback();
+//         });
+//     };
+//     public readonly push = (newValue: ElementOfArray<T>): void => {
+//         this.value = [...(this.value as any), newValue] as any;
+//     };
+//     public readonly subscribe = (callback: () => void): (() => void) => {
+//         const id = this.currentId;
 
-        this.currentId++;
+//         this.subscriptions[id] = callback;
 
-        callback();
+//         this.currentId++;
 
-        return (): void => {
-            delete this.subscriptions[id];
-        };
-    };
-    public readonly use = (): T => {
-        return useSubject(this);
-    };
-}
+//         callback();
+
+//         return (): void => {
+//             delete this.subscriptions[id];
+//         };
+//     };
+//     public readonly use = (): T => {
+//         return useSubject(this);
+//     };
+// }
