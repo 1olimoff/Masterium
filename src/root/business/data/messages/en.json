@@ -1,0 +1,13 @@
+{
+    "Header": {
+      "Region": {
+        "title": "Город",
+        "tashkent": "Ташкент",
+        "tashkent-region": "Ташкентская область",
+        "fergana": "Фергана",
+        "andijan": "Андижан",
+        "samarkand": "Самарканд"
+      }
+    }
+  }
+  

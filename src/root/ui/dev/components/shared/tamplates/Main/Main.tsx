@@ -17,7 +17,7 @@ export const Main = ({ className }: Props) => {
             <Categories />
             <OpenWorks />
             <AdCarousel />
-            <DailyWorkers />
+            {/* <DailyWorkers /> */}
             <AdBanner />
         </div>
     );

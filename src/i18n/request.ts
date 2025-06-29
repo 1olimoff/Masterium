@@ -1,13 +1,12 @@
-import {notFound} from 'next/navigation';
-import {getRequestConfig} from 'next-intl/server';
-import {routing} from './routing';
+import { getRequestConfig } from 'next-intl/server';
+import { notFound } from 'next/navigation';
 
-export default getRequestConfig(async ({locale}) => {
-    // Валидация локали
-    if (!routing.locales.includes(locale as never)) notFound();
+export default getRequestConfig(async ({ locale }) => {
+  if (!locale || !['ru', 'uz'].includes(locale)) {
+    notFound();
+  }
 
-    return {
-        // Загружаем сообщения для текущей локали
-        messages: (await import(`../root/business/data/messages/${locale}.json`)).default,
-    };
+  return {
+    messages: (await import(`../root/business/data/messages/${locale}.json`)).default,
+  };
 });

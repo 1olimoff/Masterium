@@ -29,7 +29,7 @@ export default function TabBar() {
             icon: 'ads',
         },
         {
-            href: '/uz/tashkent',
+            href: '/uz/tashkent/offer-works',
             label: 'Profil',
             icon: 'profile',
         },
