@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import createIntlMiddleware from 'next-intl/middleware';
+import Cookies from 'js-cookie';
 
 // next-intl middleware (locale uchun)
 const intlMiddleware = createIntlMiddleware({
@@ -33,13 +34,14 @@ export function middleware(req: NextRequest) {
     }
   }
 
-  // Avval next-intl middleware'ni ishlat, so'ngra davom et
+
   const response = intlMiddleware(req);
+
+  console.log("Regioon", Cookies.get('region'))
 
   return response;
 }
 
-// next-intl matcher pattern
 export const config = {
   matcher: ['/', '/(uz|ru|en)/:path*']
 };

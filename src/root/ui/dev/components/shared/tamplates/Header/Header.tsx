@@ -26,11 +26,26 @@ const Header = ({ className, params }: Props) => {
     const t = useTranslations("Header");
 
     return (
-        <header className={cn(className, "flex justify-between jus items-center bg-maket-primary text-white sm:text-black layout-width p-2 md:px-4 md:py-3 sm:bg-white shadow-md")}>            
+        <header className={cn(className, "flex justify-between items-center bg-maket-primary text-white sm:text-black layout-width p-2 md:px-4 md:py-3 sm:bg-white shadow-md")}>
             <div className="flex items-center gap-3 md:gap-4">
                 <Dialog>
                     <div className="flex items-center gap-1">
-                        <Image src="/svg/header/location.svg" alt="Location Icon" width={24} height={24} className="w-5 h-5 md:w-6 md:h-6"/>
+                        <Image
+                            src="/svg/header/location-mobile.svg"
+                            alt="Location Icon"
+                            width={24}
+                            height={24}
+                            className="w-5 h-5 sm:hidden"
+                        />
+
+                        {/* Katta ekranlar uchun (md: va undan katta) */}
+                        <Image
+                            src="/svg/header/location.svg"
+                            alt="Location Icon"
+                            width={24}
+                            height={24}
+                            className="w-5 h-5 hidden sm:inline-block"
+                        />
                         <h2 className="font-medium text-xs md:text-sm lg:text-base">
                             {t('Region.title')}:
                             <DialogTrigger className="underline cursor-pointer ml-1 hover:no-underline hover:bg-maket-primary rounded hover:text-white px-1 py-0.5 md:px-2 md:py-1 text-xs md:text-sm lg:text-base transition-all duration-300">
@@ -42,7 +57,7 @@ const Header = ({ className, params }: Props) => {
                     <DialogContent className="max-h-[90%] overflow-y-auto custom-scrollbar">
                         <DialogHeader>
                             <DialogTitle className="text-base md:text-lg">Shaharni tanlang</DialogTitle>
-                            <hr className="my-2"/>
+                            <hr className="my-2" />
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                                 {regions.map((region, index) => (
                                     <ChooseRegion

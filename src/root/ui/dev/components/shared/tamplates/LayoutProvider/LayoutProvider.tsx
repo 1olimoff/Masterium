@@ -2,7 +2,7 @@ import React from 'react';
 import { cn } from '@/root/business/lib/utils';
 import Header from "@/root/ui/dev/components/shared/tamplates/Header";
 import Aside from "@/root/ui/dev/components/shared/tamplates/Aside";
-import {Footer} from "@/root/ui/dev/components/shared/tamplates/Footer/Footer";
+import { Footer } from "@/root/ui/dev/components/shared/tamplates/Footer/Footer";
 import TabBar from '../../TabBar/TabBar';
 
 interface LayoutProps {
@@ -16,10 +16,10 @@ export const LayoutProvider = ({ className, children, params }: LayoutProps) => 
         <div className={cn(className)}>
             <Header params={params} />
             <main>
-               <Aside />
-            {children}
+                <Aside />
+                {children}
             </main>
-            {/* <Footer /> */}
+            <Footer />
             <TabBar />
         </div>
     );

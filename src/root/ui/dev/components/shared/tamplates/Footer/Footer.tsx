@@ -22,7 +22,7 @@ export const Footer = ({ className }: Props) => {
         <div className={"flex flex-col gap-6 items-center md:items-start text-center md:text-left"}>
           <Link href="/public">
             <Image
-              src={"/svg/footer/logo.svg"}
+              src={"/svg/footer/logo.svg"} 
               alt={"Footer logo of Masterium"}
               width={500}
               height={100}
@@ -92,7 +92,7 @@ export const Footer = ({ className }: Props) => {
       </div>
 
       {/* Bottom Bar */}
-      <div className={"text-maket-primary bg-white mt-8"}>
+      <div className={"text-white bg-maket-primary mt-8"}>
         <hr />
         <div className={"flex w-full justify-center items-center pt-4 text-lg text-center"}>
           <p>{t('security')}</p>

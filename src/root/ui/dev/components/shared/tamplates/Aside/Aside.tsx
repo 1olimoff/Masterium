@@ -1,64 +1,58 @@
 import React from 'react';
-import {cn} from '@/root/business/lib/utils';
+import { cn } from '@/root/business/lib/utils';
 import Image from "next/image";
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
-} from "@/root/ui/dev/shadcn/ui/dropdown-menu"
-import {Input} from "@/root/ui/dev/shadcn/ui/input"
-import {Button} from "@/root/ui/dev/shadcn/ui/button";
-import {useTranslations} from "next-intl";
-import {LoginProviderDialog} from "@/root/ui/dev/components/shared/elements/account/login/LoginProviderDialog";
+} from "@/root/ui/dev/shadcn/ui/dropdown-menu";
+import { Input } from "@/root/ui/dev/shadcn/ui/input";
+import { Button } from "@/root/ui/dev/shadcn/ui/button";
+import { useTranslations } from "next-intl";
+import { LoginProviderDialog } from "@/root/ui/dev/components/shared/elements/account/login/LoginProviderDialog";
 import { Link } from '@/i18n/routing';
-
 
 interface Props {
     className?: string;
 }
 
-const Aside = ({className}: Props) => {
+const Aside = ({ className }: Props) => {
     const t = useTranslations("Aside");
+
     return (
-        <aside
-            className={cn(className, "py-3 px-2 sm:shadow  sticky sm:bg-maket-primary bg-white top-0 z-[50]")}>
-            <div className={'layout-width flex justify-between items-center gap-8'}>
-                <a href={'/'} className='max-w-[250px] w-full hidden sm:flex'>
-                    <Image src={"/svg/footer/logo.svg"} alt={"masterium logo"} width={250} height={80}/>
+        <aside className={cn(className, "py-3 px-2 sm:shadow sm:flex hidden sticky sm:bg-maket-primary bg-white top-0 z-[50]")}>
+            <div className="layout-width flex justify-between items-center gap-4 w-full">
+                
+                {/* Logo */}
+                <a href="/" className="max-w-[200px] w-full hidden sm:flex">
+                    <Image src="/svg/footer/logo.svg" alt="masterium logo" width={250} height={80} />
                 </a>
-                <div className={"flex justify-between items-center gap-4 flex-1"}>
-                    <DropdownMenu>
-                        <DropdownMenuTrigger
-                            className={"bg-white hover:bg-maket-primary sm:flex hidden border border-white hover:text-white text-maket-primary transition-all duration-200 gap-2 group justify-center items-center py-2 px-6 rounded-lg"}>
-                            <Image src={"/svg/aside/catalog.svg"} alt={"Category Icon"} width={25} height={25} className={"group-hover:hidden"}/>
-                            <Image src={"/svg/aside/catalog-white.svg"} alt={"Category Icon"} width={25} height={25} className={"group-hover:block hidden"}/>
-                            <p className={"font-light"}>{t('catalog')}</p>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent>
-                            <DropdownMenuItem><Image src={'/svg/aside/tech.svg'} alt={'Tech Icon'} width={18}
-                                                     height={18}/>Santehniklar</DropdownMenuItem>
-                            <DropdownMenuItem><Image src={'/svg/aside/tech.svg'} alt={'Tech Icon'} width={18}
-                                                     height={18}/>Santehniklar</DropdownMenuItem>
-                            <DropdownMenuItem><Image src={'/svg/aside/tech.svg'} alt={'Tech Icon'} width={18}
-                                                     height={18}/>Santehniklar</DropdownMenuItem>
-                            <DropdownMenuItem><Image src={'/svg/aside/tech.svg'} alt={'Tech Icon'} width={18}
-                                                     height={18}/>Santehniklar</DropdownMenuItem>
-                            <DropdownMenuItem><Image src={'/svg/aside/tech.svg'} alt={'Tech Icon'} width={18}
-                                                     height={18}/>Santehniklar</DropdownMenuItem>
-                            <DropdownMenuItem><Image src={'/svg/aside/tech.svg'} alt={'Tech Icon'} width={18}
-                                                     height={18}/>Santehniklar</DropdownMenuItem>
-                            <DropdownMenuItem><Image src={'/svg/aside/tech.svg'} alt={'Tech Icon'} width={18}
-                                                     height={18}/>Santehniklar</DropdownMenuItem>
-                            <DropdownMenuItem><Image src={'/svg/aside/tech.svg'} alt={'Tech Icon'} width={18}
-                                                     height={18}/>Santehniklar</DropdownMenuItem>
-                            <DropdownMenuItem><Image src={'/svg/aside/tech.svg'} alt={'Tech Icon'} width={18}
-                                                     height={18}/>Santehniklar</DropdownMenuItem>
-                            <DropdownMenuItem><Image src={'/svg/aside/tech.svg'} alt={'Tech Icon'} width={18}
-                                                     height={18}/>Santehniklar</DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                    <div className="relative w-full ">
+
+                {/* Middle section */}
+                <div className="flex items-center gap-3 flex-1 min-w-0">
+
+                    {/* Catalog */}
+                    <div className="w-full max-w-[120px] flex-shrink-0">
+                        <DropdownMenu>
+                            <DropdownMenuTrigger className="bg-white hover:bg-maket-primary w-full border border-white hover:text-white text-maket-primary transition-all duration-200 gap-2 group justify-center items-center py-2 px-3 rounded-lg flex">
+                                <Image src="/svg/aside/catalog.svg" alt="Category Icon" width={20} height={20} className="group-hover:hidden" />
+                                <Image src="/svg/aside/catalog-white.svg" alt="Category Icon" width={20} height={20} className="group-hover:block hidden" />
+                                <p className="font-light text-sm truncate">{t('catalog')}</p>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent>
+                                {[...Array(10)].map((_, idx) => (
+                                    <DropdownMenuItem key={idx}>
+                                        <Image src="/svg/aside/tech.svg" alt="Tech Icon" width={18} height={18} />
+                                        Santehniklar
+                                    </DropdownMenuItem>
+                                ))}
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </div>
+
+                    {/* Search */}
+                    <div className="relative flex-1 min-w-0">
                         <Image
                             src="/svg/aside/search.svg"
                             alt="Search Icon"
@@ -69,23 +63,40 @@ const Aside = ({className}: Props) => {
                         <Input
                             type="search"
                             placeholder={t('search.placeholder')}
-                            className="pl-10 rounded-lg border-[#CFD9FE] border-2 flex-1" // Отступ для текста, чтобы не перекрывал иконку
+                            className="pl-10 pr-4 rounded-lg border-[#CFD9FE] border-2 w-full"
                         />
                     </div>
-                    <Button type={"submit"}
-                            className={"bg-white hidden sm:flex text-maket-primary border border-white hover:bg-maket-primary hover:text-white"}>{t('search.button')}</Button>
+
+                    {/* Search Button */}
+                    <div className="w-full max-w-[130px] flex-shrink-0">
+                        <Button
+                            type="submit"
+                            className="bg-white text-maket-primary border border-white hover:bg-maket-primary hover:text-white w-full"
+                        >
+                            {t('search.button')}
+                        </Button>
+                    </div>
                 </div>
-                <div className={"hidden sm:flex gap-2"}>
-                    <Link href="tashkent/advertise" className={"bg-white flex justify-center gap-1 items-center p-2 rounded-[5px] text-maket-primary group hover:bg-maket-primary hover:text-white border border-white"}>
-                        <Image src={'/svg/aside/add.svg'} alt={"Add Icon"} width={20} height={20} className={"group-hover:hidden"}/>
-                        <Image src={'/svg/aside/add-white.svg'} alt={"Add Icon"} width={20} height={20} className={"group-hover:block hidden"}/>
-                        <p>{t('action.announcement')}</p>
+
+                {/* Actions */}
+                <div className="hidden sm:flex items-center gap-2 flex-shrink-0">
+
+                    {/* Add link */}
+                    <Link
+                        href="tashkent/advertise"
+                        className="bg-white h-[42px] px-2 flex items-center gap-2 rounded-md text-maket-primary border border-white hover:bg-maket-primary hover:text-white whitespace-nowrap"
+                    >
+                        <Image src="/svg/aside/add.svg" alt="Add Icon" width={20} height={20} className="group-hover:hidden" />
+                        <Image src="/svg/aside/add-white.svg" alt="Add Icon" width={20} height={20} className="group-hover:block hidden" />
+                        <p className="text-sm">{t('action.announcement')}</p>
                     </Link>
+
+                    {/* Login */}
                     <LoginProviderDialog>
-                        <div  className={"bg-white group text-maket-primary hover:bg-maket-primary hover:text-white border border-white"}>
-                            <Image src={'/svg/aside/user.svg'} alt={"Add Icon"} width={20} height={20} className={"group-hover:hidden"}/>
-                            <Image src={'/svg/aside/user-white.svg'} alt={"Add Icon"} width={20} height={20} className={"group-hover:block hidden"}/>
-                            <p>{t('action.account.login')}</p>
+                        <div className="bg-white group h-[42px] px-2 flex items-center gap-1 text-maket-primary rounded-md hover:bg-maket-primary hover:text-white border border-white whitespace-nowrap">
+                            <Image src="/svg/aside/user.svg" alt="User Icon" width={20} height={20} className="group-hover:hidden" />
+                            <Image src="/svg/aside/user-white.svg" alt="User Icon" width={20} height={20} className="group-hover:block hidden" />
+                            <p className="text-sm">{t('action.account.login')}</p>
                         </div>
                     </LoginProviderDialog>
                 </div>
