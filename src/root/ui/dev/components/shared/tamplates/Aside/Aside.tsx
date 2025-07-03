@@ -12,6 +12,7 @@ import { Button } from "@/root/ui/dev/shadcn/ui/button";
 import { useTranslations } from "next-intl";
 import { LoginProviderDialog } from "@/root/ui/dev/components/shared/elements/account/login/LoginProviderDialog";
 import { Link } from '@/i18n/routing';
+import InputArea from './InputArea/InputArea';
 
 interface Props {
     className?: string;
@@ -52,20 +53,7 @@ const Aside = ({ className }: Props) => {
                     </div>
 
                     {/* Search */}
-                    <div className="relative flex-1 min-w-0">
-                        <Image
-                            src="/svg/aside/search.svg"
-                            alt="Search Icon"
-                            width={20}
-                            height={20}
-                            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-                        />
-                        <Input
-                            type="search"
-                            placeholder={t('search.placeholder')}
-                            className="pl-10 pr-4 rounded-lg border-[#CFD9FE] border-2 w-full"
-                        />
-                    </div>
+                    <InputArea />
 
                     {/* Search Button */}
                     <div className="w-full max-w-[130px] flex-shrink-0">

@@ -31,7 +31,7 @@ export const Title = ({ className }: Props) => {
                         /
                     </BreadcrumbSeparator>
                     <BreadcrumbItem>
-                        <li className={"text-gray-700"}>{t('WorksPage.breadcrumb.worksPage')}</li>
+                        <p className={"text-gray-700"}>{t('WorksPage.breadcrumb.worksPage')}</p>
                     </BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>

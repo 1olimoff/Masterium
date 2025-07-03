@@ -6,16 +6,14 @@ interface TabItemProps {
   label: string; 
   href: string;
   isActive: boolean;
-  onClick: () => void; // ⚠️ BU YER QO‘SHILMAGAN EDI
 }
 
-export const TabItem = ({ icon, label, href, onClick, isActive }: TabItemProps) => {
+export const TabItem = ({ icon, label, href, isActive }: TabItemProps) => {
   const iconPath = `/svg/tabbar/${icon}${isActive ? "active" : ""}.svg`;
 
   return (
     <Link
       href={href}
-      onClick={onClick}
       className="flex flex-col items-center justify-center w-full"
     >
       <div className="h-6 flex items-center justify-center">
@@ -31,3 +29,4 @@ export const TabItem = ({ icon, label, href, onClick, isActive }: TabItemProps) 
     </Link>
   );
 };
+

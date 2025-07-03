@@ -1,11 +1,10 @@
 'use client'
-import React, { useState } from 'react'
+import React from 'react'
 import { TabItem } from './Homepage/TabItem'
 import { usePathname } from 'next/navigation'
 
 export default function TabBar() {
-    const pathname = usePathname();
-    const [activeItem, setActiveItem] = useState(pathname); // boshlang‘ich active
+    const pathname = usePathname(); // faqat shu orqali active aniqlanadi
 
     const tabItemArr = [
         {
@@ -44,8 +43,8 @@ export default function TabBar() {
                         href={item.href}
                         icon={item.icon}
                         label={item.label}
-                        isActive={activeItem === item.href}
-                        onClick={() => setActiveItem(item.href)}
+                        isActive={pathname === item.href}
+                        // onClick={() => {}} // hech narsa qilmaydi
                     />
                 ))}
             </div>

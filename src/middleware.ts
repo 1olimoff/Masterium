@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import createIntlMiddleware from 'next-intl/middleware';
-import Cookies from 'js-cookie';
 
-// next-intl middleware (locale uchun)
 const intlMiddleware = createIntlMiddleware({
   locales: ['uz', 'ru'],
   defaultLocale: 'uz',
@@ -34,12 +32,8 @@ export function middleware(req: NextRequest) {
     }
   }
 
-
-  const response = intlMiddleware(req);
-
-  console.log("Regioon", Cookies.get('region'))
-
-  return response;
+  // TO‘G‘RI: Middleware'ni return qilamiz
+  return intlMiddleware(req);
 }
 
 export const config = {

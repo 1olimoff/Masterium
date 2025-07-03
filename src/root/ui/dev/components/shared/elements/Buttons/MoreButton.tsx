@@ -14,7 +14,7 @@ export const MoreButton = ({className, title, link = "/"}: Props) => {
     return (
         <ServerLink path={link}>
             <button className={cn(className, "flex gap-4 hover:gap-6 transition-all duration-200 items-center")}>
-                <p className={"text-lg text-maket-secondary"}>
+                <p className={"sm:text-lg text-[16px] text-maket-secondary"}>
                     {title}
                 </p>
                 <div className={"w-4 h-4 relative"}>

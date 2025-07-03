@@ -14,7 +14,7 @@ export const Employer = ({ className }: Props) => {
         <section className={cn(
             className,
             "w-full h-full flex flex-col gap-3",
-            "max-w-full sm:max-w-[400px]" // ✅ Responsiv
+            "max-w-full sm:max-w-[560px]" // ✅ Responsiv
         )}>
             <p className="text-base sm:text-xl font-semibold uppercase">
                 {t("WorksPage.content.employer.title")}

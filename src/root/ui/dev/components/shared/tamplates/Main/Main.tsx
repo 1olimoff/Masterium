@@ -5,6 +5,7 @@ import {Categories} from "@/root/ui/dev/components/shared/tamplates/Main/Categor
 import {OpenWorks} from "@/root/ui/dev/components/shared/tamplates/Main/OpenWorks/OpenWorks";
 import {DailyWorkers} from "@/root/ui/dev/components/shared/tamplates/Main/DailyWorkers/DailyWorkers";
 import {AdBanner} from "@/root/ui/dev/components/shared/elements/advertising/AdBanner";
+import InputArea from '../Aside/InputArea/InputArea';
 
 interface Props {
     className?: string;
@@ -12,7 +13,10 @@ interface Props {
 
 export const Main = ({ className }: Props) => {
     return (
-        <div className={cn(className, "flex flex-col gap-12 p-6")}>
+        <div className={cn(className, "flex flex-col gap-4 sm:gap-12 p-2")}>
+            <div className='sm:hidden flex'>
+                <InputArea />
+            </div>
             <AdCarousel />
             <Categories />
             <OpenWorks />

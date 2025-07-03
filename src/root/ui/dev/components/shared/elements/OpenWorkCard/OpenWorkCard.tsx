@@ -41,7 +41,7 @@ export const OpenWorkCard = ({ className, data }: Props) => {
     <div
       className={cn(
         className,
-        "w-full max-w-full sm:max-w-[300px] rounded-xl overflow-hidden bg-white my-custom-shadow"
+        "w-full max-w-full sm:max-w-[390px] rounded-xl overflow-hidden bg-white my-custom-shadow"
       )}
     >
       <div className="relative">

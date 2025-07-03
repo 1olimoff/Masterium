@@ -306,7 +306,6 @@ export const List = ({ className }: Props) => {
                 </div>
             )}
 
-            {/* Button */}
             <Button 
                 className="bg-maket-primary text-white rounded-xl my-4 py-6 w-full font-semibold hover:bg-sky-800"
                 onClick={() => setShowMore(!showMore)}

@@ -17,7 +17,7 @@ export const ShortInfo = ({ className }: Props) => {
             className={cn(
                 className,
                 "w-full h-full flex flex-col gap-3",
-                "max-w-full sm:max-w-[480px]"
+                "max-w-full sm:max-w-[560px]"
             )}
         >
             {/* Created Date */}

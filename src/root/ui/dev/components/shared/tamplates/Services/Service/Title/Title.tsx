@@ -32,7 +32,7 @@ export const Title = ({ className }: Props) => {
                     </BreadcrumbSeparator>
                     <BreadcrumbItem>
                     <ServerLink path={"/services/santex"} >
-                        <li className={"text-gray-700"}>{t('Services.Service.breadcrumb.santex')}</li>
+                        <p className={"text-gray-700"}>{t('Services.Service.breadcrumb.santex')}</p>
                         </ServerLink>
 
                     </BreadcrumbItem>

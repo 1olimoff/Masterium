@@ -13,9 +13,9 @@ export const ShortInfoTab = ({ className }: Props) => {
   const t = useTranslations()
   return (
     <div className={cn("w-full flex flex-col gap-3", className)}>
-      <Link 
-      href="/tashkent/advertise"
-      className="text-maket-gold w-full py-2 px-8 justify-center text-sm sm:text-[16px] rounded-xl flex gap-2 bg-maket-primary hover:bg-sky-800">
+      <Link
+        href="/tashkent/advertise"
+        className="text-maket-gold w-full py-2 px-8 justify-center text-sm sm:text-[16px] rounded-xl flex gap-2 bg-maket-primary hover:bg-sky-800">
         <svg
           width="22"
           height="22"
@@ -50,6 +50,7 @@ export const ShortInfoTab = ({ className }: Props) => {
       <p className="text-sm text-maket-gray">
         {t("WorksPage.content.shortInfo.createdDateTitle")} 25.11.2024 09:45
       </p>
+      
       <h1 className="text-xl font-semibold">
         Oshxonani yevro remont qilish kerak
       </h1>

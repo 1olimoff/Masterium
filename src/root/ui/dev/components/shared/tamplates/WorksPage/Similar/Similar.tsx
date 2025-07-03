@@ -76,7 +76,7 @@ export const Similar = ({ className }: Props) => {
     return (
         <section className={cn(
             className,
-            "hidden sm:flex flex-col gap-6" // 👈 faqat sm+ ekranlarda ko‘rinadi
+            "hidden sm:flex flex-col gap-4 mb-4" // 👈 faqat sm+ ekranlarda ko‘rinadi
         )}>
             <div className="w-full flex justify-between items-center">
                 <h3 className="text-3xl font-semibold">
@@ -86,7 +86,7 @@ export const Similar = ({ className }: Props) => {
             </div>
 
             {/* Grid view, scroll emas — sm+ ekranlar uchun */}
-            <div className="grid gap-4 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid gap-2 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {data.map((item, i) => (
                     <OpenWorkCard data={item} key={i} />
                 ))}

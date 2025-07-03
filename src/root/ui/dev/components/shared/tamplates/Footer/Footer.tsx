@@ -92,9 +92,9 @@ export const Footer = ({ className }: Props) => {
       </div>
 
       {/* Bottom Bar */}
-      <div className={"text-white bg-maket-primary mt-8"}>
-        <hr />
-        <div className={"flex w-full justify-center items-center pt-4 text-lg text-center"}>
+      <div className={"text-white w-full max-w-[1300px] bg-maket-primary mt-8"}>
+        <hr  className='w-full '/>
+        <div className={"flex w-full  justify-center items-center pt-4 text-lg text-center"}>
           <p>{t('security')}</p>
         </div>
       </div>

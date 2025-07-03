@@ -10,7 +10,7 @@ export const Location = ({ className }: Props) => {
     const t = useTranslations();
 
     return (
-        <div className={cn(className, "w-full flex flex-col gap-3")}>
+        <div className={cn(className, "w-full flex flex-col gap-4")}>
             <p className="text-xl uppercase font-semibold">
                 {t('WorksPage.content.location.title')}
             </p>

@@ -1,78 +1,71 @@
 "use client";
-import React, { useEffect, useRef } from 'react';
-import { cn } from '@/root/business/lib/utils';
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 
-interface Props {
-    className?: string;
-}
-
 const data = [
-    {
-        src: "/img/advertising/gozo.png",
-        alt: "Gozo",
-        objectFit: "cover",
-    },
-    {
-        src: "/img/advertising/honadon.png",
-        alt: "Honadon",
-        objectFit: "cover",
-    },
-    {
-        src: "/img/advertising/dusel.png",
-        alt: "Dusel",
-        objectFit: "cover",
-    },
-    {
-        src: "/img/advertising/hi-tech.png",
-        alt: "Hi-tech",
-        objectFit: "cover",
-    },
+  { src: "/img/advertising/gozo.png", alt: "Gozo" },
+  { src: "/img/advertising/honadon.png", alt: "Honadon" },
+  { src: "/img/advertising/dusel.png", alt: "Dusel" },
+  { src: "/img/advertising/hi-tech.png", alt: "Hi-tech" },
 ];
 
-export const AdGrid = ({ className }: Props) => {
-    const scrollRef = useRef<HTMLDivElement>(null);
+export const AdGrid = () => {
+  const sliderRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const container = scrollRef.current;
-        if (!container) return;
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (!slider) return;
 
-        const interval = setInterval(() => {
-            container.scrollLeft += 1;
-            // Reset to start if reached the end
-            if (container.scrollLeft + container.clientWidth >= container.scrollWidth) {
-                container.scrollLeft = 0;
-            }
-        }, 20); // Adjust speed by changing interval
+    let animationFrameId: number;
+    let start: number | null = null;
+    let position = 0;
 
-        return () => clearInterval(interval);
-    }, []);
+    const step = (timestamp: number) => {
+      if (!start) start = timestamp;
+      const progress = timestamp - start;
+      position += 0.5; // speed
 
-    return (
-        <section
-            ref={scrollRef}
-            className={cn(
-                className,
-                "flex gap-4 w-full max-w-[1500px] overflow-x-auto scrollbar-hide"
-            )}
-        >
-            {
-                data.map((item, index) => (
-                    <div
-                        key={index}
-                        className="max-w-[350px] w-full h-[170px] relative rounded-3xl flex-shrink-0"
-                    >
-                        <Image
-                            src={item.src}
-                            alt={item.alt}
-                            fill
-                            objectFit={item.objectFit}
-                            quality={100}
-                            className="rounded-2xl"
-                        />
-                    </div>
-                ))
-            }
-        </section>
-    );
+      // Reset position for seamless loop
+      if (slider.scrollWidth / 2 <= position) {
+        position = 0;
+      }
+
+      slider.style.transform = `translateX(-${position}px)`;
+
+      animationFrameId = requestAnimationFrame(step);
+    };
+
+    animationFrameId = requestAnimationFrame(step);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, []);
+
+  return (
+    <div className="w-full overflow-hidden">
+      <div
+        ref={sliderRef}
+        className="flex gap-4"
+        style={{
+          width: "max-content",
+          transform: "translateX(0px)",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {/* Repeat twice for infinite loop */}
+        {[...data, ...data].map((item, index) => (
+          <div
+            key={index}
+            className="min-w-[300px] h-[170px] relative flex-shrink-0 rounded-xl overflow-hidden"
+          >
+            <Image
+              src={item.src}
+              alt={item.alt}
+              fill
+              className="object-cover rounded-xl"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };

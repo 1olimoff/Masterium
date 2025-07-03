@@ -11,6 +11,7 @@ import {
     DialogTitle
 } from "@/root/ui/dev/shadcn/ui/dialog";
 import { ChooseRegion } from "@/root/ui/dev/components/shared/elements/ChooseRegion/ChooseRegion";
+import { Button } from '@/root/ui/dev/shadcn/ui/button';
 
 interface Props {
     className?: string;
@@ -26,7 +27,7 @@ const Header = ({ className, params }: Props) => {
     const t = useTranslations("Header");
 
     return (
-        <header className={cn(className, "flex justify-between items-center bg-maket-primary text-white sm:text-black layout-width p-2 md:px-4 md:py-3 sm:bg-white shadow-md")}>
+        <header className={cn(className, "flex justify-between items-center bg-maket-primary text-white sm:text-black layout-width p-2 md:px-4 md:py-3 sm:bg-[#F8F9FA]")}>
             <div className="flex items-center gap-3 md:gap-4">
                 <Dialog>
                     <div className="flex items-center gap-1">
@@ -89,6 +90,18 @@ const Header = ({ className, params }: Props) => {
                         currentRegion={params.region || 'tashkent'}
                     />
                 </div>
+
+                <div className='bg-maket-primary flex sm:hidden'>
+                    <Button className='bg-maket-primary hover:bg-maket-primary/80 transition duration-300 ease-in-out rounded-full p-2'>
+                        <Image
+                            src="/svg/header/notification.svg"
+                            width={25}
+                            height={25}
+                            alt="notification btn"
+                        />
+                    </Button>
+                </div>
+
             </div>
         </header>
     );

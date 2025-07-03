@@ -15,7 +15,7 @@ export const Content = ({ className }: Props) => {
     <main
       className={cn(
         className,
-        "px-4 sm:px-6 lg:px-8",
+        "px-2 sm:px-2 lg:px-4",
         "flex flex-col gap-6"
       )}
     >
@@ -27,11 +27,11 @@ export const Content = ({ className }: Props) => {
         </div>
 
         {/* ShortInfo + Employer */}
-        <div className="flex flex-col gap-6 max-w-[500px] w-full md:w-[35%]">
-          <div className="bg-white p-4 rounded-xl shadow w-full max-w-full sm:max-w-none md:max-w-full">
+        <div className="flex flex-col gap-6 max-w-[560px] w-full md:w-[35%]">
+          <div className="bg-white p-4 rounded-xl shadow w-full max-w-full  sm:max-w-none md:max-w-full">
             <ShortInfo />
           </div>
-          <div className="bg-white p-4 rounded-xl shadow w-full max-w-full sm:max-w-none md:max-w-full">
+          <div className="bg-white p-4 rounded-xl hidden sm:flex shadow w-full max-w-full sm:max-w-none md:max-w-full">
             <Employer />
           </div>
         </div>
@@ -40,15 +40,25 @@ export const Content = ({ className }: Props) => {
 
 
 
-      {/* Block 2: Description + Location */}
-      <div className="flex flex-col md:flex-row gap-6">
-        <div className="bg-white p-4 rounded-xl shadow w-full md:w-[60%]">
+
+      <div className="flex flex-col md:flex-row lg:pr-8 md:pr-4 md:items-start gap-6 w-full">
+        {/* Description */}
+        <div className="bg-white p-4 rounded-xl shadow w-full md:flex-1">
           <Description />
         </div>
-        <div className="bg-white p-4 rounded-xl shadow w-full md:w-[40%]">
+
+        {/* Location */}
+
+        <div className="bg-white p-4 flex sm:hidden rounded-xl shadow w-full max-w-full sm:max-w-none md:max-w-full">
+            <Employer />
+          </div>
+        <div className="bg-white p-4 rounded-xl shadow w-full md:max-w-[300px] lg:max-w-[480px] md:w-full">
           <Location />
         </div>
       </div>
+
+
+
     </main>
   );
 };

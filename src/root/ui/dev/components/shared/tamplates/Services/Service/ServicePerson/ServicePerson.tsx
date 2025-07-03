@@ -14,7 +14,7 @@ interface Props {
 export const ServicePerson = ({ className }: Props) => {
     const t = useTranslations("")
     return (
-        <div className={cn(className, "w-full flex flex-col gap-12 pt-6")}>
+        <div className={cn(className, "w-full flex flex-col gap-12 pt-4 pb-4")}>
             <AdGrid />
             <Title />
             <Header />
