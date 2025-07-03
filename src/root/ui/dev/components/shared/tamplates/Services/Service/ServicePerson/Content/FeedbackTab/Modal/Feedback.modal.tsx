@@ -4,7 +4,7 @@ import { Link } from "@/i18n/routing";
 
 export const FeedBackModal = () => {
     return (
-        <DialogContent className="rounded-[24px] pb-4 px-4 w-[100%] sm:max-w-[400px] mx-auto sm:top-1/2 top-[53%] sm:translate-y-[-50%] translate-y-0">
+        <DialogContent className="rounded-[24px] pb-4 px-4 w-[100%] sm:max-w-[400px] mx-auto sm:top-1/2 top-[50%] sm:translate-y-[-50%] translate-y-0">
             <div className="flex flex-col w-full items-center">
                 <DialogTitle>
                     <p className="text-xl font-bold mb-2 text-[#001D55] text-center">
