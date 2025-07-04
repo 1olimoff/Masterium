@@ -18,7 +18,7 @@ export const Title = ({ className }: Props) => {
   const t = useTranslations("OfferWork.Offers.breadcrumb");
 
   return (
-    <div className={cn(className, "hidden sm:flex flex-col mt-2 gap-4")}>
+    <div className={cn(className, "hidden sm:flex flex-col mb-2 gap-2")}>
       <Breadcrumb>
         <BreadcrumbList className="text-lg text-maket-gray">
           <BreadcrumbItem>
@@ -34,7 +34,7 @@ export const Title = ({ className }: Props) => {
             </ServerLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator>/</BreadcrumbSeparator>
-          
+
           <BreadcrumbItem className="text-maket-gray">
             <ServerLink path="/services/service">
               {t("PersonName")}
@@ -49,10 +49,6 @@ export const Title = ({ className }: Props) => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-
-      <h1 className="text-maket-primary text-3xl font-semibold">
-        {t("offerData.offersTitle")}
-      </h1>
     </div>
   );
 };

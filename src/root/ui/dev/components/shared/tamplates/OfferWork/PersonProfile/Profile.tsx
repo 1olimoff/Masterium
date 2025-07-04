@@ -59,7 +59,7 @@ export const Profile = ({ catalogs }: Props) => {
           </div>
 
           <div>
-            <div>
+            <div className="relative">
               <h2 className="text-[14px] mt-4 font-[#001D55]">
                 {t("OfferWork.Offers.PersonProfile.WorkTitle.title")}
               </h2>

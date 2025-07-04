@@ -49,7 +49,7 @@ export const Gallery = ({ className }: Props) => {
           {data.map((item, i) => (
             <CarouselItem
               key={i}
-              className="w-full h-[250px] sm:h-[300px] md:h-[400px] relative"
+              className="w-full h-[350px] sm:h-[400px] md:h-[450px] relative"
             >
               <Image
                 src={item.src}

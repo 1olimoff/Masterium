@@ -1,14 +1,16 @@
-"use client"
+// "use client"
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl"
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
+import { Title } from "./Title";
 
 export const Privacy = () => {
   const t = useTranslations("")
-  const router = useRouter();
+  // const router = useRouter();
 
   return (
-    <div className="min-h-screen layout-width bg-[#F8FAFC] p-4 text-[#0F172A] px-6 sm:p-8 sm:px-12">
+    <div className="min-h-screen layout-width bg-[#F8FAFC] p-4 text-[#0F172A] px-4 sm:p-8 sm:px-12">
+      <Title />
       <h1 className="text-2xl font-bold mb-6 text-[#001D55]">Ish taklif qilish</h1>
 
       <div className="bg-white p-6 rounded-lg">
@@ -30,11 +32,11 @@ export const Privacy = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center sm:justify-end gap-4 mt-6">
-          {/* <Link href="offer-works" className="w-full sm:w-auto"> */}
-            <button onClick={() => router.back()} className="w-full sm:w-auto py-[12px] px-[42px] bg-[#F8F9FA] text-[#677294] rounded-[16px] cursor-pointer">
+          <Link href="/tashkent/services" className="w-full sm:w-auto">
+            <button className="w-full sm:w-auto py-[12px] px-[42px] bg-[#F8F9FA] text-[#677294] rounded-[16px] cursor-pointer">
               {t("Privacy.PrivacyBtn.back")}
             </button>
-          {/* </Link> */}
+          </Link>
           <Link href={"/tashkent/services/service"} className="w-full sm:w-auto">
             <button className="w-full sm:w-auto py-[12px] px-[52px] bg-[#001D55] text-white rounded-[16px] cursor-pointer">
               {t("Privacy.PrivacyBtn.confirm")}

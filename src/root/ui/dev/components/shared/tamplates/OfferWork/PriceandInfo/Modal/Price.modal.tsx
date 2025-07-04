@@ -22,7 +22,7 @@ export const Modal = () => {
                         }`}
                     onClick={() => setActiveTopButton("jismoniy")}
                 >
-                    {t("PriceandInfo.Btn.titleBtn.physical")} 
+                    {t("PriceandInfo.Btn.titleBtn.physical")}
                 </button>
                 <button
                     className={`rounded-[12px] font-[500] w-full sm:w-40 h-[44px] ${activeTopButton === "biznes"
@@ -90,22 +90,22 @@ export const Modal = () => {
                 <div className="flex items-center border mt-2 w-full md:w-[37%] px-[3px] border-gray-300 rounded-[11px] overflow-hidden">
                     <Input
                         className={cn(
-                            "flex h-2 w-full bg-background text-base disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-                            "flex-grow p-2 border-none text-left",
-                            "focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:border-none"
+                            "w-full px-4 py-2 text-base md:text-sm bg-background text-left",
+                            "border-none shadow-none focus:outline-none focus:ring-0 focus:border-none",
+                            "focus-visible:outline-none focus-visible:ring-0 focus-visible:border-none"
                         )}
                         placeholder={t("PriceandInfo.Btn.Price.description")}
                         value={priceFrom}
                         onChange={async (e) => {
                             const { formatted, hasInvalid } = await processPriceInput(e.target.value);
                             if (hasInvalid) {
-                                toast({
-                                    description: t("PriceandInfo.Btn.Price.error.title"),
-                                });
+                                toast({ description: t("PriceandInfo.Btn.Price.error.title") });
                             }
                             setPriceFrom(formatted);
                         }}
                     />
+
+
                     <select className="p-2 rounded-lg bg-white border-none cursor-pointer">
                         <option value="UZS">UZS</option>
                         <option value="USD">USD</option>

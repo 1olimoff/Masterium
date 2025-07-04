@@ -75,9 +75,9 @@ export const MyAdsPage = ({ className }: Props) => {
     const t = useTranslations('');
 
     return (
-        <div className="flex flex-col sm:flex-row flex-wrap items-center sm:items-start gap-4 sm:gap-6 px-4">
+        <div className="flex flex-col sm:flex-row flex-wrap items-center sm:items-start gap-2 sm:gap-6 px-4">
             {data.map((item, i) => (
-                <div className="w-full sm:w-auto flex justify-center" key={i}>
+                <div className="w-full sm:w-auto flex mb-4 justify-center" key={i}>
                     <Card data={item} />
                 </div>
             ))}

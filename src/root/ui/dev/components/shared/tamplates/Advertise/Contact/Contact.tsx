@@ -42,7 +42,7 @@ export const Contact = ({ className }: Props) => {
 
                 {/* Right Column */}
                 <div className={cn(className, "w-full lg:w-1/2 flex flex-col gap-3")}>
-                    <p className="text-xl uppercase font-semibold">{t("Contacts.selectLocation")}</p>
+                    <p className="text-sm sm:text-xl uppercase font-semibold">{t("Contacts.selectLocation")}</p>
 
                     <div className="w-full" style={{ position: 'relative', paddingBottom: '56.25%' }}>
                         <iframe

@@ -5,7 +5,7 @@ import { InfoTitle } from "./Title/Title"
 
 export const FullInfoAds = () => {
     return(
-        <div className=" bg-[#F8F9FA] mt-2 layout-width px-2">
+        <div className=" bg-[#F8F9FA] mt-2 layout-width px-4">
         <InfoTitle />
         <div>
             <Navbar />

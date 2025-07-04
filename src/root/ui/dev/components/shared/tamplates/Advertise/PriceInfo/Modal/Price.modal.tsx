@@ -71,7 +71,7 @@ export const Modal = () => {
                     <Input
                         className={cn(
                             "flex h-2 w-full bg-background text-base disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-                            "flex-grow p-2 border-none text-left",
+                            "flex-grow py-[18px] pr-8 border-none text-left",
                             "focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:border-none"
                         )}
                         placeholder={t("PriceandInfo.Btn.Price.description")}

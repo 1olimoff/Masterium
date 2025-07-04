@@ -17,7 +17,7 @@ export const Title = ({ className }: Props) => {
   const t = useTranslations("MyAds");
 
   return (
-    <div className={cn(className, "hidden sm:flex flex-col gap-4")}>
+    <div className={cn(className, "hidden mt-2 sm:flex flex-col gap-4")}>
       <Breadcrumb>
         <BreadcrumbList className="text-lg text-maket-gray">
           <BreadcrumbItem>

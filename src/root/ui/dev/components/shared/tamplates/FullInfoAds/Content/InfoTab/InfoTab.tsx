@@ -18,16 +18,16 @@ export const Content = ({ className }: Props) => {
             {/* Gallery + Info */}
             <div className="flex flex-col md:flex-row gap-6 w-full">
                 {/* Gallery - asosiy rasm karusel */}
-                <div className="bg-white p-2 rounded-xl shadow w-full md:w-[68%] h-full min-h-[300px]">
+                <div className="bg-white p-2 rounded-xl shadow w-full md:w-[60%]">
                     <Gallery />
                 </div>
 
                 {/* ShortInfo + Employer */}
-                <div className="flex flex-col gap-6 w-full md:w-[40%] max-w-[450px]">
-                    <div className="bg-white p-4 rounded-xl shadow w-full">
+                <div className="flex flex-col gap-6 max-w-[560px] w-full md:w-[35%]">
+                    <div className="bg-white p-4 rounded-xl shadow w-full max-w-full  sm:max-w-none md:max-w-full">
                         <ShortInfoTab />
                     </div>
-                    <div className="bg-white p-4 rounded-xl shadow w-full">
+                    <div className="bg-white p-4 rounded-xl hidden sm:flex shadow w-full max-w-full sm:max-w-none md:max-w-full">
                         <Employer />
                     </div>
                 </div>
@@ -35,14 +35,14 @@ export const Content = ({ className }: Props) => {
 
 
             {/* Description + Location */}
-            <div className="flex flex-col lg:flex-row gap-6">
+            <div className="flex flex-col md:flex-row lg:pr-8 md:pr-4 md:items-start gap-6 w-full">
                 {/* Description - keng qism */}
                 <div className="w-full lg:flex-1 p-4 bg-white rounded-xl shadow">
                     <Description />
                 </div>
 
                 {/* Location - o'ngdagi kichik blok */}
-                <div className="w-full lg:max-w-[400px] p-4 bg-white rounded-xl shadow">
+                <div className="bg-white p-4 rounded-xl shadow w-full md:max-w-[330px] lg:max-w-[490px] md:w-full">
                     <Location />
                 </div>
             </div>

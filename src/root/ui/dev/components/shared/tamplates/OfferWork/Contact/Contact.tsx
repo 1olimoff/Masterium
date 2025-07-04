@@ -49,7 +49,7 @@ export const Contact = ({ className }: Props) => {
 
                 {/* O'ng qism - Google map */}
                 <div className={cn(className, "w-full flex max-w-full lg:max-w-[400px] flex-col gap-3")}>
-                    <p className="text-xl uppercase font-semibold">
+                    <p className="text-sm sm:text-xl uppercase  font-semibold">
                         {t("Contacts.selectLocation")}
                     </p>
 
@@ -76,7 +76,7 @@ export const Contact = ({ className }: Props) => {
             </div>
 
             {/* Tugmalar */}
-            <div className="flex flex-col sm:flex-row justify-end gap-4 mt-6 p-5 bg-white m-3 rounded-[20px] px-4">
+            <div className="flex sm:flex-row justify-end gap-4 mt-6 p-5 bg-white m-3 rounded-[20px] px-4">
                 <Link href="services/service">
                     <button className="w-full sm:w-auto py-[12px] px-[42px] bg-[#F8F9FA] text-[#677294] rounded-[16px] cursor-pointer">
                         {t("Contacts.buttons.cancelBtn")}
