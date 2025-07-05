@@ -44,7 +44,6 @@ export default function TabBar() {
                         icon={item.icon}
                         label={item.label}
                         isActive={pathname === item.href}
-                        // onClick={() => {}} // hech narsa qilmaydi
                     />
                 ))}
             </div>

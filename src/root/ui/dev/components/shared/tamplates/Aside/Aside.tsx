@@ -24,7 +24,7 @@ const Aside = ({ className }: Props) => {
     return (
         <aside className={cn(className, "py-3 px-2 sm:shadow sm:flex hidden sticky sm:bg-maket-primary bg-white top-0 z-[50]")}>
             <div className="layout-width flex justify-between items-center gap-4 w-full">
-                
+
                 {/* Logo */}
                 <a href="/" className="max-w-[200px] w-full hidden sm:flex">
                     <Image src="/svg/footer/logo.svg" alt="masterium logo" width={250} height={80} />
@@ -71,13 +71,26 @@ const Aside = ({ className }: Props) => {
 
                     {/* Add link */}
                     <Link
-                        href="tashkent/advertise"
-                        className="bg-white h-[42px] px-2 flex items-center gap-2 rounded-md text-maket-primary border border-white hover:bg-maket-primary hover:text-white whitespace-nowrap"
+                        href="/tashkent/advertise"
+                        className="group bg-white h-[42px] px-2 flex items-center gap-2 rounded-md text-maket-primary border border-white hover:bg-maket-primary hover:text-white whitespace-nowrap transition-colors"
                     >
-                        <Image src="/svg/aside/add.svg" alt="Add Icon" width={20} height={20} className="group-hover:hidden" />
-                        <Image src="/svg/aside/add-white.svg" alt="Add Icon" width={20} height={20} className="group-hover:block hidden" />
+                        <Image
+                            src="/svg/aside/add.svg"
+                            alt="Add Icon"
+                            width={20}
+                            height={20}
+                            className="group-hover:hidden transition-opacity duration-200"
+                        />
+                        <Image
+                            src="/svg/aside/add-white.svg"
+                            alt="Add Icon"
+                            width={20}
+                            height={20}
+                            className="hidden group-hover:block transition-opacity duration-200"
+                        />
                         <p className="text-sm">{t('action.announcement')}</p>
                     </Link>
+
 
                     {/* Login */}
                     <LoginProviderDialog>

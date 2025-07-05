@@ -73,8 +73,8 @@ const Header = ({ className, params }: Props) => {
                 </Dialog>
             </div>
 
-            <div className="flex items-center gap-3 md:gap-5">
-                <a href="tel:+998991234567" className="flex items-center gap-2 call__animation-container text-xs md:text-sm lg:text-base">
+            <div className="flex items-center gap-3  md:gap-5">
+                <a href="tel:+998991234567" className="sm:flex hidden items-center gap-2 call__animation-container text-xs md:text-sm lg:text-base">
                     <Image
                         className="call-animate w-5 h-5 md:w-6 md:h-6"
                         src="/svg/header/call.svg"

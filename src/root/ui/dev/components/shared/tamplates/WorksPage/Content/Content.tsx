@@ -20,7 +20,7 @@ export const Content = ({ className }: Props) => {
       )}
     >
       {/* Block 1: Gallery + ShortInfo + Employer */}
-      <div className="flex flex-col md:flex-row md:items-start gap-6">
+      <div className="flex flex-col pt-2  md:flex-row md:items-start gap-6">
         {/* Gallery */}
         <div className="bg-white p-2 rounded-xl shadow w-full md:w-[60%]">
           <Gallery />

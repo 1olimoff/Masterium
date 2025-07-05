@@ -3,7 +3,7 @@ import {OpenWorks} from "@/root/ui/dev/components/shared/tamplates/OpenWorks/Ope
 
 export default function HomeOpenWorks() {
     return (
-        <div className={'layout-width px-2'}>
+        <div className={'layout-width'}>
             <OpenWorks />
         </div>
     );

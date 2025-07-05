@@ -3,13 +3,16 @@ import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl"
 // import { useRouter } from "next/navigation";
 import { Title } from "./Title";
+import { MobileBackTab } from "../Title/MobileTabBar";
 
 export const Privacy = () => {
   const t = useTranslations("")
   // const router = useRouter();
 
   return (
-    <div className="min-h-screen layout-width bg-[#F8FAFC] p-4 text-[#0F172A] px-4 sm:p-8 sm:px-12">
+    <div className="min-h-screen layout-width bg-[#F8FAFC]  text-[#0F172A] sm:px-8 ">
+      <MobileBackTab />
+      <div className="p-4">
       <Title />
       <h1 className="text-2xl font-bold mb-6 text-[#001D55]">Ish taklif qilish</h1>
 
@@ -43,8 +46,9 @@ export const Privacy = () => {
             </button>
           </Link>
         </div>
-
       </div>
+
+          </div>
     </div>
   )
 }

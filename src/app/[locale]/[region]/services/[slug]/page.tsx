@@ -2,7 +2,7 @@ import {Service} from "@/root/ui/dev/components/shared/tamplates/Services/Servic
 
 export default function HomeServicePage() {
     return (
-        <div className={'layout-width px-2'}>
+        <div className={'layout-width'}>
             <Service />
         </div>
     );

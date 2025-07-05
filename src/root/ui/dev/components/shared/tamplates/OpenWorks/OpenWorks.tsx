@@ -4,6 +4,7 @@ import {AdGrid} from "@/root/ui/dev/components/shared/elements/advertising/AdGri
 import {Title} from "./Title/Title"
 import {Filter} from "./Filter/Filter";
 import {List} from "@/root/ui/dev/components/shared/tamplates/OpenWorks/List/List";
+import { MobileBackTab } from './Title/MobileTabBar';
 
 interface Props {
     className?: string;
@@ -11,11 +12,15 @@ interface Props {
 
 export const OpenWorks = ({ className }: Props) => {
     return (
-        <div className={cn(className, "w-full flex flex-col gap-12 pt-6")}>
+        <div className={cn(className, "w-full flex flex-col gap-6 sm:pt-6")}>
+            <MobileBackTab />
+            <div className='sm:px-4 px-2'>
+
             <AdGrid />
             <Title />
             <Filter />
             <List />
+            </div>
         </div>
     );
 };

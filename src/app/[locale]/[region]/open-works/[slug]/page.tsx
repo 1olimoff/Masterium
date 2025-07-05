@@ -3,7 +3,7 @@ import {WorksPage} from "@/root/ui/dev/components/shared/tamplates/WorksPage/Wor
 
 export default function WorksHomePage () {
     return (
-        <div className={'layout-width px-2'}>
+        <div className={'layout-width'}>
             <WorksPage />
         </div>
     );

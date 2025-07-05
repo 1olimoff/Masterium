@@ -11,7 +11,7 @@ interface Props {
 export const Title = ({ className }: Props) => {
     const t = useTranslations();
     return (
-        <div className={cn(className, "hidden sm:flex flex-col gap-4")}>
+        <div className={cn(className, "hidden sm:flex pt-2 flex-col gap-4")}>
             <Breadcrumb>
                 <BreadcrumbList className={"text-lg text-maket-gray"}>
                     <BreadcrumbItem>
