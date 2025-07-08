@@ -79,6 +79,10 @@
         "text": "Hisobingiz yo'qmi?",
         "action": "Ro'yxatdan otish"
       },
+      "login": {
+        "text": "Hisobingiz bormi?",
+        "action": "Tizimga kirish"
+      },
       "success": "Siz tizimga kirdingiz :)",
       "errors": {
         "phone": {
@@ -91,6 +95,15 @@
         },
         "unknown": "Uzur, server bilan bir nima bo'ldi. Qayta takrorlang",
         "phone-or-psw": "Nomer yoki parol notog'ri"
+      }
+    },
+    "Registration": {
+      "RegistrationTitle": "Ro'yxatdan o'tish",
+      "registrationdesc": "Qaysi maqsadda ro'yxatdan o'tmoqchisiz?",
+      "nameTitle": "Ism",
+      "namePlaceholder": "Ismingizni kiriting",
+      "button": {
+        "title": "Ro'yxatdan o'tish"
       }
     }
   },
@@ -193,7 +206,8 @@
     "Service": {
       "breadcrumb": {
         "allServices": "Barcha xizmatlar",
-        "santex": "Santexniklar"
+        "santex": "Santexniklar",
+        "santexName": "Eshonov Bahodir"
       },
       "ServicePerson": {
         "sendOffer": "Ish taklif qilish",
@@ -208,7 +222,7 @@
       }
     }
   },
-  "Privacy": { 
+  "Privacy": {
     "Policy": {
       "breadcrumb": {
         "home": "Bosh sahifa",
@@ -217,9 +231,9 @@
         "policy": "Privacy and policy"
       }
     },
-    "PrivacyBtn":{
-      "confirm":"Tasdiqlayman",
-      "back":"Orqaga"
+    "PrivacyBtn": {
+      "confirm": "Tasdiqlayman",
+      "back": "Orqaga"
     }
   },
   "OfferWork": {
@@ -255,21 +269,19 @@
       "Picture": {
         "picInfo": "Rasmni tanlang yoki sudrab olib tashlang "
       }
-
     },
-    "Advertise":{
-      "breadcrumb":{
+    "Advertise": {
+      "breadcrumb": {
         "home": "Bosh sahifa",
         "advertise": "E'lon berish"
       },
-      "Description":{
+      "Description": {
         "title": "Bizga e'loningiz haqida gapirib bering"
       },
-      "Buttons":{
+      "Buttons": {
         "PaymentType": "100% oldindan to'lov",
         "GiveAdvertise": "E'lon joylashtirish"
       }
-
     },
     "Contacts": {
       "title": "Kontakt ma'lumotlari",
@@ -280,7 +292,7 @@
       "location": "Joylashuv",
       "locationPlaceholder": "Tuman, shahar, ko'cha nomini yozing...",
       "selectLocation": "Joylashuv xaritani belgilang..",
-      "buttons":{
+      "buttons": {
         "cancelBtn": "Bekor qilish",
         "submitBtn": "Davom etish"
       }
@@ -306,32 +318,89 @@
           "afterjob": "Ish tugaganidan keyin"
         },
         "Price": {
-          "error":{
-            "title":"Xatolik faqat raqam kiriting!!!"
+          "error": {
+            "title": "Xatolik faqat raqam kiriting!!!"
           },
           "title": "Narxi:",
           "description": "Narxni kiriting:"
         }
       },
-
       "PicTitle": {
         "title": "Rasmlar",
         "titleInfo": "Birinchi surat e’loningiz asosiy rasmi bo’ladi. Suratlar tartibini ularning ustiga bosib va olib o’tish bilan o’zgartirishingiz mumkin."
       }
     }
   },
-  "MyAds": {
-      "breadcrumb":{
-        "home":"Bosh sahifa",
-        "myAds": "Mening e'lonlarim",
-        "workTitle": "Oshxonani yevro remont qilish kerak"
-      },
-      "title": "Mening e'lonlarim",
-      "myAdsBtn":{
-        "btnTitle":"Ko'rish va o'zgartirish"
-      }
+  "MyProfile": {
+    "editButtons": {
+      "addstory": "Story qo'yish",
+      "changedata": "Ma'lumumotlarni o'zgartirish",
+      "addvideo": "Video qo'shish",
+      "addpic": "Rasm qo'shish",
+      "storydescription": "Videoni tanlang yoki sudrab olib tashlang",
+      "back": "Orqaga",
+      "add": "Qo'shish"
+    }
   },
-
+  "ChangeData": {
+    "title": "Ma'lumotlarni o'zgartirish",
+    "PersonalDetails": {
+      "title": "Shaxsiy ma'lumotlar",
+      "uploadphototitle": "Profil rasmini yuklash",
+      "uploadphotodescription": "3x4 o'lchamdagi fotosuratingiz oq yoki ko'k fonda .png, .jpg, .jpeg formatida, 5mb dan kata bo'lmagan hajmda yuklang.",
+      "Inputs": {
+        "nameInp": "Ism*",
+        "nameplaceholder": "Ismingizni kiriting",
+        "surnameInp": "Familiya*",
+        "surnameplaceholder": "Familiyangizni kiriting",
+        "fatherNameInpt": "Otasining ismi*",
+        "fathernameplaceholder": "Otangizning ismingizni kiriting",
+        "phoneplaceholder": "Telefon raqamingizni kiriting*",
+        "phoneInp": "Telefon raqamingiz",
+        "additionalPhone": "Qo'shimcha telefon raqam",
+        "additionalPhoneplaceholder": "Telefon raqamingizni kiriting",
+        "emailInp": "Email",
+        "emailplaceholder":"example@mail.com",
+        "passport": "Passport seriyasi va raqami",
+        "passportplaceholder": "AA 1234567",
+        "BirthInpt": "Tug'ilgan sana",
+        "AboutYourself": "O'zingiz haqingizda ma'lumot",
+        "AboutYourselfDesc": "O’zingiz haqingizda ma'lumot yozing..."
+      }
+    },
+    "ServiceActivity":{
+      "title":"Xizmat faoliyati",
+      "Inputs":{
+        "serviceType":"Qaysi sohada xizmat ko'rsatasiz?",
+        "serviceTypeplaceholder":"Xizmat turini tanlang",
+        "workExperience":"Ish tajribangiz?",
+        "workExperienceplaceholder":"Ish tajribangizni tanlang",
+        "Tags":"Faoliyatga bog'liq taglar",
+        "Tagsplaceholder":"Taglarni tanlang",
+        "Country":"Qaysi mintaqada ishlaysiz?",
+        "Countryplaceholder":"Mintaqani tanlang?",
+        "region":"Viloyat?",
+        "regionplaceholder":"Viloyatni tanlang",
+        "District":"Tuman",
+        "Districtplaceholder":"Tumanni tanlang"
+      },
+      "Btn":{
+        "cancelbtn":"Bekor qilish",
+        "savebtn":"O'zgarishlarni saqlash"
+      }
+    }
+  },
+  "MyAds": {
+    "breadcrumb": {
+      "home": "Bosh sahifa",
+      "myAds": "Mening e'lonlarim",
+      "workTitle": "Oshxonani yevro remont qilish kerak"
+    },
+    "title": "Mening e'lonlarim",
+    "myAdsBtn": {
+      "btnTitle": "Ko'rish va o'zgartirish"
+    }
+  },
   "VideoTab": {
     "videoId": [
       "V62RciuVMiw",

@@ -93,13 +93,28 @@ const Aside = ({ className }: Props) => {
 
 
                     {/* Login */}
-                    <LoginProviderDialog>
+
+                    <LoginProviderDialog
+                        trigger={
+                            <div className="bg-white group h-[42px] px-2 flex items-center gap-1 text-maket-primary rounded-md hover:bg-maket-primary hover:text-white border cursor-pointer border-white whitespace-nowrap">
+                                 <Image src="/svg/aside/user.svg" alt="User Icon" width={20} height={20} className="group-hover:hidden" />
+                                 <Image src="/svg/aside/user-white.svg" alt="User Icon" width={20} height={20} className="group-hover:block hidden" />
+                                 <p className="text-sm">{t('action.account.login')}</p>
+                            </div>
+                        }
+                    />
+
+
+
+
+
+                    {/* <LoginProviderDialog>
                         <div className="bg-white group h-[42px] px-2 flex items-center gap-1 text-maket-primary rounded-md hover:bg-maket-primary hover:text-white border border-white whitespace-nowrap">
                             <Image src="/svg/aside/user.svg" alt="User Icon" width={20} height={20} className="group-hover:hidden" />
                             <Image src="/svg/aside/user-white.svg" alt="User Icon" width={20} height={20} className="group-hover:block hidden" />
                             <p className="text-sm">{t('action.account.login')}</p>
                         </div>
-                    </LoginProviderDialog>
+                    </LoginProviderDialog> */}
                 </div>
             </div>
         </aside>

@@ -1,4 +1,4 @@
-"use client"; // kerak, chunki useState ishlatilyapti
+"use client"; 
 
 import { useState } from "react";
 import { FilterBar } from "./FilterClient";

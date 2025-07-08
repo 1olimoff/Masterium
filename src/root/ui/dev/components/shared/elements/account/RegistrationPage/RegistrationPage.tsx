@@ -1,41 +1,39 @@
+// RegistrationPage.tsx
 "use client";
-
-import { Drawer, DrawerContent, DrawerTrigger } from "@/root/ui/dev/shadcn/ui/drawer";
-import { useTranslations } from "next-intl";
+import React, { useState } from "react";
 import PhoneInput from "react-phone-input-2";
-import {Input} from "@/root/ui/dev/shadcn/ui/input";
-import {Button} from "@/root/ui/dev/shadcn/ui/button";
-import {cn} from '@/root/business/lib/utils';
+import "react-phone-input-2/lib/style.css";
 import Image from "next/image";
-import toast, {Toaster} from 'react-hot-toast';
-import { useState } from "react";
-import {signIn} from "next-auth/react";
-
-
-
+import toast, { Toaster } from "react-hot-toast";
+import { signIn } from "next-auth/react";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/root/ui/dev/shadcn/ui/drawer";
+import { Input } from "@/root/ui/dev/shadcn/ui/input";
+import { Button } from "@/root/ui/dev/shadcn/ui/button";
+import { cn } from '@/root/business/lib/utils';
+import { useTranslations } from "next-intl";
+import { DialogHeader } from "@/root/ui/dev/shadcn/ui/dialog";
+import { DialogTitle } from "@radix-ui/react-dialog";
 
 interface Props {
   className?: string;
-  children?: React.ReactNode;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  onRegisterClick: () => void; // 🔧 YANGI: login tugmasi bosilganda chaqiriladi
 }
 
-export const RegistrationPage = ({ className, children }: Props) => {
-  const t = useTranslations("");
+export const RegistrationPage = ({ className, open, onOpenChange, onRegisterClick }: Props) => {
 
+  const t = useTranslations("Account");
+
+  // States
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
   const [phoneError, setPhoneError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [openOTP, setOpenOTP] = useState(false);
 
-//   const handleConfirmCode = (code: string) => {
-//     console.log("Введённый код:", code);
-//     setOpenOTP(false);
-//   };
-
+  // Phone validation
   const validatePhone = () => {
     if (!phone) {
       setPhoneError(t("login.errors.phone.required"));
@@ -49,6 +47,7 @@ export const RegistrationPage = ({ className, children }: Props) => {
     return true;
   };
 
+  // Password validation
   const validatePassword = () => {
     if (!password) {
       setPasswordError(t("login.errors.password.required"));
@@ -62,67 +61,60 @@ export const RegistrationPage = ({ className, children }: Props) => {
     return true;
   };
 
+  // Submit handler
   const handleSubmit = async () => {
     setLoading(true);
-    setError("");
-
     const isPhoneValid = validatePhone();
     const isPasswordValid = validatePassword();
-
     if (!isPhoneValid || !isPasswordValid) {
       setLoading(false);
       return;
     }
-
     try {
-      const result = await signIn("credentials", {
-        phone,
-        password,
-        redirect: false,
-      });
-
+      const result = await signIn("credentials", { phone, password, redirect: false });
       if (result?.error) {
-        setError(result.error);
         toast.error(t("login.errors.phone-or-psw"));
-        setOpenOTP(true);
       } else {
         toast.success(t("login.success"));
-        // TODO: redirect here if needed
+        onOpenChange(false);
       }
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message || t("login.errors.unknown"));
-      } else {
-        setError(t("login.errors.unknown"));
-      }
+    } catch {
+      toast.error(t("login.errors.unknown"));
     } finally {
       setLoading(false);
     }
   };
 
-  const handleGoogleLogin = async () => {
-    await signIn("google", { callbackUrl: "/" });
-  };
-
-  const handleAppleLogin = async () => {
-    await signIn("apple", { callbackUrl: "/" });
-  };
-
   return (
-    <div className={cn(className)}>
-      <Drawer>
-        <DrawerTrigger>{children}</DrawerTrigger>
-        <DrawerContent className="max-h-[90%] overflow-y-auto custom-scrollbar p-4 rounded-t-xl">
-          <h3 className="text-2xl text-center mb-4">
-            {t("login.title")}
-          </h3>
+    <Drawer open={open} onOpenChange={onOpenChange}>
+      <DrawerTrigger>{/* External trigger — qoladi */}</DrawerTrigger>
+      <DrawerContent
+        className={cn(
+          "flex flex-col max-h-[90dvh] overflow-hidden  custom-scrollbar p-4 rounded-t-xl",
+          className
+        )}
+      >
+        <DialogHeader>
+          <DialogTitle></DialogTitle>
+        </DialogHeader>
+        {/* Scroll bo‘ladigan asosiy forma qismi */}
+        <div className="flex-1 overflow-y-auto px-4">
+          <h2 className="text-2xl mt-4 font-bold text-[#001D55] text-center mb-4">{t("Registration.RegistrationTitle")}</h2>
           <div className="flex flex-col gap-4">
+            {/* Name input */}
             <div className="flex flex-col gap-1">
+              <p className="text-sm">{t("Registration.nameTitle")}</p>
+              <Input
+                className="border-[#CFD9FE] rounded-xl text-[#677294] mb-2 placeholder-[#677294] pr-10"
+                placeholder={t("Registration.namePlaceholder")}
+              />
+
+              {/* Phone input */}
               <p className="text-sm">{t("login.inputs.phone.title")}</p>
               <PhoneInput
                 country={"uz"}
                 value={phone}
-                onChange={(phone) => setPhone(phone)}
+                onChange={setPhone}
                 onBlur={validatePhone}
                 inputClass="!w-full !h-[44px] !border-[#CFD9FE] !text-[#677294] !placeholder-[#677294]"
                 containerClass="!w-full"
@@ -130,6 +122,8 @@ export const RegistrationPage = ({ className, children }: Props) => {
               />
               {phoneError && <p className="text-red-500 text-sm">{phoneError}</p>}
             </div>
+
+            {/* Password input */}
             <div className="flex flex-col gap-1">
               <p className="text-sm">{t("login.inputs.password.title")}</p>
               <div className="relative">
@@ -141,6 +135,7 @@ export const RegistrationPage = ({ className, children }: Props) => {
                   className="border-[#CFD9FE] rounded-xl text-[#677294] placeholder-[#677294] pr-10"
                   placeholder={t("login.inputs.password.placeholder")}
                 />
+                {/* Password toggle button */}
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
@@ -148,7 +143,7 @@ export const RegistrationPage = ({ className, children }: Props) => {
                 >
                   <Image
                     src={showPassword ? "/svg/account/login/eye-slash.svg" : "/svg/account/login/eye.svg"}
-                    alt={showPassword ? "Hide password" : "Show password"}
+                    alt="Toggle password"
                     width={20}
                     height={20}
                   />
@@ -157,57 +152,42 @@ export const RegistrationPage = ({ className, children }: Props) => {
               {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
             </div>
           </div>
+        </div>
 
-          {/* <button
-            onClick={validatePhone}
-            className="my-4 text-sm font-thin text-end flex justify-end w-full"
-          >
-            {t("login.forget")}
-          </button> */}
-
+        {/* Submit button pastda har doim ko‘rinadigan qilib joylashtirildi */}
+        <div className="mt-4 px-4">
           <Button
             disabled={loading}
             onClick={handleSubmit}
             className="w-full bg-maket-primary hover:bg-blue-900 text-lg rounded-xl py-6"
           >
-            {loading ? t("login.button.loading") : t("login.button.title")}
+            {loading ? t("login.button.loading") : t("Registration.button.title")}
           </Button>
+        </div>
 
-          <div className="my-4 text-center text-sm">{t("login.or.title")}</div>
 
-          <Button
-            variant="outline"
-            disabled={loading}
-            onClick={handleGoogleLogin}
-            className="w-full mb-2 border-maket-primary"
+
+
+
+        <p className="text-center font-thin mt-6">
+          {t('login.login.text')}{" "}
+          <button
+            type="button"
+            onClick={() => {
+              onOpenChange(false);
+              onRegisterClick(); // ✅ BU ENDILIKDA ISHLAYDI
+            }}
+            className="font-bold text-maket-secondary"
           >
-            <div className="w-5 h-5 relative mr-2">
-              <Image src="/svg/account/login/google.svg" alt="Google Icon" fill objectFit="contain" />
-            </div>
-            {t("login.or.google")}
-          </Button>
-          <Button
-            variant="outline"
-            disabled={loading}
-            onClick={handleAppleLogin}
-            className="w-full border-maket-primary"
-          >
-            <div className="w-5 h-5 relative mr-2">
-              <Image src="/svg/account/login/apple.svg" alt="Apple Icon" fill objectFit="contain" />
-            </div>
-            {t("login.or.apple")}
-          </Button>
+            {t('login.login.action')}
+          </button>
+        </p>
 
-          {/* <p className="text-center font-thin my-4">
-            {t("login.register.text")}{" "}
-            <span className="font-bold text-maket-secondary cursor-pointer">
-              {t("login.register.action")}
-            </span>
-          </p> */}
 
-          <Toaster />
-        </DrawerContent>
-      </Drawer>
-    </div>
+
+
+        <Toaster />
+      </DrawerContent>
+    </Drawer>
   );
 };
