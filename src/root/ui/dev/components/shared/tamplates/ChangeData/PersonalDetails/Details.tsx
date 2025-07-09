@@ -1,13 +1,23 @@
 "use client"
+import { Button } from "@/root/ui/dev/shadcn/ui/button"
+import { Calendar } from "@/root/ui/dev/shadcn/ui/calendar"
 import { Input } from "@/root/ui/dev/shadcn/ui/input"
+import { Popover, PopoverContent, PopoverTrigger } from "@/root/ui/dev/shadcn/ui/popover"
 import { useTranslations } from "next-intl"
 import Image from "next/image"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import { format, parse } from "date-fns";
+import { toast } from "@/root/business/hooks/use-toast"
 
 export const DetailsPage = () => {
     const t = useTranslations("")
     const inputRef = useRef<HTMLInputElement>(null)
     const [preview, setPreview] = useState<string | null>(null)
+    const [dateFrom, setDateFrom] = useState<Date | undefined>(undefined);
+    const [date, setDate] = useState<Date | undefined>(undefined);
+    const [phone, setPhone] = useState("");
+
+
 
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,9 +29,22 @@ export const DetailsPage = () => {
     }
 
 
+
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Avtomatik bugungi sana bilan boshlanishi
+    useEffect(() => {
+        if (!dateFrom) {
+            setDateFrom(today);
+        }
+    }, [dateFrom, setDateFrom]);
+
+
     return (
         <div className=" mx-auto px-2 space-y-4">
-            <h1 className="text-2xl font-bold">{t("ChangeData.title")}</h1>
+            <h1 className="text-2xl hidden sm:flex font-bold">{t("ChangeData.title")}</h1>
 
             <div className="bg-white rounded-xl py-6 px-6 shadow-sm space-y-4">
                 {/* Section Title */}
@@ -35,13 +58,13 @@ export const DetailsPage = () => {
                 <div className="flex gap-6 items-start">
                     <div
                         onClick={() => inputRef.current?.click()}
-                        className="relative w-32 h-32 border-2 border-dashed rounded-full overflow-hidden cursor-pointer bg-gray-50 flex items-center justify-center"
+                        className="relative w-32 h-32 border-2 border-dashed rounded-full overflow-hidden cursor-pointer bg-gray-100 hover:bg-gray-200 transition"
                     >
                         <Image
                             src={preview || "/img/advertising/user.png"}
                             alt="Profile"
                             fill
-                            className="object-cover p-6"
+                            className={`${preview ? "object-cover" : "object-contain p-6"} transition-all duration-300`}
                         />
                         <Input
                             ref={inputRef}
@@ -51,6 +74,8 @@ export const DetailsPage = () => {
                             onChange={handleFileChange}
                         />
                     </div>
+
+
                     <div>
                         <h4 className="text-base font-semibold">
                             {t("ChangeData.PersonalDetails.uploadphototitle")}
@@ -59,7 +84,7 @@ export const DetailsPage = () => {
                             {t("ChangeData.PersonalDetails.uploadphotodescription")}
                         </p>
                     </div>
-                {/* </div> */}
+                    {/* </div> */}
 
                 </div>
 
@@ -89,7 +114,7 @@ export const DetailsPage = () => {
                     </div>
 
                     <div>
-                         <label className="block text-sm font-medium mb-1">
+                        <label className="block text-sm font-medium mb-1">
                             {t("ChangeData.PersonalDetails.Inputs.fatherNameInpt")}
                         </label>
                         <Input
@@ -102,13 +127,26 @@ export const DetailsPage = () => {
 
                     <div>
                         <label className="block text-sm font-medium mb-1">
-                            {t("ChangeData.PersonalDetails.Inputs.phoneplaceholder")}
+                            {t("ChangeData.PersonalDetails.Inputs.phoneInp")}
                         </label>
                         <Input
-                            type="tel"
+                            type="text" // telefon raqami uchun text, keyin validatsiya qilamiz
                             placeholder={t("ChangeData.PersonalDetails.Inputs.phoneplaceholder")}
                             className="w-full border rounded-lg p-2 focus:outline-none focus:ring-1 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
+                            value={phone}
+                            onChange={async (e) => {
+                                const inputValue = e.target.value;
+                                const isOnlyNumbers = /^\d*$/.test(inputValue);
 
+                                if (!isOnlyNumbers) {
+                                    toast({
+                                        description: t("OfferWork.PriceandInfo.Btn.Price.error.title"), // masalan: "Iltimos, faqat raqam kiriting"
+                                    });
+                                    return;
+                                }
+
+                                setPhone(inputValue);
+                            }}
                         />
                     </div>
 
@@ -144,16 +182,52 @@ export const DetailsPage = () => {
                             className="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
                         />
                     </div>
-
                     <div>
                         <label className="block text-sm font-medium mb-1">
                             {t("ChangeData.PersonalDetails.Inputs.BirthInpt")}
                         </label>
-                        <Input
-                            type="date"
-                            className="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
-                        />
+                        <Popover>
+                            <PopoverTrigger asChild>
+                                <Button
+                                    variant="outline"
+                                    className="w-full py-4 px-4 text-left text-md border border-[#CFD9FE] rounded-xl flex justify-between items-center text-[#6B7280]"
+                                >
+                                    {dateFrom ? format(dateFrom, "dd.MM.yyyy") : "kk.oo.yyyy"}
+                                    <Image
+                                        src="/svg/open-works/calendar.svg"
+                                        alt="Calendar icon"
+                                        width={20}
+                                        height={20}
+                                    />
+                                </Button>
+                            </PopoverTrigger>
+                            <PopoverContent className="p-2 w-auto" align="start">
+                                <Calendar
+                                    mode="single"
+                                    selected={dateFrom}
+                                    onSelect={(day) => {
+                                        if (day) {
+                                            setDateFrom(day);
+                                        }
+                                    }}
+                                    captionLayout="dropdown"
+                                    fromYear={1900}
+                                    toYear={new Date().getFullYear()}
+                                    initialFocus
+                                    onMonthChange={(newMonth) => {
+                                        // newMonth bu Date (oy boshi)
+                                        // avtomatik 1-kunni tanlaymiz
+                                        const autoSelectDate = new Date(newMonth.getFullYear(), newMonth.getMonth(), 1);
+                                        setDateFrom(autoSelectDate);
+                                    }}
+                                />
+
+
+                            </PopoverContent>
+                        </Popover>
                     </div>
+
+
                 </div>
 
                 {/* About Yourself */}
@@ -164,8 +238,9 @@ export const DetailsPage = () => {
                     <textarea
                         rows={4}
                         placeholder={t("ChangeData.PersonalDetails.Inputs.AboutYourselfDesc")}
-                        className="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
+                        className="w-full border rounded-lg p-2 bg-[#F8F9FA] focus:outline-none focus:ring-2 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
                     />
+
                 </div>
             </div>
         </div>

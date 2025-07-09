@@ -54,6 +54,12 @@ function Calendar({
         day_range_middle:
           "aria-selected:bg-accent aria-selected:text-accent-foreground",
         day_hidden: "invisible",
+
+        // ✅ Qo‘shilgan: dropdown ko‘rinishini chiroyli qilish
+        caption_dropdowns: "flex gap-2 justify-center mb-2",
+        dropdown:
+          "rounded-md border border-gray-300 px-2 py-1 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-ring",
+
         ...classNames,
       }}
       components={{

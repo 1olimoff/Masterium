@@ -295,7 +295,8 @@
       "buttons": {
         "cancelBtn": "Bekor qilish",
         "submitBtn": "Davom etish"
-      }
+      },
+      "mobileTab":"Mening profilim"
     },
     "Pictures": {
       "Picture": {
@@ -355,8 +356,8 @@
         "surnameplaceholder": "Familiyangizni kiriting",
         "fatherNameInpt": "Otasining ismi*",
         "fathernameplaceholder": "Otangizning ismingizni kiriting",
-        "phoneplaceholder": "Telefon raqamingizni kiriting*",
-        "phoneInp": "Telefon raqamingiz",
+        "phoneplaceholder": "Telefon raqamingizni kiriting",
+        "phoneInp": "Telefon raqamingiz*",
         "additionalPhone": "Qo'shimcha telefon raqam",
         "additionalPhoneplaceholder": "Telefon raqamingizni kiriting",
         "emailInp": "Email",
@@ -387,7 +388,28 @@
       "Btn":{
         "cancelbtn":"Bekor qilish",
         "savebtn":"O'zgarishlarni saqlash"
+
       }
+    },
+    "privacypolicy":{
+      "title":"Oshxonani yevro remont qilish kerak",
+      "acceptoffer":"Taklifni qabul qilish",
+      "breadcrumb":{
+        "home":"Bosh sahifa",
+        "myoffers":"Buyurtmalarim",
+        "job":"Oshxonani yevro remont qilish kerak"
+      }
+    }
+  },
+
+  "OfferForWorkers":{
+    "breadcrumb":{
+      "mainpage":"Bosh sahifa",
+      "myoffers":"Buyurtmalarim",
+      "title":"Buyurtmalarim"
+    },
+    "btn": {
+      "seeOffer":"Taklifni ko'rish"
     }
   },
   "MyAds": {

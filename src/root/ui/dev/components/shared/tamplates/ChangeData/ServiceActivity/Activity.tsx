@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslations } from 'next-intl';
 import FilterBar from '../PersonalDetails/FilterBar/FilterBar';
+import Link from 'next/link';
 
 interface Props {
     catalogs: string[];
@@ -19,45 +20,60 @@ export default function ActivityPage({ catalogs,
     regions,
     districts }: Props) {
 
-    const t = useTranslations("ChangeData.ServiceActivity")
+    const t = useTranslations("")
 
     return (
         <div className=' mx-auto px-2 mb-6 space-y-4'>
             <div className="bg-white p-6 rounded-xl mt-8 shadow-sm">
-                <h1 className="text-2xl font-bold">{t("title")}</h1>
+                <h1 className="text-2xl font-bold">{t("ChangeData.ServiceActivity.title")}</h1>
 
                 <div className='grid mt-4 grid-cols-1 md:grid-cols-3 gap-4'>
 
                     <FilterBar
-                        label={t("Inputs.serviceType")}
+                        label={t("ChangeData.ServiceActivity.Inputs.serviceType")}
                         options={catalogs}
-                        placeholder={t("Inputs.serviceTypeplaceholder")}
+                        placeholder={t("ChangeData.ServiceActivity.Inputs.serviceTypeplaceholder")}
                     />
                     <FilterBar
-                        label={t("Inputs.workExperience")}
+                        label={t("ChangeData.ServiceActivity.Inputs.workExperience")}
                         options={experience}
-                        placeholder={t("Inputs.workExperienceplaceholder")}
+                        placeholder={t("ChangeData.ServiceActivity.Inputs.workExperienceplaceholder")}
                     />
                     <FilterBar
-                        label={t("Inputs.Tags")}
+                        label={t("ChangeData.ServiceActivity.Inputs.Tags")}
                         options={tags}
-                        placeholder={t("Inputs.Tagsplaceholder")}
+                        placeholder={t("ChangeData.ServiceActivity.Inputs.Tagsplaceholder")}
                     />
                     <FilterBar
-                        label={t("Inputs.Country")}
+                        label={t("ChangeData.ServiceActivity.Inputs.Country")}
                         options={countries}
-                        placeholder={t("Inputs.Countryplaceholder")}
+                        placeholder={t("ChangeData.ServiceActivity.Inputs.Countryplaceholder")}
                     />
                     <FilterBar
-                        label={t("Inputs.region")}
+                        label={t("ChangeData.ServiceActivity.Inputs.region")}
                         options={regions}
-                        placeholder={t("Inputs.regionplaceholder")}
+                        placeholder={t("ChangeData.ServiceActivity.Inputs.regionplaceholder")}
                     />
                     <FilterBar
-                        label={t("Inputs.District")}
+                        label={t("ChangeData.ServiceActivity.Inputs.District")}
                         options={districts}
-                        placeholder={t("Inputs.Districtplaceholder")}
+                        placeholder={t("ChangeData.ServiceActivity.Inputs.Districtplaceholder")}
                     />
+                </div>
+
+                <div>
+                    <div className="flex flex-col  sm:flex-row items-center rounded-xl bg-white sm:justify-end gap-4 py-4 px-6 mt-6">
+                        <Link href="" className="w-full sm:w-auto">
+                            <button className="w-full sm:w-auto py-[12px] px-[42px] bg-[#F8F9FA] text-[#677294] rounded-[16px] cursor-pointer">
+                                {t("ChangeData.ServiceActivity.Btn.cancelbtn")}
+                            </button>
+                        </Link>
+                        <Link href={""} className="w-full sm:w-auto">
+                            <button className="w-full sm:w-auto py-[12px] px-[52px] bg-[#001D55] text-white rounded-[16px] cursor-pointer">
+                                {t("ChangeData.ServiceActivity.Btn.savebtn")}
+                            </button>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

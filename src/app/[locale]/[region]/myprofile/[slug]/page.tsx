@@ -4,7 +4,7 @@ import React from 'react'
 
 function ChangeDataPage() {
   return (
-    <div className='layout-width px-2'>
+    <div className='layout-width'>
         <ChangeData />
     </div>
   )

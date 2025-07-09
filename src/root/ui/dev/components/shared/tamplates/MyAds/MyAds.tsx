@@ -7,7 +7,7 @@ export const MyAds = () => {
         <div className=" bg-[#F8F9FA] mt-2 layout-width sm:px-4">
         <Title />
         <MobileBackTab />
-        <div className="">
+        <div className="mt-2">
             <MyAdsPage />
         </div>
       </div>

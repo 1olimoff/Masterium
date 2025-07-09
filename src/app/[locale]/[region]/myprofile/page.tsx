@@ -3,7 +3,7 @@ import React from 'react'
 
 function MyProfilePage() {
   return (
-    <div className='layout-width py-2'>
+    <div className='layout-width'>
         <ForWorkers />
     </div>
   )
