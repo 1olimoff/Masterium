@@ -36,7 +36,7 @@ export const Gallery = ({ className }: Props) => {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
 
-  useEffect(() => {
+  useEffect(() => { 
     if (!api) return
     setCurrent(api.selectedScrollSnap())
     api.on("select", () => setCurrent(api.selectedScrollSnap()))
@@ -49,7 +49,7 @@ export const Gallery = ({ className }: Props) => {
           {data.map((item, i) => (
             <CarouselItem
               key={i}
-              className="w-full h-[350px] sm:h-[400px] md:h-[450px] relative"
+              className="w-full h-[300px] sm:h-[370px] md:h-[430px] lg:h-[450px] relative"
             >
               <Image
                 src={item.src}

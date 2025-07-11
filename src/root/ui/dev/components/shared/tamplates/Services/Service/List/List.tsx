@@ -277,7 +277,7 @@ export const List = ({ className }: Props) => {
     const [showMore, setShowMore] = useState(false);
 
     return (
-        <section className={cn(className)}>
+        <section className={cn(className, "mt-4")}>
             {/* Dastlabki kartalar */}
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10">
                 {data.slice(0, WORKS_TO_DISPLAY).map((item, i) => (

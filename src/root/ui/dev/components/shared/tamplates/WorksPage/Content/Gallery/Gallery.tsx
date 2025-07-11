@@ -49,7 +49,7 @@ export const Gallery = ({ className }: Props) => {
             <CarouselItem
               key={i}
               className={cn(
-                "h-[300px] sm:h-[300px] md:h-[360px] lg:h-[500px] xl:h-[520px] w-full"
+                 className="w-full h-[300px] sm:h-[370px] md:h-[430px] lg:h-[450px] relative"
               )}
             >
               <Image

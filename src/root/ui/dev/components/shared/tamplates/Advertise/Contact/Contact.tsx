@@ -67,7 +67,7 @@ export const Contact = ({ className }: Props) => {
             </div>
 
             {/* Buttons */}
-            <div className="flex flex-col sm:flex-row justify-end gap-4 p-5 bg-white m-3 rounded-[20px]">
+            <div className="flex  sm:flex-row justify-end gap-4  p-5 bg-white m-3 rounded-[20px]">
                 <Link href={"/"} className="py-3 px-6 bg-[#F8F9FA] text-[#677294] rounded-[16px]">{t("Contacts.buttons.cancelBtn")}</Link>
                 <Link href={"myads"} className="py-3 px-6 bg-[#001D55] text-white rounded-[16px]">{t("Advertise.Buttons.GiveAdvertise")}</Link>
             </div>

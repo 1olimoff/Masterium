@@ -32,7 +32,7 @@ export const ApplicationCard = ({ className, data }: Props) => {
   return (
     <div className={cn(
       className,
-      "w-full max-w-sm p-4 rounded-2xl shadow bg-white flex flex-col gap-4"
+      "w-full p-4 rounded-2xl shadow bg-white flex flex-col gap-4"
     )}>
       {/* Avatar & Info */}
       <div className="flex gap-4 items-start">

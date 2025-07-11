@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import InputArea from '../Aside/InputArea/InputArea'
 import Image from 'next/image';

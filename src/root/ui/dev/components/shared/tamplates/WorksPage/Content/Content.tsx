@@ -12,50 +12,39 @@ interface Props {
 
 export const Content = ({ className }: Props) => {
   return (
-    <main
-      className={cn(
-        className,
-        "px-2 sm:px-2 lg:px-4",
-        "flex flex-col gap-6"
-      )}
-    >
-      {/* Block 1: Gallery + ShortInfo + Employer */}
-      <div className="flex flex-col pt-2  md:flex-row md:items-start gap-6">
-        {/* Gallery */}
-        <div className="bg-white p-2 rounded-xl shadow w-full md:w-[60%]">
+    <main className={cn(className, "px-2 sm:px-2 lg:px-4", "flex flex-col gap-6")}>
+
+      <main className={cn("flex flex-col md:grid md:grid-cols-3 gap-6 mt-4 mb-4", className)}>
+        {/* Gallery - asosiy rasm karusel */}
+        {/* Gallery - asosiy rasm karusel */}
+        <div className="bg-white p-2 rounded-xl shadow w-full md:h-[466px] md:col-span-2">
           <Gallery />
-        </div>
+        </div> 
+
 
         {/* ShortInfo + Employer */}
-        <div className="flex flex-col gap-6 max-w-[560px] w-full md:w-[35%]">
+        <div className="sm:flex md:flex md:flex-col gap-6 max-w-[660px] w-full">
           <div className="bg-white p-4 rounded-xl shadow w-full max-w-full  sm:max-w-none md:max-w-full">
             <ShortInfo />
           </div>
-          <div className="bg-white p-4 rounded-xl hidden sm:flex shadow w-full max-w-full sm:max-w-none md:max-w-full">
+          <div className="bg-white p-4 rounded-xl hidden sm:h-48 sm:flex shadow w-full max-w-full sm:max-w-none md:max-w-full">
             <Employer />
           </div>
         </div>
-
-      </div>
-
-
-
-
-      <div className="flex flex-col md:flex-row lg:pr-8 md:pr-4 md:items-start gap-6 w-full">
-        {/* Description */}
-        <div className="bg-white p-4 rounded-xl shadow w-full md:flex-1">
+        <div className="w-full lg:flex-1 p-4 bg-white rounded-xl shadow col-span-2">
           <Description />
         </div>
-
-        {/* Location */}
-
-        <div className="bg-white p-4 flex sm:hidden rounded-xl shadow w-full max-w-full sm:max-w-none md:max-w-full">
+        <div>
+          <div className="bg-white p-4 flex sm:hidden  mb-4 rounded-xl shadow w-full max-w-full sm:max-w-none md:max-w-full">
             <Employer />
           </div>
-        <div className="bg-white p-4 rounded-xl shadow w-full md:max-w-[300px] lg:max-w-[480px] md:w-full">
-          <Location />
+          <div className="bg-white p-4 sm:mt-1 rounded-xl shadow w-full md:max-w-[330px] lg:max-w-[490px] md:w-full">
+            <Location />
+          </div>
         </div>
-      </div>
+
+      </main>
+
 
 
 

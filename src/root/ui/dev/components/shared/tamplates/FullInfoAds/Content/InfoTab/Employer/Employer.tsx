@@ -40,7 +40,7 @@ export const Employer = ({ className }: Props) => {
       <div className="flex justify-center max-w-[400px] items-center w-full">
         <Link
         href=""
-         className="bg-white text-[#32ADE6] hover:bg-[#FFFF]  hover:text-[#32ADE6] text-sm sm:text-[15px] text-center">
+         className="bg-white text-[#32ADE6] hover:bg-[#FFFF]  hover:text-[#32ADE6]  sm:text-[15px] text-center">
           Muallifning boshqa e'lonlarini ko'rish
         </Link>
       </div>

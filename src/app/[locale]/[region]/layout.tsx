@@ -17,7 +17,7 @@ interface LayoutProps {
 }
 
 export default async function RootLayout({ children, params }: LayoutProps) {
-  const { locale = 'ru', region } = params;
+  const { locale = 'ru', region } = await params;
 
   // Set server locale for next-intl
   unstable_setRequestLocale(locale);

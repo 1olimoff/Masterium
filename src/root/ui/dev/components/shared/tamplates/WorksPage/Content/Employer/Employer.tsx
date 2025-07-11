@@ -39,7 +39,7 @@ export const Employer = ({ className }: Props) => {
             </div>
 
             <div className="flex justify-center items-center w-full">
-                <Button className="bg-white text-[#32ADE6] hover:bg-[#FFFF] hover:text-[#32ADE6] text-sm sm:text-[15px] text-center">
+                <Button className="bg-white w-20 text-[#32ADE6  hover:bg-[#FFFF] hover:text-[#32ADE6] sm:text-[13px] text-center">
                     Muallifning boshqa e'lonlarini ko'rish
                 </Button>
             </div>

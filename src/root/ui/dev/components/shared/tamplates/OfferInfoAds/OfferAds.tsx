@@ -22,34 +22,32 @@ function OfferAds({ className }: Props) {
             <div className='px-2 mt-2'>
 
                 <h1 className='text-2xl hidden sm:flex font-bold'>{t("ChangeData.privacypolicy.breadcrumb.job")}</h1>
-                <main className={cn("grid grid-cols-3 gap-6 mt-4 mb-4", className)}>
-                        {/* Gallery - asosiy rasm karusel */}
-                        <div className="bg-white p-2 rounded-xl shadow w-full col-span-2">
-                            <Gallery />
-                        </div>
+                <main className={cn("flex flex-col md:grid md:grid-cols-3 gap-6 mt-4 mb-4", className)}>
+                    {/* Gallery - asosiy rasm karusel */}
+                    {/* Gallery - asosiy rasm karusel */}
+                    <div className="bg-white p-2 rounded-xl shadow w-full md:h-[466px] md:col-span-2">
+                        <Gallery />
+                    </div>
 
-                        {/* ShortInfo + Employer */}
-                        <div className="flex flex-col gap-6 max-w-[560px] w-full">
-                            <div className="bg-white p-4 rounded-xl shadow w-full max-w-full  sm:max-w-none md:max-w-full">
-                                <ShortInfoTab />
-                            </div>
-                            <div className="bg-white p-4 rounded-xl hidden sm:flex shadow w-full max-w-full sm:max-w-none md:max-w-full">
-                                <Employer />
-                            </div>
-                        </div>
 
-                        {/* Description - keng qism */}
-                        <div className="w-full lg:flex-1 p-4 bg-white rounded-xl shadow col-span-2">
-                            <Description />
+                    {/* ShortInfo + Employer */}
+                    <div className="sm:flex md:flex md:flex-col gap-6 max-w-[660px] w-full">
+                        <div className="bg-white p-4 rounded-xl shadow w-full max-w-full  sm:max-w-none md:max-w-full">
+                            <ShortInfoTab />
                         </div>
-
-                        {/* Location - o'ngdagi kichik blok */}
-                        <div>
+                        <div className="bg-white p-4 rounded-xl hidden sm:h-[180px] sm:flex shadow w-full max-w-full sm:max-w-none md:max-w-full">
+                            <Employer />
+                        </div>
+                    </div>
+                    <div className="w-full lg:flex-1 p-4 bg-white rounded-xl shadow col-span-2">
+                        <Description />
+                    </div>
+                    <div>
 
                         <div className="bg-white p-4 rounded-xl shadow w-full md:max-w-[330px] lg:max-w-[490px] md:w-full">
                             <Location />
                         </div>
-                        </div>
+                    </div>
 
                 </main>
             </div>

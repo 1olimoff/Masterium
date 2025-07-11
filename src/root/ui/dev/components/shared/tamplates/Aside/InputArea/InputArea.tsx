@@ -1,3 +1,4 @@
+"use client"
 import { Input } from '@/root/ui/dev/shadcn/ui/input'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'

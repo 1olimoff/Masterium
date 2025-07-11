@@ -78,8 +78,8 @@ export const Card = ({ className, data }: Props) => {
     return (
         <div className={cn(
             className,
-            "w-full max-w-full sm:max-w-[320px] md:max-w-[260px] lg:max-w-[330px] h-full my-2 rounded-xl overflow-hidden bg-white my-custom-shadow"
-        )}>
+            "w-full h-full  rounded-xl overflow-hidden bg-white my-custom-shadow"
+          )}>
             <Carousel setApi={setApi}>
                 <CarouselContent className="relative w-full h-[160px] sm:h-[180px] md:h-[200px]">
                     {images.map((item, i) => (
@@ -95,7 +95,7 @@ export const Card = ({ className, data }: Props) => {
                     ))}
                 </CarouselContent>
 
-                <div className="absolute bottom-4 left-0 w-full flex items-center justify-center gap-2 z-10">
+                <div className="absolute bottom-4  left-0 w-full flex items-center justify-center gap-2 z-10">
                     {images.map((_, idx) => {
                         const isActive = idx === current;
                         return (

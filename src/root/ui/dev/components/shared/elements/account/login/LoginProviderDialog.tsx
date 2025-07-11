@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Dialog, DialogTrigger, DialogContent } from "@/root/ui/dev/shadcn/ui/dialog";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/root/ui/dev/shadcn/ui/dialog";
 
 import { useTranslations } from "next-intl";
 import PhoneInput from "react-phone-input-2";
@@ -61,6 +61,19 @@ export const LoginProviderDialog = ({ trigger }: Props) => {
     const isPhoneValid = validatePhone();
     const isPasswordValid = validatePassword();
 
+    await fetch('/api/auth/registration', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: 'john',
+        password: 'secure'
+      })
+    });
+
+
+
     if (!isPhoneValid || !isPasswordValid) {
       setLoading(false);
       return;
@@ -86,6 +99,9 @@ export const LoginProviderDialog = ({ trigger }: Props) => {
     }
   };
 
+
+
+
   return (
     <>
       {/* Trigger for login dialog */}
@@ -94,7 +110,10 @@ export const LoginProviderDialog = ({ trigger }: Props) => {
           <div onClick={() => setOpenLogin(true)}>{trigger}</div>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px] p-6 rounded-2xl">
-          <h2 className="text-2xl text-center mb-4">{t("login.title")}</h2>
+          <DialogHeader>
+            <DialogTitle><h2 className="text-2xl text-center mb-4">{t("login.title")}</h2></DialogTitle>
+          </DialogHeader>
+          
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-1">
               <p className="text-sm">{t("login.inputs.phone.title")}</p>
@@ -170,15 +189,15 @@ export const LoginProviderDialog = ({ trigger }: Props) => {
 
       {/* Register drawer modal */}
       <LoginProviderTablet
-  open={openRegister}
-  onOpenChange={setOpenRegister}
-  onLoginClick={() => {
-    setOpenRegister(false); // Register modalni yopamiz
-    setTimeout(() => {
-      setOpenLogin(true); // Login modalni ochamiz
-    }, 150);
-  }}
-/>
+        open={openRegister}
+        onOpenChange={setOpenRegister}
+        onLoginClick={() => {
+          setOpenRegister(false); // Register modalni yopamizfff
+          setTimeout(() => {
+            setOpenLogin(true); // Login modalni ochamiz
+          }, 150);
+        }}
+      />
 
     </>
   );

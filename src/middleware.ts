@@ -15,8 +15,8 @@ const allowedRegions = [
 const defaultLocale = 'uz';
 const defaultRegion = 'tashkent';
 
-export function middleware(req: NextRequest) {
-  const { pathname, search } = req.nextUrl;
+export async function middleware(req: NextRequest) {
+  const { pathname, search } = await req.nextUrl;
 
   if (pathname === '/') {
     return NextResponse.redirect(new URL(`/${defaultLocale}/${defaultRegion}${search}`, req.url));

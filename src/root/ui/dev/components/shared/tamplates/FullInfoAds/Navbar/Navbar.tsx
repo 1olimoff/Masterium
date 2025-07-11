@@ -99,9 +99,9 @@ const TABS: TabItem[] = [
         IconPic: "AdvertiseProfile.svg",
         label: "E'lon uchun ariza qoldirganlar",
         content: (
-            <div className="flex flex-wrap gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
                 {data.map((item, index) => (
-                    <div key={index} className="flex-grow min-w-[280px] max-w-[350px] flex-1 basis-[300px]">
+                    <div key={index} className="flex-grow flex-1 basis-[300px]">
                         <ApplicationCard data={item} />
                     </div>
                 ))}

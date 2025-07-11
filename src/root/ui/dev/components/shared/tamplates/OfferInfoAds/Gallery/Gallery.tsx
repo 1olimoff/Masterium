@@ -43,13 +43,14 @@ export const Gallery = ({ className }: Props) => {
   }, [api])
 
   return (
-    <section className={cn("relative w-full h-full min-h-[250px]", className)}>
+    <section className={cn("relative w-full min-h-[250px] sm:min-h-[300px] md:min-h-[350px]", className)}>
       <Carousel setApi={setApi} className="w-full h-full">
         <CarouselContent className="w-full h-full">
           {data.map((item, i) => (
             <CarouselItem
               key={i}
-              className="w-full h-[350px] sm:h-[400px] md:h-[450px] relative"
+              className="w-full h-[300px] sm:h-[370px] md:h-[430px] lg:h-[450px] relative"
+
             >
               <Image
                 src={item.src}
@@ -61,6 +62,7 @@ export const Gallery = ({ className }: Props) => {
             </CarouselItem>
           ))}
         </CarouselContent>
+
 
         <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white text-black p-2 rounded-full shadow-md hover:bg-gray-100" />
         <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white text-black p-2 rounded-full shadow-md hover:bg-gray-100" />

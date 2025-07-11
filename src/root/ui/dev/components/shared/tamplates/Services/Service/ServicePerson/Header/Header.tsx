@@ -27,7 +27,7 @@ export const Header = ({ className }: Props) => {
                     </div>
                 </div>
                 <div className={"flex flex-col justify-between h-full"}>
-                    <h1 className={"text-3xl font-semibold"}>Eshonov Baxodir</h1>
+                    <h1 className={"text-2xl sm:text-3xl font-semibold"}>Eshonov Baxodir</h1>
                     <p className={"text-maket-gray"}>Santexnik</p>
                     <div className={"flex gap-1 items-center"}>
                         <div className={"relative h-4 w-4 flex items-center justify-center"}>
