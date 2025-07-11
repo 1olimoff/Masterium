@@ -36,6 +36,14 @@ export async function POST(req: NextRequest) {
         path: '/',
       });
 
+      response.cookies.set("authType", registrationController.authType, {
+        httpOnly: true,
+        // secure: process.env.NODE_ENV === 'production', //  HTTPS busa qushsa boladi
+        sameSite: 'lax',
+        maxAge: 15 * 24 * 60 * 60, // 15 дней
+        path: '/',
+      })
+
       return response;
     }
 
