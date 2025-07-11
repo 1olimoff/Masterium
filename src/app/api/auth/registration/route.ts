@@ -7,11 +7,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     console.log("Req body", body);
 
-    const res = await registrationController.setOtpApi({
-      phone_number: body.phone_number,
-      password: body.password,
-      name: body.name,
-    });
+    const res = await registrationController.setOtpApi(body);
 
     if (!res) {
       return NextResponse.json(
@@ -21,13 +17,36 @@ export async function POST(req: NextRequest) {
     }
 
     console.log("RESSSSSSS", res);
-    return NextResponse.json(res);
+    const response = NextResponse.json(res);
+
+    if (body.req_type == "otp") {
+      response.cookies.set('accessToken', registrationController.accessToken, {
+        httpOnly: true,
+        // secure: process.env.NODE_ENV === 'production', // HTTPS busa qushsa boladi
+        sameSite: 'lax', // CSRF
+        maxAge: 60 * 15, // 15 минут
+        path: '/', // Бутун доменга доступ
+      });
+
+      response.cookies.set('refreshToken', registrationController.refreshToken, {
+        httpOnly: true,
+        // secure: process.env.NODE_ENV === 'production', //  HTTPS busa qushsa boladi
+        sameSite: 'lax',
+        maxAge: 15 * 24 * 60 * 60, // 15 дней
+        path: '/',
+      });
+
+      return response;
+    }
+
+    return response;
+
+
   } catch (error: any) {
     console.error("Registration error caught in route handler:", error.message);
     // Return the error message from the thrown error
     return NextResponse.json(
-      { error: error.message || "Serverda xato yuz berdi" },
-      { status: 422 } // Changed to 422 as it's typically a client-side data issue
+      error
     );
   }
 }

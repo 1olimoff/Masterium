@@ -7,7 +7,6 @@ class RegistrationController {
     private _access_token: string
     private _refresh_token: string
     private _auth_type: string
-    private _otpValid: boolean = false;
 
     constructor(accessToken: string, refreshToken: string, authType: string) {
         this._access_token = accessToken;
@@ -28,25 +27,28 @@ class RegistrationController {
     }
 
     public async setOtpApi (props: any) {
-
-        if (this._otpValid) {
+        const {req_type} = props;
+        console.log("REQ TYPE", req_type)
+        if (req_type === "otp") {
+            console.log("THISSSS OTP VERIFY")
             const {phone_number, code} = props;
             
             try {
-                const response = await axios.post(URL_SEND_OTP, {phone_number, code}).then(res => res.data)
-                const {access_token, refresh_token, token_type} = response.data;
+                const response = await axios.post(URL_SEND_OTP, {phone_number, code})
                 console.log("RESSSPPPPOOONNNSE", response)
+                const {access_token, refresh_token, token_type} = response.data;
                 this.saveTokens({accessToken: access_token, refreshToken: refresh_token, authType: token_type})
                 return response;
-            } catch (e) {
-                console.error("Error while sent the Otp Code: ", e)
+            } catch (e: any) {
+                console.error("Error while sent the Otp Code: ", e.message)
+                return e
             }
 
         } else {
+            console.log("THISSSS SEND OTP")
             try {
                 const { phone_number, password, name } = props;
                 const response = await axios.post(URL_REGISTER, { phone_number, password, name }).then(res => res.data)
-                this.otpStep();
                 return response
             } catch (e: any) { // Add ': any' to 'e' for better type handling
                 console.error("Error while sending the registration request to external API:", e);
@@ -56,24 +58,11 @@ class RegistrationController {
         }
     }
 
-    public otpStep(): void {
-        this._otpValid = true
-    }
-
     public saveTokens ({accessToken, refreshToken, authType}: any) {
         this._access_token = accessToken;
         this._auth_type = authType;
         this._refresh_token = refreshToken;
-        this._otpValid = false;
-        this.saveTokensToLocalStorage();
     }
-
-    public saveTokensToLocalStorage () {
-        localStorage.setItem('accessToken', this._access_token)
-        localStorage.setItem('refreshToken', this.refreshToken)
-        localStorage.setItem('authType', this.authType)
-    }
-
 }
 
 export const registrationController = new RegistrationController("", "", "")

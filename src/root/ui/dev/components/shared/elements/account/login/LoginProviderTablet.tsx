@@ -235,7 +235,7 @@ export const LoginProviderTablet = ({ className, open, onOpenChange, onLoginClic
         onConfirm={async (code) => {
           try {
             const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
-            const response = await axios.post("/api/auth/verify-otp", {
+            const response = await axios.post("/api/auth/registration", {
               phone_number: formattedPhone,
               code,
             });
