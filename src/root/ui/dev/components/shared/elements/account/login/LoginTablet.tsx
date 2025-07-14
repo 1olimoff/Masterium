@@ -1,119 +1,136 @@
 "use client";
-import React, { useState } from "react";
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/root/ui/dev/shadcn/ui/dialog";
-
+import React, { useState, useEffect } from "react";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from "@/root/ui/dev/shadcn/ui/dialog";
 import { useTranslations } from "next-intl";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Image from "next/image";
 import { Input } from "@/root/ui/dev/shadcn/ui/input";
 import { Button } from "@/root/ui/dev/shadcn/ui/button";
-import toast from "react-hot-toast";
-import { signIn } from "next-auth/react";
-import { RegistrationPage } from "../RegistrationPage/RegistrationPage";
-import { LoginProviderTablet } from "./LoginProviderTablet";
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
+import { LoginProviderTablet } from "../Registration/RegisterTablet";
+import { OTPModal } from "../otp/OTPModal";
 
 interface Props {
   trigger: React.ReactNode;
 }
 
+const OPERATORS = new Set([
+  "20", "33", "50", "55", "61", "62", "65", "66", "67", "69",
+  "70", "71", "72", "73", "74", "75", "76", "77", "78", "79",
+  "88", "90", "91", "93", "94", "95", "97", "98", "99",
+]);
+
 export const LoginProviderDialog = ({ trigger }: Props) => {
   const t = useTranslations("Account");
-
   const [openLogin, setOpenLogin] = useState(false);
   const [openRegister, setOpenRegister] = useState(false);
-
+  const [otpOpen, setOtpOpen] = useState(false);
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [phoneError, setPhoneError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const validatePhone = () => {
+  const validateInputs = () => {
     if (!phone) {
-      setPhoneError(t("login.errors.phone.required"));
+      toast.error(t("login.errors.phone.required")); // "Telefon nomeri majburiy!"
       return false;
     }
-    if (phone.length < 10 || !/^\+?\d+$/.test(phone)) {
-      setPhoneError(t("login.errors.phone.invalid"));
+    if (!/^\+?\d+$/.test(phone)) {
+      toast.error(t("login.errors.phone.invalid")); // "Telefon nomerni to'liq kiriting"
       return false;
     }
-    setPhoneError("");
-    return true;
-  };
-
-  const validatePassword = () => {
+    if (phone.length < 12) {
+      toast.error(t("login.errors.phone.minLength")); // "Iltimos nomerni to'liq formatda yozing!"
+      return false;
+    }
+    const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
+    if (formattedPhone.startsWith("+998")) {
+      const operatorCode = formattedPhone.substring(4, 6);
+      if (!OPERATORS.has(operatorCode)) {
+        toast.error(t("Registration.errors.phone.invalidOperatorCode")); // "Kiritilgan telefon raqami operator kodi O'zbekiston operatorlariga tegishli emas."
+        return false;
+      }
+    }
     if (!password) {
-      setPasswordError(t("login.errors.password.required"));
+      toast.error(t("login.errors.password.required")); // "Parol majburiy!"
       return false;
     }
-    if (password.length < 9) {
-      setPasswordError(t("login.errors.password.minLength"));
+    if (password.length < 8) {
+      toast.error(t("login.errors.password.minLength")); // "Kamida 8-ta belgi bo'lishi shart"
       return false;
     }
-    setPasswordError("");
     return true;
   };
 
-  const handleSubmit = async () => {
+  const handleLogin = async () => {
     setLoading(true);
-    const isPhoneValid = validatePhone();
-    const isPasswordValid = validatePassword();
-
-    await fetch('/api/auth/registration', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username: 'john',
-        password: 'secure'
-      })
-    });
-
-
-
-    if (!isPhoneValid || !isPasswordValid) {
+    if (!validateInputs()) {
       setLoading(false);
       return;
     }
 
     try {
-      const result = await signIn("credentials", {
-        phone,
+      const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
+      const response = await axios.post("/api/auth/login", {
+        phone_number: formattedPhone,
         password,
-        redirect: false,
+        req_type: "login",
       });
 
-      if (result?.error) {
-        toast.error(t("login.errors.phone-or-psw"));
-      } else {
-        toast.success(t("login.success"));
+      if (response.data.success) {
         setOpenLogin(false);
+        setOtpOpen(true);
+      } else {
+        toast.error(t("login.errors.phone-or-psw")); // "Nomer yoki parol notog'ri"
+        setOpenLogin(false);
+        setTimeout(() => {
+          setOpenRegister(true);
+        }, 150);
       }
-    } catch (err) {
-      toast.error(t("login.errors.unknown"));
-    } finally {
+    } catch (error: any) {
+      console.error("Login xatosi:", error.response?.data || error.message);
+      toast.error(t("login.errors.phone-or-psw")); // "Nomer yoki parol notog'ri"
       setLoading(false);
     }
   };
 
+  const handleOtpConfirm = async (code: string) => {
+    try {
+      const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
+      const response = await axios.post("/api/auth/login", {
+        phone_number: formattedPhone,
+        code,
+        req_type: "otp",
+      });
 
-
+      if (response.data.access_token) {
+        localStorage.setItem("accessToken", response.data.access_token);
+        localStorage.setItem("refreshToken", response.data.refresh_token || "");
+        localStorage.setItem("authType", response.data.token_type || "");
+        toast.success(t("login.success")); // "Siz tizimga kirdingiz :)"
+        setOtpOpen(false);
+        setOpenLogin(false);
+      }
+    } catch (error: any) {
+      console.error("OTP tasdiqlash muvaffaqiyatsiz:", error.response?.data || error.message);
+      toast.error(t("OTP.errors.minLength")); // "Tekshirib to'liq kiriting"
+    }
+  };
 
   return (
     <>
-      {/* Trigger for login dialog */}
       <Dialog open={openLogin} onOpenChange={setOpenLogin}>
         <DialogTrigger asChild>
           <div onClick={() => setOpenLogin(true)}>{trigger}</div>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px] p-6 rounded-2xl">
           <DialogHeader>
-            <DialogTitle><h2 className="text-2xl text-center mb-4">{t("login.title")}</h2></DialogTitle>
+            <DialogTitle>
+              <h2 className="text-2xl text-center mb-4">{t("login.title")}</h2>
+            </DialogTitle>
           </DialogHeader>
-          
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-1">
               <p className="text-sm">{t("login.inputs.phone.title")}</p>
@@ -121,14 +138,11 @@ export const LoginProviderDialog = ({ trigger }: Props) => {
                 country={"uz"}
                 value={phone}
                 onChange={setPhone}
-                onBlur={validatePhone}
                 inputClass="!w-full !h-[44px] !border-[#CFD9FE] !text-[#677294] !placeholder-[#677294]"
                 containerClass="!w-full"
                 buttonClass="!bg-transparent"
               />
-              {phoneError && <p className="text-red-500 text-sm">{phoneError}</p>}
             </div>
-
             <div className="flex flex-col gap-1">
               <p className="text-sm">{t("login.inputs.password.title")}</p>
               <div className="relative">
@@ -136,7 +150,6 @@ export const LoginProviderDialog = ({ trigger }: Props) => {
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  onBlur={validatePassword}
                   placeholder={t("login.inputs.password.placeholder")}
                   className="border-[#CFD9FE] rounded-xl text-[#677294] placeholder-[#677294] pr-10"
                 />
@@ -151,54 +164,58 @@ export const LoginProviderDialog = ({ trigger }: Props) => {
                         ? "/svg/account/login/eye-slash.svg"
                         : "/svg/account/login/eye.svg"
                     }
-                    alt="Toggle password"
+                    alt="Parolni ko'rsatish"
                     width={20}
                     height={20}
                   />
                 </button>
               </div>
-              {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
             </div>
-
             <Button
-              onClick={handleSubmit}
+              onClick={handleLogin}
               disabled={loading}
               className="w-full bg-maket-primary hover:bg-blue-900 text-lg rounded-xl py-6"
             >
               {loading ? t("login.button.loading") : t("login.button.title")}
             </Button>
-
             <p className="text-center font-thin mt-4">
               {t("login.register.text")}{" "}
               <button
                 type="button"
                 onClick={() => {
-                  setOpenLogin(false); // login dialog yopiladi
+                  setOpenLogin(false);
                   setTimeout(() => {
-                    setOpenRegister(true); // register drawer ochiladi
-                  }, 150); // smooth transition
+                    setOpenRegister(true);
+                  }, 150);
                 }}
                 className="font-bold text-maket-secondary"
               >
                 {t("login.register.action")}
               </button>
             </p>
+            <Toaster />
           </div>
         </DialogContent>
       </Dialog>
-
-      {/* Register drawer modal */}
       <LoginProviderTablet
         open={openRegister}
         onOpenChange={setOpenRegister}
         onLoginClick={() => {
-          setOpenRegister(false); // Register modalni yopamizfff
+          setOpenRegister(false);
           setTimeout(() => {
-            setOpenLogin(true); // Login modalni ochamiz
+            setOpenLogin(true);
           }, 150);
         }}
       />
-
+      <OTPModal
+        isOpen={otpOpen}
+        phoneNumber={phone}
+        onClose={() => setOtpOpen(false)}
+        setOpenOTP={setOtpOpen}
+        setOpenParentModal={setOpenLogin}
+        isRegisterFlow={false}
+        onConfirm={handleOtpConfirm}
+      />
     </>
   );
 };

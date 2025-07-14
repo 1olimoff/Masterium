@@ -87,7 +87,8 @@
       "errors": {
         "phone": {
           "required": "Telefon nomeri majburiy!",
-          "invalid": "Telefon nomerni to'liq kiriting"
+          "invalid": "Telefon nomerni to'liq kiriting",
+          "minLength":"Iltimos nomerni to'liq formatda yozing!"
         },
         "password": {
           "required": "Parol majburiy!",
@@ -98,12 +99,23 @@
       }
     },
     "Registration": {
+      "success":"Muvaffaqiyatli ro'yxatdan o'tildi!",
       "RegistrationTitle": "Ro'yxatdan o'tish",
       "registrationdesc": "Qaysi maqsadda ro'yxatdan o'tmoqchisiz?",
       "nameTitle": "Ism",
       "namePlaceholder": "Ismingizni kiriting",
       "button": {
         "title": "Ro'yxatdan o'tish"
+      },
+      "errors":{
+        "name":{
+          "required":"Iltimos ismingizni kiriting!",
+          "minLength": "Ism eng kamida 2 ta harfdan iborat bo'lishi kerak!",
+          "failed":"Ro'yxatdan o'tishda xatolik"
+        },
+        "phone":{
+          "invalidOperatorCode":"Kiritilgan telefon raqami operator kodi O'zbekiston operatorlariga tegishli emas."
+        }
       }
     }
   },

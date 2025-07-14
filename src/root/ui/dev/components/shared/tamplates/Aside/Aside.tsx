@@ -12,7 +12,7 @@ import {
 import { Input } from "@/root/ui/dev/shadcn/ui/input";
 import { Button } from "@/root/ui/dev/shadcn/ui/button";
 import { useTranslations } from "next-intl";
-import { LoginProviderDialog } from "@/root/ui/dev/components/shared/elements/account/login/LoginProviderDialog";
+import { LoginProviderDialog } from "@/root/ui/dev/components/shared/elements/account/login/LoginTablet";
 import { Link } from '@/i18n/routing';
 import InputArea from './InputArea/InputArea';
 

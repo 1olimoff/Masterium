@@ -27,7 +27,7 @@ const Header = ({ className, params }: Props) => {
     const t = useTranslations("Header");
 
     return (
-        <header className={cn(className, "flex justify-between items-center bg-maket-primary text-white sm:text-black layout-width p-2 md:px-4 md:py-3 sm:bg-[#F8F9FA]")}>
+        <header className={cn(className, "flex justify-between items-center bg-maket-primary text-white sm:text-black layout-width p-2 md:px-4 md:py-2 sm:bg-[#F8F9FA]")}>
             <div className="flex items-center gap-3 md:gap-4">
                 <Dialog>
                     <div className="flex items-center gap-1">
