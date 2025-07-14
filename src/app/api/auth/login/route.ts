@@ -1,6 +1,7 @@
 // src/app/api/auth/login/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { loginApi, getAccessToken, getRefreshToken, getAuthType } from "../../services/auth/login.controller"
+import { cookies } from "next/headers";
 
 export async function POST(req: NextRequest) {
   try {
@@ -21,6 +22,7 @@ export async function POST(req: NextRequest) {
 
     // Tokenlarni faqat `otp` holatida saqlash
     if (body.req_type === "otp") {
+
       response.cookies.set("accessToken", getAccessToken(), {
         httpOnly: true,
         sameSite: "lax",
@@ -41,7 +43,12 @@ export async function POST(req: NextRequest) {
         maxAge: 15 * 24 * 60 * 60, // 15 kun
         path: "/",
       });
+
+
+      return response;
     }
+
+    console.log("RETURN RESPONSE")
 
     return response;
   } catch (error: any) {

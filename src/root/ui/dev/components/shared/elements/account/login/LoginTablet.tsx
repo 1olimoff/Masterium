@@ -11,6 +11,7 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { LoginProviderTablet } from "../Registration/RegisterTablet";
 import { OTPModal } from "../otp/OTPModal";
+import Cookies from "js-cookie"; // Cookie boshqarish uchun
 
 interface Props {
   trigger: React.ReactNode;
@@ -22,6 +23,8 @@ const OPERATORS = new Set([
   "88", "90", "91", "93", "94", "95", "97", "98", "99",
 ]);
 
+export let token: boolean = false; // Eksport qilinadigan token o'zgaruvchisi
+
 export const LoginProviderDialog = ({ trigger }: Props) => {
   const t = useTranslations("Account");
   const [openLogin, setOpenLogin] = useState(false);
@@ -31,6 +34,16 @@ export const LoginProviderDialog = ({ trigger }: Props) => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
+  // Modal ochilganda formani va loading holatini tozalash
+  useEffect(() => {
+    if (openLogin) {
+      setPhone("");
+      setPassword("");
+      setShowPassword(false);
+      setLoading(false); 
+    }
+  }, [openLogin]);
 
   const validateInputs = () => {
     if (!phone) {
@@ -92,7 +105,8 @@ export const LoginProviderDialog = ({ trigger }: Props) => {
     } catch (error: any) {
       console.error("Login xatosi:", error.response?.data || error.message);
       toast.error(t("login.errors.phone-or-psw")); // "Nomer yoki parol notog'ri"
-      setLoading(false);
+    } finally {
+      setLoading(false); // Har qanday holatda loadingni o'chirish
     }
   };
 
@@ -104,18 +118,46 @@ export const LoginProviderDialog = ({ trigger }: Props) => {
         code,
         req_type: "otp",
       });
-
+  
       if (response.data.access_token) {
-        localStorage.setItem("accessToken", response.data.access_token);
-        localStorage.setItem("refreshToken", response.data.refresh_token || "");
-        localStorage.setItem("authType", response.data.token_type || "");
+        // Tokenlarni cookie'larga saqlash
+        Cookies.set("accessToken", response.data.access_token, {
+          expires: 15 / (24 * 60),
+          sameSite: "lax",
+          path: "/",
+        });
+        Cookies.set("refreshToken", response.data.refresh_token || "", {
+          expires: 15,
+          sameSite: "lax",
+          path: "/",
+        });
+        Cookies.set("authType", response.data.token_type || "", {
+          expires: 15,
+          sameSite: "lax",
+          path: "/",
+        });
+  
+        // Token holatini true qilish
+        token = true;
         toast.success(t("login.success")); // "Siz tizimga kirdingiz :)"
         setOtpOpen(false);
         setOpenLogin(false);
+  
+        // Cookie mavjudligini tekshirish
+        if (Cookies.get("accessToken")) {
+          console.log("Access token saqlandi, token holati true");
+          token = true;
+        } else {
+          console.error("Access token saqlanmadi!");
+          token = false;
+        }
+      } else {
+        toast.error(t("OTP.errors.invalid")); 
       }
     } catch (error: any) {
       console.error("OTP tasdiqlash muvaffaqiyatsiz:", error.response?.data || error.message);
-      toast.error(t("OTP.errors.minLength")); // "Tekshirib to'liq kiriting"
+      toast.error(t("OTP.errors.minLength")); 
+      token = false; // Xato bo'lsa token false bo'ladi
     }
   };
 

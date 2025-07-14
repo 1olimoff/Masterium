@@ -4,6 +4,7 @@ import Header from "@/root/ui/dev/components/shared/tamplates/Header";
 import Aside from "@/root/ui/dev/components/shared/tamplates/Aside";
 import { Footer } from "@/root/ui/dev/components/shared/tamplates/Footer/Footer";
 import TabBar from '../../TabBar/TabBar';
+import { cookies } from 'next/headers';
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -11,7 +12,10 @@ interface LayoutProps {
     className?: string;
 }
 
-export const LayoutProvider = ({ className, children, params }: LayoutProps) => {
+export const LayoutProvider = async ({ className, children, params }: LayoutProps) => {
+    const cookieToken = (await cookies()).get('accessToken')?.value || null
+    console.log('COOKIE TOKEN', cookieToken)
+
     return (
         <div className={cn(className)}>
             <Header params={params} />
@@ -20,7 +24,7 @@ export const LayoutProvider = ({ className, children, params }: LayoutProps) => 
                 {children}
             </main>
             <Footer />
-            <TabBar />
+            <TabBar token={cookieToken} />
         </div>
     );
 };

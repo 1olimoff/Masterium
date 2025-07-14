@@ -1,4 +1,3 @@
-// RegistrationPage.tsx
 "use client";
 import React, { useState } from "react";
 import PhoneInput from "react-phone-input-2";
@@ -19,7 +18,7 @@ interface Props {
   className?: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onRegisterClick: () => void;
+  onLoginClick: () => void;
 }
 
 const OPERATORS = new Set([
@@ -28,9 +27,8 @@ const OPERATORS = new Set([
   "88", "90", "91", "93", "94", "95", "97", "98", "99"
 ]);
 
-export const RegistrationPage = ({ className, open, onOpenChange, onRegisterClick }: Props) => {
+export const RegistrationPage = ({ className, open, onOpenChange, onLoginClick }: Props) => {
   const t = useTranslations("Account");
-
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -80,7 +78,6 @@ export const RegistrationPage = ({ className, open, onOpenChange, onRegisterClic
 
   const handleRegistration = async () => {
     setLoading(true);
-
     if (!validateInputs()) {
       setLoading(false);
       return;
@@ -96,138 +93,139 @@ export const RegistrationPage = ({ className, open, onOpenChange, onRegisterClic
       });
 
       if (response.data.success) {
-        toast.success(t("Registration.success"));
         setOtpOpen(true);
+        onOpenChange(false);
       }
-      console.log("Registration response:", response.data);
-      // O'chirildi: onOpenChange(false); // Drawer ni yopmaslik uchun
     } catch (error: any) {
       console.error("Registration error:", error.response?.data || error.message);
-      toast.error(error.response?.data?.message || t("Registration.errors.failed"));
+      toast.error(error.response?.data?.message || t("Registration.errors.name.failed"));
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <Drawer open={open} onOpenChange={onOpenChange}>
-      <DrawerTrigger>{/* External trigger */}</DrawerTrigger>
-      <DrawerContent
-        className={cn(
-          "flex flex-col max-h-[90dvh] overflow-hidden custom-scrollbar p-4 rounded-t-xl",
-          className
+    <>
+      <Drawer open={open} onOpenChange={onOpenChange}>
+        <DrawerTrigger>{/* External trigger */}</DrawerTrigger>
+        <DrawerContent
+          className={cn(
+            "flex flex-col max-h-[90dvh] overflow-hidden custom-scrollbar p-4 rounded-t-xl",
+            className
           )}
-      >
-        <DialogHeader>
-          <DialogTitle>
-            <h2 className="text-2xl mt-4 font-bold text-[#001D55] text-center mb-4">
-              {t("Registration.RegistrationTitle")}
-            </h2>
-          </DialogTitle>
-        </DialogHeader>
-        <div className="flex-1 overflow-y-auto px-4">
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-col gap-1">
-              <p className="text-sm">{t("Registration.nameTitle")}</p>
-              <Input
-                className="border-[#CFD9FE] rounded-xl text-[#677294] mb-2 placeholder-[#677294] pr-10"
-                placeholder={t("Registration.namePlaceholder")}
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div className="flex flex-col gap-1">
-              <p className="text-sm">{t("login.inputs.phone.title")}</p>
-              <PhoneInput
-                country={"uz"}
-                value={phone}
-                onChange={setPhone}
-                inputClass="!w-full !h-[44px] !border-[#CFD9FE] !text-[#677294] !placeholder-[#677294]"
-                containerClass="!w-full"
-                buttonClass="!bg-transparent"
-              />
-            </div>
-            <div className="flex flex-col gap-1">
-              <p className="text-sm">{t("login.inputs.password.title")}</p>
-              <div className="relative">
+        >
+          <DialogHeader>
+            <DialogTitle>
+              <h2 className="text-2xl mt-4 font-bold text-[#001D55] text-center">
+                {t("Registration.RegistrationTitle")}
+              </h2>
+            </DialogTitle>
+          </DialogHeader>
+          <div className="flex-1 overflow-y-auto px-4 py-2">
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-1">
+                <p className="text-sm">{t("Registration.nameTitle")}</p>
                 <Input
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="border-[#CFD9FE] rounded-xl text-[#677294] placeholder-[#677294] pr-10"
-                  placeholder={t("login.inputs.password.placeholder")}
+                  className="border-[#CFD9FE] rounded-xl text-[#677294] mb-2 placeholder-[#677294] pr-10"
+                  placeholder={t("Registration.namePlaceholder")}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2"
-                >
-                  <Image
-                    src={showPassword ? "/svg/account/login/eye-slash.svg" : "/svg/account/login/eye.svg"}
-                    alt="Toggle password"
-                    width={20}
-                    height={20}
+              </div>
+              <div className="flex flex-col gap-1">
+                <p className="text-sm">{t("login.inputs.phone.title")}</p>
+                <PhoneInput
+                  country={"uz"}
+                  value={phone}
+                  onChange={setPhone}
+                  inputClass="!w-full !h-[44px] !border-[#CFD9FE] !text-[#677294] !placeholder-[#677294]"
+                  containerClass="!w-full"
+                  buttonClass="!bg-transparent"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <p className="text-sm">{t("login.inputs.password.title")}</p>
+                <div className="relative">
+                  <Input
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="border-[#CFD9FE] rounded-xl text-[#677294] placeholder-[#677294] pr-10"
+                    placeholder={t("login.inputs.password.placeholder")}
                   />
-                </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                    aria-label={t("login.inputs.password.toggle")}
+                  >
+                    <Image
+                      src={showPassword ? "/svg/account/login/eye-slash.svg" : "/svg/account/login/eye.svg"}
+                      alt={t("login.inputs.password.toggle")}
+                      width={20}
+                      height={20}
+                    />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="mt-4 px-4">
-          <Button
-            disabled={loading}
-            onClick={handleRegistration}
-            className="w-full bg-maket-primary hover:bg-blue-900 text-lg rounded-xl py-6"
-          >
-            {loading ? t("login.button.loading") : t("Registration.button.title")}
-          </Button>
-        </div>
-        <p className="text-center font-thin mt-6">
-          {t("login.login.text")}{" "}
-          <button
-            type="button"
-            onClick={() => {
-              onOpenChange(false);
-              setTimeout(() => {
-                onRegisterClick();
-              }, 150);
-            }}
-            className="font-bold text-maket-secondary"
-          >
-            {t("login.login.action")}
-          </button>
-        </p>
-        <Toaster />
-        <OTPModal
-          isOpen={otpOpen}
-          phoneNumber={phone}
-          onClose={() => setOtpOpen(false)}
-          setOpenOTP={setOtpOpen}
-          onConfirm={async (code) => {
-            try {
-              const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
-              const response = await axios.post("/api/auth/registration", {
-                phone_number: formattedPhone,
-                code,
-                req_type: "otp"
-              });
+          <div className="mt-4 px-4">
+            <Button
+              disabled={loading}
+              onClick={handleRegistration}
+              className="w-full bg-maket-primary hover:bg-blue-900 text-lg rounded-xl py-6"
+            >
+              {loading ? t("login.button.loading") : t("Registration.button.title")}
+            </Button>
+          </div>
+          <p className="text-center font-thin mt-2">
+            {t("login.login.text")}{" "}
+            <button
+              type="button"
+              onClick={() => {
+                onOpenChange(false);
+                setTimeout(() => {
+                  onLoginClick();
+                }, 150);
+              }}
+              className="font-bold text-maket-secondary"
+            >
+              {t("login.login.action")}
+            </button>
+          </p>
+          <Toaster />
+        </DrawerContent>
+      </Drawer>
+      <OTPModal
+        isOpen={otpOpen}
+        phoneNumber={phone}
+        onClose={() => setOtpOpen(false)}
+        setOpenOTP={setOtpOpen}
+        setOpenParentModal={(value) => onOpenChange(typeof value === "boolean" ? value : false)}
+        isRegisterFlow={true}
+        onConfirm={async (code) => {
+          try {
+            const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
+            const response = await axios.post("/api/auth/registration", {
+              phone_number: formattedPhone,
+              code,
+              req_type: "otp"
+            });
 
-              if (response.data.access_token) {
-                localStorage.setItem("accessToken", response.data.access_token);
-                localStorage.setItem("refreshToken", response.data.refresh_token);
-                localStorage.setItem("authType", response.data.token_type);
-                onOpenChange(false); // OTP tasdiqlangandan keyin Drawer ni yopish
-              }
-
+            if (response.data.access_token) {
+              localStorage.setItem("accessToken", response.data.access_token);
+              localStorage.setItem("refreshToken", response.data.refresh_token);
+              localStorage.setItem("authType", response.data.token_type);
               toast.success(t("OTP.success"));
               setOtpOpen(false);
-            } catch (error: any) {
-              console.error("OTP verification failed:", error.response?.data || error.message);
-              toast.error(error.response?.data?.message || t("OTP.errors.failed"));
             }
-          }}
-        />
-      </DrawerContent>
-    </Drawer>
+          } catch (error: any) {
+            console.error("OTP verification failed:", error.response?.data || error.message);
+            toast.error(error.response?.data?.message || t("OTP.errors.failed"));
+          }
+        }}
+      />
+    </>
   );
 };

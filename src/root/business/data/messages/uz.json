@@ -26,6 +26,7 @@
     },
     "action": {
       "announcement": "E'lon berish",
+      "myads":"Buyurtmalarim",
       "account": {
         "login": "Kirish"
       }
@@ -62,7 +63,8 @@
         },
         "password": {
           "title": "Parol",
-          "placeholder": "Parolingizni kiriting"
+          "placeholder": "Parolingizni kiriting",
+          "toggle":"Parolni ko'rsatish"
         }
       },
       "forget": "Parolni unutdingizmi?",

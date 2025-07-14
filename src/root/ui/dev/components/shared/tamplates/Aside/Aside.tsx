@@ -18,9 +18,10 @@ import InputArea from './InputArea/InputArea';
 
 interface Props {
     className?: string;
+    token?: string
 }
 
-const Aside = ({ className }: Props) => {
+const Aside = ({ className, token }: Props) => {
     const t = useTranslations("Aside");
 
     return (
@@ -96,27 +97,36 @@ const Aside = ({ className }: Props) => {
 
                     {/* Login */}
 
-                    <LoginProviderDialog
+                    {token ? <LoginProviderDialog
                         trigger={
                             <div className="bg-white group h-[42px] px-2 flex items-center gap-1 text-maket-primary rounded-md hover:bg-maket-primary hover:text-white border cursor-pointer border-white whitespace-nowrap">
-                                 <Image src="/svg/aside/user.svg" alt="User Icon" width={20} height={20} className="group-hover:hidden" />
-                                 <Image src="/svg/aside/user-white.svg" alt="User Icon" width={20} height={20} className="group-hover:block hidden" />
-                                 <p className="text-sm">{t('action.account.login')}</p>
+                                <Image src="/svg/aside/user.svg" alt="User Icon" width={20} height={20} className="group-hover:hidden" />
+                                <Image src="/svg/aside/user-white.svg" alt="User Icon" width={20} height={20} className="group-hover:block hidden" />
+                                <p className="text-sm">{t('action.account.login')}</p>
                             </div>
                         }
-                    />
+                    /> : <Link
+                        href={"/tashkent/myads"}
+                        className="group bg-white h-[42px] px-2 flex items-center gap-2 rounded-md text-maket-primary border border-white hover:bg-maket-primary hover:text-white whitespace-nowrap transition-colors">
+                        <Image
+                            src="/svg/aside/ads.svg"
+                            alt="Add Icon"
+                            width={20}
+                            height={20}
+                            className="group-hover:hidden transition-opacity duration-200"
+                        />
+                        <Image
+                            src="/svg/aside/adsactive.svg"
+                            alt="Add Icon"
+                            width={20}
+                            height={20}
+                            className="hidden group-hover:block transition-opacity duration-200"
+                        />
+                        <p className="text-sm">{t('action.myads')}</p>
 
+                    </Link>
+                    }
 
-
-
-
-                    {/* <LoginProviderDialog>
-                        <div className="bg-white group h-[42px] px-2 flex items-center gap-1 text-maket-primary rounded-md hover:bg-maket-primary hover:text-white border border-white whitespace-nowrap">
-                            <Image src="/svg/aside/user.svg" alt="User Icon" width={20} height={20} className="group-hover:hidden" />
-                            <Image src="/svg/aside/user-white.svg" alt="User Icon" width={20} height={20} className="group-hover:block hidden" />
-                            <p className="text-sm">{t('action.account.login')}</p>
-                        </div>
-                    </LoginProviderDialog> */}
                 </div>
             </div>
         </aside>

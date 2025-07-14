@@ -3,7 +3,11 @@ import React from 'react'
 import { TabItem } from './Homepage/TabItem'
 import { usePathname } from 'next/navigation'
 
-export default function TabBar() {
+interface Props {
+    token: string | null; // token string yoki null bo‘lishi mumkin
+}
+
+export default function TabBar({token}:Props) {
     const pathname = usePathname(); // faqat shu orqali active aniqlanadi
 
     const tabItemArr = [
@@ -39,6 +43,7 @@ export default function TabBar() {
             <div className="flex items-center justify-between px-2 py-2 h-[64px]">
                 {tabItemArr.map((item) => (
                     <TabItem
+                        token={token}
                         key={item.href}
                         href={item.href}
                         icon={item.icon}
