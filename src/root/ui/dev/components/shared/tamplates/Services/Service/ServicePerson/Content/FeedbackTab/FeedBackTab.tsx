@@ -17,7 +17,7 @@ export const FeedBackTab = ({ className }: Props) => {
     const reviews: {
         name: string;
         date: string;
-        rating: number;
+        rating: number; 
         comment: string;
         profile_pic: string;
     }[] = t.raw("reviews");
@@ -30,7 +30,7 @@ export const FeedBackTab = ({ className }: Props) => {
                 <div className="flex md:flex-row md:items-start gap-6 flex-1">
                     {/* Rating */}
                     <div className="flex flex-col justify-center py-4 ml-2">
-                        <h2 className="sm:text-xl text-lg font-bold text-blue-900 sm:mb-2">Izohlar</h2>
+                        <h2 className="sm:text-xl text-lg font-bold text-blue-900 sm:mb-2">{t("comments")}</h2>
                         <div className="flex items-center sm:text-4xl text-2xl font-bold text-blue-900 mb-4">
                             {averageRating}
                             <span className="ml-2 text-yellow-500 sm:text-3xl text-2xl">★</span>
@@ -73,7 +73,7 @@ export const FeedBackTab = ({ className }: Props) => {
                                             className="object-contain"
                                         />
                                     </div>
-                                    Izoh yozish
+                                   {t("writeComment")}
                                 </div>
                             </DialogTrigger>
                             <FeedBackModal />
@@ -86,7 +86,7 @@ export const FeedBackTab = ({ className }: Props) => {
 
             <div className="space-y-2">
                 <h3 className="text-lg font-semibold text-blue-900">
-                    Barcha izohlar ({totalReviews})
+                   {t("allComments")} ({totalReviews})
                 </h3>
 
                 {reviews.map((review, index) => (

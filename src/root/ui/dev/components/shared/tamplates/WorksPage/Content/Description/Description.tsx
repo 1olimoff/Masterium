@@ -40,9 +40,9 @@ export const Description = ({ className }: Props) => {
                 <p>Lorem ipsum dolor sit amet consectetur. A fringilla eget quam fermentum mattis quisque nibh vulputate purus. Tempus hac nisl id mauris. Nisi sed sit aliquam ultrices in. Morbi tristique aliquam cursus suspendisse molestie velit egestas lacus pretium. Lectus neque metus tempor at aenean. A ac penatibus vehicula sed massa eu id cras. Fringilla elementum consequat turpis interdum ac sagittis malesuada.
 
                     .</p>
-                    <p>Lorem ipsum dolor sit amet consectetur. A fringilla eget quam fermentum mattis quisque nibh vulputate purus. Tempus hac nisl id mauris. Nisi sed sit aliquam ultrices in. Morbi tristique aliquam cursus suspendisse molestie velit egestas lacus pretium. Lectus neque metus tempor at aenean. A ac penatibus vehicula sed massa eu id cras. Fringilla elementum consequat turpis interdum ac sagittis malesuada.
+                <p>Lorem ipsum dolor sit amet consectetur. A fringilla eget quam fermentum mattis quisque nibh vulputate purus. Tempus hac nisl id mauris. Nisi sed sit aliquam ultrices in. Morbi tristique aliquam cursus suspendisse molestie velit egestas lacus pretium. Lectus neque metus tempor at aenean. A ac penatibus vehicula sed massa eu id cras. Fringilla elementum consequat turpis interdum ac sagittis malesuada.
 
- .</p>
+                    .</p>
 
             </div>
         </div>

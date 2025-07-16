@@ -1,10 +1,13 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 interface Props {
     onFilesAdd: (files: FileList) => void;
 }
 
 export default function CustomInputFile({ onFilesAdd }: Props) {
+    const t = useTranslations("")
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length > 0) {
             onFilesAdd(e.target.files);
@@ -25,7 +28,7 @@ export default function CustomInputFile({ onFilesAdd }: Props) {
                 />
                 <img src="/img/advertising/pickpic.png" alt="pick" />
                 <span className="text-gray-500 text-center text-xs mt-2">
-                    Rasmlarni tanlang yoki sudrab olib keling
+                    {t("OfferWork.Advertise.Buttons.fileplaceholder")}
                 </span>
             </label>
         </div>

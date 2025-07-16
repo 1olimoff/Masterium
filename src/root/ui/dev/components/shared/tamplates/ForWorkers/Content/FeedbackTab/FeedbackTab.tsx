@@ -1,7 +1,5 @@
 import { useTranslations } from "next-intl";
 import { cn } from "@/root/business/lib/utils";
-import { Dialog, DialogTrigger } from "@/root/ui/dev/shadcn/ui/dialog";
-import Image from "next/image";
 
 
 interface Props {
@@ -30,7 +28,7 @@ export const FeedBackTab = ({ className }: Props) => {
                 <div className="flex md:flex-row md:items-start gap-6 flex-1">
                     {/* Rating */}
                     <div className="flex flex-col justify-center py-4 ml-2">
-                        <h2 className="sm:text-xl text-lg font-bold text-blue-900 sm:mb-2">Izohlar</h2>
+                        <h2 className="sm:text-xl text-lg font-bold text-blue-900 sm:mb-2">{t("comments")}</h2>
                         <div className="flex items-center sm:text-4xl text-2xl font-bold text-blue-900 mb-4">
                             {averageRating}
                             <span className="ml-2 text-yellow-500 sm:text-3xl text-2xl">★</span>
@@ -67,7 +65,7 @@ export const FeedBackTab = ({ className }: Props) => {
 
             <div className="space-y-2">
                 <h3 className="text-lg font-semibold text-blue-900">
-                    Barcha izohlar ({totalReviews})
+                   {t("allComments")}({totalReviews})
                 </h3>
                 {reviews.map((review, index) => (
                     <div key={index} className="bg-white p-4 shadow flex justify-between rounded-[13px] items-start">

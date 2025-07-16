@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const Title = ({ className }: Props) => {
-  // NOTE: Bu yerda namespace aniqligi muhim
+
   const t = useTranslations("OfferWork.Advertise.breadcrumb");
 
   return (

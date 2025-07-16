@@ -16,10 +16,15 @@ const defaultLocale = 'uz';
 const defaultRegion = 'tashkent';
 
 export async function middleware(req: NextRequest) {
-  const { pathname, search } = await req.nextUrl;
+  const { pathname, searchParams } = req.nextUrl;
+  const regionFromCookie = req.cookies.get('region')?.value;
 
   if (pathname === '/') {
-    return NextResponse.redirect(new URL(`/${defaultLocale}/${defaultRegion}${search}`, req.url));
+    const regionToUse = regionFromCookie && allowedRegions.includes(regionFromCookie)
+      ? regionFromCookie
+      : defaultRegion;
+
+    return NextResponse.redirect(new URL(`/${defaultLocale}/${regionToUse}${req.nextUrl.search}`, req.url));
   }
 
   const match = pathname.match(/^\/(uz|ru|en)\/([^\/?#]+)/);
@@ -28,11 +33,18 @@ export async function middleware(req: NextRequest) {
     const region = match[2].toLowerCase();
 
     if (!allowedRegions.includes(region)) {
-      return NextResponse.redirect(new URL(`/${lang}/${defaultRegion}${search}`, req.url));
+      return NextResponse.redirect(new URL(`/${lang}/${defaultRegion}${req.nextUrl.search}`, req.url));
     }
+
+
+    const response = intlMiddleware(req);
+    response.cookies.set('region', region, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 30 // 30 kun saqlanadi
+    });
+    return response;
   }
 
-  // TO‘G‘RI: Middleware'ni return qilamiz
   return intlMiddleware(req);
 }
 

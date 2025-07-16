@@ -1,13 +1,516 @@
 {
-    "Header": {
-      "Region": {
-        "title": "Город",
-        "tashkent": "Ташкент",
-        "tashkent-region": "Ташкентская область",
-        "fergana": "Фергана",
-        "andijan": "Андижан",
-        "samarkand": "Самарканд"
+  "Header": {
+    "Region": {
+      "title": "City",
+      "tashkent": "Tashkent",
+      "tashkent-region": "Tashkent Region",
+      "fergana": "Fergana",
+      "andijan": "Andijan",
+      "namangan": "Namangan",
+      "sirdarya": "Sirdaryo",
+      "jizzax": "Jizzakh",
+      "samarqand": "Samarkand",
+      "qashqadarya": "Qashqadaryo",
+      "surxandarya": "Surkhandarya",
+      "buxara": "Bukhara",
+      "navai": "Navoi",
+      "xarezm": "Khorezm",
+      "qaraqalpak": "Karakalpakstan"
+    }
+  },
+  "Aside": {
+    "catalog": "Catalog",
+    "search": {
+      "placeholder": "Search by service or master name",
+      "button": "Search"
+    },
+    "action": {
+      "announcement": "Post an Ad",
+      "myads": "Orders",
+      "account": {
+        "login": "Log In"
       }
     }
+  },
+  "Footer": {
+    "logo": {
+      "title": "Masters Center"
+    },
+    "info": {
+      "title": "Masters Hub",
+      "list": [
+        "For service providers",
+        "For businesses",
+        "About us",
+        "Frequently asked questions"
+      ]
+    },
+    "download": {
+      "title": "Download the app"
+    },
+    "contact": {
+      "title": "Contact us"
+    },
+    "security": "© 2024 MasterHub.uz. All rights reserved"
+  },
+  "Account": {
+    "login": {
+      "title": "Log In to the System",
+      "inputs": {
+        "phone": {
+          "title": "Phone Number",
+          "placeholder": "Enter your phone number"
+        },
+        "password": {
+          "title": "Password",
+          "placeholder": "Enter your password",
+          "toggle": "Show password"
+        }
+      },
+      "forget": "Forgot your password?",
+      "button": {
+        "title": "Log In",
+        "loading": "Please wait..."
+      },
+      "or": {
+        "title": "Or",
+        "google": "Log in with Google",
+        "apple": "Log in with Apple"
+      },
+      "register": {
+        "text": "Don't have an account?",
+        "action": "Sign Up"
+      },
+      "login": {
+        "text": "Already have an account?",
+        "action": "Log In to the System"
+      },
+      "success": "You have logged in :)",
+      "errors": {
+        "phone": {
+          "required": "Phone number is required!",
+          "invalid": "Enter the full phone number",
+          "minLength": "Please enter the number in full format!"
+        },
+        "password": {
+          "required": "Password is required!",
+          "minLength": "Must be at least 8 characters"
+        },
+        "unknown": "Sorry, something went wrong with the server. Try again",
+        "phone-or-psw": "Phone number or password is incorrect"
+      }
+    },
+    "Registration": {
+      "success": "Successfully registered!",
+      "RegistrationTitle": "Sign Up",
+      "registrationdesc": "What is your purpose for signing up?",
+      "nameTitle": "Name",
+      "namePlaceholder": "Enter your name",
+      "button": {
+        "title": "Sign Up"
+      },
+      "errors": {
+        "name": {
+          "required": "Please enter your name!",
+          "minLength": "Name must be at least 2 characters long!",
+          "failed": "Error during registration"
+        },
+        "phone": {
+          "invalidOperatorCode": "The entered phone number's operator code does not belong to Uzbekistan operators."
+        }
+      }
+    }
+  },
+  "OTP": {
+    "title": "SMS Verification",
+    "description": "Enter the SMS code sent to your number.",
+    "try-phone": "Change phone number",
+    "try-code": "Request verification code again",
+    "timer-text": "Resend after",
+    "accept": "Confirm",
+    "errors": {
+      "required": "You must enter a number",
+      "minLength": "Enter the full code"
+    }
+  },
+  "Main": {
+    "sections": {
+      "OpenWorks": {
+        "title": "Open Jobs",
+        "more": "View All"
+      },
+      "OpenWorkCard": {
+        "more": "Details"
+      },
+      "DailyWorkers": {
+        "title": "Daily Workers",
+        "Card": {
+          "comments": "comments"
+        }
+      }
+    }
+  },
+  "OpenWorks": {
+    "breadcrumb": {
+      "home": "Home",
+      "openWorks": "Open Jobs"
+    },
+    "filter": {
+      "title": "Filter",
+      "catalog": {
+        "title": "Catalog",
+        "placeholder": "All catalogs",
+        "search": "Search"
+      },
+      "price": {
+        "title": "Price",
+        "from": "from",
+        "to": "to",
+        "error": {
+          "title": "Error in entering price",
+          "description": "Enter only numbers"
+        }
+      },
+      "period": {
+        "title": "Work Duration"
+      },
+      "location": {
+        "title": "Location",
+        "placeholder": "All Uzbekistan"
+      }
+    },
+    "more": "Show More"
+  },
+  "WorksPage": {
+    "breadcrumb": {
+      "worksPage": "Painter - Plasterer"
+    },
+    "content": {
+      "shortInfo": {
+        "createdDateTitle": "Posted:",
+        "period": {
+          "title": "Work Duration: ",
+          "days": "days",
+          "from": "from",
+          "to": "to"
+        },
+        "sendOfferButton": "Submit a request for the job"
+      },
+      "employer": {
+        "title": "Employer",
+        "period": {
+          "title": "On MASTERIUM ",
+          "subtitle": "since"
+        },
+        "other": "View other ads by the author"
+      },
+      "description": {
+        "title": "Description"
+      },
+      "location": {
+        "title": "Location"
+      }
+    },
+    "similar": {
+      "title": "Similar Ads",
+      "more": "View All"
+    }
+  },
+  "Services": {
+    "Service": {
+      "breadcrumb": {
+        "allServices": "All Services",
+        "santex": "Plumbers",
+        "santexName": "Eshonov Bahodir"
+      },
+      "ServicePerson": {
+        "sendOffer": "Offer a Job",
+        "infoTab": {
+          "infoTitle": "About the Master",
+          "infoExperience": "Work Experience"
+        },
+        "infoData": {
+          "infoText": "Gravida elementum diam fames dignissim sed donec nisi diam. Quisque feugiat ut rutrum fringilla id urna vitae pharetra amet.\n Lorem ipsum dolor sit amet consectetur. Accumsan phasellus aenean eget velit non interdum erat in semper. Lobortis turpis metus turpis risus congue amet ullamcorper. Vitae diam senectus feugiat amet. Rutrum ac nulla sollicitudin libero pellentesque. Non magna libero consectetur velit. Facilisi et tellus tristique vel ut enim. Vel sapien tristique ultrices ac at quis nulla ultrices. Cursus massa facilisis et pharetra varius nullam. Est id id leo sed vestibulum eros massa. Volutpat dolor tellus a a purus aliquam. Hendrerit justo suspendisse laoreet tincidunt scelerisque.",
+          "infoExperience": "Gravida elementum diam fames dignissim sed donec nisi diam. Quisque feugiat ut rutrum fringilla id urna vitae pharetra amet."
+        }
+      }
+    }
+  },
+  "Privacy": {
+    "Policy": {
+      "breadcrumb": {
+        "home": "Home",
+        "allServices": "All Services",
+        "privacy": "Privacy Policy",
+        "policy": "Privacy and Policy"
+      }
+    },
+    "PrivacyBtn": {
+      "confirm": "Confirm",
+      "back": "Back"
+    }
+  },
+  "OfferWork": {
+    "Offers": {
+      "breadcrumb": {
+        "home": "Home",
+        "santex": "Plumbers",
+        "allServices": "All Services",
+        "offers": "Offer a Job",
+        "PersonName": "Eshonov Bahodir",
+        "offerData": {
+          "offersTitle": "Offer a Job"
+        }
+      },
+      "PersonProfile": {
+        "WorkTitle": {
+          "titleInfo": "Enter the job title...",
+          "title": "Job Title"
+        },
+        "Category": {
+          "titleInfo": "Select a category",
+          "title": "Category"
+        },
+        "Definition": {
+          "title": "Description",
+          "titleInfo": "Put yourself in the shoes of the person reading this description and write it"
+        },
+        "Date": {
+          "titleStart": "Job Start Date:",
+          "titleEnd": "Job End Date:"
+        }
+      },
+      "Picture": {
+        "picInfo": "Select or drag and drop an image"
+      },
+      "offersTitle": "JOB OFFER TERMS",
+      "confirminfo": "I have read and agree to all the terms written above!"
+    },
+    "Advertise": {
+      "breadcrumb": {
+        "home": "Home",
+        "advertise": "Post an Ad"
+      },
+      "Description": {
+        "title": "Tell us about your ad"
+      },
+      "Buttons": {
+        "PaymentType": "100% prepayment",
+        "GiveAdvertise": "Post an Ad",
+        "fileplaceholder": "Select or drag and drop images"
+      }
+    },
+    "Contacts": {
+      "title": "Contact Information",
+      "callPerson": "Contact Person",
+      "callPersonPlaceholder": "Enter the full name of the contact person:",
+      "phone": "Phone Number:",
+      "phonePlaceholder": "Enter your phone number:",
+      "location": "Location",
+      "locationPlaceholder": "Enter the district, city, or street name...",
+      "selectLocation": "Mark the location on the map...",
+      "buttons": {
+        "cancelBtn": "Cancel",
+        "submitBtn": "Continue"
+      },
+      "mobileTab": "My Profile"
+    },
+    "Pictures": {
+      "Picture": {
+        "title": "Images",
+        "titleInfo": "The first image will be the main image of your ad. You can change the order of images by clicking and dragging them."
+      }
+    },
+    "PriceandInfo": {
+      "title": "Price and Additional Information",
+      "titleInfo": "Private or Business",
+      "Btn": {
+        "titleBtn": {
+          "physical": "Individual",
+          "business": "Business"
+        },
+        "PaymentType": {
+          "title": "Payment Method",
+          "stepbystep": "Step-by-step payment",
+          "advpayment": "Advance payment",
+          "afterjob": "After job completion"
+        },
+        "Price": {
+          "error": {
+            "title": "Error, enter only numbers!!!"
+          },
+          "title": "Price:",
+          "description": "Enter the price:"
+        }
+      },
+      "PicTitle": {
+        "title": "Images",
+        "titleInfo": "The first image will be the main image of your ad. You can change the order of images by clicking and dragging them."
+      }
+    }
+  },
+  "MyProfile": {
+    "editButtons": {
+      "addstory": "Add Story",
+      "changedata": "Edit Information",
+      "addvideo": "Add Video",
+      "addpic": "Add Image",
+      "storydescription": "Select or drag and drop a video",
+      "back": "Back",
+      "add": "Add"
+    }
+  },
+  "ChangeData": {
+    "title": "Edit Information",
+    "PersonalDetails": {
+      "title": "Personal Information",
+      "uploadphototitle": "Upload Profile Picture",
+      "uploadphotodescription": "Upload a 3x4 size photo with a white or blue background in .png, .jpg, .jpeg format, not exceeding 5MB.",
+      "Inputs": {
+        "nameInp": "First Name*",
+        "nameplaceholder": "Enter your first name",
+        "surnameInp": "Last Name*",
+        "surnameplaceholder": "Enter your last name",
+        "fatherNameInpt": "Father's Name*",
+        "fathernameplaceholder": "Enter your father's name",
+        "phoneplaceholder": "Enter your phone number",
+        "phoneInp": "Phone Number*",
+        "additionalPhone": "Additional Phone Number",
+        "additionalPhoneplaceholder": "Enter your phone number",
+        "emailInp": "Email",
+        "emailplaceholder": "example@mail.com",
+        "passport": "Passport Series and Number",
+        "passportplaceholder": "AA 1234567",
+        "BirthInpt": "Date of Birth",
+        "AboutYourself": "About Yourself",
+        "AboutYourselfDesc": "Write some information about yourself..."
+      }
+    },
+    "ServiceActivity": {
+      "title": "Service Activity",
+      "Inputs": {
+        "serviceType": "In which field do you provide services?",
+        "serviceTypeplaceholder": "Select a type of service",
+        "workExperience": "Your work experience?",
+        "workExperienceplaceholder": "Select your work experience",
+        "Tags": "Tags related to your activity",
+        "Tagsplaceholder": "Select tags",
+        "Country": "Which region do you work in?",
+        "Countryplaceholder": "Select a region",
+        "region": "Province?",
+        "regionplaceholder": "Select a province",
+        "District": "District",
+        "Districtplaceholder": "Select a district"
+      },
+      "Btn": {
+        "cancelbtn": "Cancel",
+        "savebtn": "Save Changes"
+      }
+    },
+    "privacypolicy": {
+      "title": "The kitchen needs Euro-style renovation",
+      "acceptoffer": "Accept Offer",
+      "breadcrumb": {
+        "home": "Home",
+        "myoffers": "My Orders",
+        "job": "The kitchen needs Euro-style renovation"
+      }
+    }
+  },
+  "OfferForWorkers": {
+    "breadcrumb": {
+      "mainpage": "Home",
+      "myoffers": "My Orders",
+      "title": "My Orders"
+    },
+    "btn": {
+      "seeOffer": "View Offer"
+    },
+    "applicationNumb": " new applications"
+  },
+  "MyAds": {
+    "breadcrumb": {
+      "home": "Home",
+      "myAds": "My Ads",
+      "workTitle": "The kitchen needs Euro-style renovation"
+    },
+    "title": "My Ads",
+    "myAdsBtn": {
+      "btnTitle": "View and Edit"
+    },
+    "FullInfoAds": {
+      "btn": "View other ads by the author",
+      "seeofferdetail": "View offer details"
+    },
+    "changeAdsbtn": "Edit Ad"
+  },
+  "VideoTab": {
+    "videoId": [
+      "V62RciuVMiw",
+      "qDvYkFwTeXM",
+      "y53RXRSPF1o",
+      "qDvYkFwTeXM",
+      "y53RXRSPF1o",
+      "qDvYkFwTeXM"
+    ]
+  },
+  "ImageTab": {
+    "images": [
+      "https://images.livemint.com/img/2022/06/20/600x338/labour1--621x414_1655737046895.JPG",
+      "https://images.livemint.com/img/2022/06/20/600x338/labour1--621x414_1655737046895.JPG",
+      "https://images.livemint.com/img/2022/06/20/600x338/labour1--621x414_1655737046895.JPG",
+      "https://images.livemint.com/img/2022/06/20/600x338/labour1--621x414_1655737046895.JPG",
+      "https://images.livemint.com/img/2022/06/20/600x338/labour1--621x414_1655737046895.JPG",
+      "https://images.livemint.com/img/2022/06/20/600x338/labour1--621x414_1655737046895.JPG"
+    ]
+  },
+  "ReviewTab": {
+    "averageRating": 4.5,
+    "totalReviews": 523,
+    "ratings": {
+      "5": 488,
+      "4": 74,
+      "3": 14,
+      "2": 0,
+      "1": 0
+    },
+    "comments": "Comments",
+    "writeComment": "Write a comment",
+    "allComments": "All comments",
+    "Modal": {
+      "sendbtn": "Send",
+      "checktext": "All reviews are verified within 48 hours before being posted to ensure authenticity and accuracy.",
+      "writetext": "Leave a review for",
+      "rate": "How would you rate the work of"
+    },
+    "reviews": [
+      {
+        "name": "Courtney Henry",
+        "date": "November 14, 2024",
+        "rating": 4,
+        "profile_pic": "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D",
+        "comment": "They are a great partner on both Strategic and Implementation. They have proven to be fair and responsive. The partner has been progressing well with the business change environment, talents of new skill set mi"
+      },
+      {
+        "name": "Robert Fox",
+        "date": "November 14, 2024",
+        "rating": 4,
+        "profile_pic": "https://media.istockphoto.com/id/1587604256/photo/portrait-lawyer-and-black-woman-with-tablet-smile-and-happy-in-office-workplace-african.jpg?s=612x612&w=0&k=20&c=n9yulMNKdIYIQC-Qns8agFj6GBDbiKyPRruaUTh4MKs=",
+        "comment": "The partner has been progressing well with the business change environment, talents of new skill set mi"
+      },
+      {
+        "name": "Courtney Henry",
+        "date": "November 14, 2024",
+        "rating": 4,
+        "profile_pic": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
+        "comment": "Incredible group of people and talented professionals. Focused on the development of flexible and i"
+      }
+    ]
+  },
+  "price": {
+    "sum": {
+      "title": "UZS",
+      "starting-from": "Starting from UZS"
+    }
   }
-  
+}

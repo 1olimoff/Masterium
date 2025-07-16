@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const Employer = ({ className }: Props) => {
-  const t = useTranslations()
+  const t = useTranslations("")
   return (
     <section className={cn("w-full flex flex-col gap-2", className)}>
       <p className="text-xl font-semibold uppercase">
@@ -41,7 +41,7 @@ export const Employer = ({ className }: Props) => {
         <Link
         href=""
          className="bg-white text-[#32ADE6] hover:bg-[#FFFF]  hover:text-[#32ADE6]  sm:text-[15px] text-center">
-          Muallifning boshqa e'lonlarini ko'rish
+         {t("MyAds.FullInfoAds.btn")}
         </Link>
       </div>
     </section>

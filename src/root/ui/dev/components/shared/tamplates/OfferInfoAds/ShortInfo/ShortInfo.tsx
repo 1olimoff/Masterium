@@ -46,7 +46,7 @@ export const ShortInfoTab = ({ className }: Props) => {
                     width={20}
                     height={20}
                 />
-        Taklif shartlarini ko'rish
+        {t("MyAds.FullInfoAds.seeofferdetail")}
       </Link>
     </div>
   )

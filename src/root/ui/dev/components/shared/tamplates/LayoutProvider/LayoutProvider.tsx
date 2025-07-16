@@ -8,7 +8,7 @@ import { cookies } from 'next/headers';
 
 interface LayoutProps {
     children: React.ReactNode;
-    params: { locale?: string; region?: string }; // Определяем params как промис
+    params: { locale?: string; region?: string };
     className?: string;
 }
 
@@ -20,7 +20,7 @@ export const LayoutProvider = async ({ className, children, params }: LayoutProp
         <div className={cn(className)}>
             <Header params={params} />
             <main>
-                <Aside />
+                <Aside token={cookieToken}/>
                 {children}
             </main>
             <Footer />

@@ -6,7 +6,511 @@
       "tashkent-region": "Ташкентская область",
       "fergana": "Фергана",
       "andijan": "Андижан",
-      "samarkand": "Самарканд"
+      "namangan": "Наманган",
+      "sirdarya": "Сырдарья",
+      "jizzax": "Джизак",
+      "samarqand": "Самарканд",
+      "qashqadarya": "Кашкадарья",
+      "surxandarya": "Сурхандарья",
+      "buxara": "Бухара",
+      "navai": "Навои",
+      "xarezm": "Хорезм",
+      "qaraqalpak": "Каракалпакстан"
+    }
+  },
+  "Aside": {
+    "catalog": "Каталог",
+    "search": {
+      "placeholder": "Поиск по названию услуги или мастера",
+      "button": "Поиск"
+    },
+    "action": {
+      "announcement": "Подать объявление",
+      "myads": "Мои заказы",
+      "account": {
+        "login": "Вход"
+      }
+    }
+  },
+  "Footer": {
+    "logo": {
+      "title": "Центр мастеров"
+    },
+    "info": {
+      "title": "Masters Hub",
+      "list": [
+        "Для исполнителей",
+        "Для компаний",
+        "О нас",
+        "Часто задаваемые вопросы"
+      ]
+    },
+    "download": {
+      "title": "Скачать приложение"
+    },
+    "contact": {
+      "title": "Связаться с нами"
+    },
+    "security": "© 2024 MasterHub.uz. Все права защищены"
+  },
+  "Account": {
+    "login": {
+      "title": "Вход в систему",
+      "inputs": {
+        "phone": {
+          "title": "Номер телефона",
+          "placeholder": "Введите номер телефона"
+        },
+        "password": {
+          "title": "Пароль",
+          "placeholder": "Введите пароль",
+          "toggle": "Показать пароль"
+        }
+      },
+      "forget": "Забыли пароль?",
+      "button": {
+        "title": "Войти",
+        "loading": "Пожалуйста, подождите..."
+      },
+      "or": {
+        "title": "Или",
+        "google": "Войти через Google",
+        "apple": "Войти через Apple"
+      },
+      "register": {
+        "text": "Нет аккаунта?",
+        "action": "Зарегистрироваться"
+      },
+      "login": {
+        "text": "Уже есть аккаунт?",
+        "action": "Войти"
+      },
+      "success": "Вы вошли в систему :)",
+      "errors": {
+        "phone": {
+          "required": "Номер телефона обязателен!",
+          "invalid": "Введите полный номер телефона",
+          "minLength": "Пожалуйста, укажите номер в полном формате!"
+        },
+        "password": {
+          "required": "Пароль обязателен!",
+          "minLength": "Минимум 8 символов"
+        },
+        "unknown": "Извините, произошла ошибка на сервере. Повторите попытку",
+        "phone-or-psw": "Неверный номер или пароль"
+      }
+    },
+    "Registration": {
+      "success": "Успешная регистрация!",
+      "RegistrationTitle": "Регистрация",
+      "registrationdesc": "С какой целью вы хотите зарегистрироваться?",
+      "nameTitle": "Имя",
+      "namePlaceholder": "Введите ваше имя",
+      "button": {
+        "title": "Зарегистрироваться"
+      },
+      "errors": {
+        "name": {
+          "required": "Пожалуйста, введите имя!",
+          "minLength": "Имя должно содержать не менее 2 букв!",
+          "failed": "Ошибка при регистрации"
+        },
+        "phone": {
+          "invalidOperatorCode": "Введённый номер телефона не соответствует операторам Узбекистана."
+        }
+      }
+    }
+  },
+  "OTP": {
+    "title": "SMS подтверждение",
+    "description": "Введите код из SMS, отправленного на ваш номер.",
+    "try-phone": "Изменить номер телефона",
+    "try-code": "Запросить код повторно",
+    "timer-text": "через",
+    "accept": "Подтвердить",
+    "errors": {
+      "required": "Введите число",
+      "minLength": "Введите код полностью"
+    }
+  },
+  "Main": {
+    "sections": {
+      "OpenWorks": {
+        "title": "Открытые вакансии",
+        "more": "Посмотреть все"
+      },
+      "OpenWorkCard": {
+        "more": "Подробнее"
+      },
+      "DailyWorkers": {
+        "title": "Рабочие на день",
+        "Card": {
+          "comments": "отзывы"
+        }
+      }
+    }
+  },
+  "OpenWorks": {
+    "breadcrumb": {
+      "home": "Главная",
+      "openWorks": "Открытые вакансии"
+    },
+    "filter": {
+      "title": "Фильтр",
+      "catalog": {
+        "title": "Каталог",
+        "placeholder": "Все каталоги",
+        "search": "Поиск"
+      },
+      "price": {
+        "title": "Цена",
+        "from": "от",
+        "to": "до",
+        "error": {
+          "title": "Ошибка ввода цены",
+          "description": "Введите только цифры"
+        }
+      },
+      "period": {
+        "title": "Срок работы"
+      },
+      "location": {
+        "title": "Местоположение",
+        "placeholder": "Вся Узбекистан"
+      }
+    },
+    "more": "Показать ещё"
+  },
+  "WorksPage": {
+    "breadcrumb": {
+      "worksPage": "Маляр - штукатур"
+    },
+    "content": {
+      "shortInfo": {
+        "createdDateTitle": "Размещено:",
+        "period": {
+          "title": "Срок работы: ",
+          "days": "дней",
+          "from": "от",
+          "to": "до"
+        },
+        "sendOfferButton": "Отправить предложение"
+      },
+      "employer": {
+        "title": "Работодатель",
+        "period": {
+          "title": "на MASTERIUM с ",
+          "subtitle": "года"
+        },
+        "other": "Смотреть другие объявления автора"
+      },
+      "description": {
+        "title": "Описание"
+      },
+      "location": {
+        "title": "Местоположение"
+      }
+    },
+    "similar": {
+      "title": "Похожие объявления",
+      "more": "Посмотреть все"
+    }
+  },
+  "Services": {
+    "Service": {
+      "breadcrumb": {
+        "allServices": "Все услуги",
+        "santex": "Сантехники",
+        "santexName": "Эшонoв Бахадир"
+      },
+      "ServicePerson": {
+        "sendOffer": "Предложить работу",
+        "infoTab": {
+          "infoTitle": "О мастере",
+          "infoExperience": "Опыт работы"
+        },
+        "infoData": {
+          "infoText": "Gravida elementum diam fames dignissim sed donec nisi diam. Quisque feugiat ut rutrum fringilla id urna vitae pharetra amet.\n Lorem ipsum dolor sit amet consectetur. Accumsan phasellus aenean eget velit non interdum erat in semper. Lobortis turpis metus turpis risus congue amet ullamcorper. Vitae diam senectus feugiat amet. Rutrum ac nulla sollicitudin libero pellentesque. Non magna libero consectetur velit. Facilisi et tellus tristique vel ut enim. Vel sapien tristique ultrices ac at quis nulla ultrices. Cursus massa facilisis et pharetra varius nullam. Est id id leo sed vestibulum eros massa. Volutpat dolor tellus a a purus aliquam. Hendrerit justo suspendisse laoreet tincidunt scelerisque.",
+          "infoExperience": "Gravida elementum diam fames dignissim sed donec nisi diam. Quisque feugiat ut rutrum fringilla id urna vitae pharetra amet."
+        }
+      }
+    }
+  },
+  "Privacy": {
+    "Policy": {
+      "breadcrumb": {
+        "home": "Главная",
+        "allServices": "Все услуги",
+        "privacy": "Политика конфиденциальности",
+        "policy": "Политика конфиденциальности"
+      }
+    },
+    "PrivacyBtn": {
+      "confirm": "Подтверждаю",
+      "back": "Назад"
+    }
+  },
+  "OfferWork": {
+    "Offers": {
+      "breadcrumb": {
+        "home": "Главная",
+        "santex": "Сантехники",
+        "allServices": "Все услуги",
+        "offers": "Предложить работу",
+        "PersonName": "Эшонoв Бахадир",
+        "offerData": {
+          "offersTitle": "Предложить работу"
+        }
+      },
+      "PersonProfile": {
+        "WorkTitle": {
+          "titleInfo": "Введите заголовок работы...",
+          "title": "Заголовок работы"
+        },
+        "Category": {
+          "titleInfo": "Выберите категорию",
+          "title": "Категория"
+        },
+        "Definition": {
+          "title": "Описание",
+          "titleInfo": "Представьте, что вы на месте человека, который это видит, и опишите"
+        },
+        "Date": {
+          "titleStart": "Дата начала работы:",
+          "titleEnd": "Дата окончания работы:"
+        }
+      },
+      "Picture": {
+        "picInfo": "Выберите или перетащите изображение"
+      },
+      "offersTitle": "УСЛОВИЯ ПРЕДЛОЖЕНИЯ РАБОТЫ",
+      "confirminfo": "Я ознакомился со всеми вышеуказанными условиями и подтверждаю их!"
+    },
+    "Advertise": {
+      "breadcrumb": {
+        "home": "Главная",
+        "advertise": "Подать объявление"
+      },
+      "Description": {
+        "title": "Расскажите нам о вашем объявлении"
+      },
+      "Buttons": {
+        "PaymentType": "100% предоплата",
+        "GiveAdvertise": "Опубликовать объявление",
+        "fileplaceholder": "Выберите или перетащите изображения"
+      }
+    },
+    "Contacts": {
+      "title": "Контактные данные",
+      "callPerson": "Контактное лицо",
+      "callPersonPlaceholder": "Введите имя и фамилию контактного лица:",
+      "phone": "Номер телефона:",
+      "phonePlaceholder": "Введите ваш телефон:",
+      "location": "Местоположение",
+      "locationPlaceholder": "Введите район, город, название улицы...",
+      "selectLocation": "Выберите местоположение на карте..",
+      "buttons": {
+        "cancelBtn": "Отменить",
+        "submitBtn": "Продолжить"
+      },
+      "mobileTab": "Мой профиль"
+    },
+    "Pictures": {
+      "Picture": {
+        "title": "Изображения",
+        "titleInfo": "Первое изображение будет основным. Порядок можно изменить перетаскиванием."
+      }
+    },
+    "PriceandInfo": {
+      "title": "Цена и дополнительная информация",
+      "titleInfo": "Частное лицо или бизнес",
+      "Btn": {
+        "titleBtn": {
+          "physical": "Физическое лицо",
+          "business": "Бизнес"
+        },
+        "PaymentType": {
+          "title": "Тип оплаты",
+          "stepbystep": "Помесячная оплата",
+          "advpayment": "Аванс",
+          "afterjob": "После выполнения"
+        },
+        "Price": {
+          "error": {
+            "title": "Ошибка: вводите только цифры!!!"
+          },
+          "title": "Цена:",
+          "description": "Введите цену:"
+        }
+      },
+      "PicTitle": {
+        "title": "Изображения",
+        "titleInfo": "Первое изображение будет основным. Порядок можно изменить перетаскиванием."
+      }
+    }
+  },
+  "MyProfile": {
+    "editButtons": {
+      "addstory": "Добавить историю",
+      "changedata": "Изменить данные",
+      "addvideo": "Добавить видео",
+      "addpic": "Добавить изображение",
+      "storydescription": "Выберите или перетащите видео",
+      "back": "Назад",
+      "add": "Добавить"
+    }
+  },
+  "ChangeData": {
+    "title": "Изменение данных",
+    "PersonalDetails": {
+      "title": "Личные данные",
+      "uploadphototitle": "Загрузить фото профиля",
+      "uploadphotodescription": "Загрузите фотографию размером 3x4 на белом или синем фоне в формате .png, .jpg, .jpeg, размером не более 5 МБ.",
+      "Inputs": {
+        "nameInp": "Имя*",
+        "nameplaceholder": "Введите ваше имя",
+        "surnameInp": "Фамилия*",
+        "surnameplaceholder": "Введите вашу фамилию",
+        "fatherNameInpt": "Отчество*",
+        "fathernameplaceholder": "Введите имя вашего отца",
+        "phoneplaceholder": "Введите номер телефона",
+        "phoneInp": "Номер телефона*",
+        "additionalPhone": "Дополнительный номер телефона",
+        "additionalPhoneplaceholder": "Введите номер телефона",
+        "emailInp": "Электронная почта",
+        "emailplaceholder": "example@mail.com",
+        "passport": "Серия и номер паспорта",
+        "passportplaceholder": "AA 1234567",
+        "BirthInpt": "Дата рождения",
+        "AboutYourself": "Информация о себе",
+        "AboutYourselfDesc": "Напишите информацию о себе..."
+      }
+    },
+    "ServiceActivity": {
+      "title": "Сфера деятельности",
+      "Inputs": {
+        "serviceType": "В какой сфере вы предоставляете услуги?",
+        "serviceTypeplaceholder": "Выберите вид услуги",
+        "workExperience": "Ваш опыт работы?",
+        "workExperienceplaceholder": "Выберите ваш опыт работы",
+        "Tags": "Теги, связанные с деятельностью",
+        "Tagsplaceholder": "Выберите теги",
+        "Country": "В каком регионе вы работаете?",
+        "Countryplaceholder": "Выберите регион",
+        "region": "Область",
+        "regionplaceholder": "Выберите область",
+        "District": "Район",
+        "Districtplaceholder": "Выберите район"
+      },
+      "Btn": {
+        "cancelbtn": "Отменить",
+        "savebtn": "Сохранить изменения"
+      }
+    },
+    "privacypolicy": {
+      "title": "Необходимо сделать евроремонт кухни",
+      "acceptoffer": "Принять предложение",
+      "breadcrumb": {
+        "home": "Главная",
+        "myoffers": "Мои заказы",
+        "job": "Необходимо сделать евроремонт кухни"
+      }
+    }
+  },
+  "OfferForWorkers": {
+    "breadcrumb": {
+      "mainpage": "Главная",
+      "myoffers": "Мои заказы",
+      "title": "Мои заказы"
+    },
+    "btn": {
+      "seeOffer": "Посмотреть предложение"
+    },
+    "applicationNumb": " новых заявок"
+  },
+  "MyAds": {
+    "breadcrumb": {
+      "home": "Главная",
+      "myAds": "Мои объявления",
+      "workTitle": "Необходимо сделать евроремонт кухни"
+    },
+    "title": "Мои объявления",
+    "myAdsBtn": {
+      "btnTitle": "Просмотреть и изменить"
+    },
+    "FullInfoAds": {
+      "btn": "Посмотреть другие объявления автора",
+      "seeofferdetail": "Посмотреть условия предложения"
+    },
+    "changeAdsbtn": "Изменить объявление"
+  },
+  "VideoTab": {
+    "videoId": [
+      "V62RciuVMiw",
+      "qDvYkFwTeXM",
+      "y53RXRSPF1o",
+      "qDvYkFwTeXM",
+      "y53RXRSPF1o",
+      "qDvYkFwTeXM"
+    ]
+  },
+  "ImageTab": {
+    "images": [
+      "https://images.livemint.com/img/2022/06/20/600x338/labour1--621x414_1655737046895.JPG",
+      "https://images.livemint.com/img/2022/06/20/600x338/labour1--621x414_1655737046895.JPG",
+      "https://images.livemint.com/img/2022/06/20/600x338/labour1--621x414_1655737046895.JPG",
+      "https://images.livemint.com/img/2022/06/20/600x338/labour1--621x414_1655737046895.JPG",
+      "https://images.livemint.com/img/2022/06/20/600x338/labour1--621x414_1655737046895.JPG",
+      "https://images.livemint.com/img/2022/06/20/600x338/labour1--621x414_1655737046895.JPG"
+    ]
+  },
+  "ReviewTab": {
+    "averageRating": 4.5,
+    "totalReviews": 523,
+    "ratings": {
+      "5": 488,
+      "4": 74,
+      "3": 14,
+      "2": 0,
+      "1": 0
+    },
+    "comments": "Комментарии",
+    "writeComment": "Написать комментарий",
+    "allComments": "Все комментарии",
+    "Modal": {
+      "sendbtn": "Отправить",
+      "checktext": "Все отзывы проверяются в течение 48 часов для обеспечения подлинности и точности перед публикацией.",
+      "writetext": "Оставьте отзыв для",
+      "rate": "Как вы оцениваете работу"
+    },
+    "reviews": [
+      {
+        "name": "Courtney Henry",
+        "date": "14 ноября 2024",
+        "rating": 4,
+        "profile_pic": "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D",
+        "comment": "Они являются отличным партнёром как в стратегии, так и в реализации. Проявляют честность и ответственность. Хорошо адаптируются к изменениям и обладают нужными навыками."
+      },
+      {
+        "name": "Robert Fox",
+        "date": "14 ноября 2024",
+        "rating": 4,
+        "profile_pic": "https://media.istockphoto.com/id/1587604256/photo/portrait-lawyer-and-black-woman-with-tablet-smile-and-happy-in-office-workplace-african.jpg?s=612x612&w=0&k=20&c=n9yulMNKdIYIQC-Qns8agFj6GBDbiKyPRruaUTh4MKs=",
+        "comment": "Хорошо адаптируются к изменениям и обладают навыками, соответствующими новым требованиям."
+      },
+      {
+        "name": "Courtney Henry",
+        "date": "14 ноября 2024",
+        "rating": 4,
+        "profile_pic": "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
+        "comment": "Невероятная команда профессионалов. Сфокусированы на развитии гибких и инновационных решений."
+      }
+    ]
+  },
+  "price": {
+    "sum": {
+      "title": "сум",
+      "starting-from": "от"
     }
   }
 }

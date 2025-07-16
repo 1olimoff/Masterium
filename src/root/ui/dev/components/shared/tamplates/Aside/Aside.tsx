@@ -1,6 +1,7 @@
-"use client"
+"use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { cn } from '@/root/business/lib/utils';
 import Image from "next/image";
 import {
@@ -9,20 +10,45 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/root/ui/dev/shadcn/ui/dropdown-menu";
-import { Input } from "@/root/ui/dev/shadcn/ui/input";
 import { Button } from "@/root/ui/dev/shadcn/ui/button";
 import { useTranslations } from "next-intl";
 import { LoginProviderDialog } from "@/root/ui/dev/components/shared/elements/account/login/LoginTablet";
-import { Link } from '@/i18n/routing';
+// import { Link } from '@/i18n/routing';
 import InputArea from './InputArea/InputArea';
+import { Link } from '@/i18n/routing';
+import ServerLink from '../../elements/Links/ServerLink';
+
+// Backenddan kelgan ma'lumotlar uchun interface
+interface Category {
+    id: number;
+    name: string;
+    icon: string;
+}
 
 interface Props {
     className?: string;
-    token?: string
+    token: string | null;
 }
 
 const Aside = ({ className, token }: Props) => {
+
     const t = useTranslations("Aside");
+    const [categories, setCategories] = useState<Category[]>([]);
+
+    // API dan ma'lumotlarni olish
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await axios.get('/api/category');
+                if (response.data.success) {
+                    setCategories(response.data.results);
+                }
+            } catch (error) {
+                console.error("Kategoriyalarni olishda xatolik:", error);
+            }
+        };
+        fetchCategories();
+    }, []);
 
     return (
         <aside className={cn(className, "py-3 px-2 sm:shadow sm:flex hidden sticky sm:bg-maket-primary bg-white top-0 z-[50]")}>
@@ -45,12 +71,21 @@ const Aside = ({ className, token }: Props) => {
                                 <p className="font-light text-sm truncate">{t('catalog')}</p>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent>
-                                {[...Array(10)].map((_, idx) => (
-                                    <DropdownMenuItem key={idx}>
-                                        <Image src="/svg/aside/tech.svg" alt="Tech Icon" width={18} height={18} />
-                                        Santehniklar
-                                    </DropdownMenuItem>
-                                ))}
+                                {
+                                    categories.map((category) => (
+                                        <ServerLink path={`services/${category.name}`}>
+                                            <DropdownMenuItem key={category.id}>
+                                                <Image
+                                                    src={`${process.env.NEXT_PUBLIC_BASE_URL}${category.icon}`}
+                                                    alt={`${category.name} Icon`}
+                                                    width={18}
+                                                    height={18}
+                                                />
+                                                {category.name}
+                                            </DropdownMenuItem>
+                                        </ServerLink>
+                                    ))
+                                }
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </div>
@@ -71,7 +106,6 @@ const Aside = ({ className, token }: Props) => {
 
                 {/* Actions */}
                 <div className="hidden sm:flex items-center gap-2 flex-shrink-0">
-
                     {/* Add link */}
                     <Link
                         href="/tashkent/advertise"
@@ -94,43 +128,42 @@ const Aside = ({ className, token }: Props) => {
                         <p className="text-sm">{t('action.announcement')}</p>
                     </Link>
 
-
                     {/* Login */}
-
-                    {token ? <LoginProviderDialog
-                        trigger={
-                            <div className="bg-white group h-[42px] px-2 flex items-center gap-1 text-maket-primary rounded-md hover:bg-maket-primary hover:text-white border cursor-pointer border-white whitespace-nowrap">
-                                <Image src="/svg/aside/user.svg" alt="User Icon" width={20} height={20} className="group-hover:hidden" />
-                                <Image src="/svg/aside/user-white.svg" alt="User Icon" width={20} height={20} className="group-hover:block hidden" />
-                                <p className="text-sm">{t('action.account.login')}</p>
-                            </div>
-                        }
-                    /> : <Link
-                        href={"/tashkent/myads"}
-                        className="group bg-white h-[42px] px-2 flex items-center gap-2 rounded-md text-maket-primary border border-white hover:bg-maket-primary hover:text-white whitespace-nowrap transition-colors">
-                        <Image
-                            src="/svg/aside/ads.svg"
-                            alt="Add Icon"
-                            width={20}
-                            height={20}
-                            className="group-hover:hidden transition-opacity duration-200"
+                    {token ? (
+                        <Link
+                            href="/tashkent/myads"
+                            className="group bg-white h-[42px] px-2 flex items-center gap-2 rounded-md text-maket-primary border border-white hover:bg-maket-primary hover:text-white whitespace-nowrap transition-colors"
+                        >
+                            <Image
+                                src="/svg/aside/ads.svg"
+                                alt="My Ads Icon"
+                                width={20}
+                                height={20}
+                                className="group-hover:hidden transition-opacity duration-200"
+                            />
+                            <Image
+                                src="/svg/aside/adsactive.svg"
+                                alt="My Ads Active Icon"
+                                width={20}
+                                height={20}
+                                className="hidden group-hover:block transition-opacity duration-200"
+                            />
+                            <p className="text-sm">{t('action.myads')}</p>
+                        </Link>
+                    ) : (
+                        <LoginProviderDialog
+                            trigger={
+                                <div className="bg-white group h-[42px] px-2 flex items-center gap-1 text-maket-primary rounded-md hover:bg-maket-primary hover:text-white border cursor-pointer border-white whitespace-nowrap">
+                                    <Image src="/svg/aside/user.svg" alt="User Icon" width={20} height={20} className="group-hover:hidden" />
+                                    <Image src="/svg/aside/user-white.svg" alt="User Icon" width={20} height={20} className="group-hover:block hidden" />
+                                    <p className="text-sm">{t('action.account.login')}</p>
+                                </div>
+                            }
                         />
-                        <Image
-                            src="/svg/aside/adsactive.svg"
-                            alt="Add Icon"
-                            width={20}
-                            height={20}
-                            className="hidden group-hover:block transition-opacity duration-200"
-                        />
-                        <p className="text-sm">{t('action.myads')}</p>
-
-                    </Link>
-                    }
-
+                    )}
                 </div>
             </div>
         </aside>
     );
 };
-
 export default Aside;

@@ -26,7 +26,7 @@ function Catalogs() {
                             width={18}
                             height={18}
                         />
-                        <span className="text-lg   text-gray-900">Santehniklar</span>
+                        <span className="text-lg text-gray-900">Santehniklar</span>
                     </div>
                 ))}
             </div>

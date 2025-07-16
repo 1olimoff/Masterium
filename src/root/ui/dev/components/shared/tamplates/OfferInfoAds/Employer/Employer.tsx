@@ -41,7 +41,7 @@ export const Employer = ({ className }: Props) => {
         <Link
         href=""
          className="bg-white text-[#32ADE6] hover:bg-[#FFFF] flex justify-center items-center mt-1 hover:text-[#32ADE6] sm:text-[15px] text-center">
-          Muallifning boshqa e'lonlarini ko'rish
+          {t("MyAds.FullInfoAds.btn")}
         </Link>
       </div>
     </section>

@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const ShortInfoTab = ({ className }: Props) => {
-  const t = useTranslations()
+  const t = useTranslations("")
   return (
     <div className={cn("w-full flex flex-col gap-3", className)}>
       <Link
@@ -45,7 +45,7 @@ export const ShortInfoTab = ({ className }: Props) => {
             strokeLinejoin="round"
           />
         </svg>
-        E'lonni o'zgartirish
+       {t("MyAds.changeAdsbtn")}
       </Link>
       <p className="text-sm text-maket-gray">
         {t("WorksPage.content.shortInfo.createdDateTitle")} 25.11.2024 09:45

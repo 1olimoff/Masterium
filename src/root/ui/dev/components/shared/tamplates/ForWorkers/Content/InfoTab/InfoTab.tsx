@@ -53,12 +53,7 @@ export const InfoTab = ({ className, data, infoText, experienceText, tags }: Pro
           </p>
         ))}
       </div>
-
-
-
     </div>
-
-
 
   );
 };

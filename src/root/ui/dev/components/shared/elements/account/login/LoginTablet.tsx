@@ -11,8 +11,7 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { LoginProviderTablet } from "../Registration/RegisterTablet";
 import { OTPModal } from "../otp/OTPModal";
-import Cookies from "js-cookie"; // Cookie boshqarish uchun
-
+import Cookies from "js-cookie"; 
 interface Props {
   trigger: React.ReactNode;
 }
@@ -147,6 +146,9 @@ export const LoginProviderDialog = ({ trigger }: Props) => {
         if (Cookies.get("accessToken")) {
           console.log("Access token saqlandi, token holati true");
           token = true;
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000); // 1 sekund
         } else {
           console.error("Access token saqlanmadi!");
           token = false;

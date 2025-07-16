@@ -113,7 +113,7 @@ export const OfferCard = ({ className, data }: Props) => {
 
                 {data.applicationCount > 0 && (
                     <div className="absolute top-[32%] left-[15%] sm:top-[38%] sm:left-[25%] z-10 bg-red-500 text-white text-xs sm:text-sm font-semibold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full">
-                        {data.applicationCount} ta yangi ariza
+                        {data.applicationCount} {t("OfferForWorkers.applicationNumb")}
                     </div>
                 )}
             </Carousel>

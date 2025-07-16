@@ -40,7 +40,7 @@ export const Employer = ({ className }: Props) => {
 
             <div className="flex justify-center items-center w-full">
                 <Button className="bg-white w-20 text-[#32ADE6  hover:bg-[#FFFF] hover:text-[#32ADE6] sm:text-[13px] text-center">
-                    Muallifning boshqa e'lonlarini ko'rish
+                   {t("MyAds.FullInfoAds.btn")}
                 </Button>
             </div>
         </section> 

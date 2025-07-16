@@ -17,7 +17,7 @@ export const Privacy = () => {
       <h1 className="text-2xl font-bold mb-6 text-[#001D55]">Ish taklif qilish</h1>
 
       <div className="bg-white p-6 rounded-lg">
-        <h2 className="text-xl font-semibold mb-4 text-[#001D55]">ISH TAKLIF QILISH SHARTLARI</h2>
+        <h2 className="text-xl font-semibold mb-4 text-[#001D55]">{t("OfferWork.Offers.offersTitle")}</h2>
 
         <div className="text-sm space-y-4  text-gray-700">
           {[...Array(7)].map((_, i) => (
@@ -30,7 +30,7 @@ export const Privacy = () => {
         <div className="flex items-start mt-6">
           <input id="accept" type="checkbox" className="mt-1 mr-2" />
           <label htmlFor="accept" className="text-sm text-gray-700">
-            Yuqorida yozilgan barcha shartlar bilan tanishdim va ularni tasdiqlayman!
+           {t("OfferWork.Offers.confirminfo")}
           </label>
         </div>
 
