@@ -1,41 +1,38 @@
-// components/OpenWorkCard.tsx
 import React from "react";
-
 import { Link } from "@/root/business/locales/i18n/routing";
 import { cn } from "@/root/business/lib/utils";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { CarouselWrapper } from "./CarouselWrapper/CarouselWraper";
+import ServerLink from "../Links/ServerLink";
 
-type Item = {
+// props uchun to'g'ri interfeys
+export interface Item {
+  offer_id: number;
   title: string;
-  category: string;
+  category_name: string;
   price: number;
-  client: {
-    avatar: {
-      src: string;
-      alt: string;
-    };
+  currency: string;
+  images: string[];
+  user: {
+    user_uuid: string;
     name: string;
-    type: string;
-    online: boolean;
-  };
-  applicationCount: number;
-};
+  }
+}
 
 interface Props {
   className?: string;
   data: Item;
 }
 
-const images = [
-  { src: "/img/advertising/gas.png", alt: "Gas Repair" },
-  { src: "/img/advertising/gas.png", alt: "Gas Repair" },
-  { src: "/img/advertising/gas.png", alt: "Gas Repair" },
-];
-
 export const OpenWorkCard = ({ className, data }: Props) => {
   const t = useTranslations();
+
+  const dataImages: { src: string; alt: string }[] = data.images.map((el, i) => ({
+    src: `${process.env.NEXT_PUBLIC_BASE_URL}${el}`,
+    alt: `Image ${i}`,
+  }));
+
 
   return (
     <div
@@ -45,14 +42,14 @@ export const OpenWorkCard = ({ className, data }: Props) => {
       )}
     >
       <div className="relative">
-        <CarouselWrapper images={images} />
+        <CarouselWrapper images={dataImages} />
       </div>
 
       <div className="p-4 flex flex-col gap-3">
         <div>
-          <h3 className="text-lg sm:text-xl font-semibold">{data.title}</h3>
+          <h3 className="text-lg sm:text-[18px] font-[590]">{data.title}</h3>
           <p className="text-maket-gray text-sm sm:text-base">
-            {data.category}
+            {data.category_name}
           </p>
         </div>
 
@@ -64,31 +61,28 @@ export const OpenWorkCard = ({ className, data }: Props) => {
           <div className="flex gap-2">
             <div className="h-12 w-12 relative rounded-full">
               <Image
-                src={data.client.avatar.src}
-                alt={data.client.avatar.alt}
+                src={data.images[0] ? `${process.env.NEXT_PUBLIC_BASE_URL}${data.images[0]}` : "/default-profile.jpg"}
+                alt={data.user.name}
                 fill
                 style={{ objectFit: "cover" }}
                 className="rounded-full"
               />
-              {data.client.online && (
-                <div className="absolute bottom-0 right-0 h-3 w-3 border-2 border-white rounded-full bg-maket-green" />
-              )}
             </div>
 
             <div className="flex flex-col justify-between">
               <h4 className="text-base sm:text-lg font-semibold">
-                {data.client.name}
+                {data.user.name}
               </h4>
-              <p className="text-maket-gray text-sm">{data.client.type}</p>
+              <p className="text-maket-gray text-sm">{data.category_name}</p>
             </div>
           </div>
 
-          <Link
-            href="/tashkent/open-works/slug"
+          <ServerLink
+            path={`open-works/${data.user.name}`}
             className="bg-maket-batafsil text-maket-secondary text-base sm:text-xl flex justify-center font-medium py-3 sm:py-3 rounded-xl hover:bg-maket-secondary hover:text-white transition-all duration-200"
           >
             {t("Main.sections.OpenWorkCard.more")}
-          </Link>
+          </ServerLink>
         </div>
       </div>
     </div>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { cn } from '@/root/business/lib/utils';
 import {AdCarousel} from "@/root/ui/dev/components/shared/elements/advertising/AdCarousel";
@@ -14,12 +13,12 @@ interface Props {
 
 export const Main = ({ className }: Props) => {
     return (
-        <div className={cn(className, "flex flex-col gap-4 sm:gap-12 p-2")}>
+        <div className={cn(className, "flex flex-col gap-4 sm:gap-2 p-2")}>
             <div className='sm:hidden flex'>
                 <InputArea />
             </div>
             <AdCarousel />
-            <Categories />
+            <Categories alt=''/>
             <OpenWorks />
             <AdCarousel />
             <DailyWorkers />

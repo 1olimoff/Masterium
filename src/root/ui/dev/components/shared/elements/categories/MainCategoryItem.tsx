@@ -1,32 +1,36 @@
 import React from 'react';
-import {cn} from '@/root/business/lib/utils';
+import { cn } from '@/root/business/lib/utils';
 import Image from "next/image";
 
 interface Props {
     className?: string;
     iconPath: string;
     title: string;
+    alt: string;
 }
 
-
-export const MainCategoryItem = ({ className, iconPath, title }: Props) => {
+export const MainCategoryItem = ({ className, iconPath, title, alt }: Props) => {
     return (
         <div
             className={cn(
                 className,
-                "relative flex flex-col",
-                "w-[132px] h-[120px]",
-                "rounded-xl my-custom-shadow px-3 py-4"
+                "flex flex-col items-center justify-center",
+                "w-[152px] h-[90px]",
+                "rounded-xl bg-white my-custom-shadow px-4 py-3"
             )}
         >
             <div className="w-8 h-8 relative mb-2">
-                <Image src={iconPath} alt={`${title} Icon`} fill style={{ objectFit: "contain" }} />
+                <Image
+                    src={iconPath}
+                    alt={alt}
+                    fill
+                    style={{ objectFit: "contain" }}
+                    className="mx-auto"
+                />
             </div>
-            {/* Текст в одну строку, с обрезкой, чтобы не ломать высоту */}
-            <p className=" w-full">
+            <p className="text-sm font-medium text-center text-gray-800">
                 {title}
             </p>
         </div>
-    )
-}
-
+    );
+};

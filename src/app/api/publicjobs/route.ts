@@ -1,10 +1,13 @@
 import { NextResponse } from 'next/server';
 import axios from 'axios';
-import { fetchCategoryList } from '@/root/business/api/main/category/fetchCategoryList';
 
 export async function GET() {
     try {
-        const response = await fetchCategoryList();
+        const response = await axios.get(`${process.env.BASE_URL}api/v1/masters/public-jobs/`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
         return NextResponse.json(response.data);
     } catch (error) {
         console.error('Error fetching categories:', error);

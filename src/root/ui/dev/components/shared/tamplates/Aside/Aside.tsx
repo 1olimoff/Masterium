@@ -70,9 +70,9 @@ const Aside = ({ className, token }: Props) => {
                                 <Image src="/svg/aside/catalog-white.svg" alt="Category Icon" width={20} height={20} className="group-hover:block hidden" />
                                 <p className="font-light text-sm truncate">{t('catalog')}</p>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent>
-                                {
-                                    categories.map((category) => (
+                            {
+                                categories.map((category) => (
+                                    <DropdownMenuContent key={category.id}>
                                         <ServerLink path={`services/${category.name}`}>
                                             <DropdownMenuItem key={category.id}>
                                                 <Image
@@ -84,9 +84,9 @@ const Aside = ({ className, token }: Props) => {
                                                 {category.name}
                                             </DropdownMenuItem>
                                         </ServerLink>
-                                    ))
-                                }
-                            </DropdownMenuContent>
+                                    </DropdownMenuContent>
+                                ))
+                            }
                         </DropdownMenu>
                     </div>
 

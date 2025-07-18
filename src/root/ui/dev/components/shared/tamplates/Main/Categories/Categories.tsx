@@ -1,84 +1,30 @@
-import React from 'react';
 import { cn } from '@/root/business/lib/utils';
 import { MainCategoryItem } from "@/root/ui/dev/components/shared/elements/categories/MainCategoryItem";
+import axios from 'axios';
+import ServerLink from '../../../elements/Links/ServerLink';
+import { CategoriesClient } from './CategoriesClient';
+import { fetchCategoryList } from '@/root/business/api/main/category/fetchCategoryList';
 
 interface Props {
     className?: string;
+    alt: string
 }
 
-const data = [
-    {
-        src: "/svg/main/categories/categories-icon.svg",
-        title: "Santexniklar"
-    },
-    {
-        src: "/svg/main/categories/categories-icon.svg",
-        title: "Kalit ta'mirlash"
-    },
-    {
-        src: "/svg/main/categories/categories-icon.svg",
-        title: "G'isht terish"
-    },
-    {
-        src: "/svg/main/categories/categories-icon.svg",
-        title: "Payvandchilar"
-    },
-    {
-        src: "/svg/main/categories/categories-icon.svg",
-        title: "Malyar shtukatur"
-    },
-    {
-        src: "/svg/main/categories/categories-icon.svg",
-        title: "Santexniklar"
-    },
-    {
-        src: "/svg/main/categories/categories-icon.svg",
-        title: "Kalit ta'mirlash"
-    },
-    {
-        src: "/svg/main/categories/categories-icon.svg",
-        title: "G'isht terish"
-    },
-    {
-        src: "/svg/main/categories/categories-icon.svg",
-        title: "Payvandchilar"
-    },
-    {
-        src: "/svg/main/categories/categories-icon.svg",
-        title: "Malyar shtukatur"
-    },
-    {
-        src: "/svg/main/categories/categories-icon.svg",
-        title: "Santexniklar"
-    },
-    {
-        src: "/svg/main/categories/categories-icon.svg",
-        title: "Kalit ta'mirlash"
-    },
-    {
-        src: "/svg/main/categories/categories-icon.svg",
-        title: "G'isht terish"
-    },
-    {
-        src: "/svg/main/categories/categories-icon.svg",
-        title: "Payvandchilar"
-    },
-    {
-        src: "/svg/main/categories/categories-icon.svg",
-        title: "Malyar shtukatur"
-    },
-]
+interface Category {
+    id: number;
+    name: string;
+    icon: string;
+    alt: string
+}
 
-export const Categories = ({ className }: Props) => {
+
+
+export const Categories = async ({ className }: Props) => {
+    const categories = await fetchCategoryList();
+
     return (
         <section className={cn(className, "py-4 overflow-x-auto no-scrollbar md:py-6")}>
-            <div className={"flex gap-4 px-2 min-w-max md:gap-6 md:px-4"}>
-                {
-                    data.map((item, i) => (
-                        <MainCategoryItem key={i} iconPath={item.src} title={item.title} />
-                    ))
-                }
-            </div>
+            <CategoriesClient categories={categories} />
         </section>
 
     );

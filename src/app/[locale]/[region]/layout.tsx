@@ -11,7 +11,7 @@ import { LayoutProvider } from '@/root/ui/dev/components/shared/tamplates/Layout
 interface LayoutProps {
   children: ReactNode;
   params: {
-    locale?: 'ru' | 'uz';
+    locale?: 'ru' | 'uz' | 'en';
     region: string;
   };
 }

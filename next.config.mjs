@@ -5,6 +5,9 @@
     /** @type {import('next').NextConfig} */
     const nextConfig = {
         reactStrictMode: true,
+        images: {
+            domains: ["cdn.masterium.uz"], // Tashqi domenni qo‘shing
+          },
     };
 
     export default withNextIntl(nextConfig);

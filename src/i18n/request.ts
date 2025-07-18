@@ -1,19 +1,23 @@
 import { getRequestConfig } from 'next-intl/server';
-import { notFound } from 'next/navigation';
+import { routing } from './routing';
+import { headers } from 'next/headers'; 
 
-const locales = ['ru', 'uz', 'en'];
+export default getRequestConfig(async () => {
+  const header = await headers();
+  const localeFromHeader = header.get('x-next-intl-locale');
+  const currentLocale = localeFromHeader || routing.defaultLocale;
 
-const requestConfig = async () => {
-  const headersList = await import('next/headers').then(mod => mod.headers());
-  const headerLocale = headersList.get('X-NEXT-INTL-LOCALE');
-
-  if (!headerLocale || !locales.includes(headerLocale)) {
-    notFound();
+  try {
+    const messages = (await import(`../root/business/data/messages/${currentLocale}.json`)).default;
+    return {
+      locale: currentLocale,
+      messages,
+    };
+  } catch (error) {
+    console.error('Error loading messages:', error);
+    return {
+      locale: routing.defaultLocale,
+      messages: (await import(`../root/business/data/messages/${routing.defaultLocale}.json`)).default,
+    };
   }
-
-  return {
-    messages: (await import(`../root/business/data/messages/${headerLocale}.json`)).default,
-  };
-};
-
-export default getRequestConfig(requestConfig);
+});
