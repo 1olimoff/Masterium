@@ -2,6 +2,7 @@
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl"
 import { Title } from "./Title/Title";
+import ServerLink from "../../elements/Links/ServerLink";
 // import { useRouter } from "next/navigation";
 
 export const OfferPolicy = () => {
@@ -34,16 +35,16 @@ export const OfferPolicy = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center sm:justify-end gap-4 mt-6">
-          <Link href="/tashkent/services" className="w-full sm:w-auto">
+          <ServerLink path="services" className="w-full sm:w-auto">
             <button className="w-full sm:w-auto py-[12px] px-[42px] bg-[#F8F9FA] text-[#677294] rounded-[16px] cursor-pointer">
               {t("Privacy.PrivacyBtn.back")}
             </button>
-          </Link>
-          <Link href={"/tashkent/services/service"} className="w-full sm:w-auto">
+          </ServerLink>
+          <ServerLink path={"services/service"} className="w-full sm:w-auto">
             <button className="w-full sm:w-auto py-[12px] px-[52px] bg-[#001D55] text-white rounded-[16px] cursor-pointer">
               {t("ChangeData.privacypolicy.acceptoffer")}
             </button>
-          </Link>
+          </ServerLink>
         </div>
       </div>
 

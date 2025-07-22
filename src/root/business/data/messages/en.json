@@ -220,7 +220,10 @@
     "Service": {
       "breadcrumb": {
         "allServices": "All Services",
-        "santex": "Plumbers",
+        "santexnik": "Plumbers",
+        "malyar":"Painters",
+        "kalit-tamirlash": "Renovation",
+        "payvandchilar": "Welders",
         "santexName": "Eshonov Bahodir"
       },
       "ServicePerson": {
@@ -254,10 +257,9 @@
     "Offers": {
       "breadcrumb": {
         "home": "Home",
-        "santex": "Plumbers",
         "allServices": "All Services",
-        "offers": "Offer a Job",
         "PersonName": "Eshonov Bahodir",
+
         "offerData": {
           "offersTitle": "Offer a Job"
         }

@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl"
 import { Button } from "@/root/ui/dev/shadcn/ui/button"
 import { Link } from "@/i18n/routing"
 import Image from "next/image"
+import ServerLink from "../../../elements/Links/ServerLink"
 
 interface Props {
   className?: string
@@ -37,8 +38,8 @@ export const ShortInfoTab = ({ className }: Props) => {
         </p>
 
       </div>
-          <Link
-        href="/tashkent/worker-offers/sss/ss"
+          <ServerLink
+        path="worker-offers/sss/ss"
         className="text-maket-gold w-full py-2 px-8 justify-center text-sm sm:text-[16px] rounded-xl flex gap-2 bg-maket-primary hover:bg-sky-800">
        <Image
                     src="/svg/worksPage/send.svg"
@@ -47,7 +48,7 @@ export const ShortInfoTab = ({ className }: Props) => {
                     height={20}
                 />
         {t("MyAds.FullInfoAds.seeofferdetail")}
-      </Link>
+      </ServerLink>
     </div>
   )
 }

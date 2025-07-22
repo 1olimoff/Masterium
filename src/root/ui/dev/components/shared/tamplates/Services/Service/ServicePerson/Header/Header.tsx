@@ -4,6 +4,7 @@ import { Button } from "@/root/ui/dev/shadcn/ui/button";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from '@/root/business/locales/i18n/routing';
+import ServerLink from '../../../../../elements/Links/ServerLink';
 
 
 
@@ -40,8 +41,8 @@ export const Header = ({ className }: Props) => {
                 </div>
             </div>
  
-            <Link
-                href="/tashkent/offer-works"
+            <ServerLink
+                path="offer-works"
                 className="hidden sm:inline-flex items-center max-w-[250px] h-[50px] gap-2 px-4 py-2 rounded-xl bg-maket-primary text-maket-gold text-lg font-medium hover:bg-sky-800 transition-colors duration-200"
             >
                 <Image
@@ -52,7 +53,7 @@ export const Header = ({ className }: Props) => {
                     className="object-contain"
                 />
                 <span>{t('Services.Service.ServicePerson.sendOffer')}</span>
-            </Link>
+            </ServerLink>
 
 
         </section>

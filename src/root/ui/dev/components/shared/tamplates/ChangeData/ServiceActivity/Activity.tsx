@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslations } from 'next-intl';
 import FilterBar from '../PersonalDetails/FilterBar/FilterBar';
 import Link from 'next/link';
+import ServerLink from '../../../elements/Links/ServerLink';
 
 interface Props {
     catalogs: string[];
@@ -63,16 +64,16 @@ export default function ActivityPage({ catalogs,
 
                 <div>
                     <div className="flex flex-col  sm:flex-row items-center rounded-xl bg-white sm:justify-end gap-4 py-4 px-6 mt-6">
-                        <Link href="" className="w-full sm:w-auto">
+                        <ServerLink path="" className="w-full sm:w-auto">
                             <button className="w-full sm:w-auto py-[12px] px-[42px] bg-[#F8F9FA] text-[#677294] rounded-[16px] cursor-pointer">
                                 {t("ChangeData.ServiceActivity.Btn.cancelbtn")}
                             </button>
-                        </Link>
-                        <Link href={""} className="w-full sm:w-auto">
+                        </ServerLink>
+                        <ServerLink path={""} className="w-full sm:w-auto">
                             <button className="w-full sm:w-auto py-[12px] px-[52px] bg-[#001D55] text-white rounded-[16px] cursor-pointer">
                                 {t("ChangeData.ServiceActivity.Btn.savebtn")}
                             </button>
-                        </Link>
+                        </ServerLink>
                     </div>
                 </div>
             </div>

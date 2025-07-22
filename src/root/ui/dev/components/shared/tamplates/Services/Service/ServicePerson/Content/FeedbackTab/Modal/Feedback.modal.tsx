@@ -2,6 +2,7 @@ import { DialogContent, DialogTitle } from "@/root/ui/dev/shadcn/ui/dialog";
 import { Rate } from "./Rate/Rate.component";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
+import ServerLink from "@/root/ui/dev/components/shared/elements/Links/ServerLink";
 
 export const FeedBackModal = () => {
     const t = useTranslations("ReviewTab")
@@ -27,11 +28,11 @@ export const FeedBackModal = () => {
                 ></textarea>
 
                 <div className="w-full">
-                    <Link href="slug">
+                    <ServerLink path="slug">
                         <button className="bg-[#001D55] text-white font-semibold py-3 px-6 rounded-[16px] w-full hover:bg-blue-900 transition">
                             {t("Modal.sendbtn")}
                         </button>
-                    </Link>
+                    </ServerLink>
                     <p className="text-sm text-gray-500 mt-4 text-center">
                       {t("Modal.checktext")}
                     </p>

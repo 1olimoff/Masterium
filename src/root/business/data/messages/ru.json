@@ -220,8 +220,11 @@
     "Service": {
       "breadcrumb": {
         "allServices": "Все услуги",
-        "santex": "Сантехники",
-        "santexName": "Эшонoв Бахадир"
+        "santexName": "Эшонoв Бахадир",
+        "santexnik": "Сантехники",
+        "malyar":"Маляры",
+        "kalit-tamirlash": "Ремонт под ключ",
+        "payvandchilar": "Сварщики"
       },
       "ServicePerson": {
         "sendOffer": "Предложить работу",

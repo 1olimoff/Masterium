@@ -12,27 +12,27 @@ export default function TabBar({token}:Props) {
 
     const tabItemArr = [
         {
-            href: '/uz/tashkent',
+            href: '/',
             label: 'Asosiy',
             icon: 'home',
         },
         {
-            href: '/uz/tashkent/services',
+            href: 'services',
             label: 'Katalog',
             icon: 'catalog',
         },
         {
-            href: '/uz/tashkent/advertise',
+            href: 'advertise',
             label: "Qo'shish",
             icon: 'add',
         },
         {
-            href: '/uz/tashkent/myads',
+            href: 'myads',
             label: "E'lonlar",
             icon: 'ads',
         },
         {
-            href: '/uz/tashkent/offer-works',
+            href: 'offer-works',
             label: 'Profil',
             icon: 'profile',
         },

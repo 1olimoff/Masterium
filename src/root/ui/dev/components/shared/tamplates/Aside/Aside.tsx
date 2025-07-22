@@ -23,6 +23,7 @@ interface Category {
     id: number;
     name: string;
     icon: string;
+    slug: string
 }
 
 interface Props {
@@ -55,9 +56,9 @@ const Aside = ({ className, token }: Props) => {
             <div className="layout-width flex justify-between items-center gap-4 w-full">
 
                 {/* Logo */}
-                <a href="/" className="max-w-[200px] w-full hidden sm:flex">
+                <ServerLink path="" className="max-w-[200px] w-full hidden sm:flex">
                     <Image src="/svg/footer/logo.svg" alt="masterium logo" width={250} height={80} />
-                </a>
+                </ServerLink>
 
                 {/* Middle section */}
                 <div className="flex items-center gap-3 flex-1 min-w-0">
@@ -73,7 +74,7 @@ const Aside = ({ className, token }: Props) => {
                             {
                                 categories.map((category) => (
                                     <DropdownMenuContent key={category.id}>
-                                        <ServerLink path={`services/${category.name}`}>
+                                        <ServerLink path={`services/${category.slug}`}>
                                             <DropdownMenuItem key={category.id}>
                                                 <Image
                                                     src={`${process.env.NEXT_PUBLIC_BASE_URL}${category.icon}`}
@@ -107,8 +108,8 @@ const Aside = ({ className, token }: Props) => {
                 {/* Actions */}
                 <div className="hidden sm:flex items-center gap-2 flex-shrink-0">
                     {/* Add link */}
-                    <Link
-                        href="/tashkent/advertise"
+                    <ServerLink
+                        path="advertise"
                         className="group bg-white h-[42px] px-2 flex items-center gap-2 rounded-md text-maket-primary border border-white hover:bg-maket-primary hover:text-white whitespace-nowrap transition-colors"
                     >
                         <Image
@@ -126,12 +127,12 @@ const Aside = ({ className, token }: Props) => {
                             className="hidden group-hover:block transition-opacity duration-200"
                         />
                         <p className="text-sm">{t('action.announcement')}</p>
-                    </Link>
+                    </ServerLink>
 
                     {/* Login */}
                     {token ? (
-                        <Link
-                            href="/tashkent/myads"
+                        <ServerLink
+                            path="myads"
                             className="group bg-white h-[42px] px-2 flex items-center gap-2 rounded-md text-maket-primary border border-white hover:bg-maket-primary hover:text-white whitespace-nowrap transition-colors"
                         >
                             <Image
@@ -149,7 +150,7 @@ const Aside = ({ className, token }: Props) => {
                                 className="hidden group-hover:block transition-opacity duration-200"
                             />
                             <p className="text-sm">{t('action.myads')}</p>
-                        </Link>
+                        </ServerLink>
                     ) : (
                         <LoginProviderDialog
                             trigger={

@@ -3,6 +3,7 @@ import { cn } from '@/root/business/lib/utils';
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from '@/root/business/locales/i18n/routing';
+import ServerLink from '../../../elements/Links/ServerLink';
 
 interface Props {
     className?: string;
@@ -58,15 +59,15 @@ export const Header = ({ className, activeTab }: Props) => {
         const { icon, iconActive, label } = buttons[key];
 
         return (
-            <Link
-                href="#"
+            <ServerLink
+                path="#"
                 onClick={(e) => e.preventDefault()} // Modal ochilmasligi uchun
                 className="group bg-maket-primary h-[52px] px-6 py-2 md:h-[42px] flex items-center gap-2 rounded-[16px] text-white border border-maket-primary hover:bg-white hover:text-maket-primary transition-colors"
             >
                 <Image src={icon} alt="icon" width={20} height={20} className="group-hover:hidden" />
                 <Image src={iconActive} alt="icon" width={20} height={20} className="hidden group-hover:block "/>
                 <span>{label}</span>
-            </Link>
+            </ServerLink>
         );
     };
 
@@ -107,8 +108,8 @@ export const Header = ({ className, activeTab }: Props) => {
                 </div>
 
                 <div className="gap-4 hidden sm:flex">
-                   <Link
-                        href="#"
+                   <ServerLink
+                        path="#"
                         onClick={(e) => {
                             e.preventDefault();
                             handleOpenModal("story");
@@ -118,17 +119,17 @@ export const Header = ({ className, activeTab }: Props) => {
                         <Image src="/svg/aside/add.svg" alt="Add" width={20} height={20} className="group-hover:hidden" />
                         <Image src="/svg/aside/add-white.svg" alt="Add" width={20} height={20} className="hidden group-hover:block" />
                         <span className='text-sm' >{t('MyProfile.editButtons.addstory')}</span>
-                    </Link>
+                    </ServerLink>
 
                     {activeTab === "malumot" && (
-                        <Link
-                            href="myprofile/sss"
+                        <ServerLink
+                            path="myprofile/sss"
                             className="group bg-maket-primary md:h-[42px] h-[52px] px-2 text-sm sm:px-6 py-2 flex items-center gap-2 rounded-[12px]  sm:rounded-[16px] text-white border border-maket-primary hover:bg-white hover:text-maket-primary transition-colors sm:text-base"
                         >
                             <Image src="/svg/tabbar/edit.svg" alt="Edit" width={20} height={20} className="group-hover:hidden" />
                             <Image src="/svg/tabbar/editactive.svg" alt="Edit" width={20} height={20} className="hidden group-hover:block" />
                             <span  className='text-sm'>{t('MyProfile.editButtons.changedata')}</span>
-                        </Link>
+                        </ServerLink>
                     )}
 
                     {renderActionButton()}

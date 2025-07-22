@@ -21,6 +21,8 @@ interface Category {
 
 export const Categories = async ({ className }: Props) => {
     const categories = await fetchCategoryList();
+    // console.log(categories);
+    
 
     return (
         <section className={cn(className, "py-4 overflow-x-auto no-scrollbar md:py-6")}>

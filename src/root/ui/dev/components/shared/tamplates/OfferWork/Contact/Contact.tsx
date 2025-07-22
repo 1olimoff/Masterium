@@ -3,6 +3,7 @@ import { Input } from "@/root/ui/dev/shadcn/ui/input";
 import { useTranslations } from "next-intl";
 import { PhoneCheck } from "./Contact.component.tsx/component";
 import { Link } from "@/i18n/routing";
+import ServerLink from "../../../elements/Links/ServerLink";
 
 interface Props {
     className?: string;
@@ -77,16 +78,16 @@ export const Contact = ({ className }: Props) => {
 
             {/* Tugmalar */}
             <div className="flex sm:flex-row justify-end gap-4 mt-6 p-5 bg-white m-3 rounded-[20px] px-4">
-                <Link href="services/service">
+                <ServerLink path="services/service">
                     <button className="w-full sm:w-auto py-[12px] px-[42px] bg-[#F8F9FA] text-[#677294] rounded-[16px] cursor-pointer">
                         {t("Contacts.buttons.cancelBtn")}
                     </button>
-                </Link>
-                <Link href="offer-works/privacy">
+                </ServerLink>
+                <ServerLink path="offer-works/privacy">
                     <button className="w-full sm:w-auto py-[12px] px-[52px] bg-[#001D55] text-white rounded-[16px] cursor-pointer">
                         {t("Contacts.buttons.submitBtn")}
                     </button>
-                </Link>
+                </ServerLink>
             </div>
         </div>
     );

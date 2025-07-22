@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/root/ui/dev/shadcn/ui/button";
 import Image from "next/image";
 import { Link } from '@/i18n/routing';
+import ServerLink from '../../../../elements/Links/ServerLink';
 
 interface Props {
     className?: string;
@@ -46,8 +47,8 @@ export const ShortInfo = ({ className }: Props) => {
             </div>
 
             {/* Button */}
-            <Link
-                href="/tashkent/offer-works"
+            <ServerLink
+                path="offer-works"
                 className="text-maket-gold rounded-xl flex items-center justify-center gap-2 bg-maket-primary hover:bg-sky-800 text-sm sm:text-base py-2"
             >
                 <Image
@@ -57,7 +58,7 @@ export const ShortInfo = ({ className }: Props) => {
                     height={20}
                 />
                 <span>{t("WorksPage.content.shortInfo.sendOfferButton")}</span>
-            </Link>
+            </ServerLink>
         </div>
     );
 };

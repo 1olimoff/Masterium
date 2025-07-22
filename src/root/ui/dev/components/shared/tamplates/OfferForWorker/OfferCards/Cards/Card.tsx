@@ -11,6 +11,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Button } from "@/root/ui/dev/shadcn/ui/button";
 import { Link } from '@/i18n/routing';
+import ServerLink from '../../../../elements/Links/ServerLink';
 
 type Item = {
     title: string;
@@ -148,11 +149,11 @@ export const OfferCard = ({ className, data }: Props) => {
                 </div>
 
                 <div className="flex flex-col justify-center gap-2 sm:gap-3">
-                    <Link
-                    href="#"
+                    <ServerLink
+                    path="#"
                         className="bg-maket-batafsil text-maket-secondary text-sm sm:text-base md:text-lg text-center font-medium py-2 sm:py-4 md:py-3 rounded-xl hover:bg-maket-secondary hover:text-white transition-all duration-200">
                         {t('OfferForWorkers.btn.seeOffer')}
-                    </Link>
+                    </ServerLink>
                 </div>
             </div>
         </div>

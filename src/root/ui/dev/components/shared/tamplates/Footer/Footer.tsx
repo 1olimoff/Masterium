@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FooterProvider } from './FooterProvider';
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import ServerLink from '../../elements/Links/ServerLink';
 
 interface Props {
   className?: string;
@@ -20,7 +21,7 @@ export const Footer = ({ className }: Props) => {
       )}>
         {/* Logo & Title */}
         <div className={"flex flex-col gap-6 items-center md:items-start text-center md:text-left"}>
-          <Link href="/public">
+          <ServerLink path="/public">
             <Image
               src={"/svg/footer/logo.svg"} 
               alt={"Footer logo of Masterium"}
@@ -29,7 +30,7 @@ export const Footer = ({ className }: Props) => {
               className={"w-full max-w-[250px] h-auto"}
               quality={100}
             />
-          </Link>
+          </ServerLink>
           <h3 className={"text-maket-gold text-lg md:text-xl font-semibold"}>
             {t("logo.title")}
           </h3>

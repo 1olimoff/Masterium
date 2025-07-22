@@ -220,8 +220,12 @@
     "Service": {
       "breadcrumb": {
         "allServices": "Barcha xizmatlar",
-        "santex": "Santexniklar",
-        "santexName": "Eshonov Bahodir"
+        "santexName": "Eshonov Bahodir",
+        "santexnik": "Santexniklar",
+        "malyar":"Malyarlar",
+        "kalit-tamirlash": "Kalit tamirlash",
+        "payvandchilar": "Payvandchilar"
+
       },
       "ServicePerson": {
         "sendOffer": "Ish taklif qilish",

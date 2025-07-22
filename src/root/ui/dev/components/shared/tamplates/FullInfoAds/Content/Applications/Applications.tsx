@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/root/ui/dev/shadcn/ui/button';
 import { Link } from '@/i18n/routing';
+import ServerLink from '../../../../elements/Links/ServerLink';
 
 type Item = {
   src: string;
@@ -83,12 +84,12 @@ export const ApplicationCard = ({ className, data }: Props) => {
 
       {/* Button */}
       {/* Shu joyi keyin yoiladi */}
-      <Link
-      href={""}
+      <ServerLink
+      path={""}
         className="w-full py-2 text-lg font-medium px-0 flex justify-center  bg-maket-batafsil text-maket-secondary rounded-2xl hover:bg-maket-secondary hover:text-white transition-all duration-200"
       >
         {t('Main.sections.OpenWorkCard.more')}
-      </Link>
+      </ServerLink>
     </div>
   );
 };

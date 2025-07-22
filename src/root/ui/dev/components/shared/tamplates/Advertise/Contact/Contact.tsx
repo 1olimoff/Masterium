@@ -3,6 +3,7 @@ import { Input } from "@/root/ui/dev/shadcn/ui/input"
 import { useTranslations } from "next-intl"
 import { PhoneCheck } from "./ContactComponent/Component";
 import { Link } from "@/i18n/routing";
+import ServerLink from "../../../elements/Links/ServerLink";
 
 interface Props {
     className?: string;
@@ -68,8 +69,8 @@ export const Contact = ({ className }: Props) => {
 
             {/* Buttons */}
             <div className="flex  sm:flex-row justify-end gap-4  p-5 bg-white m-3 rounded-[20px]">
-                <Link href={"/"} className="py-3 px-6 bg-[#F8F9FA] text-[#677294] rounded-[16px]">{t("Contacts.buttons.cancelBtn")}</Link>
-                <Link href={"myads"} className="py-3 px-6 bg-[#001D55] text-white rounded-[16px]">{t("Advertise.Buttons.GiveAdvertise")}</Link>
+                <ServerLink path={"/"} className="py-3 px-6 bg-[#F8F9FA] text-[#677294] rounded-[16px]">{t("Contacts.buttons.cancelBtn")}</ServerLink>
+                <ServerLink path={"myads"} className="py-3 px-6 bg-[#001D55] text-white rounded-[16px]">{t("Advertise.Buttons.GiveAdvertise")}</ServerLink>
             </div>
         </div>
     );

@@ -5,6 +5,7 @@ import Image from "next/image";
 import "react-phone-input-2/lib/style.css";
 import { RegistrationPage } from "../../elements/account/Registration/RegisterMobile";
 import { AuthProvider } from "../../elements/account/login/LoginMobile";
+import ServerLink from "../../elements/Links/ServerLink";
 
 interface TabItemProps {
   token: string | null;
@@ -46,13 +47,13 @@ export const TabItem = ({ token, icon, label, href, isActive }: TabItemProps) =>
   }
 
   return (
-    <Link href={href} className="flex flex-col items-center justify-center w-full">
+    <ServerLink path={href} className="flex flex-col items-center justify-center w-full">
       <div className="h-6 flex items-center justify-center">
         <Image src={iconPath} alt={label} width={24} height={24} />
       </div>
       <span className={`text-[12px] mt-1 ${isActive ? "text-[#00174C] font-semibold" : "text-gray-500"}`}>
         {label}
       </span>
-    </Link>
+    </ServerLink>
   );
 };

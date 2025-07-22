@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl"
 import Image from "next/image"
 import { Button } from "@/root/ui/dev/shadcn/ui/button"
 import { Link } from "@/i18n/routing"
+import ServerLink from "../../../elements/Links/ServerLink"
 
 interface Props {
   className?: string
@@ -38,11 +39,11 @@ export const Employer = ({ className }: Props) => {
         </div>
       </div>
       <div className="flex justify-center max-w-[350px] text-sm items-center w-full">
-        <Link
-        href=""
+        <ServerLink
+        path=""
          className="bg-white text-[#32ADE6] hover:bg-[#FFFF] flex justify-center items-center mt-1 hover:text-[#32ADE6] sm:text-[15px] text-center">
           {t("MyAds.FullInfoAds.btn")}
-        </Link>
+        </ServerLink>
       </div>
     </section>
   )

@@ -16,7 +16,8 @@ export const CategoriesClient = ({categories} : Props) => {
         <div className={"flex gap-4 px-2 min-w-max md:gap-6 md:px-4"}>
         {
             categories.map((category) => (
-                <ServerLink key={category.id} path={`services/${category.name}`}>
+
+                <ServerLink key={category.id} path={`services/${category.slug}`}>
                   <MainCategoryItem
                     iconPath={`${process.env.NEXT_PUBLIC_BASE_URL}${category.icon}`}
                     title={category.name}
@@ -24,7 +25,7 @@ export const CategoriesClient = ({categories} : Props) => {
                   />
                 </ServerLink>
               ))
-              
+               
         }
     </div>
     )

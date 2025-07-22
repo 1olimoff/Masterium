@@ -6,9 +6,10 @@ import ServerLink from "@/root/ui/dev/components/shared/elements/Links/ServerLin
 
 interface Props {
     className?: string;
+    slug: string
 }
 
-export const Title = ({ className }: Props) => {
+export const Title = ({ className, slug }: Props) => {
     const t = useTranslations();
     return (
         <div className={cn(className, "hidden sm:flex mt-2 flex-col gap-4")}>
@@ -31,14 +32,14 @@ export const Title = ({ className }: Props) => {
                         /
                     </BreadcrumbSeparator>
                     <BreadcrumbItem>
-                    <ServerLink path={"/services/santex"} >
-                        <p className={"text-gray-700"}>{t('Services.Service.breadcrumb.santex')}</p>
+                    <ServerLink path={`/services/${slug}`} >
+                        <p className={"text-gray-700"}>{t(`Services.Service.breadcrumb.${slug}`)}</p>
                         </ServerLink>
 
                     </BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>
-            <h1 className={"text-maket-primary text-3xl font-semibold"}>{t("Services.Service.breadcrumb.santex")}</h1>
+            <h1 className={"text-maket-primary text-3xl font-semibold"}>{t(`Services.Service.breadcrumb.${slug}`)}</h1>
         </div>
     );
 };

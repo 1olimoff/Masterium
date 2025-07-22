@@ -4,6 +4,7 @@ import { cn } from "@/root/business/lib/utils"
 import { useTranslations } from "next-intl"
 import { Button } from "@/root/ui/dev/shadcn/ui/button"
 import { Link } from "@/i18n/routing"
+import ServerLink from "../../../../../elements/Links/ServerLink"
 
 interface Props {
   className?: string
@@ -13,8 +14,8 @@ export const ShortInfoTab = ({ className }: Props) => {
   const t = useTranslations("")
   return (
     <div className={cn("w-full flex flex-col gap-3", className)}>
-      <Link
-        href="/tashkent/advertise"
+      <ServerLink
+        path="advertise"
         className="text-maket-gold w-full py-2 px-4  justify-center text-sm sm:text-[16px] rounded-xl flex gap-2 bg-maket-primary hover:bg-sky-800">
         <svg
           width="22"
@@ -46,7 +47,7 @@ export const ShortInfoTab = ({ className }: Props) => {
           />
         </svg>
        {t("MyAds.changeAdsbtn")}
-      </Link>
+      </ServerLink>
       <p className="text-sm text-maket-gray">
         {t("WorksPage.content.shortInfo.createdDateTitle")} 25.11.2024 09:45
       </p>
