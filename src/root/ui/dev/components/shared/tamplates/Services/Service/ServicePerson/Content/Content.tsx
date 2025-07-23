@@ -12,23 +12,36 @@ import {
 interface TabItem {
     key: string;
     label: string;
-    infoText?: string;
     content: React.ReactNode;
     IconPic: string
 }
-const TABS: TabItem[] = [
+
+interface UserData {
+    user_uuid: string;
+    profile_photo: string;
+    first_name: string;
+    last_name: string;
+    about: string;
+    avg_rating: number;
+    comments_count: number;
+    categories: {id: number, name: string }[]
+    tags: {id: number, name: string, category_id: number }[]
+    experience_levels: {experience_level: string, category_name: string }[]
+}
+
+interface Props {
+    className?: string;
+    response: UserData;
+}
+
+const TABS = (response: UserData): TabItem[] => [
     {
         key: "malumot",
         label: "Ma'lumot",
         IconPic: "InfoIcon.svg",
         content: (
             <InfoTab
-                infoText="Gravida elementum diam fames dignissim sed donec nisi diam. Quisque feugiat ut rutrum fringilla id urna vitae pharetra amet. Lorem ipsum dolor sit amet consectetur. Accumsan phasellus aenean eget velit non interdum erat in semper. Lobortis turpis metus turpis risus congue amet ullamcorper. Vitae diam senectus feugiat amet. Rutrum ac nulla sollicitudin libero pellentesque. Non magna libero consectetur velit. Facilisi et tellus tristique vel ut enim. Vel sapien tristique ultrices ac at quis nulla ultrices. Cursus massa facilisis et pharetra varius nullam. Est id id leo sed vestibulum eros massa. Volutpat dolor tellus a a purus aliquam. Hendrerit justo suspendisse laoreet tincidunt scelerisque."
-                data={{
-                    infoText: "Gravida elementum diam fames dignissim sed donec nisi diam.",
-                    experienceText: "5 yildan ortiq tajriba. Qurilish, elektr tarmoqlari, mebel yig‘ish.",
-                    categories: ["24/7", "Shoshilinch qo'ng'iroq", "Santexnik", "Isitish", "Gidroizolyatsiya"]
-                }}
+                data={response}
             />
         ),
     },
@@ -52,20 +65,15 @@ const TABS: TabItem[] = [
     },
 ];
 
-
-interface Props {
-    className?: string;
-}
-
-export const Content = ({ className }: Props) => {
+export const Content = ({ className, response }: Props) => {
     const [activeTab, setActiveTab] = React.useState<string>("malumot");
 
     return (
-        <div className={cn(className, "w-full flex  flex-col")}>
+        <div className={cn(className, "w-full flex flex-col")}>
             {/* Шапка с кнопками табов */}
             <div className="flex gap-6 border-b border-gray-200">
                 <div className="flex overflow-x-auto no-scrollbar overflow-y-hidden gap-6 border-b border-gray-200">
-                    {TABS.map((tab) => {
+                    {TABS(response).map((tab) => {
                         const isActive = tab.key === activeTab;
                         return (
                             <button
@@ -88,15 +96,12 @@ export const Content = ({ className }: Props) => {
                         );
                     })}
                 </div>
-
-
             </div>
 
             {/* Контейнер с анимированным контентом */}
-            <div className="relative mt-6 ">
+            <div className="relative mt-6">
                 <AnimatePresence mode="wait">
-                    {/* Ищем контент для выбранного таба и рендерим его */}
-                    {TABS.filter((tab) => tab.key === activeTab).map((tab) => (
+                    {TABS(response).filter((tab) => tab.key === activeTab).map((tab) => (
                         <motion.div
                             key={tab.key}
                             initial={{ opacity: 0, x: 30 }}

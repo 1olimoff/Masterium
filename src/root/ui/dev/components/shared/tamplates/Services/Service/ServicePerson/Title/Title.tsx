@@ -1,15 +1,28 @@
 import React from 'react';
 import { cn } from '@/root/business/lib/utils';
-import {useTranslations} from "next-intl";
-import {Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbSeparator} from "@/root/ui/dev/shadcn/ui/breadcrumb";
+import { useTranslations } from "next-intl";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbSeparator } from "@/root/ui/dev/shadcn/ui/breadcrumb";
 import ServerLink from "@/root/ui/dev/components/shared/elements/Links/ServerLink";
 
 interface Props {
     className?: string;
+    slug: string
+    response: UserData;
 }
 
-export const Title = ({ className }: Props) => {
+interface UserData {
+    first_name: string;
+    last_name: string;
+  }
+  
+  interface Props {
+    className?: string;
+  }
+  
+
+export const Title = ({ className, slug, response }: Props) => {
     const t = useTranslations();
+    
     return (
         <div className={cn(className, "hidden sm:flex flex-col gap-4")}>
             <Breadcrumb>
@@ -21,7 +34,7 @@ export const Title = ({ className }: Props) => {
                     </BreadcrumbItem>
                     <BreadcrumbSeparator>
                         /
-                    </BreadcrumbSeparator> 
+                    </BreadcrumbSeparator>
                     <BreadcrumbItem>
                         <ServerLink path={"/services"} >
                             {t("Services.Service.breadcrumb.allServices")}
@@ -31,15 +44,15 @@ export const Title = ({ className }: Props) => {
                         /
                     </BreadcrumbSeparator>
                     <BreadcrumbItem>
-                        <ServerLink path={"/services/www"} >
-                            {t('Services.Service.breadcrumb.santex')}
+                        <ServerLink path={`/services/${slug}`} >
+                            {t(`Services.Service.breadcrumb.${slug}`)}
                         </ServerLink>
                     </BreadcrumbItem>
                     <BreadcrumbSeparator>
                         /
                     </BreadcrumbSeparator>
                     <BreadcrumbItem>
-                        <p className={"text-gray-700"}>Eshonov Bahodir</p>
+                        <p className={"text-gray-700"}>{`${response.first_name} ${response.last_name}`}</p>
                     </BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>

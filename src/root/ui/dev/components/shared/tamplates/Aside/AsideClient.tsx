@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { cn } from '@/root/business/lib/utils';
@@ -10,15 +9,12 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/root/ui/dev/shadcn/ui/dropdown-menu";
-import { Button } from "@/root/ui/dev/shadcn/ui/button";
 import { useTranslations } from "next-intl";
-import { LoginProviderDialog } from "@/root/ui/dev/components/shared/elements/account/login/LoginTablet";
-// import { Link } from '@/i18n/routing';
-import InputArea from './InputArea/InputArea';
-import { Link } from '@/i18n/routing';
 import ServerLink from '../../elements/Links/ServerLink';
+import InputArea from './InputArea/InputArea';
+import { Button } from '@/root/ui/dev/shadcn/ui/button';
+import { LoginProviderDialog } from '../../elements/account/login/LoginTablet';
 
-// Backenddan kelgan ma'lumotlar uchun interface
 interface Category {
     id: number;
     name: string;
@@ -36,20 +32,7 @@ const Aside = ({ className, token }: Props) => {
     const t = useTranslations("Aside");
     const [categories, setCategories] = useState<Category[]>([]);
 
-    // API dan ma'lumotlarni olish
-    useEffect(() => {
-        const fetchCategories = async () => {
-            try {
-                const response = await axios.get('/api/category');
-                if (response.data.success) {
-                    setCategories(response.data.results);
-                }
-            } catch (error) {
-                console.error("Kategoriyalarni olishda xatolik:", error);
-            }
-        };
-        fetchCategories();
-    }, []);
+
 
     return (
         <aside className={cn(className, "py-3 px-2 sm:shadow sm:flex hidden sticky sm:bg-maket-primary bg-white top-0 z-[50]")}>

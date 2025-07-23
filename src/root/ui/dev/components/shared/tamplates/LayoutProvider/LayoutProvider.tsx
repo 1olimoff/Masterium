@@ -5,6 +5,7 @@ import Aside from "@/root/ui/dev/components/shared/tamplates/Aside";
 import { Footer } from "@/root/ui/dev/components/shared/tamplates/Footer/Footer";
 import TabBar from '../../TabBar/TabBar';
 import { cookies } from 'next/headers';
+import { AsideServer } from '../Aside/InputArea/Aside';
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -20,7 +21,7 @@ export const LayoutProvider = async ({ className, children, params }: LayoutProp
         <div className={cn(className)}>
             <Header params={params} />
             <main>
-                <Aside token={cookieToken}/>
+                <AsideServer token={cookieToken}/>
                 {children}
             </main>
             <Footer />

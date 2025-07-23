@@ -3,8 +3,9 @@ import { cn } from '@/root/business/lib/utils';
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Button } from "@/root/ui/dev/shadcn/ui/button";
-import { Link } from '@/i18n/routing';
 import ServerLink from '../../Links/ServerLink';
+
+
 
 type Item = {
     user_uuid: string;
@@ -23,13 +24,12 @@ interface Props {
     className?: string;
     data: Item;
     href?: string;
+    slug: string
+
 }
 
-export const ServiceCard = ({ className, data }: Props) => {
+export const ServiceCard = ({ className, data, slug }: Props) => {
     const t = useTranslations('');
-    console.log(data);
-    
-    
 
     return (
         <div className={cn(className, "p-4 rounded-2xl shadow flex flex-col gap-3 bg-white")}>
@@ -70,7 +70,7 @@ export const ServiceCard = ({ className, data }: Props) => {
                 ))}
             </div>
             <ServerLink
-                path="service/swsws"
+                path={`services/${slug}/${data.user_uuid}`}
                 className={"bg-maket-batafsil text-maket-secondary text-center text-xl font-medium py-2 rounded-2xl hover:bg-maket-secondary hover:text-white transition-all duration-200"}
             >
                 {t('Main.sections.OpenWorkCard.more')}

@@ -35,7 +35,6 @@ export const Title = ({ className, slug }: Props) => {
                     <ServerLink path={`/services/${slug}`} >
                         <p className={"text-gray-700"}>{t(`Services.Service.breadcrumb.${slug}`)}</p>
                         </ServerLink>
-
                     </BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>
