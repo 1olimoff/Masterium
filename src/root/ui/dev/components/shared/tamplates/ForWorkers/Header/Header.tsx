@@ -61,7 +61,7 @@ export const Header = ({ className, activeTab }: Props) => {
         return (
             <ServerLink
                 path="#"
-                onClick={(e) => e.preventDefault()} // Modal ochilmasligi uchun
+                onClick={(e) => e.preventDefault()} 
                 className="group bg-maket-primary h-[52px] px-6 py-2 md:h-[42px] flex items-center gap-2 rounded-[16px] text-white border border-maket-primary hover:bg-white hover:text-maket-primary transition-colors"
             >
                 <Image src={icon} alt="icon" width={20} height={20} className="group-hover:hidden" />

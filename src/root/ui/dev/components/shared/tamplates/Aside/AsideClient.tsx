@@ -25,13 +25,12 @@ interface Category {
 interface Props {
     className?: string;
     token: string | null;
+    categories: Category[]
 }
 
-const Aside = ({ className, token }: Props) => {
+const Aside = ({ className, token, categories }: Props) => {
 
     const t = useTranslations("Aside");
-    const [categories, setCategories] = useState<Category[]>([]);
-
 
 
     return (
@@ -54,23 +53,23 @@ const Aside = ({ className, token }: Props) => {
                                 <Image src="/svg/aside/catalog-white.svg" alt="Category Icon" width={20} height={20} className="group-hover:block hidden" />
                                 <p className="font-light text-sm truncate">{t('catalog')}</p>
                             </DropdownMenuTrigger>
-                            {
-                                categories.map((category) => (
-                                    <DropdownMenuContent key={category.id}>
-                                        <ServerLink path={`services/${category.slug}`}>
-                                            <DropdownMenuItem key={category.id}>
+                            <DropdownMenuContent>
+                                {
+                                    categories.map((category) => (
+                                        <ServerLink path={`services/${category.slug}`} key={category.id}>
+                                            <DropdownMenuItem className="flex items-center space-x-2 px-2 py-1.5 text-sm">
                                                 <Image
                                                     src={`${process.env.NEXT_PUBLIC_BASE_URL}${category.icon}`}
                                                     alt={`${category.name} Icon`}
                                                     width={18}
                                                     height={18}
                                                 />
-                                                {category.name}
+                                                <span>{category.name}</span>
                                             </DropdownMenuItem>
                                         </ServerLink>
-                                    </DropdownMenuContent>
-                                ))
-                            }
+                                    ))
+                                }
+                            </DropdownMenuContent>
                         </DropdownMenu>
                     </div>
 

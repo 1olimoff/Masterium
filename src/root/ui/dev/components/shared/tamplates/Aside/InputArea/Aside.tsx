@@ -7,11 +7,11 @@ interface Props {
     token: string | null;
 }
 
-export const  AsideServer = async ({token}:Props) => {
 
+export const AsideServer = async ({ token }: Props) => {
     const response = await fetchCategoryList()
-    
-    return(
-            <Aside token={token}/>
+
+    return (
+        <Aside token={token} categories={response} />
     )
 }

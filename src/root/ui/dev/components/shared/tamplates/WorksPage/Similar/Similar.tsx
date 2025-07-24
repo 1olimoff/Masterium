@@ -87,9 +87,9 @@ export const Similar = ({ className }: Props) => {
 
             {/* Grid view, scroll emas — sm+ ekranlar uchun */}
             <div className="grid gap-2 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {data.map((item, i) => (
-                    <OpenWorkCard data={item} key={i} />
-                ))}
+                {/* {data.map((item, i) => (
+                    // <OpenWorkCard data={item} key={i} />
+                ))} */}
             </div>
         </section>
     );

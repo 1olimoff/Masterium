@@ -25,7 +25,7 @@ export const AdGrid = () => {
       const progress = timestamp - start;
       position += 0.5; // speed
 
-      // Reset position for seamless loop
+
       if (slider.scrollWidth / 2 <= position) {
         position = 0;
       }

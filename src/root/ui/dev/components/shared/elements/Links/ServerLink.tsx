@@ -7,6 +7,7 @@ import React, { PropsWithChildren } from "react";
 type ServerLinkProps = {
     path: string;
     className?: string;
+    onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 } & PropsWithChildren;
 
 export default function ServerLink({ path, className, children }: ServerLinkProps) {

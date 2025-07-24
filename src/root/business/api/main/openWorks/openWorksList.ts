@@ -1,6 +1,7 @@
 import { Item } from "@/root/ui/dev/components/shared/elements/OpenWorkCard/OpenWorkCard"
 import axios from "axios"
 
+
 export const openWorksList = async () => {
     try {
         // console.log("Fetching open works list...");
@@ -27,7 +28,7 @@ export const openWorksList = async () => {
         // console.log("Enriched offers with images:", enrichedOffers);
         return enrichedOffers;
 
-    } catch (error) {
+    } catch (error: any) {
         console.error("Failed to fetch open works list:", error.message);
         return [];
     }

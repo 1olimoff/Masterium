@@ -1,10 +1,10 @@
 import React from 'react';
 import { cn } from '@/root/business/lib/utils';
-import {AdCarousel} from "@/root/ui/dev/components/shared/elements/advertising/AdCarousel";
-import {Categories} from "@/root/ui/dev/components/shared/tamplates/Main/Categories/Categories";
-import {OpenWorks} from "@/root/ui/dev/components/shared/tamplates/Main/OpenWorks/OpenWorks";
-import {DailyWorkers} from "@/root/ui/dev/components/shared/tamplates/Main/DailyWorkers/DailyWorkers";
-import {AdBanner} from "@/root/ui/dev/components/shared/elements/advertising/AdBanner";
+import { AdCarouselServer } from '../../elements/advertising/AdCarousel/AdCarousel.server';
+import { Categories } from "@/root/ui/dev/components/shared/tamplates/Main/Categories/Categories";
+import { OpenWorks } from "@/root/ui/dev/components/shared/tamplates/Main/OpenWorks/OpenWorks";
+import { DailyWorkers } from "@/root/ui/dev/components/shared/tamplates/Main/DailyWorkers/DailyWorkers";
+import { AdBanner } from "@/root/ui/dev/components/shared/elements/advertising/AdBanner";
 import InputArea from '../Aside/InputArea/InputArea';
 
 interface Props {
@@ -17,12 +17,11 @@ export const Main = ({ className }: Props) => {
             <div className='sm:hidden flex'>
                 <InputArea />
             </div>
-            <AdCarousel />
-            <Categories alt=''/>
+            <AdCarouselServer />
+            <Categories alt='' />
             <OpenWorks />
-            <AdCarousel />
+            <AdCarouselServer />
             <DailyWorkers />
-            <AdBanner />
         </div>
     );
 };

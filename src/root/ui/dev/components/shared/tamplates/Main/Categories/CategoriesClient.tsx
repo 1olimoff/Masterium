@@ -3,15 +3,21 @@ import { MainCategoryItem } from "../../../elements/categories/MainCategoryItem"
 import React from "react"
 
 
+interface Categories {
+  slug: string
+  icon:string
+  id:number
+  name:string
+}
+
 // check
 interface Props {
-    categories: any
+    categories: Categories[]
 }
 
 
 export const CategoriesClient = ({categories} : Props) => {
-
-
+    
     return (
         <div className={"flex gap-4 px-2 min-w-max md:gap-6 md:px-4"}>
         {
@@ -25,7 +31,6 @@ export const CategoriesClient = ({categories} : Props) => {
                   />
                 </ServerLink>
               ))
-               
         }
     </div>
     )

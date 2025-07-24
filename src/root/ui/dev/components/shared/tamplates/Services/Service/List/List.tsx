@@ -1,10 +1,9 @@
-"use client"
-import React, { useState } from 'react';
+import React from 'react';
 import { cn } from '@/root/business/lib/utils';
-import { Button } from "@/root/ui/dev/shadcn/ui/button";
-import { useTranslations } from "next-intl";
-import { AdCarousel } from "@/root/ui/dev/components/shared/elements/advertising/AdCarousel";
+import { getTranslations } from 'next-intl/server';
 import { ServiceCard } from "@/root/ui/dev/components/shared/elements/Services/Service/ServiceCard";
+import { AdCarouselServer } from '../../../../elements/advertising/AdCarousel/AdCarousel.server';
+import { ShowMoreSection } from './ShowMoreSection';
 
 interface Master {
     user_uuid: string;
@@ -27,9 +26,8 @@ interface Props {
 
 const WORKS_TO_DISPLAY = 8;
 
-export const List = ({ className, slug, masters }: Props) => {
-    const t = useTranslations();
-    const [showMore, setShowMore] = useState(false);
+export const List = async ({ className, slug, masters }: Props) => {
+    const t = await getTranslations();
 
     return (
         <section className={cn(className, "mt-4")}>
@@ -40,7 +38,7 @@ export const List = ({ className, slug, masters }: Props) => {
             </div>
 
             <div className="py-10">
-                <AdCarousel />
+                <AdCarouselServer />
             </div>
 
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10">
@@ -49,22 +47,13 @@ export const List = ({ className, slug, masters }: Props) => {
                 ))}
             </div>
 
-            {showMore && (
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10 mt-10">
-                    {masters.slice(WORKS_TO_DISPLAY).map((item, i) => (
-                        <ServiceCard data={item} slug={slug} key={i + WORKS_TO_DISPLAY} />
-                    ))}
-                </div>
-            )}
-
-            {masters.length > WORKS_TO_DISPLAY && (
-                <Button
-                    className="bg-maket-primary text-white rounded-xl my-4 py-6 w-full font-semibold hover:bg-sky-800"
-                    onClick={() => setShowMore(!showMore)}
-                >
-                    {t('OpenWorks.more')}
-                </Button>
-            )}
+            <ShowMoreSection 
+                masters={masters.slice(WORKS_TO_DISPLAY)} 
+                slug={slug} 
+                showMoreText={t('OpenWorks.more')} 
+                totalMasters={masters.length} 
+                worksToDisplay={WORKS_TO_DISPLAY}
+            />
         </section>
     );
 };

@@ -21,7 +21,7 @@ interface Category {
 
 export const Categories = async ({ className }: Props) => {
     const categories = await fetchCategoryList();
-    // console.log(categories);
+    console.log(categories);
     
 
     return (

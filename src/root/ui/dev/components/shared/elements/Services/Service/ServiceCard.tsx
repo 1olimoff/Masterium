@@ -39,13 +39,16 @@ export const ServiceCard = ({ className, data, slug }: Props) => {
                         src={`${process.env.NEXT_PUBLIC_BASE_URL}${data.profile_photo}`}
                         alt={data.name}
                         width={64}
-                        height={64} 
+                        height={64}
                         className={"rounded-full object-cover"}
                     />
                 </div>
                 <div className={"flex flex-col justify-between h-full"}>
                     <h4 className={"text-lg font-semibold"}>{data.first_name}</h4>
-                    <p className={"text-maket-gray"}>{data.name}</p>
+                    {data.categories.map((category, i) => (
+                        <p key={i} className={"text-maket-gray rounded-full"}>{category.name}</p>
+                    ))}
+                    <p className={"text-maket-gray"}>{ }</p>
                     <div className={"flex gap-1 items-center"}>
                         <div className={"relative h-4 w-4 flex items-center justify-center"}>
                             <Image

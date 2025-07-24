@@ -4,7 +4,7 @@ import { cn } from '@/root/business/lib/utils';
 import { OpenWorkCard } from "@/root/ui/dev/components/shared/elements/OpenWorkCard/OpenWorkCard";
 import { Button } from "@/root/ui/dev/shadcn/ui/button";
 import { useTranslations } from "next-intl";
-import { AdCarousel } from "@/root/ui/dev/components/shared/elements/advertising/AdCarousel";
+import { AdCarouselServer } from '../../../elements/advertising/AdCarousel/AdCarousel.server';
 
 interface Props {
     className?: string;
@@ -273,26 +273,27 @@ export const List = ({ className }: Props) => {
     return (
         <section className={cn(className)}>
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-4 lg:grid-cols-4 gap-x-4 gap-y-6 md:gap-y-8">
-                {data.slice(0, WORKS_TO_DISPLAY).map((item, i) => (
+                {/* {data.slice(0, WORKS_TO_DISPLAY).map((item, i) => (
                     <OpenWorkCard data={item} key={i} />
-                ))}
+                ))} */}
             </div>
 
             <div className="py-8 md:py-10">
-                <AdCarousel />
+                {/* <AdCarouselServer /> */}
+
             </div>
 
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-6 md:gap-y-8">
-                {data.slice(WORKS_TO_DISPLAY).map((item, i) => (
+                {/* {data.slice(WORKS_TO_DISPLAY).map((item, i) => (
                     <OpenWorkCard data={item} key={i + WORKS_TO_DISPLAY} />
-                ))}
+                ))} */}
             </div>
 
             {showMore && (
                 <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-6 md:gap-y-8 mt-8">
-                    {data.slice(WORKS_TO_DISPLAY).map((item, i) => (
+                    {/* {data.slice(WORKS_TO_DISPLAY).map((item, i) => (
                         <OpenWorkCard data={item} key={i + WORKS_TO_DISPLAY} />
-                    ))}
+                    ))} */}
                 </div>
             )}
 
