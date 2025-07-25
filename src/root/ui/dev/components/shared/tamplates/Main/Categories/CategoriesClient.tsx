@@ -10,14 +10,14 @@ interface Categories {
   name:string
 }
 
-// check
 interface Props {
     categories: Categories[]
 }
 
 
 export const CategoriesClient = ({categories} : Props) => {
-    
+
+
     return (
         <div className={"flex gap-4 px-2 min-w-max md:gap-6 md:px-4"}>
         {

@@ -141,7 +141,7 @@ export const DailyWorkersCard = ({className, data}: Props) => {
                         }
                     </div>
                     <div className={"flex flex-col justify-between h-full"}>
-                        <h4 className={"text-lg bg-red-500 font-semibold"}>{data.client.name}</h4>
+                        <h4 className={"text-lg font-semibold"}>{data.client.name}</h4>
                         <p className={"text-maket-gray"}>{data.client.type}</p>
                     </div>
                 </div>

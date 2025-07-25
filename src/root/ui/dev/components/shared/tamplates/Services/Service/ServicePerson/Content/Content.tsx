@@ -5,9 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { InfoTab } from "@/root/ui/dev/components/shared/tamplates/Services/Service/ServicePerson/Content/InfoTab/InfoTab";
 import { VideoTab } from "@/root/ui/dev/components/shared/tamplates/Services/Service/ServicePerson/Content/VideoTab/VideoTab";
 import { ImageTab } from "@/root/ui/dev/components/shared/tamplates/Services/Service/ServicePerson/Content/ImageTab/ImageTab";
-import {
-    FeedBackTab
-} from "@/root/ui/dev/components/shared/tamplates/Services/Service/ServicePerson/Content/FeedbackTab/FeedBackTab";
+import FeedBackServer from "./FeedbackTab/FeedBackTab.server";
+
 
 interface TabItem {
     key: string;
@@ -21,6 +20,7 @@ interface UserData {
     profile_photo: string;
     first_name: string;
     last_name: string;
+    userUuid:string
     about: string;
     avg_rating: number;
     comments_count: number;
@@ -60,17 +60,17 @@ const TABS = (response: UserData): TabItem[] => [
     {
         key: "izohlar",
         label: "Izohlar",
-        content: <FeedBackTab />,
+        content: <FeedBackServer userUuid={response.user_uuid}/>,
         IconPic: "feedbackIcon.svg"
     },
 ];
 
 export const Content = ({ className, response }: Props) => {
     const [activeTab, setActiveTab] = React.useState<string>("malumot");
+    
 
     return (
         <div className={cn(className, "w-full flex flex-col")}>
-            {/* Шапка с кнопками табов */}
             <div className="flex gap-6 border-b border-gray-200">
                 <div className="flex overflow-x-auto no-scrollbar overflow-y-hidden gap-6 border-b border-gray-200">
                     {TABS(response).map((tab) => {

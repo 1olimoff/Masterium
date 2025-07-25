@@ -4,12 +4,10 @@ import axios from "axios"
 
 export const openWorksList = async () => {
     try {
-        // console.log("Fetching open works list...");
         const initialResponse = (await axios.get(
             `${process.env.BASE_URL}api/v1/masters/public-jobs/?lat=41.294183&lon=69.257762&limit=20&offset=0`
         )).data.results;
-        
-        // console.log("Initial offer count:", initialResponse.length);
+
 
         const detailPromises = initialResponse.map((offer: Item) =>
             axios.get(`${process.env.BASE_URL}api/v1/offers/${offer.offer_id}/public-detail/`)
@@ -24,8 +22,6 @@ export const openWorksList = async () => {
                 images 
             };
         });
-
-        // console.log("Enriched offers with images:", enrichedOffers);
         return enrichedOffers;
 
     } catch (error: any) {

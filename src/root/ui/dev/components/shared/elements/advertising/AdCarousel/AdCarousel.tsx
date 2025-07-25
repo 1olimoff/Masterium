@@ -28,6 +28,14 @@ export const AdCarousel = ({ className, response = [] }: Props) => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
+  // Filtrlash: faqat display, is_active true va .mp4 yoki .gif fayllar
+  const filteredResponse = response.filter(
+    (item) =>
+      item.type === "display" &&
+      item.is_active === true &&
+      (item.image_url.endsWith(".mp4") || item.image_url.endsWith(".gif"))
+  );
+
   const resetVideos = () => {
     videoRefs.current.forEach((video) => {
       if (video) {
@@ -38,9 +46,9 @@ export const AdCarousel = ({ className, response = [] }: Props) => {
   };
 
   useEffect(() => {
-    if (!api || response.length <= 1) return;
+    if (!api || filteredResponse.length <= 1) return;
     intervalRef.current = setInterval(() => {
-      const nextIndex = (current + 1) % response.length;
+      const nextIndex = (current + 1) % filteredResponse.length;
       api.scrollTo(nextIndex);
     }, 7000);
 
@@ -49,7 +57,7 @@ export const AdCarousel = ({ className, response = [] }: Props) => {
         clearInterval(intervalRef.current);
       }
     };
-  }, [api, current, response]);
+  }, [api, current, filteredResponse]);
 
   useEffect(() => {
     if (!api) return;
@@ -64,7 +72,7 @@ export const AdCarousel = ({ className, response = [] }: Props) => {
     const handlePageShow = (event: PageTransitionEvent) => {
       if (event.persisted) {
         resetVideos();
-        api?.scrollTo(current); 
+        api?.scrollTo(current);
       }
     };
 
@@ -78,20 +86,28 @@ export const AdCarousel = ({ className, response = [] }: Props) => {
     <section className={cn("relative w-full overflow-hidden", className)}>
       <Carousel setApi={setApi}>
         <CarouselContent className="relative w-full h-[200px] sm:h-[250px] md:h-[300px] lg:h-[350px]">
-          {response.length > 0 ? (
-            response.map((item, index) => (
+          {filteredResponse.length > 0 ? (
+            filteredResponse.map((item, index) => (
               <CarouselItem key={item.id} className="relative w-full h-full">
-                <video
-                  ref={(el) => {
-                    videoRefs.current[index] = el;
-                  }}
-                  src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.image_url}`}
-                  className="w-full h-full object-cover rounded-xl sm:rounded-2xl md:rounded-3xl"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                />
+                {item.image_url.endsWith(".mp4") ? (
+                  <video
+                    ref={(el) => {
+                      videoRefs.current[index] = el;
+                    }}
+                    src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.image_url}`}
+                    className="w-full h-full object-cover rounded-xl sm:rounded-2xl md:rounded-3xl"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                ) : (
+                  <img
+                    src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.image_url}`}
+                    // alt={item.description || "Reklama"}2
+                    className="w-full h-full object-cover rounded-xl sm:rounded-2xl md:rounded-3xl"
+                  />
+                )}
               </CarouselItem>
             ))
           ) : (
@@ -103,7 +119,7 @@ export const AdCarousel = ({ className, response = [] }: Props) => {
           )}
         </CarouselContent>
 
-        {response.length > 1 && (
+        {filteredResponse.length > 1 && (
           <>
             <CarouselPrevious
               className={cn(
@@ -120,7 +136,7 @@ export const AdCarousel = ({ className, response = [] }: Props) => {
               onClick={() => api?.scrollNext()}
             />
             <div className="absolute bottom-2 md:bottom-4 left-0 w-full flex items-center justify-center gap-2 z-10">
-              {response.map((_, idx) => (
+              {filteredResponse.map((_, idx) => (
                 <div
                   key={idx}
                   onClick={() => api?.scrollTo(idx)}

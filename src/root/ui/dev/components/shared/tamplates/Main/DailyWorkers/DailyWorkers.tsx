@@ -19,7 +19,7 @@ export const DailyWorkers = async ({ className }: Props) => {
     commentsCount: worker.comments_count,
     client: {
       avatar: {
-        src: `${CDN_URL}${worker.profile_photo}`,
+        src: `${process.env.BASE_URL}${worker.profile_photo}`,
         alt: `${worker.first_name} ${worker.last_name}`,
       },
       name: `${worker.first_name} ${worker.last_name}`,
