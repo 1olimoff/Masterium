@@ -13,14 +13,13 @@ interface Category {
     id: number;
     name: string;
     icon: string;
-    slug: string; // ServerLink uchun kerak
+    slug: string;
 }
 
 export const Categories = async ({ className }: Props) => {
     const categories: Category[] = await fetchCategoryList();
-    console.log(categories);
-    
 
+    
     return (
         <section className={cn(className, "py-4 overflow-x-auto no-scrollbar md:py-6")}>
             <Head>

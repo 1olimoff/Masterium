@@ -18,7 +18,7 @@ export const Main = ({ className }: Props) => {
                 <InputArea />
             </div>
             <AdCarouselServer />
-            <Categories alt='' />
+            <Categories />
             <OpenWorks />
             <AdCarouselServer />
             <DailyWorkers />
