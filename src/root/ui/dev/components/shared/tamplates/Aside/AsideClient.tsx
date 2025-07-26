@@ -39,7 +39,7 @@ const Aside = ({ className, token, categories }: Props) => {
 
                 {/* Logo */}
                 <ServerLink path="" className="max-w-[200px] w-full hidden sm:flex">
-                    <Image src="/svg/footer/logo.svg" alt="masterium logo" width={250} height={80} />
+                    <Image src="/svg/footer/logo.svg" alt="masterium logo" priority width={250} height={80} />
                 </ServerLink>
 
                 {/* Middle section */}

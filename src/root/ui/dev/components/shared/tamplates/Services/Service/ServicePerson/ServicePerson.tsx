@@ -24,15 +24,68 @@ const UserProfile = async (userUuid: string) => { // userUuid qo'shish
 };
 
 
+const fetchFeedback = async (userUuid: string) => {
+    try {
+        const response = await axios.get(`${process.env.BASE_URL}api/v1/write_review/review/master/${userUuid}/summary`, {
+            headers: { 'Content-Type': 'application/json' }
+        })
+        return response.data
+    }
+    catch (error) {
+        console.error("Reklamalarni olishda hatolik ", error)
+    }
+}
+
+
+const fetchImages = async ( userUuid: string ) => {
+    try {
+        const response = await axios.get(`${process.env.BASE_URL}api/v1/master/${userUuid}/images/`, {
+            headers: { 'Content-Type': 'application/json' }
+        });
+        return response.data.results;
+    }
+    catch (error) {
+        console.error("RASMLARNI OLISHDA XATOLIK", error);
+    }
+}
+
+const fetchVideos = async (userUuid:string) => {
+    try{
+        const response = await axios.get(`${process.env.BASE_URL}api/v1/get/${userUuid}/videos/`, {
+            headers: { 'Content-Type': 'application/json' }
+        });
+        return response.data.results
+    }
+    catch(error){
+        console.log("Videolarni olishda xatolik", error);
+    }
+}
+
+const fetchReview = async (userUuid:string) => {
+    try{
+        const response = await axios.get(`${process.env.BASE_URL}api/v1/write_review/master/${userUuid}/reviews/`, {
+            headers: { 'Content-Type': 'application/json' }
+        });
+        return response.data.results
+    }
+    catch(error){
+        console.log("Reviewlarni olishda xatolik", error);
+    }
+}
+
 export const ServicePerson = async ({ className, userUuid, slug }: Props) => {
-    const response = await UserProfile(userUuid);     
+    const response = await UserProfile(userUuid);
+    const feedbackSummary = await fetchFeedback(userUuid)
+    const fetchpics = await fetchImages( userUuid)
+    const fetchvideos = await fetchVideos(userUuid)
+    const feedBackReview = await fetchReview(userUuid)
 
     return (
         <div className={cn(className, "w-full flex flex-col gap-6 pt-4 pb-4")}>
             <AdGrid />
-            <Title slug={slug} response={response}/>
-            <Header response={response}/>
-            <Content response={response}/>
+            <Title slug={slug} response={response} />
+            <Header response={response} />
+            <Content response={response} feedbackSummary={feedbackSummary} slug={slug} userUuid={userUuid} fetchpics={fetchpics} feedBackReview={feedBackReview} VideoData={fetchvideos}/>
         </div>
     );
 };

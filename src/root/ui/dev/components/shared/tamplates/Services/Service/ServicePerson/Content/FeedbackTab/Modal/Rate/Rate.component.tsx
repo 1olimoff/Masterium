@@ -1,13 +1,15 @@
 "use client";
+
 import { RateSvg } from "@/root/ui/dev/Svg/SvgComponents/RateSvg/RateSvg.component";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-export const Rate = () => {
+export const Rate = ({ onRateChange }: { onRateChange: (rating: number) => void }) => {
   const [rateCount, setRateCount] = useState<number>(0);
 
   const handleClick = (i: number): void => {
     setRateCount(i + 1);
+    onRateChange(i + 1);
   };
 
   return (

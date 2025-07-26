@@ -1,13 +1,23 @@
 import React, { useState } from "react";
 import { cn } from "@/root/business/lib/utils";
 import { useTranslations } from "next-intl";
-import { X } from "lucide-react"; // Yopish tugmasi uchun ikonka
+import { X } from "lucide-react";
 
 interface Props {
   className?: string;
+  imgResponse: imgResponse[];
 }
 
-export const ImageTab = ({ className }: Props) => {
+interface imgResponse {
+  id: number;
+  file_url: string;
+  user_id: string;
+  created_at: string;
+}
+
+export const ImageTab = ({ className, imgResponse }: Props) => {
+
+
   const t = useTranslations("ImageTab");
   const imageUrls: string[] = t.raw("images");
 
@@ -16,14 +26,14 @@ export const ImageTab = ({ className }: Props) => {
   return (
     <div className={cn(className)}>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {imageUrls.map((url, index) => (
+        {imgResponse.map((item, index) => (
           <div
-            key={index}
+            key={item.id || index}
             className="w-full aspect-video overflow-hidden rounded-lg shadow cursor-pointer hover:brightness-95"
-            onClick={() => setSelectedImage(url)}
+            onClick={() => setSelectedImage(item.file_url)}
           >
             <img
-              src={url}
+              src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.file_url}`}
               alt={`Image ${index + 1}`}
               className="w-full h-full object-cover rounded-lg"
             />
@@ -39,19 +49,10 @@ export const ImageTab = ({ className }: Props) => {
               className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-gray-100 transition-colors"
               aria-label="Close image modal"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-gray-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <X className="h-5 w-5 text-gray-600" />
             </button>
 
-            <img 
+            <img
               src={selectedImage}
               alt="Selected"
               className="rounded-lg object-contain max-h-[80vh] w-full"

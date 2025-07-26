@@ -23,7 +23,8 @@ export const MainCategoryItem = ({ className, iconPath, title, alt }: Props) => 
                 <Image
                     src={iconPath}
                     alt={alt}
-                    fill
+                    width={32}
+                    height={32}
                     style={{ objectFit: "contain" }}
                     className="mx-auto"
                 />

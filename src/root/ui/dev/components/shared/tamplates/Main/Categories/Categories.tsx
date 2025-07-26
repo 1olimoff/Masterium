@@ -1,33 +1,41 @@
+// components/shared/elements/categories/Categories.tsx faylida
+
+import Head from 'next/head'; // Head ni import qilish
 import { cn } from '@/root/business/lib/utils';
-import { MainCategoryItem } from "@/root/ui/dev/components/shared/elements/categories/MainCategoryItem";
-import axios from 'axios';
-import ServerLink from '../../../elements/Links/ServerLink';
 import { CategoriesClient } from './CategoriesClient';
 import { fetchCategoryList } from '@/root/business/api/main/category/fetchCategoryList';
 
 interface Props {
     className?: string;
-    alt: string
 }
 
 interface Category {
     id: number;
     name: string;
     icon: string;
-    alt: string
+    slug: string; // ServerLink uchun kerak
 }
 
-
-
 export const Categories = async ({ className }: Props) => {
-    const categories = await fetchCategoryList();
+    const categories: Category[] = await fetchCategoryList();
     console.log(categories);
     
 
     return (
         <section className={cn(className, "py-4 overflow-x-auto no-scrollbar md:py-6")}>
+            <Head>
+                {categories.map((category) => (
+                    <link
+                        key={`preload-${category.id}`}
+                        rel="preload"
+                        href={`${process.env.NEXT_PUBLIC_BASE_URL}${category.icon}`}
+                        as="image"
+                        type="image/svg" 
+                        crossOrigin="anonymous" 
+                    />
+                ))}
+            </Head>
             <CategoriesClient categories={categories} />
         </section>
-
     );
 };
