@@ -262,6 +262,10 @@
         "allServices": "Barcha xizmatlar",
         "offers": "Ish taklif qilish",
         "PersonName": "Eshonov Bahodir",
+        "santexnik": "Santexniklar",
+        "malyar":"Malyarlar",
+        "kalit%20tamirlash": "Kalit tamirlash",
+        "payvandchilar": "Payvandchilar",
         "offerData": {
           "offersTitle": "Ish taklif qilish"
         }

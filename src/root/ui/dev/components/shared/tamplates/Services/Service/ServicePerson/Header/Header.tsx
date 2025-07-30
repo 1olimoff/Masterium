@@ -22,9 +22,11 @@ interface UserData {
 interface Props {
   className?: string;
   response: UserData;
+  slug: string
+  userUuid: string
 }
 
-export const Header = ({ className, response }: Props) => {
+export const Header = ({ className, response, slug, userUuid }: Props) => {
   const t = useTranslations('');
 
   return (
@@ -33,7 +35,7 @@ export const Header = ({ className, response }: Props) => {
         <div className="rounded-full max-h-[84px] border-2 border-maket-green">
           <div className="h-20 w-20 rounded-full relative border-2 border-white">
             <Image
-           src={`${process.env.NEXT_PUBLIC_BASE_URL}${response.profile_photo}`}
+              src={`${process.env.NEXT_PUBLIC_BASE_URL}${response.profile_photo}`}
               alt={`${response.first_name} ${response.last_name}`}
               fill
               objectFit="cover"
@@ -68,7 +70,7 @@ export const Header = ({ className, response }: Props) => {
       </div>
 
       <ServerLink
-        path="offer-works"
+        path={`services/${slug}/${userUuid}/offer-works`}
         className="hidden sm:inline-flex items-center max-w-[250px] h-[50px] gap-2 px-4 py-2 rounded-xl bg-maket-primary text-maket-gold text-lg font-medium hover:bg-sky-800 transition-colors duration-200"
       >
         <Image

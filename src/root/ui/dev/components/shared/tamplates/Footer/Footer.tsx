@@ -23,7 +23,7 @@ export const Footer = ({ className }: Props) => {
         <div className={"flex flex-col gap-6 items-center md:items-start text-center md:text-left"}>
           <ServerLink path="/public">
             <Image
-              src={"/svg/footer/logo.svg"} 
+              src={"/svg/footer/logo.svg"}
               alt={"Footer logo of Masterium"}
               width={500}
               height={100}
@@ -59,8 +59,22 @@ export const Footer = ({ className }: Props) => {
               {t('download.title')}
             </h4>
             <div className={"flex flex-col gap-4"}>
-              <Image src={"/svg/footer/Apple.svg"} alt={"Apple Store"} width={200} height={100} quality={100} className={"h-10 w-auto"} />
-              <Image src={"/svg/footer/GooglePlay.svg"} alt={"Google Play"} width={200} height={100} quality={100} className={"h-10 w-auto"} />
+              <Image
+                src={"/svg/footer/Apple.svg"}
+                alt={"Apple Store"}
+                width={200}
+                height={100}
+                quality={100}
+                className={"h-10 w-auto"}
+              />
+              <Image
+                src={"/svg/footer/GooglePlay.svg"}
+                alt={"Google Play"}
+                width={200}
+                height={100}
+                quality={100}
+                className={"h-10 w-auto"}
+              />
             </div>
           </div>
         </div>
@@ -83,7 +97,12 @@ export const Footer = ({ className }: Props) => {
                   { href: "/", src: "Youtube.svg" },
                 ].map(({ href, src }, i) => (
                   <a key={i} href={href} className={"h-10 w-10 rounded-full relative"}>
-                    <Image src={`/svg/footer/social/${src}`} alt={src} fill objectFit={"contain"} />
+                    <Image
+                      src={`/svg/footer/social/${src}`}
+                      alt={`${src.replace('.svg', '')} icon`}
+                      fill
+                      style={{ objectFit: "contain" }} // objectFit ni style ichida ishlatish
+                    />
                   </a>
                 ))}
               </div>
@@ -94,8 +113,8 @@ export const Footer = ({ className }: Props) => {
 
       {/* Bottom Bar */}
       <div className={"text-white w-full max-w-[1300px] bg-maket-primary mt-8"}>
-        <hr  className='w-full '/>
-        <div className={"flex w-full  justify-center items-center pt-4 text-lg text-center"}>
+        <hr className='w-full' />
+        <div className={"flex w-full justify-center items-center pt-4 text-lg text-center"}>
           <p>{t('security')}</p>
         </div>
       </div>

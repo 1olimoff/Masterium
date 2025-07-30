@@ -103,7 +103,7 @@ export const FeedBackTab = ({ className, data, slug, feedBackReview }: Props) =>
             <div className="flex-1">
               <div className="flex gap-2">
                 <img
-                  src={`${process.env.NEXT_PUBLIC_BASE_URL}${review.image_url}`} // Fixed to use image_url
+                  src={`${process.env.NEXT_PUBLIC_BASE_URL}${review.image_url}`}
                   alt="profile"
                   className="w-[64px] h-[64px] rounded-full object-cover object-center"
                 />

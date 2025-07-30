@@ -84,7 +84,7 @@ export const ServicePerson = async ({ className, userUuid, slug }: Props) => {
         <div className={cn(className, "w-full flex flex-col gap-6 pt-4 pb-4")}>
             <AdGrid />
             <Title slug={slug} response={response} />
-            <Header response={response} />
+            <Header response={response} slug={slug} userUuid={userUuid}/>
             <Content response={response} feedbackSummary={feedbackSummary} slug={slug} userUuid={userUuid} fetchpics={fetchpics} feedBackReview={feedBackReview} VideoData={fetchvideos}/>
         </div>
     );

@@ -9,12 +9,22 @@ import {
 } from "@/root/ui/dev/shadcn/ui/breadcrumb";
 import ServerLink from "@/root/ui/dev/components/shared/elements/Links/ServerLink";
 
-interface Props {
-  className?: string;
+interface UserProfile {
+  first_name:string;
+  last_name:string;
+  avg_rating:number;
+  profile_photo:string;
+  comments_count:number;
+  user_uuid:string
 }
 
-export const Title = ({ className }: Props) => {
-  // NOTE: Bu yerda namespace aniqligi muhim
+interface Props {
+  className?: string;
+  slug: string;
+  response: UserProfile
+}
+
+export const Title = ({ className, slug, response }: Props) => {
   const t = useTranslations("OfferWork.Offers.breadcrumb");
 
   return (
@@ -34,18 +44,24 @@ export const Title = ({ className }: Props) => {
             </ServerLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator>/</BreadcrumbSeparator>
-          
-          <BreadcrumbItem className="text-maket-gray">
-            <ServerLink path="/services/service">
-              {t("PersonName")}
+
+          <BreadcrumbItem className='text-maket-gray'>
+            <ServerLink path={`/services/${slug}`} >
+              <p className={"text-gray-700"}>{t(`${slug}`)}</p>
+            </ServerLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator>/</BreadcrumbSeparator>
+
+
+          <BreadcrumbItem className='text-maket-gray'>
+            <ServerLink path={`/services/${slug}/${response.user_uuid}`}>
+              <p className={"text-gray-700"}>{`${response.first_name} ${response.last_name}`}</p>
             </ServerLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator>/</BreadcrumbSeparator>
 
           <BreadcrumbItem className="text-black">
-          <ServerLink path="/offer-works">
-            {t("offers")}
-            </ServerLink>
+              {t("offers")}
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>

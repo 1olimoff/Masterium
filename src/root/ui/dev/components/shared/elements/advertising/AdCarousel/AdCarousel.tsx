@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { cn } from "@/root/business/lib/utils";
+import Image from "next/image";
 import {
   Carousel,
   CarouselContent,
@@ -28,7 +29,6 @@ export const AdCarousel = ({ className, response = [] }: Props) => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
-  // Filtrlash: faqat display, is_active true va .mp4 yoki .gif fayllar
   const filteredResponse = response.filter(
     (item) =>
       item.type === "display" &&
@@ -37,10 +37,12 @@ export const AdCarousel = ({ className, response = [] }: Props) => {
   );
 
   const resetVideos = () => {
-    videoRefs.current.forEach((video) => {
-      if (video) {
+    videoRefs.current.forEach((video, idx) => {
+      if (video && idx === current) {
         video.load();
         video.play().catch(() => {});
+      } else if (video) {
+        video.pause(); 
       }
     });
   };
@@ -64,8 +66,8 @@ export const AdCarousel = ({ className, response = [] }: Props) => {
     setCurrent(api.selectedScrollSnap());
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap());
+      resetVideos();
     });
-    resetVideos();
   }, [api]);
 
   useEffect(() => {
@@ -96,16 +98,22 @@ export const AdCarousel = ({ className, response = [] }: Props) => {
                     }}
                     src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.image_url}`}
                     className="w-full h-full object-cover rounded-xl sm:rounded-2xl md:rounded-3xl"
-                    autoPlay
+                    autoPlay={index === current} // Faqat joriy video avtomatik o'ynaydi
                     muted
                     loop
                     playsInline
+                    preload={index === 0 ? "auto" : "metadata"} // Birinchi video uchun preload
                   />
                 ) : (
-                  <img
+                  <Image
                     src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.image_url}`}
-                    // alt={item.description || "Reklama"}2
-                    className="w-full h-full object-cover rounded-xl sm:rounded-2xl md:rounded-3xl"
+                    alt={`Reklama ${index + 1}`}
+                    fill
+                    style={{ objectFit: "cover" }}
+                    className="rounded-xl sm:rounded-2xl md:rounded-3xl"
+                    priority={index === 0} // Faqat birinchi rasm uchun priority
+                    // placeholder="blur" // WebP bo'lsa yoqish mumkin
+                    // blurDataURL="/path/to/low-res-placeholder.jpg"
                   />
                 )}
               </CarouselItem>

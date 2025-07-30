@@ -259,7 +259,10 @@
         "home": "Home",
         "allServices": "All Services",
         "PersonName": "Eshonov Bahodir",
-
+        "santexnik": "Plumbers",
+        "malyar":"Painters",
+        "kalit%20tamirlash": "Renovation",
+        "payvandchilar": "Welders",
         "offerData": {
           "offersTitle": "Offer a Job"
         }

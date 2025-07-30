@@ -11,6 +11,7 @@ interface Props {
 
 export const Title = ({ className, slug }: Props) => {
     const t = useTranslations();
+    
     return (
         <div className={cn(className, "hidden sm:flex mt-2 flex-col gap-4")}>
             <Breadcrumb>
@@ -29,7 +30,7 @@ export const Title = ({ className, slug }: Props) => {
                         </ServerLink>
                     </BreadcrumbItem>
                     <BreadcrumbSeparator>
-                        /
+                        / 
                     </BreadcrumbSeparator>
                     <BreadcrumbItem>
                     <ServerLink path={`/services/${slug}`} >
