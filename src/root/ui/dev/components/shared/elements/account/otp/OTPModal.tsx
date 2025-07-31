@@ -73,7 +73,7 @@ export const OTPModal = ({
         setTimeout(() => setIsAnimating(false), 1500);
         setTimeout(() => {
             window.location.reload();
-          }, 600); // 1 sekund
+          }, 500); // 1 sekund
 
         onConfirm?.(otpValue);
     };

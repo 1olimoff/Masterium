@@ -76,60 +76,66 @@ export const AuthProvider = ({ children, open, onOpenChange, onRegisterClick }: 
     return true;
   };
 
-  const handleSubmit = async () => {
-    setLoading(true);
-    if (!validateInputs()) {
-      setLoading(false);
-      return;
-    }
+ // AuthProvider
+const handleSubmit = async () => {
+  setLoading(true);
+  if (!validateInputs()) {
+    setLoading(false);
+    return;
+  }
 
-    try {
-      const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
-      const response = await axios.post("/api/auth/login", {
-        phone_number: formattedPhone,
-        password,
-        req_type: "login",
-      });
+  try {
+    const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
+    const response = await axios.post("/api/auth/login", {
+      phone_number: formattedPhone,
+      password,
+      req_type: "login",
+    });
 
-      if (response.data.success) {
-        setOpenOTP(true);
-        onOpenChange(false); // Login modalni yopish
-      } else {
-        toast.error(t("login.errors.phone-or-psw")); // "Nomer yoki parol notog'ri"
-        onOpenChange(false);
+    if (response.data.success) {
+      setOpenOTP(true);
+      onOpenChange(false);
+    } else {
+      toast.error(response.data.message || t("login.errors.phone-or-psw"));
+      if (response.data.error === "user_not_found") {
         setTimeout(() => {
-          onRegisterClick(); // Register modalni ochish
+          onRegisterClick();
         }, 150);
       }
-    } catch (error: any) {
-      console.error("Login xatosi:", error.response?.data || error.message);
-      toast.error(t("login.errors.phone-or-psw")); // "Nomer yoki parol notog'ri"
-    } finally {
-      setLoading(false); // Har qanday holatda loadingni o'chirish
     }
-  };
+  } catch (error: any) {
+    console.error("Login xatosi:", error.response?.data || error.message);
+    toast.error(error.response?.data?.message || t("login.errors.phone-or-psw"));
+  } finally {
+    setLoading(false);
+  }
+};
 
-  const handleConfirmCode = async (code: string) => {
-    try {
-      const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
-      const response = await axios.post("/api/auth/login", {
-        phone_number: formattedPhone,
-        code,
-        req_type: "otp",
-      });
+const handleConfirmCode = async (code: string) => {
+  try {
+    const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
+    const response = await axios.post("/api/auth/login", {
+      phone_number: formattedPhone,
+      code,
+      req_type: "otp",
+    });
 
-      if (response.data.access_token) {
-        toast.success(t("login.success")); // "Siz tizimga kirdingiz :)"
-        setOpenOTP(false);
-        onOpenChange(false); // Login modalni yopish
-      } else {
-        toast.error(t("OTP.errors.invalid")); // "Noto'g'ri OTP kodi"
-      }
-    } catch (error: any) {
-      console.error("OTP tasdiqlash muvaffaqiyatsiz:", error.response?.data || error.message);
-      toast.error(t("OTP.errors.minLength")); // "Tekshirib to'liq kiriting"
+    if (response.data.access_token) {
+      toast.success(t("login.success"));
+      setOpenOTP(false);
+      onOpenChange(false);
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
+    } else {
+      toast.error(response.data.message || t("OTP.errors.invalid"));
     }
-  };
+  } catch (error: any) {
+    console.error("OTP tasdiqlash muvaffaqiyatsiz:", error.response?.data || error.message);
+    toast.error(error.response?.data?.message || t("OTP.errors.minLength"));
+  }
+};
+
 
   return (
     <>

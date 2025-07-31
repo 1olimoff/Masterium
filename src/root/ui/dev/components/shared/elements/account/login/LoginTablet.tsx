@@ -148,7 +148,7 @@ export const LoginProviderDialog = ({ trigger }: Props) => {
           token = true;
           setTimeout(() => {
             window.location.reload();
-          }, 600); // 0.1 sekund
+          }, 500); // 0.1 sekund
         } else {
           console.error("Access token saqlanmadi!");
           token = false;

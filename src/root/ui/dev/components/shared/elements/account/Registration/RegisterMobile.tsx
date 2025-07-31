@@ -1,3 +1,4 @@
+// RegistrationPage.tsx
 "use client";
 import React, { useState } from "react";
 import PhoneInput from "react-phone-input-2";
@@ -24,7 +25,7 @@ interface Props {
 const OPERATORS = new Set([
   "20", "33", "50", "55", "61", "62", "65", "66", "67", "69",
   "70", "71", "72", "73", "74", "75", "76", "77", "78", "79",
-  "88", "90", "91", "93", "94", "95", "97", "98", "99"
+  "88", "90", "91", "93", "94", "95", "97", "98", "99",
 ]);
 
 export const RegistrationPage = ({ className, open, onOpenChange, onLoginClick }: Props) => {
@@ -89,18 +90,60 @@ export const RegistrationPage = ({ className, open, onOpenChange, onLoginClick }
         phone_number: formattedPhone,
         password,
         name,
-        req_type: "register"
+        req_type: "register",
       });
+
+      console.log("Registration response:", response.data);
 
       if (response.data.success) {
         setOtpOpen(true);
         onOpenChange(false);
+      } else {
+        toast.error(response.data.message || t("Registration.errors.failed"));
+        if (response.data.error === "user_exists") {
+          toast.error(t("Registration.errors.user_exists"));
+          setTimeout(() => {
+            onLoginClick();
+          }, 150);
+        }
       }
     } catch (error: any) {
       console.error("Registration error:", error.response?.data || error.message);
-      toast.error(error.response?.data?.message || t("Registration.errors.name.failed"));
+      toast.error(error.response?.data?.message || t("Registration.errors.failed"));
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleOtpConfirm = async (code: string) => {
+    try {
+      const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
+      const response = await axios.post("/api/auth/registration", {
+        phone_number: formattedPhone,
+        code,
+        req_type: "otp",
+      });
+
+      console.log("OTP response:", response.data);
+
+      if (response.data.success && response.data.access_token) {
+        toast.success(t("OTP.success"));
+        setOtpOpen(false);
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+      } else {
+        toast.error(response.data.message || t("OTP.errors.failed"));
+        if (response.data.error === "user_exists") {
+          toast.error(t("Registration.errors.user_exists"));
+          setTimeout(() => {
+            onLoginClick();
+          }, 150);
+        }
+      }
+    } catch (error: any) {
+      console.error("OTP verification failed:", error.response?.data || error.message);
+      toast.error(error.response?.data?.message || t("OTP.errors.failed"));
     }
   };
 
@@ -204,27 +247,7 @@ export const RegistrationPage = ({ className, open, onOpenChange, onLoginClick }
         setOpenOTP={setOtpOpen}
         setOpenParentModal={(value) => onOpenChange(typeof value === "boolean" ? value : false)}
         isRegisterFlow={true}
-        onConfirm={async (code) => {
-          try {
-            const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
-            const response = await axios.post("/api/auth/registration", {
-              phone_number: formattedPhone,
-              code,
-              req_type: "otp"
-            });
-
-            if (response.data.access_token) {
-              localStorage.setItem("accessToken", response.data.access_token);
-              localStorage.setItem("refreshToken", response.data.refresh_token);
-              localStorage.setItem("authType", response.data.token_type);
-              toast.success(t("OTP.success"));
-              setOtpOpen(false);
-            }
-          } catch (error: any) {
-            console.error("OTP verification failed:", error.response?.data || error.message);
-            toast.error(error.response?.data?.message || t("OTP.errors.failed"));
-          }
-        }}
+        onConfirm={handleOtpConfirm}
       />
     </>
   );
