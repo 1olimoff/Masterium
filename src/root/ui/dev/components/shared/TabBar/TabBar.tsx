@@ -2,13 +2,22 @@
 import React from 'react'
 import { TabItem } from './Homepage/TabItem'
 import { usePathname } from 'next/navigation'
+import Cookies from 'js-cookie'
 
 interface Props {
-    token: string | null; // token string yoki null bo‘lishi mumkin
+    token: string | null;
 }
 
-export default function TabBar({token}:Props) {
-    const pathname = usePathname(); // faqat shu orqali active aniqlanadi
+export default function TabBar({token}: Props) {
+    const pathname = usePathname();
+    const region = Cookies.get("region") || "tashkent";
+    const locale = Cookies.get("locale") || "uz";
+
+    // pathname'dan locale va region'ni olib tashlash
+    const getBasePath = (path: string) => {
+        const basePath = path.replace(`/${locale}/${region}`, '');
+        return basePath === '' ? '/' : basePath;
+    };
 
     const tabItemArr = [
         {
@@ -17,22 +26,22 @@ export default function TabBar({token}:Props) {
             icon: 'home',
         },
         {
-            href: 'services',
+            href: '/services',
             label: 'Katalog',
             icon: 'catalog',
         },
         {
-            href: 'advertise',
+            href: '/advertise',
             label: "Qo'shish",
             icon: 'add',
         },
         {
-            href: 'myads',
+            href: '/myads',
             label: "E'lonlar",
             icon: 'ads',
         },
         {
-            href: 'offer-works',
+            href: '/offer-works',
             label: 'Profil',
             icon: 'profile',
         },
@@ -48,7 +57,7 @@ export default function TabBar({token}:Props) {
                         href={item.href}
                         icon={item.icon}
                         label={item.label}
-                        isActive={pathname === item.href}
+                        isActive={getBasePath(pathname) === item.href}
                     />
                 ))}
             </div>

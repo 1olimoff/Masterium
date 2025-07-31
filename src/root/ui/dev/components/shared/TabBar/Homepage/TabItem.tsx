@@ -51,7 +51,7 @@ export const TabItem = ({ token, icon, label, href, isActive }: TabItemProps) =>
       <div className="h-6 flex items-center justify-center">
         <Image src={iconPath} alt={label} width={24} height={24} />
       </div>
-      <span className={`text-[12px] mt-1 ${isActive ? "text-[#00174C] font-semibold" : "text-gray-500"}`}>
+      <span className={`text-[12px] mt-1 ${isActive ? "text-[#00174C] font-thin" : "text-gray-500"}`}>
         {label}
       </span>
     </ServerLink>

@@ -148,7 +148,7 @@ export const LoginProviderDialog = ({ trigger }: Props) => {
           token = true;
           setTimeout(() => {
             window.location.reload();
-          }, 1000); // 1 sekund
+          }, 600); // 0.1 sekund
         } else {
           console.error("Access token saqlanmadi!");
           token = false;
@@ -159,7 +159,7 @@ export const LoginProviderDialog = ({ trigger }: Props) => {
     } catch (error: any) {
       console.error("OTP tasdiqlash muvaffaqiyatsiz:", error.response?.data || error.message);
       toast.error(t("OTP.errors.minLength")); 
-      token = false; // Xato bo'lsa token false bo'ladi
+      token = false; 
     }
   };
 
