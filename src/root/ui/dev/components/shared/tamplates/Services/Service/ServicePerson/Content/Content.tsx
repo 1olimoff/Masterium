@@ -91,7 +91,7 @@ const TABS = (response: UserData, feedbackSummary: Feedback, slug: string, userU
     {
         key: "izohlar",
         label: "Izohlar",
-        content: <FeedBackTab data={feedbackSummary} slug={slug} feedBackReview={feedBackReview}/>,
+        content: <FeedBackTab data={feedbackSummary} profile={response} slug={slug} feedBackReview={feedBackReview}/>,
         IconPic: "feedbackIcon.svg",
     },
 ];

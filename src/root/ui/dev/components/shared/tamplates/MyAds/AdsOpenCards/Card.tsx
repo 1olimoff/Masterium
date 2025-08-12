@@ -1,89 +1,26 @@
-import React from 'react';
-import { useTranslations } from "next-intl";
-import { Card } from './Cards/Card';
-
-
+import { getTranslations } from "next-intl/server";
+import { Card } from "./Cards/Card";
+import { Offer } from "../MyAds";
 
 interface Props {
-    className?: string;
+  className?: string;
+  data: Offer[];
 }
 
-const data = [
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: true,
-        },
-        applicationCount: 5
-    },
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: true,
-        },
-        applicationCount: 0
-    },
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: true,
-        },
-        applicationCount: 2
-    },
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: true,
-        },
-        applicationCount: 0
-    },
-]
+export const MyAdsPage = async ({ className, data }: Props) => {
+  const t = await getTranslations("");
 
-export const MyAdsPage = ({ className }: Props) => {
-    const t = useTranslations('');
-
-    return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
-            {data.map((item, i) => (
-                <div className="w-full sm:w-auto flex mb-4 justify-center" key={i}>
-                    <Card data={item} />
-                </div>
-            ))} 
-        </div>
-    );
+  return (
+    <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 p-4 ${className}`}>
+      {data && data.length > 0 ? (
+        data.map((item, i) => (
+          <div className="w-full sm:w-auto flex mb-4 justify-center" key={i}>
+            <Card data={item} />
+          </div>
+        ))
+      ) : (
+        <p>{t("no_offers_available") || "Takliflar mavjud emas"}</p>
+      )}
+    </div>
+  );
 };
-
-
-

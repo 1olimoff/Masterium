@@ -5,13 +5,28 @@ import { useTranslations } from "next-intl"
 import { Button } from "@/root/ui/dev/shadcn/ui/button"
 import { Link } from "@/i18n/routing"
 import ServerLink from "../../../../../elements/Links/ServerLink"
+import { Detail } from "../../../Navbar/Navbar"
 
 interface Props {
   className?: string
+  detail: Detail
+
 }
 
-export const ShortInfoTab = ({ className }: Props) => {
+
+
+export const ShortInfoTab = ({ className, detail }: Props) => {
   const t = useTranslations("")
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString)
+    return date.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric"
+    }).split("/").join(".")
+  }
+
   return (
     <div className={cn("w-full flex flex-col gap-3", className)}>
       <ServerLink
@@ -49,23 +64,23 @@ export const ShortInfoTab = ({ className }: Props) => {
        {t("MyAds.changeAdsbtn")}
       </ServerLink>
       <p className="text-sm text-maket-gray">
-        {t("WorksPage.content.shortInfo.createdDateTitle")} 25.11.2024 09:45
+        {t("WorksPage.content.shortInfo.createdDateTitle")} {formatDate(detail.created_at)}
       </p>
       
       <h1 className="text-xl font-semibold">
-        Oshxonani yevro remont qilish kerak
+       {detail.title}
       </h1>
       <h2 className="text-3xl font-semibold">
-        12 850 000 {t("price.sum.title")}
+       {detail.price.toLocaleString()} {t("price.sum.title")}
       </h2>
 
       <div className="p-4 flex flex-col gap-2 rounded-xl bg-maket-batafsil">
         <p className="text-lg font-semibold text-maket-secondary uppercase">
-          <span>{t("WorksPage.content.shortInfo.period.title")}</span> 23{" "}
+          <span>{t("WorksPage.content.shortInfo.period.title")}</span> {detail.total_date}{" "}
           <span>{t("WorksPage.content.shortInfo.period.days")}</span>
         </p>
         <p className="text-maket-secondary">
-          25.11.2024 {t("WorksPage.content.shortInfo.period.from")} - 18.12.2024{" "}
+          {formatDate(detail.start_date)} {t("WorksPage.content.shortInfo.period.from")} - {formatDate(detail.end_date)}{" "}
           {t("WorksPage.content.shortInfo.period.to")}
         </p>
       </div>

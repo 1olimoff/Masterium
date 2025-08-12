@@ -10,11 +10,27 @@ interface Feedback {
   rating_distribution: { 1: number, 2: number, 3: number, 4: number, 5: number }
 }
 
+
+export interface UserData {
+  user_uuid: string;
+  profile_photo: string;
+  first_name: string;
+  last_name: string;
+  userUuid: string;
+  about: string;
+  avg_rating: number;
+  comments_count: number;
+  categories: { id: number; name: string }[];
+  tags: { id: number; name: string; category_id: number }[];
+  experience_levels: { experience_level: string; category_name: string }[];
+}
+
 interface Props {
   className?: string;
   data: Feedback;
   slug:string
   feedBackReview:FeedBackReview[]
+  profile: UserData
 }
 
 interface FeedBackReview{
@@ -28,7 +44,7 @@ interface FeedBackReview{
 }
 
 
-export const FeedBackTab = ({ className, data, slug, feedBackReview }: Props) => {
+export const FeedBackTab = ({ className, data, slug, profile, feedBackReview }: Props) => {
   const t = useTranslations("ReviewTab");
  
   const { average_rating, total_reviews, rating_distribution } = data;
@@ -84,7 +100,7 @@ export const FeedBackTab = ({ className, data, slug, feedBackReview }: Props) =>
                   {t("writeComment")}
                 </div>
               </DialogTrigger>
-              <FeedBackModal slug={slug}/>
+              <FeedBackModal slug={slug} profile={profile}/>
             </div>
           </Dialog>
         </div>
@@ -144,7 +160,7 @@ export const FeedBackTab = ({ className, data, slug, feedBackReview }: Props) =>
                 {t("writeComment")} 
               </button>
             </DialogTrigger>
-            <FeedBackModal slug={slug} /> 
+            <FeedBackModal slug={slug} profile={profile} /> 
           </div>
         </Dialog>
       </div>

@@ -6,8 +6,9 @@
     const nextConfig = {
         reactStrictMode: true,
         images: {
-            domains: [new URL(process.env.NEXT_PUBLIC_BASE_URL).hostname], // Tashqi domenni qo‘shing
+            // domains: [new URL(process.env.NEXT_PUBLIC_BASE_URL).hostname], // Tashqi domenni qo‘shing
             formats: ['image/webp'],
+            domains: ['image-placeholder.com', 'cdn.masterium.uz'], // Rasml
           },
     };
 

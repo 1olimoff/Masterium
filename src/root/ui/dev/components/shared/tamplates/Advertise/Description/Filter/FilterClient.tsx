@@ -1,5 +1,4 @@
 "use client";
-
 import { useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
@@ -28,10 +27,8 @@ export const FilterBar = ({
   const [dateToOpen, setDateToOpen] = useState(false);
   const t = useTranslations("");
 
-
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-
 
   useEffect(() => {
     if (!dateFrom) {
@@ -41,7 +38,6 @@ export const FilterBar = ({
 
   return (
     <div className="flex w-full md:w-[60%] gap-4">
-      {/* Sana boshlanishi */}
       <div className="flex flex-col flex-1">
         <label className="mb-2 text-sm font-medium text-[#002250]">
           {t("OfferWork.Offers.PersonProfile.Date.titleStart")}
@@ -74,15 +70,12 @@ export const FilterBar = ({
                 }
                 setDateFromOpen(false);
               }}
-              // ❌ Kechagi yoki undan oldingi sanalarni bloklash
               disabled={(date) => date < today}
               initialFocus
             />
           </PopoverContent>
         </Popover>
       </div>
-
-      {/* Sana tugashi */}
       <div className="flex flex-col flex-1">
         <label className="mb-2 text-sm font-medium text-[#002250]">
           {t("OfferWork.Offers.PersonProfile.Date.titleEnd")}

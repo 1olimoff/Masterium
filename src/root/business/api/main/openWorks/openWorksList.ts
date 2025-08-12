@@ -5,12 +5,12 @@ import axios from "axios"
 export const openWorksList = async () => {
     try {
         const initialResponse = (await axios.get(
-            `${process.env.BASE_URL}api/v1/masters/public-jobs/?lat=41.294183&lon=69.257762&limit=20&offset=0`
+            `${process.env.BASE_URL}api/v1/masters/public-jobs/`
         )).data.results;
 
 
         const detailPromises = initialResponse.map((offer: Item) =>
-            axios.get(`${process.env.BASE_URL}api/v1/offers/${offer.offer_id}/public-detail/`)
+            axios.get(`${process.env.BASE_URL}api/v1/offers/${offer.offer_id}/detail/`)
         );
 
         const detailedResponses = await Promise.all(detailPromises);

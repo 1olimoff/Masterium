@@ -25,6 +25,7 @@ type Item = {
         type: string;
         online: boolean;
     };
+    user_uuid: string
 }
 
 interface Props {
@@ -73,6 +74,7 @@ export const DailyWorkersCard = ({className, data}: Props) => {
             setCurrent(api.selectedScrollSnap());
         });
     }, [api]);
+    
     return (
         <div className={cn(className, "w-full max-w-[350px]  rounded-xl overflow-hidden bg-white my-custom-shadow ")}>
             <Carousel

@@ -13,7 +13,7 @@ interface Props {
 
 const fetchMasters = async (slug: string) => {
     try {
-        const response = await axios.get(`${process.env.BASE_URL}/api/v1/masters/daily/?slug=${slug}&limit=20&offset=0`, {
+        const response = await axios.get(`${process.env.BASE_URL}/api/v1/masters/daily/`, {
             headers: { 'Content-Type': 'application/json' },
         });
         return response.data.results || [];

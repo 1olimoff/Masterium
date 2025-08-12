@@ -12,9 +12,11 @@ import {
   type CarouselApi,
 } from "@/root/ui/dev/shadcn/ui/carousel"
 import Image from "next/image"
+import { Detail } from "../../../Navbar/Navbar"
 
 interface Props {
   className?: string
+  detail: Detail
 }
 
 const data = [
@@ -32,7 +34,7 @@ const data = [
   },
 ]
 
-export const Gallery = ({ className }: Props) => {
+export const Gallery = ({ className, detail }: Props) => {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
 
@@ -46,7 +48,7 @@ export const Gallery = ({ className }: Props) => {
     <section className={cn("relative w-full h-full min-h-[250px]", className)}>
       <Carousel setApi={setApi} className="w-full h-full">
         <CarouselContent className="w-full h-full">
-          {data.map((item, i) => (
+          {detail.images.map((item, i) => (
             <CarouselItem
               key={i}
               className="w-full h-[300px] sm:h-[370px] md:h-[430px] lg:h-[450px] relative"

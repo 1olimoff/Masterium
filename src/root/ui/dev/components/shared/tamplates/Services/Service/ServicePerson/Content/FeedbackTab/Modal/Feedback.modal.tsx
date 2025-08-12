@@ -5,12 +5,16 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import ServerLink from "@/root/ui/dev/components/shared/elements/Links/ServerLink";
 import axios from "axios";
+import { UserData } from "../FeedBackTab";
+import { profile } from "console";
 
 interface Props {
     slug: string;
+    profile: UserData
 }
 
-export const FeedBackModal = ({ slug }: Props) => {
+
+export const FeedBackModal = ({ slug, profile }: Props) => {
     const t = useTranslations("ReviewTab");
     const [rating, setRating] = useState<number>(0);
     const [comment, setComment] = useState<string>("");
@@ -41,10 +45,10 @@ export const FeedBackModal = ({ slug }: Props) => {
             <div className="flex flex-col w-full items-center">
                 <DialogTitle>
                     <p className="text-xl font-bold mb-2 text-[#001D55] text-center">
-                        Bahodir {t("Modal.writetext")}
+                        {profile.first_name} {t("Modal.writetext")}
                     </p>
                     <p className="text-sm text-gray-600 text-center mb-4">
-                        Bahodir {t("Modal.rate")}
+                        {profile.first_name}{t("Modal.rate")}
                     </p>
                 </DialogTitle>
 

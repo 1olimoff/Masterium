@@ -141,14 +141,13 @@ export const LoginProviderDialog = ({ trigger }: Props) => {
         toast.success(t("login.success")); // "Siz tizimga kirdingiz :)"
         setOtpOpen(false);
         setOpenLogin(false);
-  
+        setTimeout(() => {
+          window.location.reload();
+        }, 1150); // 0.1 sekund`
         // Cookie mavjudligini tekshirish
         if (Cookies.get("accessToken")) {
           console.log("Access token saqlandi, token holati true");
           token = true;
-          setTimeout(() => {
-            window.location.reload();
-          }, 500); // 0.1 sekund
         } else {
           console.error("Access token saqlanmadi!");
           token = false;

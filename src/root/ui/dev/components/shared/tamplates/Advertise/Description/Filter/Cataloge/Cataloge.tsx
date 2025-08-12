@@ -5,7 +5,7 @@ import { Button } from "@/root/ui/dev/shadcn/ui/button";
 import { Popover, PopoverTrigger, PopoverContent } from "@/root/ui/dev/shadcn/ui/popover";
 import { Command, CommandInput, CommandItem, CommandList } from "@/root/ui/dev/shadcn/ui/command";
 import Image from "next/image";
-import { useOfferWorkStore } from "../../../OfferWorkStore";
+import { useAdvertiseStore } from "../../../AdvertiseStore";
 
 interface Category {
   id: number;
@@ -13,22 +13,26 @@ interface Category {
 }
 
 interface CatalogeProps {
-  categories: Category[];
+  catalogs: string[];
 }
-function Cataloge({ categories = [] }: CatalogeProps) {
 
+function Cataloge({ catalogs = [] }: CatalogeProps) {
   const t = useTranslations("");
-  const { selectedCategory, setSelectedCategory } = useOfferWorkStore();
-
+  const { selectedCategory, setSelectedCategory } = useAdvertiseStore();
   const [catalogOpen, setCatalogOpen] = useState(false);
 
+  // Indekslarni backend ID lariga moslashtirish (0 → 1, 1 → 2, 2 → 3)
+  const categories: Category[] = catalogs.map((name, index) => ({
+    id: index + 1, // Backend ID lari odatda 1 dan boshlanadi
+    name,
+  }));
+
   const handleSelect = (id: number) => {
-    setSelectedCategory(id); // ID yuboriladi
+    setSelectedCategory(id);
     setCatalogOpen(false);
   };
 
-  const selectedCategoryObj = categories?.find(cat => cat.id === selectedCategory);
-
+  const selectedCategoryObj = categories.find((cat) => cat.id === selectedCategory);
 
   return (
     <div className="w-full md:w-[50%] lg:w-[27%] flex mt-2 flex-col gap-1">

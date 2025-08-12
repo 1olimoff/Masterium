@@ -3,9 +3,12 @@ import { toast } from "@/root/business/hooks/use-toast";
 import { Input } from "@/root/ui/dev/shadcn/ui/input";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { useAdvertiseStore } from "../../AdvertiseStore";
 
 export const PhoneCheck = () => {
-    const [phone, setPhone] = useState("");
+    // const [phone, setPhone] = useState("");
+    const { phone, setPhone } = useAdvertiseStore();
+
 
     const t = useTranslations("OfferWork")
 
@@ -27,7 +30,7 @@ export const PhoneCheck = () => {
                         return;
                     }
 
-                    setPhone(inputValue); 
+                    setPhone(inputValue);
                 }}
             />
         </div>

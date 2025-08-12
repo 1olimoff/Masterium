@@ -6,12 +6,13 @@ interface Props {
   className?: string;
 }
 
-const CDN_URL = "https://cdn.masterium.uz";
-
 export const DailyWorkers = async ({ className }: Props) => {
   const dailyWorkersRaw = await fetchDailyWorkers();
 
+  
+
   const dailyWorkers = dailyWorkersRaw.map((worker: any) => ({
+    user_uuid: worker.user_uuid,
     title: `${worker.first_name} ${worker.last_name}`,
     category: worker.categories?.[0]?.name || '',
     price: worker.price,
@@ -23,9 +24,9 @@ export const DailyWorkers = async ({ className }: Props) => {
         alt: `${worker.first_name} ${worker.last_name}`,
       },
       name: `${worker.first_name} ${worker.last_name}`,
-
     },
   }));
+  
 
   return (
     <DailyWorkersClient className={className} dailyWorkers={dailyWorkers} />

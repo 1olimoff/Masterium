@@ -5,12 +5,17 @@ import { Title } from "./Title/Title"
 import { Filter } from "./Filter/Filter";
 import { List } from "@/root/ui/dev/components/shared/tamplates/OpenWorks/List/List";
 import { MobileBackTab } from './Title/MobileTabBar';
+import { fetchCategoryList } from '@/root/business/api/main/category/fetchCategoryList';
+import { openWorksList } from '@/root/business/api/main/openWorks/openWorksList';
 
 interface Props {
     className?: string;
 }
 
-export const OpenWorks = ({ className }: Props) => {
+
+export const OpenWorks = async ({ className }: Props) => {
+    const response = await openWorksList()
+    
     return (
         <div className={cn(className, "w-full flex flex-col gap-6 sm:pt-6")}>
             <MobileBackTab />
@@ -18,7 +23,7 @@ export const OpenWorks = ({ className }: Props) => {
                 <AdGrid />
                 <Title />
                 <Filter />
-                <List />
+                <List  data={response}/>
             </div>
         </div>
     );

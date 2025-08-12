@@ -14,6 +14,9 @@ import ServerLink from '../../elements/Links/ServerLink';
 import InputArea from './InputArea/InputArea';
 import { Button } from '@/root/ui/dev/shadcn/ui/button';
 import { LoginProviderDialog } from '../../elements/account/login/LoginTablet';
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/root/ui/dev/shadcn/ui/dialog';
+import PhoneInput from 'react-phone-input-2';
+import { Input } from '@/root/ui/dev/shadcn/ui/input';
 
 interface Category {
     id: number;
@@ -29,9 +32,11 @@ interface Props {
 }
 
 const Aside = ({ className, token, categories }: Props) => {
+    const [phone, setPhone] = useState("");
+    const [name, setName] = useState("");
+    const [surname, setSurname] = useState("");
 
     const t = useTranslations("Aside");
-
 
     return (
         <aside className={cn(className, "py-3 px-2 sm:shadow sm:flex hidden sticky sm:bg-maket-primary bg-white top-0 z-[50]")}>
@@ -77,14 +82,14 @@ const Aside = ({ className, token, categories }: Props) => {
                     <InputArea />
 
                     {/* Search Button */}
-                    <div className="w-full max-w-[130px] flex-shrink-0">
+                    {/* <div className="w-full max-w-[130px] flex-shrink-0">
                         <Button
                             type="submit"
                             className="bg-white text-maket-primary border border-white hover:bg-maket-primary hover:text-white w-full"
                         >
                             {t('search.button')}
                         </Button>
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* Actions */}
@@ -113,26 +118,109 @@ const Aside = ({ className, token, categories }: Props) => {
 
                     {/* Login */}
                     {token ? (
-                        <ServerLink
-                            path="myads"
-                            className="group bg-white h-[42px] px-2 flex items-center gap-2 rounded-md text-maket-primary border border-white hover:bg-maket-primary hover:text-white whitespace-nowrap transition-colors"
-                        >
-                            <Image
-                                src="/svg/aside/ads.svg"
-                                alt="My Ads Icon"
-                                width={20}
-                                height={20}
-                                className="group-hover:hidden transition-opacity duration-200"
-                            />
-                            <Image
-                                src="/svg/aside/adsactive.svg"
-                                alt="My Ads Active Icon"
-                                width={20}
-                                height={20}
-                                className="hidden group-hover:block transition-opacity duration-200"
-                            />
-                            <p className="text-sm">{t('action.myads')}</p>
-                        </ServerLink>
+                        <>
+
+                            <ServerLink
+                                path="myads"
+                                className="group bg-white h-[42px] px-2 flex items-center gap-2 rounded-md text-maket-primary border border-white hover:bg-maket-primary hover:text-white whitespace-nowrap transition-colors"
+                            >
+                                <Image
+                                    src="/svg/aside/ads.svg"
+                                    alt="My Ads Icon"
+                                    width={20}
+                                    height={20}
+                                    className="group-hover:hidden transition-opacity duration-200"
+                                />
+                                <Image
+                                    src="/svg/aside/adsactive.svg"
+                                    alt="My Ads Active Icon"
+                                    width={20}
+                                    height={20}
+                                    className="hidden group-hover:block transition-opacity duration-200"
+                                />
+                                <p className="text-sm">{t('action.myads')}</p>
+                            </ServerLink>
+
+                            <Dialog>
+                                <DialogTrigger asChild>
+                                    <Button className="group bg-white h-[42px] px-2 flex items-center gap-2 rounded-md text-maket-primary border border-white hover:bg-maket-primary hover:text-white whitespace-nowrap transition-colors">Master bo'lish</Button>
+                                </DialogTrigger>
+                                <DialogContent>
+                                    <DialogHeader className='text-center'>
+                                        <DialogTitle className='text-2xl font-bold text-[#001D55] text-center'>Master bo'lib kirish</DialogTitle>
+                                        <DialogDescription className='text-center'>
+                                            Master bo'lib ishlash uchun quyidagi ma'lumotlarni to'ldiring
+                                        </DialogDescription>
+                                    </DialogHeader>
+                                    <div className="flex-1 overflow-y-auto px-2 py-2">
+                                        <div className="flex flex-col gap-2">
+                                            <label
+                                                className="text-sm font-medium w-28 h-28 text-gray-700 border-2 border-gray-300 rounded-[10px] flex flex-col items-center justify-center cursor-pointer hover:bg-gray-50 self-center"
+                                            >
+                                                <input
+                                                    type="file"
+                                                    accept="image/*"
+                                                    multiple
+                                                    className="hidden"
+                                                />
+                                                <img src="/img/advertising/pickpic.png" alt="pick" className="w-8 h-8" />
+                                                <span className="text-gray-500 text-center text-xs mt-2">
+                                                    {t("photo")}
+                                                </span>
+                                            </label>
+
+                                            <div className="flex flex-col gap-1">
+                                                <p className="text-sm">{t("Registration.nameTitle")}</p>
+                                                <Input
+                                                    className="border-[#CFD9FE] rounded-xl text-[#677294] mb-2 placeholder-[#677294] pr-10"
+                                                    placeholder={t("Registration.namePlaceholder")}
+                                                    value={name}
+                                                    onChange={(e) => setName(e.target.value)}
+                                                />
+                                            </div>
+
+                                            <div className="flex flex-col gap-1">
+                                                <p className="text-sm">{t("Registration.surnameTitle")}</p>
+                                                <Input
+                                                    className="border-[#CFD9FE] rounded-xl text-[#677294] mb-2 placeholder-[#677294] pr-10"
+                                                    placeholder={t("Registration.surnamePlaceholder")}
+                                                    value={surname}
+                                                    onChange={(e) => setSurname(e.target.value)}
+                                                />
+                                            </div>
+
+                                            <div className="flex flex-col gap-1">
+                                                <p className="text-sm">{t("phone.title")}</p>
+                                                <PhoneInput
+                                                    country={"uz"}
+                                                    value={phone}
+                                                    onChange={setPhone}
+                                                    inputClass="!w-full !h-[44px] !border-[#CFD9FE] !text-[#677294] !placeholder-[#677294]"
+                                                    containerClass="!w-full"
+                                                    buttonClass="!bg-transparent"
+                                                />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div className='flex justify-end gap-4'>
+                                        <DialogClose asChild>
+                                            <Button variant="outline">Orqaga</Button>
+                                        </DialogClose>
+
+                                        <DialogClose asChild>
+                                            <ServerLink
+                                                path='myprofile'
+                                                className="group bg-maket-primary h-[42px] px-2 flex items-center gap-2 rounded-md text-white border hover:bg-white hover:text-maket-primary whitespace-nowrap transition-colors"
+                                            >
+                                                Davom etish
+                                            </ServerLink>
+                                        </DialogClose>
+                                    </div>      
+                                </DialogContent>
+                            </Dialog>
+                        </>
+
                     ) : (
                         <LoginProviderDialog
                             trigger={
@@ -143,6 +231,7 @@ const Aside = ({ className, token, categories }: Props) => {
                                 </div>
                             }
                         />
+
                     )}
                 </div>
             </div>

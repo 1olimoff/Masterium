@@ -6,12 +6,15 @@ import Image from "next/image"
 import { Button } from "@/root/ui/dev/shadcn/ui/button"
 import { Link } from "@/i18n/routing"
 import ServerLink from "../../../../../elements/Links/ServerLink"
+import { Detail } from "../../../Navbar/Navbar"
 
 interface Props {
   className?: string
+  detail: Detail
+
 }
 
-export const Employer = ({ className }: Props) => {
+export const Employer = ({ className, detail }: Props) => {
   const t = useTranslations("")
   return (
     <section className={cn("w-full flex flex-col gap-2", className)}>

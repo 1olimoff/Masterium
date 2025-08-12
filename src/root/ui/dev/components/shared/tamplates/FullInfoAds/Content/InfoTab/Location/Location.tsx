@@ -1,12 +1,15 @@
 import React from 'react';
 import { cn } from '@/root/business/lib/utils';
 import { useTranslations } from 'next-intl';
+import { Detail } from '../../../Navbar/Navbar';
 
 interface Props {
     className?: string;
+  detail: Detail
+
 }
 
-export const Location = ({ className }: Props) => {
+export const Location = ({ className,detail }: Props) => {
     const t = useTranslations();
 
     return (

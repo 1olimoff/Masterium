@@ -15,7 +15,6 @@ interface LayoutProps {
 
 export const LayoutProvider = async ({ className, children, params }: LayoutProps) => {
     const cookieToken = (await cookies()).get('accessToken')?.value || null
-    console.log('COOKIE TOKEN', cookieToken)
 
     return (
         <>

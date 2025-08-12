@@ -9,6 +9,7 @@ interface Props {
 export const OpenWorks = async ({ className }: Props) => {
 
   const openWorks = await openWorksList();
+  
   return (
     <section className={cn(className, 'w-full flex flex-col gap-4 md:gap-6')}>
       <OpenWorksClient openWorks={openWorks} />

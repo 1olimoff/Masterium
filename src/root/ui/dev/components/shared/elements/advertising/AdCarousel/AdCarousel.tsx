@@ -40,9 +40,9 @@ export const AdCarousel = ({ className, response = [] }: Props) => {
     videoRefs.current.forEach((video, idx) => {
       if (video && idx === current) {
         video.load();
-        video.play().catch(() => {});
+        video.play().catch(() => { });
       } else if (video) {
-        video.pause(); 
+        video.pause();
       }
     });
   };
@@ -105,16 +105,15 @@ export const AdCarousel = ({ className, response = [] }: Props) => {
                     preload={index === 0 ? "auto" : "metadata"} // Birinchi video uchun preload
                   />
                 ) : (
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.image_url}`}
-                    alt={`Reklama ${index + 1}`}
-                    fill
-                    style={{ objectFit: "cover" }}
-                    className="rounded-xl sm:rounded-2xl md:rounded-3xl"
-                    priority={index === 0} // Faqat birinchi rasm uchun priority
-                    // placeholder="blur" // WebP bo'lsa yoqish mumkin
-                    // blurDataURL="/path/to/low-res-placeholder.jpg"
-                  />
+                  <div className="relative w-full h-[300px]"> {/* yoki kerakli balandlik */}
+                    <Image
+                      src="/images/image.png"
+                      alt="description"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+
                 )}
               </CarouselItem>
             ))

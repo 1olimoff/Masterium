@@ -1,11 +1,11 @@
 "use client";
 import { useTranslations } from "next-intl";
 import { Input as ShadcnInput } from "@/root/ui/dev/shadcn/ui/input";
-import { useOfferWorkStore } from "../../OfferWorkStore";
+import { useAdvertiseStore } from "../../AdvertiseStore";
 
 export const InputCount = () => {
   const t = useTranslations("");
-  const { workTitle, setWorkTitle } = useOfferWorkStore();
+  const { workTitle, setWorkTitle } = useAdvertiseStore();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setWorkTitle(event.target.value);

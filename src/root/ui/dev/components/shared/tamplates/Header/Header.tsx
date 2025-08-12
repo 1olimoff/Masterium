@@ -82,7 +82,7 @@ const Header = ({ className, params }: Props) => {
                         width={20}
                         height={20}
                     />
-                    <span className="hidden md:inline-block font-medium">+998 99 123 45 67</span>
+                    <span className="hidden md:inline-block font-medium">+998 94 720 25 25</span>
                 </a>
                 <div className="text-xs md:text-sm lg:text-base">
                     <LanguageSwitcher

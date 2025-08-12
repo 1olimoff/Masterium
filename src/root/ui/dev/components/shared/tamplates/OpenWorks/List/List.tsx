@@ -6,276 +6,39 @@ import { Button } from "@/root/ui/dev/shadcn/ui/button";
 import { useTranslations } from "next-intl";
 import { AdCarouselServer } from '../../../elements/advertising/AdCarousel/AdCarousel.server';
 
+interface Item {
+    offer_id: number;
+    title: string;
+    category_name: string;
+    price: number;
+    currency: string;
+    images: string[];
+    user: {
+      user_uuid: string;
+      name: string;
+    }
+  }
+
 interface Props {
     className?: string;
+    data: Item[]
 }
 
 const WORKS_TO_DISPLAY = 8;
 
-const data = [
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: true,
-        },
-        applicationCount: 5,
-    },
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: false,
-        },
-        applicationCount: 3,
-    },
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: true,
-        },
-        applicationCount: 7,
-    },
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir's Image",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: true,
-        },
-        applicationCount: 5,
-    },
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: true,
-        },
-        applicationCount: 5,
-
-    },
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: false,
-        },
-        applicationCount: 5,
-
-    },
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: true,
-        },
-        applicationCount: 5,
-
-    },
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir's Image",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: true,
-        },
-        applicationCount: 5,
-
-    },
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: true,
-        },
-        applicationCount: 5,
-
-    },
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: false,
-        },
-        applicationCount: 5,
-
-    },
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: true,
-        },
-        applicationCount: 5,
-
-    },
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir's Image",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: true,
-        },
-        applicationCount: 5,
-
-    },
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: true,
-        },
-        applicationCount: 5,
-
-    },
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: false,
-        },
-        applicationCount: 5,
-
-    },
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: true,
-        },
-        applicationCount: 5,
-
-    },
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir's Image",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: true,
-        },
-        applicationCount: 5,
-    },
-]
-
-export const List = ({ className }: Props) => {
+export const List = ({ className, data }: Props) => {
     const t = useTranslations();
     const [showMore, setShowMore] = useState(false);
+
+    console.log("WIEDNIUWEDWED", data);
+    
 
     return (
         <section className={cn(className)}>
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-4 lg:grid-cols-4 gap-x-4 gap-y-6 md:gap-y-8">
-                {/* {data.slice(0, WORKS_TO_DISPLAY).map((item, i) => (
+                {data.slice(0, WORKS_TO_DISPLAY).map((item, i) => (
                     <OpenWorkCard data={item} key={i} />
-                ))} */}
+                ))}
             </div>
 
             <div className="py-8 md:py-10">
@@ -284,16 +47,16 @@ export const List = ({ className }: Props) => {
             </div>
 
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-6 md:gap-y-8">
-                {/* {data.slice(WORKS_TO_DISPLAY).map((item, i) => (
+                {data.slice(WORKS_TO_DISPLAY).map((item, i) => (
                     <OpenWorkCard data={item} key={i + WORKS_TO_DISPLAY} />
-                ))} */}
+                ))}
             </div>
 
             {showMore && (
                 <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-6 md:gap-y-8 mt-8">
-                    {/* {data.slice(WORKS_TO_DISPLAY).map((item, i) => (
+                    {data.slice(WORKS_TO_DISPLAY).map((item, i) => (
                         <OpenWorkCard data={item} key={i + WORKS_TO_DISPLAY} />
-                    ))} */}
+                    ))}
                 </div>
             )}
 

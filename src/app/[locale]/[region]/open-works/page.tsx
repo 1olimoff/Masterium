@@ -1,7 +1,8 @@
 import {OpenWorks} from "@/root/ui/dev/components/shared/tamplates/OpenWorks/OpenWorks";
 
 
-export default function HomeOpenWorks() {
+export default async function HomeOpenWorks() {
+    
     return (
         <div className={'layout-width'}>
             <OpenWorks />

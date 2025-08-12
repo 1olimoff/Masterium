@@ -32,7 +32,8 @@ export const ServiceCard = ({ className, data, slug }: Props) => {
     const t = useTranslations('');
 
     return (
-        <div className={cn(className, "p-4 rounded-2xl shadow flex flex-col gap-3 bg-white")}>
+        <div className={cn(className, "p-4 rounded-2xl shadow flex flex-col gap-3 bg-white relative pb-20")}>
+            {/* User Info */}
             <div className={"flex gap-3"}>
                 <div className={"h-16 w-16 rounded-full relative overflow-hidden"}>
                     <Image
@@ -48,7 +49,6 @@ export const ServiceCard = ({ className, data, slug }: Props) => {
                     {data.categories.map((category, i) => (
                         <p key={i} className={"text-maket-gray rounded-full"}>{category.name}</p>
                     ))}
-                    <p className={"text-maket-gray"}>{ }</p>
                     <div className={"flex gap-1 items-center"}>
                         <div className={"relative h-4 w-4 flex items-center justify-center"}>
                             <Image
@@ -64,6 +64,7 @@ export const ServiceCard = ({ className, data, slug }: Props) => {
                     </div>
                 </div>
             </div>
+
             <div className={"flex flex-wrap gap-2"}>
                 {data.categories.map((category, i) => (
                     <p key={i} className={"text-maket-gray bg-maket-bg rounded-full px-4 py-1"}>{category.name}</p>
@@ -72,12 +73,15 @@ export const ServiceCard = ({ className, data, slug }: Props) => {
                     <p key={`tag-${i}`} className={"text-maket-gray bg-maket-bg rounded-full px-4 py-1"}>{tag.name}</p>
                 ))}
             </div>
-            <ServerLink
-                path={`services/${slug}/${data.user_uuid}`}
-                className={"bg-maket-batafsil text-maket-secondary text-center text-xl font-medium py-2 rounded-2xl hover:bg-maket-secondary hover:text-white transition-all duration-200"}
-            >
-                {t('Main.sections.OpenWorkCard.more')}
-            </ServerLink>
+
+            <div className="absolute bottom-4 left-4 right-4">
+                <ServerLink
+                    path={`services/${slug}/${data.user_uuid}`}
+                    className={"bg-maket-batafsil text-maket-secondary text-center text-xl font-medium py-2 rounded-2xl hover:bg-maket-secondary hover:text-white transition-all duration-200 w-full block"}
+                >
+                    {t('Main.sections.OpenWorkCard.more')}
+                </ServerLink>
+            </div>
         </div>
     );
 };

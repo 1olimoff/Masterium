@@ -126,7 +126,7 @@ const handleConfirmCode = async (code: string) => {
       onOpenChange(false);
       setTimeout(() => {
         window.location.reload();
-      }, 500);
+      }, 1150);
     } else {
       toast.error(response.data.message || t("OTP.errors.invalid"));
     }

@@ -1,7 +1,6 @@
 import { cn } from "@/root/business/lib/utils";
 import { useTranslations } from "next-intl";
 import { DailyWorkersCard } from "../../../elements/DailyWorkersCard/DailyWorkersCard";
-import Link from "next/link";
 import { MoreButton } from "../../../elements/Buttons/MoreButton";
 import ServerLink from "../../../elements/Links/ServerLink";
 
@@ -36,7 +35,7 @@ export const DailyWorkersClient = ({ dailyWorkers, className }: Props) => {
                                 'lg:w-auto'
                             )}
                         >
-                            <ServerLink path="services/wswws">
+                            <ServerLink path={`services/${item.user_uuid}`}>
                                 <DailyWorkersCard data={item} />
                             </ServerLink>
                         </div>

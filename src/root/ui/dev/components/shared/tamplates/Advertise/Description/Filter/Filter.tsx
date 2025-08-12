@@ -1,10 +1,10 @@
 "use client";
-import { useOfferWorkStore } from "../../OfferWorkStore";
+import { useAdvertiseStore } from "../../AdvertiseStore";
 import { FilterBar } from "./FilterClient";
 
 
 export const Filter = () => {
-  const { dateFrom, setDateFrom, dateTo, setDateTo } = useOfferWorkStore();
+  const { dateFrom, setDateFrom, dateTo, setDateTo } = useAdvertiseStore();
 
   return (
     <div className="space-y-6 w-full md:px-4">
