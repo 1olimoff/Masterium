@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { Toaster } from "@/root/ui/dev/shadcn/ui/toaster";
 import '../../globals.css';
 import { LayoutProvider } from '@/root/ui/dev/components/shared/tamplates/LayoutProvider/LayoutProvider';
+import ClientWrapper from './ClientWrapper';
 
 interface LayoutProps {
   children: ReactNode;
@@ -38,10 +39,11 @@ export default async function RootLayout({ children, params }: LayoutProps) {
       </head>
       <body className="bg-[#F8F9FA]">
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <LayoutProvider params={{ locale, region }}>
+        <LayoutProvider params={{ locale, region }}>
             {children}
           </LayoutProvider>
           <Toaster />
+          <ClientWrapper /> {/* 👈 client ishlari shu yerda */}
           {/* Yandex.Metrika counter */}
           <script
             type="text/javascript"

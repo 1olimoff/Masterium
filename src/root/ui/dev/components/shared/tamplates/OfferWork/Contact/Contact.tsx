@@ -21,31 +21,32 @@ export const Contact = ({ className, cookieToken, targetUserUuid, slug }: Props)
   const t = useTranslations("OfferWork");
   const router = useRouter();
 
+  console.log("UUUUID" , targetUserUuid);
+  
   // Locale va regionni cookies’dan olish
   const locale = Cookies.get("locale") || "uz";
   const region = Cookies.get("region") || "tashkent";
 
-  const {
-    activeTopButton,
-    activeBottomButton,
-    priceFrom,
-    currency,
-    workTitle,
-    selectedCategory,
-    definition,
-    contactPerson,
-    phone,
-    location,
-    dateFrom,
-    dateTo,
-    isPublic,
-    agreedToTerms,
-    files,
-    setContactPerson,
-    setLocation,
-    reset,
-  } = useOfferWorkStore();
-
+  // Zustand’dan faqat kerakli state va setter’larni alohida chaqirish
+  const activeTopButton = useOfferWorkStore((state) => state.activeTopButton);
+  const activeBottomButton = useOfferWorkStore((state) => state.activeBottomButton);
+  const priceFrom = useOfferWorkStore((state) => state.priceFrom);
+  const currency = useOfferWorkStore((state) => state.currency);
+  const workTitle = useOfferWorkStore((state) => state.workTitle);
+  const selectedCategory = useOfferWorkStore((state) => state.selectedCategory);
+  const definition = useOfferWorkStore((state) => state.definition);
+  const contactPerson = useOfferWorkStore((state) => state.contactPerson);
+  const phone = useOfferWorkStore((state) => state.phone);
+  const location = useOfferWorkStore((state) => state.location);
+  const dateFrom = useOfferWorkStore((state) => state.dateFrom);
+  const dateTo = useOfferWorkStore((state) => state.dateTo);
+  const isPublic = useOfferWorkStore((state) => state.isPublic);
+  const agreedToTerms = useOfferWorkStore((state) => state.agreedToTerms);
+  const files = useOfferWorkStore((state) => state.files);
+  const setContactPerson = useOfferWorkStore((state) => state.setContactPerson);
+  const setLocation = useOfferWorkStore((state) => state.setLocation);
+  const reset = useOfferWorkStore((state) => state.reset);
+  
   const defaultLocationLat = 41.2995;
   const defaultLocationLng = 69.2401;
 
@@ -128,6 +129,8 @@ export const Contact = ({ className, cookieToken, targetUserUuid, slug }: Props)
         location_lat: defaultLocationLat,
         location_lng: defaultLocationLng,
       };
+
+      console.log("Backendga yuborilayotgan ma'lumot (offerPayload):", offerPayload);
 
       const bodyFormData = new FormData();
       // offerPayload’dagi maydonlarni FormData’ga qo‘shish

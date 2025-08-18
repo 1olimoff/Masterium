@@ -61,8 +61,8 @@ export const FullInfoAds = async ({ slug }: any) => {
 
     return (
         <div className="bg-[#F8F9FA] mt-2 layout-width sm:px-4">
-            <InfoTitle />
-            <MobileBackTab />
+            <InfoTitle detail={detail}/>
+            <MobileBackTab/>
             <div className="px-2">
                 <Navbar detail={detail} applications={applications} />
             </div>

@@ -29,8 +29,6 @@ const WORKS_TO_DISPLAY = 8;
 export const List = ({ className, data }: Props) => {
     const t = useTranslations();
     const [showMore, setShowMore] = useState(false);
-
-    console.log("WIEDNIUWEDWED", data);
     
 
     return (

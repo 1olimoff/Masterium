@@ -122,7 +122,7 @@ export const LanguageSwitcher = ({className, currentLocale, currentRegion}: Prop
             ))}
             <button
                 className={cn(
-                    'flex gap-2 cursor-pointer justify-end group',
+                    'flex gap-2 cursor-pointer justify-end items-center group',
                     isAnimating && 'slide-out'
                 )}
             >

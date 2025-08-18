@@ -25,6 +25,9 @@ export const AdvertisePage = async () => {
   const cookieToken = (await cookies()).get("accessToken")?.value || null;
   const categories = await Categories();
   const catalogNames = categories?.map((category: any) => category.name) || [];
+
+  console.log("COOKIE TOKEN", cookieToken);
+  
   
   return (
     <div className="bg-[#F8F9FA] mt-2 layout-width sm:px-2">

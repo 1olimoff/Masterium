@@ -44,21 +44,21 @@ const images = [
         alt: "Gas Repair",
         objectFit: "cover",
     },
-    {
-        src: "/img/advertising/gas.png",
-        alt: "Gas Repair",
-        objectFit: "cover",
-    },
-    {
-        src: "/img/advertising/gas.png",
-        alt: "Gas Repair",
-        objectFit: "cover",
-    },
-    {
-        src: "/img/advertising/gas.png",
-        alt: "Gas Repair",
-        objectFit: "cover",
-    },
+    // {
+    //     src: "/img/advertising/gas.png",
+    //     alt: "Gas Repair",
+    //     objectFit: "cover",
+    // },
+    // {
+    //     src: "/img/advertising/gas.png",
+    //     alt: "Gas Repair",
+    //     objectFit: "cover",
+    // },
+    // {
+    //     src: "/img/advertising/gas.png",
+    //     alt: "Gas Repair",
+    //     objectFit: "cover",
+    // },
 ]
 
 export const DailyWorkersCard = ({className, data}: Props) => {
@@ -97,7 +97,6 @@ export const DailyWorkersCard = ({className, data}: Props) => {
                     ))}
                 </CarouselContent>
 
-                {/* Точки (dots) */}
                 <div
                     className="absolute bottom-4  left-0 w-full flex items-center justify-center gap-2 z-10"
                 >

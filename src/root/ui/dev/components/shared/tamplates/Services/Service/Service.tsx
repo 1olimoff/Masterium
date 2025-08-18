@@ -13,7 +13,7 @@ interface Props {
 
 const fetchMasters = async (slug: string) => {
     try {
-        const response = await axios.get(`${process.env.BASE_URL}/api/v1/masters/daily/`, {
+        const response = await axios.get(`${process.env.BASE_URL}/api/v1/masters/users/by-category/?slug=${slug}&limit=20&offset=0`, {
             headers: { 'Content-Type': 'application/json' },
         });
         return response.data.results || [];
@@ -25,10 +25,9 @@ const fetchMasters = async (slug: string) => {
 
 export const Service = async ({ className, slug }: Props) => {
     const masters = await fetchMasters(slug); 
-    
     return (
         <div className={cn(className, "w-full flex flex-col gap-6 sm:pt-6 pb-6")}>
-            <MobileBackTab slug={slug} />
+            <MobileBackTab slug={slug}/>
             <div className='px-4'>
                 <AdGrid />
                 <Title slug={slug} />

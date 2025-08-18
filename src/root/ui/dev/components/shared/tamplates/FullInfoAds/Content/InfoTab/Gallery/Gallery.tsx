@@ -38,6 +38,12 @@ export const Gallery = ({ className, detail }: Props) => {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
 
+
+  console.log("DETAILLLLL", detail);
+  
+
+
+
   useEffect(() => { 
     if (!api) return
     setCurrent(api.selectedScrollSnap())
@@ -54,8 +60,8 @@ export const Gallery = ({ className, detail }: Props) => {
               className="w-full h-[300px] sm:h-[370px] md:h-[430px] lg:h-[450px] relative"
             >
               <Image
-                src={item.src}
-                alt={item.alt}
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}${item}`}
+                alt={item}
                 fill
                 className="object-cover"
                 priority={i === 0}

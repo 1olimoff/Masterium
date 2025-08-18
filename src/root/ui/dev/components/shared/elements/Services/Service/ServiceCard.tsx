@@ -31,17 +31,20 @@ interface Props {
 export const ServiceCard = ({ className, data, slug }: Props) => {
     const t = useTranslations('');
 
+    console.log("Master profile", data);
+
+
     return (
         <div className={cn(className, "p-4 rounded-2xl shadow flex flex-col gap-3 bg-white relative pb-20")}>
             {/* User Info */}
             <div className={"flex gap-3"}>
                 <div className={"h-16 w-16 rounded-full relative overflow-hidden"}>
                     <Image
-                        src={`${process.env.NEXT_PUBLIC_BASE_URL}${data.profile_photo}`}
+                        src={`${data.profile_photo}`}
                         alt={data.name}
                         width={64}
                         height={64}
-                        className={"rounded-full object-cover"}
+                        className={"rounded-full h-full object-cover"}
                     />
                 </div>
                 <div className={"flex flex-col justify-between h-full"}>

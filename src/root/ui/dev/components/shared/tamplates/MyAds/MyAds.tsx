@@ -25,7 +25,7 @@ const MyOffers = async (): Promise<Offer[]> => {
       return [];
     }
 
-    const response = await axios.get(`${process.env.BASE_URL}api/v1/offers/my/?limit=20&offset=0`, {
+    const response = await axios.get(`${process.env.BASE_URL}api/v1/offers/my/?limit=40&offset=0`, {
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`,
@@ -45,7 +45,6 @@ export const MyAds = async () => {
   return (
     <div className="bg-[#F8F9FA] mt-2 layout-width sm:px-4">
       <Title />
-      <MobileBackTab />
       <div className="mt-2">
         <MyAdsPage data={offers} />
       </div>

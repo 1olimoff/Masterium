@@ -7,4 +7,4 @@ export const fetchCategoryList = async () => {
         },
     });
     return response?.data?.results
-}
+} 

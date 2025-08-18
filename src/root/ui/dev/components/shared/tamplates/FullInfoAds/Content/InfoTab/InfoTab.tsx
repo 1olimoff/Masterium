@@ -17,7 +17,7 @@ export const Content = ({ className, detail }: Props) => {
 
     return (
         <main className={cn("flex flex-col md:grid md:grid-cols-3 gap-4 mb-4", className)}>
-            <div className="bg-white p-2 rounded-xl shadow w-full md:h-[466px] md:col-span-2">
+            <div className="bg-white pt-2 px-1 rounded-xl shadow w-full md:h-[466px] md:col-span-2">
                 <Gallery detail={detail}/>
             </div>
             <div className="sm:flex md:flex md:flex-col gap-6 max-w-[660px] w-full">

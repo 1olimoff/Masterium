@@ -16,7 +16,9 @@ export interface Item {
   images: string[];
   user: {
     user_uuid: string;
-    name: string;
+    first_name: string;
+    last_name: string;
+
   }
 }
 
@@ -62,7 +64,7 @@ export const OpenWorkCard = ({ className, data }: Props) => {
             <div className="h-12 w-12 relative rounded-full">
               <Image
                 src={data.images[0] ? `${process.env.NEXT_PUBLIC_BASE_URL}${data.images[0]}` : "/default-profile.jpg"}
-                alt={data.user.name}
+                alt={data.user.first_name}
                 fill
                 style={{ objectFit: "cover" }}
                 className="rounded-full"
@@ -71,14 +73,14 @@ export const OpenWorkCard = ({ className, data }: Props) => {
 
             <div className="flex flex-col justify-between">
               <h4 className="text-base sm:text-lg font-semibold">
-                {data.user.name}
+                {data.user.last_name} {data.user.first_name} 
               </h4>
               <p className="text-maket-gray text-sm">{data.category_name}</p>
             </div>
           </div>
 
           <ServerLink
-            path={`open-works/${data.user.name}`}
+            path={`open-works/${data.offer_id}`}
             className="bg-maket-batafsil text-maket-secondary text-base sm:text-xl flex justify-center font-medium py-3 sm:py-3 rounded-xl hover:bg-maket-secondary hover:text-white transition-all duration-200"
           >
             {t("Main.sections.OpenWorkCard.more")}

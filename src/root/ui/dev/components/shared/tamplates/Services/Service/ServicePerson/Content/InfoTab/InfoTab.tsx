@@ -3,23 +3,12 @@ import { cn } from '@/root/business/lib/utils';
 import { useTranslations } from "next-intl";
 import { Button } from '@/root/ui/dev/shadcn/ui/button';
 import Image from 'next/image';
+import { UserData } from '../Content';
 
-interface ClientData {
-  user_uuid: string;
-  profile_photo: string;
-  first_name: string;
-  last_name: string;
-  about: string;
-  avg_rating: number;
-  comments_count: number;
-  categories: {id: number, name: string }[]
-  tags: {id: number, name: string, category_id: number }[]
-  experience_levels: {experience_level: string, category_name: string }[]
-}
 
 interface Props {
   className?: string;
-  data: ClientData;
+  data: UserData;
 }
 
 export const InfoTab = ({ className, data }: Props) => {
@@ -42,20 +31,21 @@ export const InfoTab = ({ className, data }: Props) => {
           {t("Services.Service.ServicePerson.infoTab.infoExperience")}
         </h2>
         <p className="text-[16px] font-medium text-gray-700 whitespace-pre-line">
-          {data.experience_levels.map(exp => `${exp.experience_level} (${exp.category_name})`).join(", ")}
+          {data.activity.experience.name} ({data.activity.category.name})
         </p>
       </div>
 
       <div className="w-full flex flex-wrap gap-3 rounded-xl">
-        {data.categories?.map((category, i) => (
+        {/* Categories are now accessed via data.activity.category */}
+        {data.activity.category && (
           <p
             className="text-sm sm:text-base text-maket-gray bg-white rounded-full px-4 py-2"
-            key={`category-${i}`}
           >
-            {category.name}
+            {data.activity.category.name}
           </p>
-        ))}
-        {data.tags?.map((tag, i) => (
+        )}
+        {/* Tags are now accessed via data.activity.tags */}
+        {data.activity.tags?.map((tag, i) => (
           <p
             className="text-sm sm:text-base text-maket-gray bg-white rounded-full px-4 py-2"
             key={`tag-${i}`}
@@ -71,4 +61,4 @@ export const InfoTab = ({ className, data }: Props) => {
       </Button>
     </div>
   );
-}
+};

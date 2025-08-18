@@ -27,7 +27,7 @@ export interface Detail {
     start_date: string;
     title: string;
     total_date: string;
-    user: { created_at: string; name: string; uuid: string };
+    user: { created_at: string; first_name: string; last_name:string; uuid: string };
 }
 
 interface TabItem {

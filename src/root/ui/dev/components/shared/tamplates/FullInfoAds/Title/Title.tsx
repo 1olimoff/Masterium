@@ -8,14 +8,18 @@ import {
   BreadcrumbSeparator
 } from "@/root/ui/dev/shadcn/ui/breadcrumb";
 import ServerLink from "@/root/ui/dev/components/shared/elements/Links/ServerLink";
+import { Detail } from '../Navbar/Navbar';
 
 interface Props {
   className?: string;
+  detail:Detail;
 }
 
-export const InfoTitle = ({ className }: Props) => {
+export const InfoTitle = ({ className, detail }: Props) => {
   const t = useTranslations("MyAds");
 
+  console.log("detailssss", detail);
+  
   return (
     <div className={cn(className, "hidden sm:flex mt-2 px-2 flex-col gap-4")}>
       <Breadcrumb>
@@ -34,13 +38,9 @@ export const InfoTitle = ({ className }: Props) => {
           </BreadcrumbItem>
           <BreadcrumbSeparator>/</BreadcrumbSeparator>
 
-          <BreadcrumbItem className="text-maket-gray">
-          <ServerLink path="/wwww">
-            {t("breadcrumb.workTitle")}
-            </ServerLink>
+          <BreadcrumbItem className="text-black">
+            {detail.title}
           </BreadcrumbItem>
-
-
         </BreadcrumbList>
 
         

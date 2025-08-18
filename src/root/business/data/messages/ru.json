@@ -32,31 +32,31 @@
       }
     },
     "Registration": {
-    "success": "Вы успешно зарегистрировались!",
-    "RegistrationTitle": "Регистрация",
-    "registrationdesc": "С какой целью вы хотите зарегистрироваться?",
-    "nameTitle": "Имя",
-    "namePlaceholder": "Введите ваше имя",
-    "surnameTitle": "Фамилия",
-    "surnamePlaceholder": "Введите вашу фамилию",
-    "button": {
-      "title": "Зарегистрироваться"
-    },
-    "errors": {
-      "name": {
-        "required": "Пожалуйста, введите ваше имя!",
-        "minLength": "Имя должно содержать как минимум 2 символа!",
-        "failed": "Ошибка при регистрации"
+      "success": "Вы успешно зарегистрировались!",
+      "RegistrationTitle": "Регистрация",
+      "registrationdesc": "С какой целью вы хотите зарегистрироваться?",
+      "nameTitle": "Имя",
+      "namePlaceholder": "Введите ваше имя",
+      "surnameTitle": "Фамилия",
+      "surnamePlaceholder": "Введите вашу фамилию",
+      "button": {
+        "title": "Зарегистрироваться"
       },
-      "phone": {
-        "invalidOperatorCode": "Введённый номер телефона не относится к операторам Узбекистана."
+      "errors": {
+        "name": {
+          "required": "Пожалуйста, введите ваше имя!",
+          "minLength": "Имя должно содержать как минимум 2 символа!",
+          "failed": "Ошибка при регистрации"
+        },
+        "phone": {
+          "invalidOperatorCode": "Введённый номер телефона не относится к операторам Узбекистана."
+        }
       }
-    }
-  },
-  "phone": {
-    "title": "Ваш номер телефона:"
-  },
-  "photo": "Загрузите фото для профиля!"
+    },
+    "phone": {
+      "title": "Ваш номер телефона:"
+    },
+    "photo": "Загрузите фото для профиля!"
   },
   "Footer": {
     "logo": {
@@ -248,8 +248,8 @@
         "allServices": "Все услуги",
         "santexName": "Эшонoв Бахадир",
         "santexnik": "Сантехники",
-        "malyar":"Маляры",
-        "kalit%20tamirlash": "Ремонт под ключ",
+        "daily-light": "Лёгкая работа",
+        "daily-heavy": "Тяжёлая работа",
         "payvandchilar": "Сварщики"
       },
       "ServicePerson": {
@@ -289,7 +289,7 @@
         "offers": "Предложить работу",
         "PersonName": "Эшонoв Бахадир",
         "santexnik": "Сантехники",
-        "malyar":"Маляры",
+        "malyar": "Маляры",
         "kalit%20tamirlash": "Ремонт под ключ",
         "payvandchilar": "Сварщики",
         "offerData": {
@@ -499,7 +499,7 @@
     ]
   },
   "ReviewTab": {
-    "stars":"звезда",
+    "stars": "звезда",
     "averageRating": 4.5,
     "totalReviews": 523,
     "ratings": {

@@ -1,8 +1,8 @@
-// src/services/auth/login.service.ts
 import axios from "axios";
 
 const URL_LOGIN = "https://cdn.masterium.uz/api/v1/auth/login/";
 const URL_LOGIN_OTP = "https://cdn.masterium.uz/api/v1/auth/login/verify/";
+const URL_REFRESH = "https://cdn.masterium.uz/api/v1/auth/token/refresh/";
 
 let accessToken = "";
 let refreshToken = "";
@@ -99,5 +99,26 @@ export const loginApi = async (props: any) => {
       const errorMessage = e.response?.data?.error || e.message || "OTP tasdiqlashda xato yuz berdi";
       throw new Error(errorMessage);
     }
+  }
+};
+
+// Refresh token orqali access token yangilash
+export const refreshAccessToken = async (token: string) => {
+  try {
+    const response = await axios.post(URL_REFRESH, { refresh: token });
+    const { access, refresh, token_type } = response.data;
+
+    if (access) {
+      saveTokens({
+        accessToken: access,
+        refreshToken: refresh || token,
+        authType: token_type || "Bearer"
+      });
+    }
+
+    return response.data;
+  } catch (e: any) {
+    console.error("Refresh token error:", e.response?.data || e.message);
+    return null;
   }
 };

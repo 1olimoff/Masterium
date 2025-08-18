@@ -1,9 +1,11 @@
 import React from 'react';
 import { cn } from '@/root/business/lib/utils';
 import { useTranslations } from 'next-intl';
+import { MasterDetail } from '../Content';
 
 interface Props {
     className?: string;
+  response:MasterDetail
 }
 
 export const Location = ({ className }: Props) => {

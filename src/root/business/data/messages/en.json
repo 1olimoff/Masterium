@@ -30,32 +30,33 @@
       "account": {
         "login": "Log In"
       }
-    },"Registration": {
-    "success": "Successfully registered!",
-    "RegistrationTitle": "Registration",
-    "registrationdesc": "What is your purpose for registering?",
-    "nameTitle": "First Name",
-    "namePlaceholder": "Enter your first name",
-    "surnameTitle": "Last Name",
-    "surnamePlaceholder": "Enter your last name",
-    "button": {
-      "title": "Register"
     },
-    "errors": {
-      "name": {
-        "required": "Please enter your first name!",
-        "minLength": "The name must be at least 2 characters long!",
-        "failed": "An error occurred during registration"
+    "Registration": {
+      "success": "Successfully registered!",
+      "RegistrationTitle": "Registration",
+      "registrationdesc": "What is your purpose for registering?",
+      "nameTitle": "First Name",
+      "namePlaceholder": "Enter your first name",
+      "surnameTitle": "Last Name",
+      "surnamePlaceholder": "Enter your last name",
+      "button": {
+        "title": "Register"
       },
-      "phone": {
-        "invalidOperatorCode": "The entered phone number does not belong to Uzbek operators."
+      "errors": {
+        "name": {
+          "required": "Please enter your first name!",
+          "minLength": "The name must be at least 2 characters long!",
+          "failed": "An error occurred during registration"
+        },
+        "phone": {
+          "invalidOperatorCode": "The entered phone number does not belong to Uzbek operators."
+        }
       }
-    }
-  },
-  "phone": {
-    "title": "Your phone number:"
-  },
-  "photo": "Upload a profile picture!"
+    },
+    "phone": {
+      "title": "Your phone number:"
+    },
+    "photo": "Upload a profile picture!"
   },
   "Footer": {
     "logo": {
@@ -246,9 +247,9 @@
       "breadcrumb": {
         "allServices": "All Services",
         "santexnik": "Plumbers",
-        "malyar":"Painters",
-        "kalit%20tamirlash": "Renovation",
-        "payvandchilar": "Welders",
+        "malyar": "Painters",
+        "daily-light": "Light work",
+        "daily-heavy": "Heavy work",
         "santexName": "Eshonov Bahodir"
       },
       "ServicePerson": {
@@ -277,7 +278,6 @@
       "confirm": "Confirm",
       "back": "Back",
       "checkboxError": "Please confirm your agreement to the terms."
-
     }
   },
   "OfferWork": {
@@ -287,7 +287,7 @@
         "allServices": "All Services",
         "PersonName": "Eshonov Bahodir",
         "santexnik": "Plumbers",
-        "malyar":"Painters",
+        "malyar": "Painters",
         "kalit%20tamirlash": "Renovation",
         "payvandchilar": "Welders",
         "offerData": {
@@ -497,7 +497,7 @@
     ]
   },
   "ReviewTab": {
-    "stars":"stars",
+    "stars": "stars",
     "averageRating": 4.5,
     "totalReviews": 523,
     "ratings": {

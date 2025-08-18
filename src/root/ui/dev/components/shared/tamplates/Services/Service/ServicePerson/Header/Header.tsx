@@ -3,7 +3,6 @@ import { cn } from '@/root/business/lib/utils';
 import { Button } from "@/root/ui/dev/shadcn/ui/button";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Link } from '@/root/business/locales/i18n/routing';
 import ServerLink from '../../../../../elements/Links/ServerLink';
 
 interface UserData {
@@ -14,16 +13,22 @@ interface UserData {
   about: string;
   avg_rating: number;
   comments_count: number;
-  categories: { id: number; name: string }[];
-  tags: { id: number; name: string; category_id: number }[];
-  experience_levels: { category_name: string; experience_level: string }[];
+  activity: {
+    category: { id: number; name: string; slug: string };
+    experience: { id: number; name: string };
+    tags: { id: number; name: string }[];
+    price: number;
+    country?: { id: number; name: string; admin_level: number; osm_id: number };
+    region?: { id: number; name: string; admin_level: number; osm_id: number };
+    district?: { id: number; name: string; admin_level: number; osm_id: number };
+  };
 }
 
 interface Props {
   className?: string;
   response: UserData;
-  slug: string
-  userUuid: string
+  slug: string;
+  userUuid: string;
 }
 
 export const Header = ({ className, response, slug, userUuid }: Props) => {
@@ -35,7 +40,7 @@ export const Header = ({ className, response, slug, userUuid }: Props) => {
         <div className="rounded-full max-h-[84px] border-2 border-maket-green">
           <div className="h-20 w-20 rounded-full relative border-2 border-white">
             <Image
-              src={`${process.env.NEXT_PUBLIC_BASE_URL}${response.profile_photo}`}
+              src={`${response.profile_photo}`}
               alt={`${response.first_name} ${response.last_name}`}
               fill
               objectFit="cover"
@@ -50,7 +55,7 @@ export const Header = ({ className, response, slug, userUuid }: Props) => {
             {response.first_name} {response.last_name}
           </h1>
           <p className="text-maket-gray">
-            {response.categories?.[0]?.name || t("General.unknownCategory")}
+            {response.activity?.category?.name || t("General.unknownCategory")}
           </p>
           <div className="flex gap-1 items-center">
             <div className="relative h-4 w-4 flex items-center justify-center">

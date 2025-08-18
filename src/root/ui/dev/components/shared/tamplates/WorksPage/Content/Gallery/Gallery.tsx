@@ -11,27 +11,20 @@ import {
   type CarouselApi,
 } from "@/root/ui/dev/shadcn/ui/carousel";
 import Image from "next/image";
+// import { MasterDetail } from "../Content";
+
+// Ensure MasterDetail interface has the correct type for images
+interface MasterDetail {
+  images: string[]; // Define images as an array of strings
+  title?: string;
+}
 
 interface Props {
   className?: string;
+  response: MasterDetail;
 }
 
-const data = [
-  {
-    src: "/img/advertising/plumbing.png",
-    alt: "Plumbing Repair & Maintenance",
-  },
-  {
-    src: "/img/advertising/gas.png",
-    alt: "Gas Repair",
-  },
-  {
-    src: "/img/advertising/plumbing.png",
-    alt: "Plumbing Repair & Maintenance",
-  },
-];
-
-export const Gallery = ({ className }: Props) => {
+export const Gallery = ({ className, response }: Props) => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 
@@ -45,16 +38,16 @@ export const Gallery = ({ className }: Props) => {
     <section className={cn("relative w-full", className)}>
       <Carousel setApi={setApi} className="w-full">
         <CarouselContent>
-          {data.map((item, i) => (
+          {response.images.map((src, i) => (
             <CarouselItem
               key={i}
               className={cn(
-                 className="w-full h-[300px] sm:h-[370px] md:h-[430px] lg:h-[450px] relative"
+                "w-full h-[300px] sm:h-[370px] md:h-[430px] lg:h-[450px] relative"
               )}
             >
               <Image
-                src={item.src}
-                alt={item.alt}
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}${src}`}
+                alt={response.title || "Gallery image"}
                 fill
                 className="object-cover rounded-xl transition-all duration-300 ease-in-out"
               />
@@ -80,7 +73,7 @@ export const Gallery = ({ className }: Props) => {
 
         {/* Dots (indicator) */}
         <div className="absolute bottom-3 left-0 w-full flex items-center justify-center gap-2 z-10">
-          {data.map((_, idx) => (
+          {response.images.map((_, idx) => (
             <div
               key={idx}
               onClick={() => api?.scrollTo(idx)}

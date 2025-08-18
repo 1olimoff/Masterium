@@ -51,7 +51,6 @@ export const Card = ({ className, data }: Props) => {
   if (imageList.length === 0) {
     imageList = [{ src: "/img/advertising/gas.png", alt: "Default Image", objectFit: "cover" }];
   }
-  
 
   return (
     <div
@@ -65,7 +64,7 @@ export const Card = ({ className, data }: Props) => {
           {imageList.map((item, i) => (
             <CarouselItem key={i} className="relative w-full h-full">
               <Image
-                src={item.src}
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.src}`}
                 alt={item.alt}
                 fill
                 style={{ objectFit: "cover" }}

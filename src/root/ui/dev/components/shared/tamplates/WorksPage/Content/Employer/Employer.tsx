@@ -3,12 +3,15 @@ import { cn } from '@/root/business/lib/utils';
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Button } from '@/root/ui/dev/shadcn/ui/button';
+import { MasterDetail } from '../Content';
 
 interface Props {
     className?: string;
+  response:MasterDetail
+
 }
 
-export const Employer = ({ className }: Props) => {
+export const Employer = ({ className, response }: Props) => {
     const t = useTranslations();
     return (
         <section className={cn(
@@ -31,9 +34,9 @@ export const Employer = ({ className }: Props) => {
                     <div className="absolute bottom-0 right-0 h-3 w-3 border-2 border-white rounded-full bg-maket-green" />
                 </div>
                 <div className="flex flex-col justify-between h-full text-sm sm:text-base">
-                    <h4 className="font-semibold">Eshonov Bahodir</h4>
+                    <h4 className="font-semibold">{response.user.first_name} {response.user.last_name}</h4>
                     <p className="text-maket-gray text-sm">
-                        {t('WorksPage.content.employer.period.title')}2024 {t('WorksPage.content.employer.period.subtitle')}
+                        {t('WorksPage.content.employer.period.title')}{new Date(response.user.created_at).getFullYear()}  {""} {t('WorksPage.content.employer.period.subtitle')}
                     </p>
                 </div>
             </div>

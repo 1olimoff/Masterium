@@ -14,19 +14,58 @@ interface TabItem {
     IconPic: string;
 }
 
-interface UserData {
+// types/UserData.ts
+export interface UserData {
     user_uuid: string;
     profile_photo: string;
     first_name: string;
     last_name: string;
-    userUuid: string;
     about: string;
+    father_name?: string | null;
+    phone_number?: string | null;
+    additional_phone_number?: string | null;
+    email?: string | null;
+    birth_date?: string | null;
+    passport_number?: string | null;
     avg_rating: number;
     comments_count: number;
-    categories: { id: number; name: string }[];
-    tags: { id: number; name: string; category_id: number }[];
-    experience_levels: { experience_level: string; category_name: string }[];
-}
+    is_official: boolean;
+    activity: {
+      category: {
+        id: number;
+        name: string;
+        slug: string;
+      };
+      experience: {
+        id: number;
+        name: string;
+      };
+      price: number;
+      tags: {
+        id: number;
+        name: string;
+      }[];
+      country: {
+        id: number;
+        name: string;
+        admin_level: number;
+        osm_id: number;
+      };
+      region: {
+        id: number;
+        name: string;
+        admin_level: number;
+        osm_id: number;
+      };
+      district: {
+        id: number;
+        name: string;
+        admin_level: number;
+        osm_id: number;
+      };
+    };
+  }
+  
 
 interface Feedback {
     average_rating: number;
@@ -74,7 +113,7 @@ const TABS = (response: UserData, feedbackSummary: Feedback, slug: string, userU
         key: "malumot",
         label: "Ma'lumot",
         IconPic: "InfoIcon.svg",
-        content: <InfoTab data={response} />,
+        content: <InfoTab  data={response} />,
     },
     {
         key: "videolar",

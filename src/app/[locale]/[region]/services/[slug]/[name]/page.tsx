@@ -1,13 +1,12 @@
 import { ServicePerson } from "@/root/ui/dev/components/shared/tamplates/Services/Service/ServicePerson/ServicePerson";
-import Head from "next/head";
 
-export default async function HomeServicePerson({ params, slug }: any) {
-    const user_uuid = await params.name
-    const userslug = await params.slug
+export default async function HomeServicePerson({ params }: any) {
+    const slug = await params.slug
+    const uuid = await params.name
 
     return (
-        <div className={'layout-width px-2'}>
-                <ServicePerson slug={userslug} userUuid={user_uuid} />
+        <div className={'layout-width '}>
+                <ServicePerson slug={slug} userUuid={uuid}/>
         </div>
     );
 }
