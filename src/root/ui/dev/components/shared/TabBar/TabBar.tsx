@@ -41,7 +41,7 @@ export default function TabBar({token}: Props) {
             icon: 'ads',
         },
         {
-            href: '/offer-works',
+            href: '/myprofile',
             label: 'Profil',
             icon: 'profile',
         },

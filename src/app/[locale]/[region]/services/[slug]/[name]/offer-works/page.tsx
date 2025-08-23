@@ -14,8 +14,7 @@ interface PageProps {
 const WorkOffers: NextPage<PageProps> = async ({ params }) => {
   const { slug, name: user_uuid } = await params;
 
-  
-  console.log("OFFERWOKR PARAMS", await params);
+
   
   return (
     <div>

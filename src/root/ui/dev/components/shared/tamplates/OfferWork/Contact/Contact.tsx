@@ -21,11 +21,9 @@ export const Contact = ({ className, cookieToken, targetUserUuid, slug }: Props)
   const t = useTranslations("OfferWork");
   const router = useRouter();
 
-  // Locale va regionni cookies’dan olish
   const locale = Cookies.get("locale") || "uz";
   const region = Cookies.get("region") || "tashkent";
 
-  // Zustand’dan faqat kerakli state va setter’larni alohida chaqirish
   const activeTopButton = useOfferWorkStore((state) => state.activeTopButton);
   const activeBottomButton = useOfferWorkStore((state) => state.activeBottomButton);
   const priceFrom = useOfferWorkStore((state) => state.priceFrom);
