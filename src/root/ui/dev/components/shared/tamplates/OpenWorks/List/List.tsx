@@ -15,9 +15,10 @@ interface Item {
     images: string[];
     user: {
       user_uuid: string;
-      name: string;
+      first_name: string; // Changed from name to first_name
+      last_name: string;  // Added last_name
     }
-  }
+}
 
 interface Props {
     className?: string;
@@ -30,7 +31,6 @@ export const List = ({ className, data }: Props) => {
     const t = useTranslations();
     const [showMore, setShowMore] = useState(false);
     
-
     return (
         <section className={cn(className)}>
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-4 lg:grid-cols-4 gap-x-4 gap-y-6 md:gap-y-8">
@@ -41,7 +41,6 @@ export const List = ({ className, data }: Props) => {
 
             <div className="py-8 md:py-10">
                 {/* <AdCarouselServer /> */}
-
             </div>
 
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-6 md:gap-y-8">

@@ -11,7 +11,7 @@ import { toast } from '@/root/business/hooks/use-toast';
 interface Props {
     className?: string;
     response: MasterDetail
-    offerId: number
+    offerId: string
 }
 
 export const ShortInfo = ({ className, response, offerId }: Props) => {

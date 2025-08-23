@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 import { CarouselWrapper } from "./CarouselWrapper/CarouselWraper";
 import ServerLink from "../Links/ServerLink";
 
-// props uchun to'g'ri interfeys
 export interface Item {
   offer_id: number;
   title: string;
@@ -18,7 +17,6 @@ export interface Item {
     user_uuid: string;
     first_name: string;
     last_name: string;
-
   }
 }
 
@@ -39,7 +37,7 @@ export const OpenWorkCard = ({ className, data }: Props) => {
     <div
       className={cn(
         className,
-        "w-full max-w-full sm:max-w-[390px] h-full rounded-xl overflow-hidden bg-white my-custom-shadow flex flex-col" // 👈 flex-col qo‘shildi
+        "w-full max-w-full sm:max-w-[390px] h-full rounded-xl overflow-hidden bg-white my-custom-shadow flex flex-col"
       )}
     >
       {/* Image carousel */}
@@ -48,7 +46,7 @@ export const OpenWorkCard = ({ className, data }: Props) => {
       </div>
 
       {/* Content */}
-      <div className="p-4 flex flex-col gap-3 flex-1"> {/* 👈 flex-1 qo‘shildi */}
+      <div className="p-4 flex flex-col gap-3 flex-1">
         <div>
           <h3 className="text-lg sm:text-[18px] font-[590]">{data.title}</h3>
           <p className="text-maket-gray text-sm sm:text-base">

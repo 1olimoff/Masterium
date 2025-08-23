@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import FilterBar from "../PersonalDetails/FilterBar/FilterBar";
 import axios from "axios";
 import { useChangeDataStore } from "../ChangeDataStore";
-import Cookies from "js-cookie"; // ✅ qo‘shildi
+import Cookies from "js-cookie";
 
 interface Option {
   label: string;
@@ -252,7 +252,7 @@ export default function ActivityPage({
             label={t("ChangeData.ServiceActivity.Inputs.serviceType")}
             options={catalogs}
             placeholder={t("ChangeData.ServiceActivity.Inputs.serviceTypeplaceholder")}
-            onChange={(val) => {
+            onChange={(val: string | number) => {
               console.log("📌 Category selected:", val);
               setServiceActivity("category_id", Number(val));
             }}
@@ -262,7 +262,7 @@ export default function ActivityPage({
             label={t("ChangeData.ServiceActivity.Inputs.workExperience")}
             options={experience}
             placeholder={t("ChangeData.ServiceActivity.Inputs.workExperienceplaceholder")}
-            onChange={(val) => {
+            onChange={(val: string | number) => {
               console.log("📌 Experience selected:", val);
               setServiceActivity("exp_level_id", Number(val));
             }}
@@ -272,9 +272,10 @@ export default function ActivityPage({
             label={t("ChangeData.ServiceActivity.Inputs.Tags")}
             options={tags}
             placeholder={t("ChangeData.ServiceActivity.Inputs.Tagsplaceholder")}
-            onChange={(val) => {
-              console.log("🏷️ Tag selected:", val);
-              setServiceActivity("tag_ids", [Number(val)]);
+            onChange={(val: string | number | (string | number)[]) => {
+              console.log("🏷️ Tags selected:", val);
+              const tagIds = Array.isArray(val) ? val.map(Number) : [Number(val)];
+              setServiceActivity("tag_ids", tagIds);
             }}
           />
 
@@ -282,10 +283,10 @@ export default function ActivityPage({
             label={t("ChangeData.ServiceActivity.Inputs.Country")}
             options={countries}
             placeholder={t("ChangeData.ServiceActivity.Inputs.Countryplaceholder")}
-            onChange={(val: number) => {
+            onChange={(val: string | number) => {
               console.log("🌍 Country selected:", val);
-              handleCountrySelect(val);
-              setServiceActivity("country_id", val);
+              handleCountrySelect(Number(val));
+              setServiceActivity("country_id", Number(val));
             }}
           />
 
@@ -293,20 +294,20 @@ export default function ActivityPage({
             label={t("ChangeData.ServiceActivity.Inputs.region")}
             options={regions}
             placeholder={t("ChangeData.ServiceActivity.Inputs.regionplaceholder")}
-            onChange={(val: number) => {
+            onChange={(val: string | number) => {
               console.log("🏙️ Region selected:", val);
-              handleRegionSelect(val);
-              setServiceActivity("region_id", val);
+              handleRegionSelect(Number(val));
+              setServiceActivity("region_id", Number(val));
             }}
           />
 
           <FilterBar
             label={t("ChangeData.ServiceActivity.Inputs.District")}
             options={districts}
-            placeholder={t("ChangeData.ServiceActivity.Inputs.Districtplaceholder")}
-            onChange={(val: number) => {
+            placeholder={t("ChangeData.ServiceActivity.Input")}
+            onChange={(val: string | number) => {
               console.log("📍 District selected:", val);
-              setServiceActivity("district_id", val);
+              setServiceActivity("district_id", Number(val));
             }}
           />
         </div>
@@ -331,4 +332,4 @@ export default function ActivityPage({
       </div>
     </div>
   );
-};
+}
