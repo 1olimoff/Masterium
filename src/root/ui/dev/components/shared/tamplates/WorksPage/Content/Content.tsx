@@ -27,10 +27,11 @@ export interface MasterDetail {
 
 interface Props {
   className?: string;
-  response: MasterDetail
+  response: MasterDetail;
+  offerId:string
 }
 
-export const Content = ({ className, response }: Props) => {
+export const Content = ({ className, response, offerId }: Props) => {
   console.log(response);
 
   return (
@@ -41,7 +42,7 @@ export const Content = ({ className, response }: Props) => {
         </div>
         <div className="sm:flex md:flex md:flex-col gap-6 max-w-[660px] w-full">
           <div className="bg-white p-4 rounded-xl shadow w-full max-w-full  sm:max-w-none md:max-w-full">
-            <ShortInfo response={response} />
+            <ShortInfo response={response} offerId={offerId}/>
           </div>
           <div className="bg-white p-4 rounded-xl hidden sm:h-48 sm:flex shadow w-full max-w-full sm:max-w-none md:max-w-full">
             <Employer response={response} />

@@ -21,8 +21,6 @@ export const Contact = ({ className, cookieToken, targetUserUuid, slug }: Props)
   const t = useTranslations("OfferWork");
   const router = useRouter();
 
-  console.log("UUUUID" , targetUserUuid);
-  
   // Locale va regionni cookies’dan olish
   const locale = Cookies.get("locale") || "uz";
   const region = Cookies.get("region") || "tashkent";
@@ -46,7 +44,7 @@ export const Contact = ({ className, cookieToken, targetUserUuid, slug }: Props)
   const setContactPerson = useOfferWorkStore((state) => state.setContactPerson);
   const setLocation = useOfferWorkStore((state) => state.setLocation);
   const reset = useOfferWorkStore((state) => state.reset);
-  
+
   const defaultLocationLat = 41.2995;
   const defaultLocationLng = 69.2401;
 
@@ -164,12 +162,18 @@ export const Contact = ({ className, cookieToken, targetUserUuid, slug }: Props)
       );
 
       if (response.status === 200 || response.status === 201) {
-        toast({ description: t("Contacts.submitSuccess") || "Ma'lumotlar muvaffaqiyatli yuborildi" });
+        toast({
+          description: "Ma'lumotlar muvaffaqiyatli yuborildi",
+        });
         reset();
         router.push(`/${locale}/${region}/services/`);
       } else {
-        toast({ description: t("Contacts.submitError") || "Xatolik yuz berdi" });
+        toast({
+          description: "Xatolik yuz berdi",
+          variant: "destructive",
+        });
       }
+
     } catch (error: any) {
       console.error("POST so'rov xatosi: CONTACT.tsx", error.message, error.response);
       if (error.response?.status === 401) {

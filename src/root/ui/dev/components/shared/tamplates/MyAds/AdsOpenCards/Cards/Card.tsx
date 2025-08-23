@@ -56,7 +56,7 @@ export const Card = ({ className, data }: Props) => {
     <div
       className={cn(
         className,
-        "w-full h-full rounded-xl overflow-hidden bg-white my-custom-shadow"
+        "w-full h-full rounded-xl overflow-hidden bg-white my-custom-shadow flex flex-col"
       )}
     >
       <Carousel setApi={setApi}>
@@ -97,29 +97,30 @@ export const Card = ({ className, data }: Props) => {
         )}
       </Carousel>
 
-      <div className="p-2 flex flex-col gap-2 sm:gap-3 lg:gap-4">
-        <div>
-          <h3 className="text-base sm:text-lg md:text-xl font-semibold">
-            {data.title || "Noma'lum sarlavha"}
-          </h3>
-          <p className="text-sm sm:text-base text-maket-gray">
-            {data.category_name || "Noma'lum kategoriya"}
-          </p>
-        </div>
-
-        <span className="text-base sm:text-lg md:text-xl text-maket-secondary font-bold">
-          {data.price || "0"} {data.currency || "so'm"} {t("price.sum.title") || ""}
-        </span>
-
-        <div className="flex flex-col justify-center gap-2 sm:gap-3">
-          <ServerLink
-            path={`myads/${data.offer_id || ""}`}
-            className="bg-maket-batafsil text-maket-secondary text-sm sm:text-base md:text-lg text-center font-medium py-2 sm:py-4 md:py-3 rounded-xl hover:bg-maket-secondary hover:text-white transition-all duration-200"
-          >
-            {t("MyAds.myAdsBtn.btnTitle") || "Batafsil"}
-          </ServerLink>
-        </div>
-      </div>
+      <div className="p-2 flex flex-col flex-1">
+    <div>
+      <h3 className="text-base sm:text-lg md:text-xl font-semibold">
+        {data.title || "Noma'lum sarlavha"}
+      </h3>
+      <p className="text-sm sm:text-base text-maket-gray">
+        {data.category_name || "Noma'lum kategoriya"}
+      </p>
     </div>
+
+    <span className="text-base sm:text-lg md:text-xl text-maket-secondary font-bold mt-2">
+      {data.price || "0"} {data.currency || "so'm"} {t("price.sum.title") || ""}
+    </span>
+
+    {/* 🚀 Button har doim pastda turadi */}
+    <div className="mt-auto">
+      <ServerLink
+        path={`myads/${data.offer_id || ""}`}
+        className="bg-maket-batafsil text-maket-secondary text-sm sm:text-base md:text-lg text-center font-medium py-2 sm:py-4 md:py-3 rounded-xl hover:bg-maket-secondary hover:text-white transition-all duration-200 block"
+      >
+        {t("MyAds.myAdsBtn.btnTitle") || "Batafsil"}
+      </ServerLink>
+    </div>
+  </div>
+</div>
   );
 };

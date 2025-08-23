@@ -22,7 +22,7 @@ const OPERATORS = new Set([
   "88", "90", "91", "93", "94", "95", "97", "98", "99",
 ]);
 
-export let token: boolean = false; // Eksport qilinadigan token o'zgaruvchisi
+export let token: boolean = false;
 
 export const LoginProviderDialog = ({ trigger }: Props) => {
   const t = useTranslations("Account");

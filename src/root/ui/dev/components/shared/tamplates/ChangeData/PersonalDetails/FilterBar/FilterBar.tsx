@@ -5,16 +5,22 @@ import { Command, CommandInput, CommandItem, CommandList } from "@/root/ui/dev/s
 import { Button } from "@/root/ui/dev/shadcn/ui/button";
 import Image from "next/image";
 
-interface FilterBarProps {
+interface Option {
   label: string;
-  options: string[];
-  placeholder: string;
-  className?: string;
+  value: string | number;
 }
 
-export default function FilterBar({ label, options, placeholder }: FilterBarProps) {
+interface FilterBarProps {
+  label: string;
+  options: Option[];             // 🔑 endi string[] emas, Option[]
+  placeholder: string;
+  className?: string;
+  onChange?: (value: string | number) => void;  // 🔑 tashqariga value qaytarish uchun
+}
+
+export default function FilterBar({ label, options, placeholder, onChange }: FilterBarProps) {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selected, setSelected] = useState<Option | null>(null);
 
   return (
     <div className="w-full">
@@ -25,7 +31,7 @@ export default function FilterBar({ label, options, placeholder }: FilterBarProp
             variant="outline"
             className="w-full text-[#a5abbd] hover:text-[#a5abbd] py-4 text-left text-md  border-[#CFD9FE] rounded-xl flex justify-between items-center"
           >
-            {selected || placeholder}
+            {selected ? selected.label : placeholder}
             <Image src="/svg/open-works/arrow-down.svg" alt="Arrow down icon" width={20} height={20} />
           </Button>
         </PopoverTrigger>
@@ -35,15 +41,16 @@ export default function FilterBar({ label, options, placeholder }: FilterBarProp
             <CommandList>
               {options.map((option) => (
                 <CommandItem
-                  key={option}
-                  value={option}
-                  onSelect={(value) => {
-                    setSelected(value);
+                  key={option.value}
+                  value={String(option.value)}
+                  onSelect={() => {
+                    setSelected(option);
                     setOpen(false);
+                    onChange?.(option.value); // 🔑 tanlangan value ni tashqariga yuboramiz
                   }}
                   className="cursor-pointer text-[#677294] hover:bg-gray-100 rounded-md p-2"
                 >
-                  {option}
+                  {option.label}
                 </CommandItem>
               ))}
             </CommandList>

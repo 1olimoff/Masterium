@@ -1,20 +1,58 @@
+"use client"
 import React from 'react';
 import { cn } from '@/root/business/lib/utils';
 import { useTranslations } from "next-intl";
 import { Button } from "@/root/ui/dev/shadcn/ui/button";
 import Image from "next/image";
-import { Link } from '@/i18n/routing';
-import ServerLink from '../../../../elements/Links/ServerLink';
 import { MasterDetail } from '../Content';
+import axios from 'axios';
+import { toast } from '@/root/business/hooks/use-toast';
 
 interface Props {
     className?: string;
     response: MasterDetail
+    offerId: number
 }
 
-export const ShortInfo = ({ className, response }: Props) => {
+export const ShortInfo = ({ className, response, offerId }: Props) => {
     const t = useTranslations();
 
+    const handleApply = async () => {
+        try {
+            const res = await axios.post(
+                `${process.env.NEXT_PUBLIC_BASE_URL}api/v1/masters/${offerId}/apply/`,
+                { offer_id: offerId }, 
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                    },
+                }
+            );
+
+            toast({
+                title: "✅",
+                description: "Muvaffaqiyatli topshirildi",
+            });
+
+        } catch (err: any) {
+            if (axios.isAxiosError(err)) {
+                if (err.response?.status === 403) {
+                    toast({
+                        title: t("error.title"),
+                        description: "Siz master bo‘lishingiz kerak",
+                        variant: "destructive",
+                    });
+                    return;
+                }
+            }
+
+            toast({
+                description: "So'rov yuborish uchun master profil oching.",
+                variant: "destructive",
+            });
+        }
+    }
 
     const formatDate = (dateString: string) => {
         const date = new Date(dateString)
@@ -40,12 +78,12 @@ export const ShortInfo = ({ className, response }: Props) => {
 
             {/* Title */}
             <h1 className="text-sm sm:text-base md:text-lg font-semibold leading-snug">
-            {response.title}
+                {response.title}
             </h1>
 
             {/* Price */}
             <h2 className="text-xl sm:text-2xl font-bold text-maket-black">
-            {response.price.toLocaleString()} {t('price.sum.title')}
+                {response.price.toLocaleString()} {t('price.sum.title')}
             </h2>
 
             {/* Period Info Box */}
@@ -54,23 +92,23 @@ export const ShortInfo = ({ className, response }: Props) => {
                     {t('WorksPage.content.shortInfo.period.title')} {response.total_date} {t('WorksPage.content.shortInfo.period.days')}
                 </p>
                 <p className="text-maket-secondary">
-                {formatDate(response.start_date)} {t('WorksPage.content.shortInfo.period.from')} – {formatDate(response.end_date)}{" "} {t('WorksPage.content.shortInfo.period.to')}
+                    {formatDate(response.start_date)} {t('WorksPage.content.shortInfo.period.from')} – {formatDate(response.end_date)}{" "} {t('WorksPage.content.shortInfo.period.to')}
                 </p>
             </div>
 
             {/* Button */}
-            <ServerLink
-                path="offer-works"
+            <Button
+                onClick={handleApply}
                 className="text-maket-gold rounded-xl flex items-center justify-center gap-2 bg-maket-primary hover:bg-sky-800 text-sm sm:text-base py-2"
             >
                 <Image
                     src="/svg/worksPage/send.svg"
                     alt="Send Icon"
-                    width={20} 
+                    width={20}
                     height={20}
                 />
                 <span>{t("WorksPage.content.shortInfo.sendOfferButton")}</span>
-            </ServerLink>
+            </Button>
         </div>
     );
 };

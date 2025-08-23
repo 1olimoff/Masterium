@@ -4,8 +4,9 @@ import { AdCarouselServer } from '../../elements/advertising/AdCarousel/AdCarous
 import { Categories } from "@/root/ui/dev/components/shared/tamplates/Main/Categories/Categories";
 import { OpenWorks } from "@/root/ui/dev/components/shared/tamplates/Main/OpenWorks/OpenWorks";
 import { DailyWorkers } from "@/root/ui/dev/components/shared/tamplates/Main/DailyWorkers/DailyWorkers";
-import { AdBanner } from "@/root/ui/dev/components/shared/elements/advertising/AdBanner";
 import InputArea from '../Aside/InputArea/InputArea';
+import { AdBannerServer } from '../../elements/advertising/AdCarousel/AdBanner.server';
+import { AdPosterServer } from '../../elements/advertising/AdPoster/AdPoster.server';
 
 interface Props {
     className?: string;
@@ -20,7 +21,14 @@ export const Main = ({ className }: Props) => {
             <AdCarouselServer />
             <Categories />
             <OpenWorks />
-            <AdCarouselServer />
+            <div className="flex gap-4">
+                <div className="flex-[7.5]">
+                    <AdBannerServer />
+                </div>
+                <div className="hidden sm:flex flex-[3]">
+                    <AdPosterServer />
+                </div>
+            </div>
             <DailyWorkers />
         </div>
     );

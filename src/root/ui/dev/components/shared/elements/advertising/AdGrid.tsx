@@ -2,15 +2,24 @@
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 
-const data = [
-  { src: "/img/advertising/gozo.png", alt: "Gozo" },
-  { src: "/img/advertising/honadon.png", alt: "Honadon" },
-  { src: "/img/advertising/dusel.png", alt: "Dusel" },
-  { src: "/img/advertising/hi-tech.png", alt: "Hi-tech" },
-];
+interface ADvisitka {
+  id: number;
+  description: string;
+  image_url: string;
+  type: string;
+  start_date: string;
+  end_date: string;
+  country: string;
+  is_active: boolean;
+}
 
-export const AdGrid = () => {
+interface Props {
+  advisitka: ADvisitka[] | null | undefined;
+}
+
+export const AdGrid = ({ advisitka }: Props) => {
   const sliderRef = useRef<HTMLDivElement>(null);
+  
 
   useEffect(() => {
     const slider = sliderRef.current;
@@ -22,16 +31,13 @@ export const AdGrid = () => {
 
     const step = (timestamp: number) => {
       if (!start) start = timestamp;
-      const progress = timestamp - start;
-      position += 0.5; // speed
+      position += 0.5;
 
-
-      if (slider.scrollWidth / 2 <= position) {
+      if (position >= slider.scrollWidth / 2) {
         position = 0;
       }
 
       slider.style.transform = `translateX(-${position}px)`;
-
       animationFrameId = requestAnimationFrame(step);
     };
 
@@ -39,6 +45,20 @@ export const AdGrid = () => {
 
     return () => cancelAnimationFrame(animationFrameId);
   }, []);
+
+  // Safely handle the advisitka prop
+  const activeAds = Array.isArray(advisitka) ? advisitka.filter((item) => item.is_active) : [];
+
+  // Create repeated ads for infinite scroll effect
+  const repeatedAds = Array(10).fill(activeAds).flat();
+
+  // Handle case when no active ads are available
+  if (activeAds.length === 0) {
+    return <p className="text-center text-gray-500">Reklama mavjud emas</p>;
+  }
+
+  // Ensure base URL is defined
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
 
   return (
     <div className="w-full overflow-hidden">
@@ -51,17 +71,20 @@ export const AdGrid = () => {
           whiteSpace: "nowrap",
         }}
       >
-        {/* Repeat twice for infinite loop */}
-        {[...data, ...data].map((item, index) => (
+        {repeatedAds.map((item, index) => (
           <div
-            key={index}
+            key={`${item.id}-${index}`} // Use unique key with id and index
             className="min-w-[300px] h-[170px] relative flex-shrink-0 rounded-xl overflow-hidden"
           >
             <Image
-              src={item.src}
-              alt={item.alt}
+              src={`${baseUrl}${item.image_url}`}
+              alt={item.description || `Ad ${item.id}`}
               fill
               className="object-cover rounded-xl"
+              onError={(e) => {
+                console.error(`Failed to load image: ${baseUrl}${item.image_url}`);
+                e.currentTarget.src = "/fallback-image.png"; // Optional: Fallback image
+              }}
             />
           </div>
         ))}

@@ -3,12 +3,14 @@ import { cn } from '@/root/business/lib/utils';
 import {useTranslations} from "next-intl";
 import {Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbSeparator} from "@/root/ui/dev/shadcn/ui/breadcrumb";
 import ServerLink from "@/root/ui/dev/components/shared/elements/Links/ServerLink";
+import { MasterDetail } from '../Content/Content';
 
 interface Props {
     className?: string;
+    response: MasterDetail
 }
 
-export const Title = ({ className }: Props) => {
+export const Title = ({ className, response }: Props) => {
     const t = useTranslations();
     return (
         <div className={cn(className, "hidden sm:flex pt-2 flex-col gap-4")}>
@@ -31,7 +33,7 @@ export const Title = ({ className }: Props) => {
                         /
                     </BreadcrumbSeparator>
                     <BreadcrumbItem>
-                        <p className={"text-gray-700"}>{t('WorksPage.breadcrumb.worksPage')}</p>
+                        <p className={"text-gray-700"}>{response.title}</p>
                     </BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>

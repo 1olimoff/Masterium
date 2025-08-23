@@ -1,62 +1,55 @@
 import { NextRequest, NextResponse } from "next/server";
+import axios from "axios";
+
+const URL_REFRESH = "https://cdn.masterium.uz/api/v1/auth/refresh/";
 
 export async function POST(req: NextRequest) {
   try {
-    // 1. Cookie’dan refresh token olish
+    // 1. Cookiedan refresh tokenni olish
     const refreshToken = req.cookies.get("refreshToken")?.value;
     if (!refreshToken) {
+      console.log("❌ Refresh token topilmadi");
       return NextResponse.json(
         { success: false, error: "missing_refresh", message: "Refresh token mavjud emas" },
         { status: 401 }
       );
     }
+    console.log("🔍 Refresh token:", refreshToken);
 
-    const res = await fetch("https://cdn.masterium.uz/api/v1/auth/token/refresh/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        refresh_token: refreshToken, // faqat refresh yuboramiz
-      }),
-    });
+    // 2. Backendga so‘rov yuborish
+    const response = await axios.post(URL_REFRESH, { refresh: refreshToken });
+    const data = response.data;
+    console.log("🔄 Backend javobi:", data);
 
-    const data = await res.json();
-
-    // 3. Agar backend xato qaytarsa
-    if (!res.ok || !data.access || !data.refresh) {
+    // 3. Javobni tekshirish
+    if (!data.success || !data.access_token) {
+      console.log("❌ Backend xatosi: access_token topilmadi");
       return NextResponse.json(
-        { success: false, error: "invalid_refresh", message: "Refresh token yaroqsiz yoki eskirgan", detail: data },
+        { success: false, error: "invalid_refresh", message: "Refresh token yaroqsiz" },
         { status: 401 }
       );
     }
 
-    // 4. Yangi cookie yozib yuborish
-    const response = NextResponse.json({
+    // 4. Yangi accessTokenni cookiega o‘rnatish
+    const nextResponse = NextResponse.json({
       success: true,
-      access_token: data.access,
-      refresh_token: data.refresh,
+      access_token: data.access_token,
     });
 
-    response.cookies.set("accessToken", data.access, {
+    nextResponse.cookies.set("accessToken", data.access_token, {
       httpOnly: true,
       sameSite: "lax",
-      maxAge: 60 * 15, // 15 daqiqa
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 15 * 60, // 15 daqiqa
       path: "/",
     });
 
-    response.cookies.set("refreshToken", data.refresh, {
-      httpOnly: true,
-      sameSite: "lax",
-      maxAge: 15 * 24 * 60 * 60, // 15 kun
-      path: "/",
-    });
-
-    return response;
+    console.log("✅ Yangi access token o‘rnatildi:", data.access_token);
+    return nextResponse;
   } catch (error: any) {
-    console.error("Refresh error:", error.message);
+    console.error("❌ Xato:", error.message);
     return NextResponse.json(
-      { success: false, error: "server_error", message: error.message || "Serverda xatolik" },
+      { success: false, error: "server_error", message: "Serverda xato yuz berdi" },
       { status: 500 }
     );
   }

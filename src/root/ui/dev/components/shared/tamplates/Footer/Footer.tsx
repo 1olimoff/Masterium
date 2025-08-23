@@ -21,7 +21,7 @@ export const Footer = ({ className }: Props) => {
       )}>
         {/* Logo & Title */}
         <div className={"flex flex-col gap-6 items-center md:items-start text-center md:text-left"}>
-          <ServerLink path="/public">
+          <ServerLink path="/">
             <Image
               src={"/svg/footer/logo.svg"}
               alt={"Footer logo of Masterium"}

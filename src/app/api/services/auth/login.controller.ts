@@ -2,7 +2,7 @@ import axios from "axios";
 
 const URL_LOGIN = "https://cdn.masterium.uz/api/v1/auth/login/";
 const URL_LOGIN_OTP = "https://cdn.masterium.uz/api/v1/auth/login/verify/";
-const URL_REFRESH = "https://cdn.masterium.uz/api/v1/auth/token/refresh/";
+const URL_REFRESH = "https://cdn.masterium.uz/api/v1/auth/refresh/";
 
 let accessToken = "";
 let refreshToken = "";
@@ -26,7 +26,6 @@ export const saveTokens = ({
   authType = newAuthType;
 };
 
-// Telefon raqami va parolni validatsiya qilish
 const validateLoginData = ({ phone_number, password }: { phone_number: string; password: string }) => {
   if (!phone_number || !phone_number.match(/^\+?[1-9]\d{1,14}$/)) {
     throw new Error("Telefon raqami noto'g'ri formatda (masalan, +998901234567)");
@@ -50,7 +49,6 @@ const validateLoginData = ({ phone_number, password }: { phone_number: string; p
   }
 };
 
-// OTP ma'lumotlarini validatsiya qilish
 const validateOtpData = ({ phone_number, code }: { phone_number: string; code: string }) => {
   if (!phone_number || !phone_number.match(/^\+?[1-9]\d{1,14}$/)) {
     throw new Error("Telefon raqami noto'g'ri formatda");
@@ -102,7 +100,6 @@ export const loginApi = async (props: any) => {
   }
 };
 
-// Refresh token orqali access token yangilash
 export const refreshAccessToken = async (token: string) => {
   try {
     const response = await axios.post(URL_REFRESH, { refresh: token });
@@ -111,14 +108,17 @@ export const refreshAccessToken = async (token: string) => {
     if (access) {
       saveTokens({
         accessToken: access,
-        refreshToken: refresh || token,
-        authType: token_type || "Bearer"
+        refreshToken: refresh || token, 
+        authType: token_type || "Bearer",
       });
+      console.log("✅ Tokenlar saqlandi:", { access, refresh: refresh || token, token_type });
+    } else {
+      console.error("❌ Backend access token qaytarmadi");
     }
 
     return response.data;
   } catch (e: any) {
-    console.error("Refresh token error:", e.response?.data || e.message);
+    console.error("❌ Refresh token xatosi:", e.response?.data || e.message);
     return null;
   }
 };

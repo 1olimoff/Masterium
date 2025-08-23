@@ -1,13 +1,26 @@
 import { useTranslations } from "next-intl";
 import { cn } from "@/root/business/lib/utils";
 
+interface FeedBackReview{
+    comment: string;
+    created_at: string
+    full_name:string;
+    id:number;
+    image_url:string;
+    rating:number;
+    user_id:string
+}
 
 interface Props {
     className?: string;
+    response: FeedBackReview[]
 }
 
-export const FeedBackTab = ({ className }: Props) => {
+export const FeedBackTab = ({ className, response }: Props) => {
     const t = useTranslations("ReviewTab");
+
+    console.log("logggg", response);
+    
 
     const averageRating: number = t.raw("averageRating");
     const totalReviews: number = t.raw("totalReviews");

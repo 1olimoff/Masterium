@@ -31,9 +31,6 @@ interface Props {
 export const ServiceCard = ({ className, data, slug }: Props) => {
     const t = useTranslations('');
 
-    console.log("Master profile", data);
-
-
     return (
         <div className={cn(className, "p-4 rounded-2xl shadow flex flex-col gap-3 bg-white relative pb-20")}>
             {/* User Info */}

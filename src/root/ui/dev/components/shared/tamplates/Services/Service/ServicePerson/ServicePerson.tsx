@@ -74,18 +74,33 @@ const fetchReview = async (userUuid: string) => {
     }
 }
 
+const AdVisitka = async () => {
+    try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}api/v1/ads/list/?type=visitka&limit/`, {
+            headers: { 'Content-Type': 'application/json' },
+        });
+        return response.data.results;
+    } catch (error) {
+        console.error('Error fetching masters:', error);
+    }
+}
+
+
+
 export const ServicePerson = async ({ className, userUuid, slug }: Props) => {
     const response = await UserProfile(userUuid);
     const feedbackSummary = await fetchFeedback(userUuid)
     const fetchpics = await fetchImages(userUuid)
     const fetchvideos = await fetchVideos(userUuid)
     const feedBackReview = await fetchReview(userUuid)
+    const advisitka = await AdVisitka()
+
 
     return (
         <div>
             <MobileBackTab slug={slug} response={response} />
             <div className={cn(className, "w-full flex flex-col gap-6 pt-4 pb-4 px-2")}>
-                <AdGrid />
+                <AdGrid advisitka={advisitka}/>
                 <Title slug={slug} response={response} />
                 <Header response={response} slug={slug} userUuid={userUuid} />
                 <Content response={response} feedbackSummary={feedbackSummary} slug={slug} userUuid={userUuid} fetchpics={fetchpics} feedBackReview={feedBackReview} VideoData={fetchvideos} />

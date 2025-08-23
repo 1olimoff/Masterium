@@ -8,7 +8,7 @@ import axios from 'axios';
 
 interface Props {
   className?: string;
-  offerId: number;
+  offerId: string;
 }
 
 const fetchMasterdetail = async (offerId: any) => {
@@ -23,16 +23,30 @@ const fetchMasterdetail = async (offerId: any) => {
   }
 }
 
+const AdVisitka = async () => {
+  try {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}api/v1/ads/list/?type=visitka&limit/`, {
+      headers: { 'Content-Type': 'application/json' },
+    });
+    return response.data.results;
+  } catch (error) {
+    console.error('Error fetching masters:', error);
+  }
+}
+
+
 export const WorksPage = async ({ className, offerId }: Props) => {
-const response = await fetchMasterdetail(offerId)
+  const response = await fetchMasterdetail(offerId)
+  const advisitka = await AdVisitka()
+
 
   return (
     <div className={cn(className, "w-full flex flex-col gap-6 sm:pt-6")}>
-      <MobileBackTab />
+      <MobileBackTab response={response} />
       <div className="px-2">
-        <AdGrid />
-        <Title />
-        <Content response={response}/>
+        <AdGrid advisitka={advisitka} />
+        <Title response={response} />
+        <Content response={response} offerId={offerId} />
       </div>
     </div>
   );

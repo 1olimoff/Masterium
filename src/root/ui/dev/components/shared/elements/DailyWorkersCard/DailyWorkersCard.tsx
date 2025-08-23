@@ -39,11 +39,11 @@ const images = [
         alt: "Gas Repair",
         objectFit: "cover",
     },
-    {
-        src: "/img/advertising/gas.png",
-        alt: "Gas Repair",
-        objectFit: "cover",
-    },
+    // {
+    //     src: "/img/advertising/gas.png",
+    //     alt: "Gas Repair",
+    //     objectFit: "cover",
+    // },
     // {
     //     src: "/img/advertising/gas.png",
     //     alt: "Gas Repair",

@@ -1,16 +1,18 @@
+"use client"
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { cn } from '@/root/business/lib/utils';
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Link } from '@/root/business/locales/i18n/routing';
 import ServerLink from '../../../elements/Links/ServerLink';
+import { Profile } from '../ForWorkers';
 
 interface Props {
     className?: string;
     activeTab?: string;
+    response: Profile;
 }
 
-export const Header = ({ className, activeTab }: Props) => {
+export const Header = ({ className, activeTab, response }: Props) => {
     const t = useTranslations('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -75,11 +77,11 @@ export const Header = ({ className, activeTab }: Props) => {
         <>
             <section className={cn(className, "w-full flex justify-between px-2 gap-4")}>
                 <div className="flex gap-3 mt-2">
-                    <div className="rounded-full sm:max-h-[84px] max-h-[60px]  border-2 border-maket-green">
+                    <div className="rounded-full sm:max-h-[84px] max-h-[60px] border-2 border-maket-green">
                         <div className="h-14 w-14 sm:h-20 sm:w-20 rounded-full relative border-2 border-white overflow-hidden">
                             <Image
-                                src="/img/advertising/gas.png"
-                                alt="Eshonov Baxodir"
+                                src={response.profile_photo || "/img/default-avatar.png"}
+                                alt={`${response.first_name} ${response.last_name}`}
                                 fill
                                 style={{ objectFit: "cover" }}
                                 className="rounded-full"
@@ -88,8 +90,12 @@ export const Header = ({ className, activeTab }: Props) => {
                         </div>
                     </div>
                     <div className="flex flex-col justify-between">
-                        <h1 className="md:text-3xl text-md sm:text-xl font-semibold">Eshonov Baxodir</h1>
-                        <p className="text-maket-gray">Santexnik</p>
+                        <h1 className="md:text-3xl text-md sm:text-xl font-semibold">
+                            {response.first_name} {response.last_name}
+                        </h1>
+                        <p className="text-maket-gray">
+                            {response.activity?.category?.name || t("MyProfile.noCategory")}
+                        </p>
                         <div className="flex items-center gap-1">
                             <div className="relative h-4 w-4">
                                 <Image
@@ -99,9 +105,9 @@ export const Header = ({ className, activeTab }: Props) => {
                                     style={{ objectFit: "contain" }}
                                 />
                             </div>
-                            <p className="text-maket-primary">4.5</p>
+                            <p className="text-maket-primary">{response.avg_rating}</p>
                             <p className="text-sm text-maket-gray">
-                                (30 {t("Main.sections.DailyWorkers.Card.comments")})
+                                ({response.comments_count} {t("Main.sections.DailyWorkers.Card.comments")})
                             </p>
                         </div>
                     </div>
@@ -118,17 +124,17 @@ export const Header = ({ className, activeTab }: Props) => {
                     >
                         <Image src="/svg/aside/add.svg" alt="Add" width={20} height={20} className="group-hover:hidden" />
                         <Image src="/svg/aside/add-white.svg" alt="Add" width={20} height={20} className="hidden group-hover:block" />
-                        <span className='text-sm' >{t('MyProfile.editButtons.addstory')}</span>
+                        <span className='text-sm'>{t('MyProfile.editButtons.addstory')}</span>
                     </ServerLink>
 
                     {activeTab === "malumot" && (
                         <ServerLink
-                            path="myprofile/sss"
-                            className="group bg-maket-primary md:h-[42px] h-[52px] px-2 text-sm sm:px-6 py-2 flex items-center gap-2 rounded-[12px]  sm:rounded-[16px] text-white border border-maket-primary hover:bg-white hover:text-maket-primary transition-colors sm:text-base"
+                            path="myprofile/info"
+                            className="group bg-maket-primary md:h-[42px] h-[52px] px-2 text-sm sm:px-6 py-2 flex items-center gap-2 rounded-[12px] sm:rounded-[16px] text-white border border-maket-primary hover:bg-white hover:text-maket-primary transition-colors sm:text-base"
                         >
                             <Image src="/svg/tabbar/edit.svg" alt="Edit" width={20} height={20} className="group-hover:hidden" />
                             <Image src="/svg/tabbar/editactive.svg" alt="Edit" width={20} height={20} className="hidden group-hover:block" />
-                            <span  className='text-sm'>{t('MyProfile.editButtons.changedata')}</span>
+                            <span className='text-sm'>{t('MyProfile.editButtons.changedata')}</span>
                         </ServerLink>
                     )}
 

@@ -22,24 +22,24 @@ export const Title = ({ className }: Props) => {
                     <BreadcrumbSeparator>
                         /
                     </BreadcrumbSeparator>
-                    <BreadcrumbItem>
+                    {/* <BreadcrumbItem>
                         <ServerLink path={"/services"} >
                             {t("Services.Service.breadcrumb.allServices")}
                         </ServerLink>
                     </BreadcrumbItem>
-                    <BreadcrumbSeparator>
-                        /
-                    </BreadcrumbSeparator>
-                    <BreadcrumbItem>
+                    <BreadcrumbSeparator> */}
+                        
+                    {/* </BreadcrumbSeparator> */} 
+                    {/* <BreadcrumbItem>
                     <ServerLink path={"/services/santex"} >
                         <p className={""}>{t('Services.Service.breadcrumb.santex')}</p>
                         </ServerLink>
                     </BreadcrumbItem>
-                    /
+                    / */}
 
                     <BreadcrumbItem>
                     <ServerLink path={"/services/santex/sws"} >
-                        <p className={"text-gray-700"}>{t('Services.Service.breadcrumb.santexName')}</p>
+                        <p className={"text-gray-700"}>Mening profilim</p>
                         </ServerLink>
                     </BreadcrumbItem>
 

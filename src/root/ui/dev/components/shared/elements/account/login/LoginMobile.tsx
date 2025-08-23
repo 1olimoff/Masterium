@@ -34,108 +34,114 @@ export const AuthProvider = ({ children, open, onOpenChange, onRegisterClick }: 
   const [showPassword, setShowPassword] = useState(false);
   const [openOTP, setOpenOTP] = useState(false);
 
-  // Modal ochilganda formani va loading holatini tozalash
+  // Reset form when modal opens
   useEffect(() => {
     if (open) {
       setPhone("");
       setPassword("");
       setShowPassword(false);
-      setLoading(false); // Loading holatini reset qilish
+      setLoading(false);
     }
   }, [open]);
 
   const validateInputs = () => {
     if (!phone) {
-      toast.error(t("login.errors.phone.required")); // "Telefon nomeri majburiy!"
+      toast.error(t("login.errors.phone.required"));
       return false;
     }
     if (!/^\+?\d+$/.test(phone)) {
-      toast.error(t("login.errors.phone.invalid")); // "Telefon nomerni to'liq kiriting"
+      toast.error(t("login.errors.phone.invalid"));
       return false;
     }
     if (phone.length < 12) {
-      toast.error(t("login.errors.phone.minLength")); // "Iltimos nomerni to'liq formatda yozing!"
+      toast.error(t("login.errors.phone.minLength"));
       return false;
     }
     const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
     if (formattedPhone.startsWith("+998")) {
       const operatorCode = formattedPhone.substring(4, 6);
       if (!OPERATORS.has(operatorCode)) {
-        toast.error(t("Registration.errors.phone.invalidOperatorCode")); // "Kiritilgan telefon raqami operator kodi O'zbekiston operatorlariga tegishli emas."
+        toast.error(t("Registration.errors.phone.invalidOperatorCode"));
         return false;
       }
     }
     if (!password) {
-      toast.error(t("login.errors.password.required")); // "Parol majburiy!"
+      toast.error(t("login.errors.password.required"));
       return false;
     }
     if (password.length < 8) {
-      toast.error(t("login.errors.password.minLength")); // "Kamida 8-ta belgi bo'lishi shart"
+      toast.error(t("login.errors.password.minLength"));
       return false;
     }
     return true;
   };
 
- // AuthProvider
-const handleSubmit = async () => {
-  setLoading(true);
-  if (!validateInputs()) {
-    setLoading(false);
-    return;
-  }
+  const handleSubmit = async () => {
+    setLoading(true);
+    if (!validateInputs()) {
+      setLoading(false);
+      return;
+    }
 
-  try {
-    const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
-    const response = await axios.post("/api/auth/login", {
-      phone_number: formattedPhone,
-      password,
-      req_type: "login",
-    });
+    try {
+      const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
+      const response = await axios.post(
+        "/api/auth/login",
+        {
+          phone_number: formattedPhone,
+          password,
+          req_type: "login",
+        },
+        { withCredentials: true }
+      );
 
-    if (response.data.success) {
-      setOpenOTP(true);
-      onOpenChange(false);
-    } else {
-      toast.error(response.data.message || t("login.errors.phone-or-psw"));
-      if (response.data.error === "user_not_found") {
-        setTimeout(() => {
-          onRegisterClick();
-        }, 150);
+      if (response.data.success) {
+        setOpenOTP(true);
+        onOpenChange(false);
+      } else {
+        toast.error(response.data.message || t("login.errors.phone-or-psw"));
+        if (response.data.error === "user_not_found") {
+          setTimeout(() => {
+            onRegisterClick();
+          }, 150);
+        }
       }
+    } catch (error: any) {
+      console.error("Login xatosi:", error.response?.data || error.message);
+      toast.error(error.response?.data?.message || t("login.errors.phone-or-psw"));
+    } finally {
+      setLoading(false);
     }
-  } catch (error: any) {
-    console.error("Login xatosi:", error.response?.data || error.message);
-    toast.error(error.response?.data?.message || t("login.errors.phone-or-psw"));
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
-const handleConfirmCode = async (code: string) => {
-  try {
-    const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
-    const response = await axios.post("/api/auth/login", {
-      phone_number: formattedPhone,
-      code,
-      req_type: "otp",
-    });
+  const handleConfirmCode = async (code: string) => {
+    try {
+      const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
+      const response = await axios.post(
+        "/api/auth/login",
+        {
+          phone_number: formattedPhone,
+          code,
+          req_type: "otp",
+        },
+        { withCredentials: true }
+      );
 
-    if (response.data.access_token) {
-      toast.success(t("login.success"));
-      setOpenOTP(false);
-      onOpenChange(false);
-      setTimeout(() => {
-        window.location.reload();
-      }, 1150);
-    } else {
-      toast.error(response.data.message || t("OTP.errors.invalid"));
+      if (response.data.access_token) {
+        toast.success(t("login.success"));
+        setOpenOTP(false);
+        onOpenChange(false);
+        // No reload; update UI state if needed
+      } else {
+        toast.error(response.data.message || t("OTP.errors.invalid"));
+        onOpenChange(true); // Reopen login modal on failure
+      }
+    } catch (error: any) {
+      console.error("OTP tasdiqlash muvaffaqiyatsiz:", error.response?.data || error.message);
+      toast.error(error.response?.data?.message || t("OTP.errors.minLength"));
+      onOpenChange(true); // Reopen login modal on failure
     }
-  } catch (error: any) {
-    console.error("OTP tasdiqlash muvaffaqiyatsiz:", error.response?.data || error.message);
-    toast.error(error.response?.data?.message || t("OTP.errors.minLength"));
-  }
-};
-
+  };
 
   return (
     <>

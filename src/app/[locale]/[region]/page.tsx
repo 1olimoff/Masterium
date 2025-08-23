@@ -1,5 +1,4 @@
 import {Main} from "@/root/ui/dev/components/shared/tamplates/Main/Main";
-import Head from "next/head";
 export default async function Home() {
     return (
         <div className={'layout-width px-2'}>

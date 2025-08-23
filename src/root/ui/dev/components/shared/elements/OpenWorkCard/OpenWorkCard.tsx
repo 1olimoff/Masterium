@@ -35,19 +35,20 @@ export const OpenWorkCard = ({ className, data }: Props) => {
     alt: `Image ${i}`,
   }));
 
-
   return (
     <div
       className={cn(
         className,
-        "w-full max-w-full sm:max-w-[390px] rounded-xl overflow-hidden bg-white my-custom-shadow"
+        "w-full max-w-full sm:max-w-[390px] h-full rounded-xl overflow-hidden bg-white my-custom-shadow flex flex-col" // 👈 flex-col qo‘shildi
       )}
     >
+      {/* Image carousel */}
       <div className="relative">
         <CarouselWrapper images={dataImages} />
       </div>
 
-      <div className="p-4 flex flex-col gap-3">
+      {/* Content */}
+      <div className="p-4 flex flex-col gap-3 flex-1"> {/* 👈 flex-1 qo‘shildi */}
         <div>
           <h3 className="text-lg sm:text-[18px] font-[590]">{data.title}</h3>
           <p className="text-maket-gray text-sm sm:text-base">
@@ -59,33 +60,31 @@ export const OpenWorkCard = ({ className, data }: Props) => {
           {data.price} {t("price.sum.title")}
         </span>
 
-        <div className="flex flex-col gap-3">
-          <div className="flex gap-2">
-            <div className="h-12 w-12 relative rounded-full">
-              <Image
-                src={data.images[0] ? `${process.env.NEXT_PUBLIC_BASE_URL}${data.images[0]}` : "/default-profile.jpg"}
-                alt={data.user.first_name}
-                fill
-                style={{ objectFit: "cover" }}
-                className="rounded-full"
-              />
-            </div>
-
-            <div className="flex flex-col justify-between">
-              <h4 className="text-base sm:text-lg font-semibold">
-                {data.user.last_name} {data.user.first_name} 
-              </h4>
-              <p className="text-maket-gray text-sm">{data.category_name}</p>
-            </div>
+        <div className="flex gap-2 mt-auto">
+          <div className="h-12 w-12 relative rounded-full">
+            <Image
+              src={data.images[0] ? `${process.env.NEXT_PUBLIC_BASE_URL}${data.images[0]}` : "/default-profile.jpg"}
+              alt={data.user.first_name}
+              fill
+              style={{ objectFit: "cover" }}
+              className="rounded-full"
+            />
           </div>
 
-          <ServerLink
-            path={`open-works/${data.offer_id}`}
-            className="bg-maket-batafsil text-maket-secondary text-base sm:text-xl flex justify-center font-medium py-3 sm:py-3 rounded-xl hover:bg-maket-secondary hover:text-white transition-all duration-200"
-          >
-            {t("Main.sections.OpenWorkCard.more")}
-          </ServerLink>
+          <div className="flex flex-col mt-auto justify-between">
+            <h4 className="text-base sm:text-lg font-semibold">
+              {data.user.last_name} {data.user.first_name}
+            </h4>
+            <p className="text-maket-gray text-sm">{data.category_name}</p>
+          </div>
         </div>
+
+        <ServerLink
+          path={`open-works/${data.offer_id}`}
+          className="mt-auto bg-maket-batafsil text-maket-secondary text-base sm:text-xl flex justify-center font-medium py-3 sm:py-3 rounded-xl hover:bg-maket-secondary hover:text-white transition-all duration-200"
+        >
+          {t("Main.sections.OpenWorkCard.more")}
+        </ServerLink>
       </div>
     </div>
   );

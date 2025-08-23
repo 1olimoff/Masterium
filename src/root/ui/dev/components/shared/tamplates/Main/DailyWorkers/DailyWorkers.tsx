@@ -24,7 +24,7 @@ export const DailyWorkers = async ({ className }: Props) => {
       },
       name: `${worker.first_name} ${worker.last_name}`,
       type: worker.categories?.[0]?.name || '', // card uchun kerak
-      online: false, // agar backda online status keladigan bo‘lsa qo‘shib yuborish mumkin
+      online: false,
     },
   }));
 

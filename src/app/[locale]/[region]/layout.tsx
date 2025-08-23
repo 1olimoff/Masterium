@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 import { Toaster } from "@/root/ui/dev/shadcn/ui/toaster";
 import '../../globals.css';
 import { LayoutProvider } from '@/root/ui/dev/components/shared/tamplates/LayoutProvider/LayoutProvider';
-import ClientWrapper from './ClientWrapper';
+import "@/lib/axios-interceptor"
 
 interface LayoutProps {
   children: ReactNode;
@@ -19,23 +19,21 @@ interface LayoutProps {
 export default async function RootLayout({ children, params }: LayoutProps) {
   const { locale = 'ru', region } = await params;
 
-  // Set server locale for next-intl
   unstable_setRequestLocale(locale);
 
-  // Get translations
   let messages;
   try {
     messages = await getMessages({ locale });
-    if (!messages) notFound(); // fallback if messages missing
+    if (!messages) notFound(); 
   } catch (error) {
     console.error('❌ Error loading messages:', error);
-    notFound(); // redirect to 404 if messages not found or error thrown
+    notFound(); 
   }
 
   return (
     <html lang={locale}>
       <head>
-        {/* Agar boshqa meta teglar yoki skriptlar bo‘lsa, bu yerga qo‘shiladi */}
+
       </head>
       <body className="bg-[#F8F9FA]">
         <NextIntlClientProvider locale={locale} messages={messages}>
@@ -43,8 +41,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
             {children}
           </LayoutProvider>
           <Toaster />
-          <ClientWrapper /> {/* 👈 client ishlari shu yerda */}
-          {/* Yandex.Metrika counter */}
+
           <script
             type="text/javascript"
             dangerouslySetInnerHTML={{
@@ -76,7 +73,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
               />
             </div>
           </noscript>
-          {/* /Yandex.Metrika counter */}
+
         </NextIntlClientProvider>
       </body>
     </html>

@@ -22,20 +22,6 @@ export const Title = ({ className }: Props) => {
                     <BreadcrumbSeparator>
                         /
                     </BreadcrumbSeparator>
-                    <BreadcrumbItem>
-                        <ServerLink path={"/services"} >
-                            {t("Services.Service.breadcrumb.allServices")}
-                        </ServerLink>
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator>
-                        /
-                    </BreadcrumbSeparator>
-                    <BreadcrumbItem>
-                    <ServerLink path={"/services/santex"} >
-                        <p className={""}>{t('Services.Service.breadcrumb.santex')}</p>
-                        </ServerLink>
-                    </BreadcrumbItem>
-                    /
 
                     <BreadcrumbItem>
                     <ServerLink path={"/services/santex/sws"} >
