@@ -1,11 +1,11 @@
 import OfferAds from '@/root/ui/dev/components/shared/tamplates/OfferInfoAds/OfferAds'
-import { OfferPolicy } from '@/root/ui/dev/components/shared/tamplates/OfferPolicy/Policy'
 import React from 'react'
 
-function OfferPrivacy() {
+async function OfferPrivacy({params}:any) {
+  const offerid = await params.slug
   return (
     <div className=''>
-      <OfferAds />
+      <OfferAds offerid={offerid}/>
     </div>
   )
 }

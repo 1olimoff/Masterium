@@ -21,9 +21,11 @@ export const Contact = ({ className, cookieToken, targetUserUuid, slug }: Props)
   const t = useTranslations("OfferWork");
   const router = useRouter();
 
+  // Locale va regionni cookies’dan olish
   const locale = Cookies.get("locale") || "uz";
   const region = Cookies.get("region") || "tashkent";
 
+  // Zustand’dan faqat kerakli state va setter’larni alohida chaqirish
   const activeTopButton = useOfferWorkStore((state) => state.activeTopButton);
   const activeBottomButton = useOfferWorkStore((state) => state.activeBottomButton);
   const priceFrom = useOfferWorkStore((state) => state.priceFrom);
@@ -119,8 +121,8 @@ export const Contact = ({ className, cookieToken, targetUserUuid, slug }: Props)
         contact_name: contactPerson,
         contact_phone: phone,
         contact_location_text: location,
-        is_public: isPublic,
-        agreed_to_terms: agreedToTerms,
+        is_public: targetUserUuid ? false : isPublic,
+        agreed_to_terms: agreedToTerms, 
         target_user_uuid: targetUserUuid,
         location_lat: defaultLocationLat,
         location_lng: defaultLocationLng,
@@ -129,17 +131,16 @@ export const Contact = ({ className, cookieToken, targetUserUuid, slug }: Props)
       console.log("Backendga yuborilayotgan ma'lumot (offerPayload):", offerPayload);
 
       const bodyFormData = new FormData();
-      // offerPayload’dagi maydonlarni FormData’ga qo‘shish
+
       Object.entries(offerPayload).forEach(([key, value]) => {
         if (value !== null && value !== undefined) {
           bodyFormData.set(key, value.toString());
         }
       });
 
-      // Fayllarni FormData’ga qo‘shish
       if (files && files.length > 0) {
         files.forEach((file, index) => {
-          bodyFormData.append("images", file); // Backendga mos kalit: images
+          bodyFormData.append("images", file); 
         });
       }
 

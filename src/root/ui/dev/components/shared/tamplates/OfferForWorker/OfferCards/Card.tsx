@@ -1,37 +1,32 @@
+"use client";
 import { useTranslations } from "next-intl";
 import { OfferCard } from "./Cards/Card";
 
+export interface AppliedCard {
+    offer_id: number;
+    images: string[];
+    title: string;
+    category_name: string;
+    price: number;
+    currency: string;
+    application_id: number;
+    application_count: number;
+    is_public: boolean;
+    user: { user_uuid: string; first_name: string; last_name: string };
+}
 
-const data = [
-    {
-        title: "Oshxonani  yevro remont qilish kerak",
-        category: "Malyar - shtukatur",
-        price: 12850000,
-        client: {
-            avatar: {
-                src: "/img/advertising/gas.png",
-                alt: "Eshonov Baxodir",
-            },
-            name: "Eshonov Baxodir",
-            type: "Mijoz",
-            online: true,
-        },
-        applicationCount: 5
-    },
-]
+interface Props {
+    response: AppliedCard[];
+}
 
-
-export const OfferWorkerCards = () => {
-
+export const OfferWorkerCards = ({ response }: Props) => {
     const t = useTranslations('');
 
     return (
-        <div className="flex flex-col mt-2 sm:flex-row flex-wrap items-center sm:items-start gap-2 sm:gap-6 px-4">
-            {data.map((item, i) => (
-                <div className="w-full sm:w-auto flex mb-4 justify-center" key={i}>
-                    <OfferCard data={item} />
-                </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 px-4 py-4">
+            {response.map((item, i) => (
+                <OfferCard key={item.offer_id || i} data={item} />
             ))}
         </div>
     );
-}
+};

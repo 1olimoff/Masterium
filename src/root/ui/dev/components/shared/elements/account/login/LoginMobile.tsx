@@ -34,7 +34,6 @@ export const AuthProvider = ({ children, open, onOpenChange, onRegisterClick }: 
   const [showPassword, setShowPassword] = useState(false);
   const [openOTP, setOpenOTP] = useState(false);
 
-  // Reset form when modal opens
   useEffect(() => {
     if (open) {
       setPhone("");
@@ -43,6 +42,40 @@ export const AuthProvider = ({ children, open, onOpenChange, onRegisterClick }: 
       setLoading(false);
     }
   }, [open]);
+
+  useEffect(() => {
+    const handleFocus = () => {
+      window.scrollTo(0, 0);
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      document.documentElement.style.height = "100%";
+      document.documentElement.style.maxHeight = "100vh";
+    };
+
+    const handleBlur = () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      document.documentElement.style.height = "";
+      document.documentElement.style.maxHeight = "";
+    };
+
+    const inputs = document.querySelectorAll("input");
+    inputs.forEach((input) => {
+      input.addEventListener("focus", handleFocus);
+      input.addEventListener("blur", handleBlur);
+    });
+
+    return () => {
+      inputs.forEach((input) => {
+        input.removeEventListener("focus", handleFocus);
+        input.removeEventListener("blur", handleBlur);
+      });
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      document.documentElement.style.height = "";
+      document.documentElement.style.maxHeight = "";
+    };
+  }, []);
 
   const validateInputs = () => {
     if (!phone) {
@@ -131,15 +164,14 @@ export const AuthProvider = ({ children, open, onOpenChange, onRegisterClick }: 
         toast.success(t("login.success"));
         setOpenOTP(false);
         onOpenChange(false);
-        // No reload; update UI state if needed
       } else {
         toast.error(response.data.message || t("OTP.errors.invalid"));
-        onOpenChange(true); // Reopen login modal on failure
+        onOpenChange(true);
       }
     } catch (error: any) {
       console.error("OTP tasdiqlash muvaffaqiyatsiz:", error.response?.data || error.message);
       toast.error(error.response?.data?.message || t("OTP.errors.minLength"));
-      onOpenChange(true); // Reopen login modal on failure
+      onOpenChange(true);
     }
   };
 
@@ -149,12 +181,12 @@ export const AuthProvider = ({ children, open, onOpenChange, onRegisterClick }: 
         <DrawerTrigger asChild>{children}</DrawerTrigger>
         <DrawerContent
           className={cn(
-            "fixed bottom-0 left-0 right-0 z-50",
-            "max-w-[480px] w-full mx-auto",
-            "bg-white shadow-lg overflow-hidden max-h-[90vh] flex flex-col"
+            "flex flex-col bg-maket-bg rounded-t-xl ios-safe-area layout-width",
+            "fixed inset-0 h-[100vh] max-h-[100vh] sm:h-auto sm:max-h-[90vh]",
+            "overflow-hidden"
           )}
         >
-          <div className="flex flex-col flex-1 overflow-y-auto p-6 sm:p-8 custom-scrollbar">
+          <div className="flex flex-col flex-1 overflow-y-auto p-6 sm:p-8 custom-scrollbar max-w-[400px] mx-auto w-full">
             <DrawerTitle>
               <h3 className="text-2xl text-center">{t("login.title")}</h3>
             </DrawerTitle>
@@ -162,24 +194,28 @@ export const AuthProvider = ({ children, open, onOpenChange, onRegisterClick }: 
               {/* PHONE INPUT */}
               <div className="flex flex-col gap-1">
                 <p className="text-sm">{t("login.inputs.phone.title")}</p>
-                <PhoneInput
-                  country={"uz"}
-                  value={phone}
-                  onChange={setPhone}
-                  inputClass="!w-full !h-[44px] !border-[#CFD9FE] !text-[#677294] !placeholder-[#677294]"
-                  containerClass="!w-full"
-                  buttonClass="!bg-transparent"
-                />
+                <div className="w-full h-[44px] overflow-hidden">
+                  <PhoneInput
+                    country={"uz"}
+                    value={phone}
+                    onChange={setPhone}
+                    inputClass="!w-full !h-[44px] !border-[#CFD9FE] !text-[#677294] !placeholder-[#677294] !rounded-xl"
+                    containerClass="!w-full !h-[44px]"
+                    buttonClass="!bg-transparent !h-[44px]"
+                    containerStyle={{ height: "44px" }}
+                    dropdownStyle={{ maxHeight: "200px" }}
+                  />
+                </div>
               </div>
               {/* PASSWORD INPUT */}
               <div className="flex flex-col gap-1">
                 <p className="text-sm">{t("login.inputs.password.title")}</p>
-                <div className="relative">
+                <div className="relative w-full h-[44px] overflow-hidden">
                   <Input
                     type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="border-[#CFD9FE] rounded-xl text-[#677294] placeholder-[#677294] pr-10"
+                    className="border-[#CFD9FE] rounded-xl text-[#677294] placeholder-[#677294] pr-10 w-full h-[44px]"
                     placeholder={t("login.inputs.password.placeholder")}
                   />
                   <button

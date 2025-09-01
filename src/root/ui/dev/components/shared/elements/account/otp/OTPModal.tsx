@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { cn } from "@/root/business/lib/utils";
 import { Dialog, DialogContent, DialogTitle, DialogHeader } from "@/root/ui/dev/shadcn/ui/dialog";
@@ -31,9 +30,10 @@ export const OTPModal = ({
     isRegisterFlow,
 }: Props) => {
     const t = useTranslations("OTP");
-    const [code, setCode] = useState(["", "", "", "", ""]);
+    const [code, setCode] = useState(["", "", "", "", "", ""]);
     const [timeLeft, setTimeLeft] = useState(90);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [isError, setIsError] = useState(false);
     const [resendCount, setResendCount] = useState(0);
     const [isResendDisabled, setIsResendDisabled] = useState(false);
     const maxResendAttempts = 3;
@@ -56,31 +56,43 @@ export const OTPModal = ({
         return `${m}:${s < 10 ? "0" : ""}${s}`;
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const otpValue = code.join("");
 
+        // Bo'sh kod tekshiruvi
         if (otpValue.trim() === "") {
-            toast.error(t("errors.required")); // "Son kiritishingiz shart"
+            setIsError(true);
+            setTimeout(() => setIsError(false), 1500);
+            toast.error(t("errors.required")); // "Kod kiritilishi shart!"
             return;
         }
 
-        if (otpValue.length < 5) {
-            toast.error(t("errors.minLength")); // "Tekshirib to'liq kiriting"
+        // Kod uzunligi tekshiruvi
+        if (otpValue.length < 6) {
+            setIsError(true);
+            setTimeout(() => setIsError(false), 1500);
+            toast.error(t("errors.minLength")); // "Kod 6 raqamdan iborat bo'lishi kerak!"
             return;
         }
 
-        setIsAnimating(true);
-        setTimeout(() => setIsAnimating(false), 1500);
-        setTimeout(() => {
-            window.location.reload();
-          }, 1000); // 1 sekund
-
-        onConfirm?.(otpValue);
+        // Backend so'rovi faqat onConfirm orqali
+        try {
+            await onConfirm?.(otpValue); // Parentdagi onConfirm backend so'rovini jo'natadi
+            setIsAnimating(true); // Muvaffaqiyatli holatda yashil animatsiya
+            setTimeout(() => setIsAnimating(false), 1500);
+            // Modal yopiladi va jarayon davom etadi (parentda reload/token saqlash)
+        } catch (error: any) {
+            setIsError(true); // Xato holatida qizil animatsiya
+            setTimeout(() => setIsError(false), 1500);
+            toast.error(t("errors.invalid_code") || "Noto‘g‘ri kod kiritdingiz!");
+            setCode(["", "", "", "", "", ""]); // Kod tozalanadi, modal ochiq qoladi
+            console.error("OTP tasdiqlash xatosi:", error.response?.data || error.message);
+        }
     };
 
     const handleResend = async () => {
         if (resendCount >= maxResendAttempts) {
-            toast.error(t("errors.resend_limit_exceeded", { max: maxResendAttempts })); // "Qayta jo‘natish limiti oshdi! Maksimal {max} marta so‘rash mumkin."
+            toast.error(t("errors.resend_limit_exceeded", { max: maxResendAttempts }));
             setIsResendDisabled(true);
             return;
         }
@@ -95,16 +107,16 @@ export const OTPModal = ({
             if (response.data.success) {
                 setResendCount((prev) => prev + 1);
                 setTimeLeft(90);
-                toast.success(t("resend_success_message")); // "Yangi kod jo‘natildi, iltimos, telefoningizni tekshiring!"
+                toast.success(t("resend_success_message")); // "Yangi kod jo‘natildi!"
                 if (resendCount + 1 >= maxResendAttempts) {
                     setIsResendDisabled(true);
                 }
             } else {
-                toast.error(t("errors.resend_failed")); // "Uzur, server bilan bir nima bo'ldi. Qayta takrorlang"
+                toast.error(t("errors.resend_failed")); // "Kod jo‘natishda xato!"
             }
         } catch (error: any) {
             console.error("OTP qayta jo‘natish xatosi:", error.response?.data || error.message);
-            toast.error(t("errors.resend_failed")); // "Uzur, server bilan bir nima bo'ldi. Qayta takrorlang"
+            toast.error(t("errors.resend_failed")); // "Kod jo‘natishda xato!"
         }
     };
 
@@ -134,7 +146,7 @@ export const OTPModal = ({
                 </div>
 
                 <div className="flex justify-center">
-                    <OTPInput length={6} code={code} setCode={setCode} isAnimating={isAnimating} />
+                    <OTPInput length={6} code={code} setCode={setCode} isAnimating={isAnimating} isError={isError} />
                 </div>
 
                 <div className="text-center">

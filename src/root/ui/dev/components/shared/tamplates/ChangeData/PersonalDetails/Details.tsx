@@ -81,12 +81,44 @@ export const DetailsPage = ({ token }: Props) => {
   }, [token, setPhoneNumber]);
 
   // 📁 File yuklash
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // 📁 File yuklash
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      setPreview(URL.createObjectURL(file));
+    if (!file) return;
+
+    // Preview chiqarish
+    setPreview(URL.createObjectURL(file));
+
+    if (!token) {
+      console.error("❌ Token yo‘q");
+      return;
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append("image", file);
+
+      const res = await axios.patch(
+        "https://cdn.masterium.uz/api/v1/masters/upload-photo/",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log("✅ Rasm yuklandi:", res.data);
+      // Agar server success qaytarsa previewni serverdagi urlga update qilib qo‘yamiz
+      if (res.data?.image) {
+        setPreview(res.data.image);
+      }
+    } catch (err) {
+      console.error("❌ Rasm yuklashda xatolik:", err);
     }
   };
+
 
   return (
     <div className="mx-auto px-2 space-y-4">
@@ -111,9 +143,8 @@ export const DetailsPage = ({ token }: Props) => {
               src={preview || "/img/advertising/user.png"}
               alt="Profile"
               fill
-              className={`${
-                preview ? "object-cover" : "object-contain p-6"
-              } transition-all duration-300`}
+              className={`${preview ? "object-cover" : "object-contain p-6"
+                } transition-all duration-300`}
             />
             <Input
               ref={inputRef}

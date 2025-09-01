@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from 'react';
 import { cn } from '@/root/business/lib/utils';
 import {
@@ -9,58 +8,40 @@ import {
 } from "@/root/ui/dev/shadcn/ui/carousel";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Button } from "@/root/ui/dev/shadcn/ui/button";
-import { Link } from '@/i18n/routing';
 import ServerLink from '../../../../elements/Links/ServerLink';
 
-type Item = {
+interface OfferCardData {
+    offer_id?: number;
+    images?: string[];
     title: string;
-    category: string;
+    category_name: string;
     price: number;
-    client: {
-        avatar: {
+    currency?: string;
+    application_id?: number;
+    application_count?: number;
+    is_public?: boolean;
+    user?: {
+        user_uuid?: string;
+        first_name: string;
+        last_name: string;
+    };
+    // Support for static data structure
+    client?: {
+        avatar?: {
             src: string;
             alt: string;
         };
         name: string;
         type: string;
-        online: boolean;
+        online?: boolean;
     };
-    applicationCount: number;
-};
+    applicationCount?: number;
+}
 
 interface Props {
     className?: string;
-    data: Item;
+    data: OfferCardData;
 }
-
-const images = [
-    {
-        src: "/img/advertising/gas.png",
-        alt: "Gas Repair",
-        objectFit: "cover",
-    },
-    {
-        src: "/img/advertising/gas.png",
-        alt: "Gas Repair",
-        objectFit: "cover",
-    },
-    {
-        src: "/img/advertising/gas.png",
-        alt: "Gas Repair",
-        objectFit: "cover",
-    },
-    {
-        src: "/img/advertising/gas.png",
-        alt: "Gas Repair",
-        objectFit: "cover",
-    },
-    {
-        src: "/img/advertising/gas.png",
-        alt: "Gas Repair",
-        objectFit: "cover",
-    },
-];
 
 export const OfferCard = ({ className, data }: Props) => {
     const t = useTranslations("");
@@ -76,10 +57,39 @@ export const OfferCard = ({ className, data }: Props) => {
         });
     }, [api]);
 
+    // Fallback image
+    const fallbackImage = {
+        src: "/img/advertising/gas.png",
+        alt: "Default Offer Image",
+        objectFit: "cover" as const,
+    };
+
+    // Normalize images
+    const images = data.images && data.images.length > 0 
+        ? data.images.map((src, index) => ({
+              src: src.startsWith('/static') ? `${process.env.NEXT_PUBLIC_BASE_URL}${src}` : src,
+              alt: `${data.title} Image ${index + 1}`,
+              objectFit: "cover" as const,
+          }))
+        : [fallbackImage];
+
+    // Normalize user data
+    const user = data.user || {
+        user_uuid: data.client?.name || '',
+        first_name: data.client?.name.split(' ')[0] || 'Unknown',
+        last_name: data.client?.name.split(' ').slice(1).join(' ') || 'User',
+    };
+
+    // Normalize application count
+    const applicationCount = data.application_count ?? data.applicationCount ?? 0;
+
+    // Normalize currency
+    const currency = data.currency ?? 'UZS';
+
     return (
         <div className={cn(
             className,
-            "w-full max-w-full sm:max-w-[320px] md:max-w-[260px] lg:max-w-[330px] h-full my-2 rounded-xl overflow-hidden bg-white my-custom-shadow"
+              "w-full h-auto rounded-xl overflow-hidden bg-white shadow-lg"
         )}>
             <Carousel setApi={setApi}>
                 <CarouselContent className="relative w-full h-[160px] sm:h-[180px] md:h-[200px]">
@@ -89,7 +99,7 @@ export const OfferCard = ({ className, data }: Props) => {
                                 src={item.src}
                                 alt={item.alt}
                                 fill
-                                objectFit={item.objectFit}
+                                style={{ objectFit: item.objectFit }}
                                 priority={i === 0}
                             />
                         </CarouselItem>
@@ -112,46 +122,45 @@ export const OfferCard = ({ className, data }: Props) => {
                     })}
                 </div>
 
-                {data.applicationCount > 0 && (
-                    <div className="absolute top-[32%] left-[15%] sm:top-[38%] sm:left-[25%] z-10 bg-red-500 text-white text-xs sm:text-sm font-semibold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full">
-                        {data.applicationCount} {t("OfferForWorkers.applicationNumb")}
+                {applicationCount > 0 && (
+                    <div className="absolute top-[30%] left-[35%] sm:top-[35%] sm:left-[30%] z-10 bg-red-500 text-white text-xs sm:text-sm font-semibold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full">
+                        {applicationCount} {t("OfferForWorkers.applicationNumb")}
                     </div>
                 )}
             </Carousel>
 
-            <div className="p-2 flex flex-col gap-2 sm:gap-3 lg:gap-4">
+            <div className="p-4 flex flex-col gap-3 sm:gap-4">
                 <div>
-                    <h3 className="text-base sm:text-lg md:text-xl font-semibold">{data.title}</h3>
-                    <p className="text-sm sm:text-base text-maket-gray">{data.category}</p>
+                    <h3 className="text-base sm:text-lg font-semibold">{data.title}</h3>
+                    <p className="text-sm text-gray-500">{data.category_name}</p>
                 </div>
 
-                <span className="text-base sm:text-lg md:text-xl text-maket-secondary font-bold">
-                    {data.price} {t('price.sum.title')}
+                <span className="text-base sm:text-lg font-bold text-[#32ADE6]">
+                    {data.price} {currency}
                 </span>
 
-                <div className="flex gap-2">
-                    <div className="rounded-full max-h-[84px] border-2 border-maket-green">
-                        <div className="h-12 w-12 rounded-full relative border-2 border-white overflow-hidden">
-                            <Image
-                                src="/img/advertising/gas.png"
-                                alt="Eshonov Baxodir"
-                                fill
-                                style={{ objectFit: "cover" }}
-                                className="rounded-full"
-                            />
-                            <div className="absolute bottom-0 right-0 h-5 w-5 border-2 border-white rounded-full bg-maket-green" />
-                        </div>
+                <div className="flex gap-3">
+                    <div className="rounded-full h-12 w-12 border-2 border-green-500 relative overflow-hidden">
+                        <Image
+                            src={data.client?.avatar?.src || "/img/advertising/gas.png"}
+                            alt={data.client?.avatar?.alt || `${user.first_name} ${user.last_name}`}
+                            fill
+                            style={{ objectFit: "cover" }}
+                            className="rounded-full"
+                        />
+                        <div className="absolute bottom-0 right-0 h-4 w-4 border-2 border-white rounded-full bg-green-500" />
                     </div>
                     <div className="flex flex-col">
-                        <h4 className="text-md font-semibold">Eshonov Baxodir</h4>
-                        <p className="text-maket-gray text-sm">Mijoz</p>
+                        <h4 className="text-sm font-semibold">{`${user.first_name} ${user.last_name}`}</h4>
+                        <p className="text-xs text-gray-500">{data.client?.type || 'Mijoz'}</p>
                     </div>
                 </div>
 
-                <div className="flex flex-col justify-center gap-2 sm:gap-3">
+                <div className="flex flex-col justify-center gap-3">
                     <ServerLink
-                    path="#"
-                        className="bg-maket-batafsil text-maket-secondary text-sm sm:text-base md:text-lg text-center font-medium py-2 sm:py-4 md:py-3 rounded-xl hover:bg-maket-secondary hover:text-white transition-all duration-200">
+                        path={`worker-offers/${data.offer_id ?? 'unknown'}`}
+                        className="bg-blue-100 text-blue-400 text-sm font-[600] sm:text-base text-center py-2 sm:py-3 rounded-lg hover:bg-[#bee5f6] hover:text-white transition-all duration-200"
+                    >
                         {t('OfferForWorkers.btn.seeOffer')}
                     </ServerLink>
                 </div>

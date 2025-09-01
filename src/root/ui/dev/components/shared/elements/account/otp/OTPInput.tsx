@@ -9,9 +9,10 @@ interface Props {
     code: string[];
     setCode: React.Dispatch<React.SetStateAction<string[]>>;
     isAnimating: boolean;
+    isError: boolean; // Yangi prop qo'shildi
 }
 
-export const OTPInput = ({ className, length, code, setCode, isAnimating }: Props) => {
+export const OTPInput = ({ className, length, code, setCode, isAnimating, isError }: Props) => {
     const refs = useRef<(HTMLInputElement | null)[]>([]);
 
     const handleChange = (value: string, idx: number) => {
@@ -48,6 +49,8 @@ export const OTPInput = ({ className, length, code, setCode, isAnimating }: Prop
                             "w-12 h-12 border border-[#CFD9FE] rounded-xl text-center text-xl transition-colors",
                             isAnimating
                                 ? "bg-gradient-to-r from-green-400 via-green-500 to-green-600 animate-gradient"
+                                : isError
+                                ? "bg-gradient-to-r from-red-400 via-red-500 to-red-600 animate-gradient"
                                 : ""
                         )}
                         value={code[i]}

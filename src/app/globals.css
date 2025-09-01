@@ -20,6 +20,11 @@ body {
   font-family: 'SF Pro', Arial, sans-serif;
   background-color: #F8F9FA;
   color: #001D55;
+  overscroll-behavior: none;
+}
+.ios-safe-area {
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-top: env(safe-area-inset-top);
 }
 
 @layer base {

@@ -1,9 +1,11 @@
 import React from 'react';
 import { cn } from '@/root/business/lib/utils';
 import { useTranslations } from 'next-intl';
+import { offerdetails } from '../Gallery/Gallery';
 
 interface Props {
     className?: string;
+    response: offerdetails
 }
 
 export const Location = ({ className }: Props) => {

@@ -1,19 +1,17 @@
-// RegistrationPage.tsx
 "use client";
-import React, { useState } from "react";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
-import Image from "next/image";
-import toast, { Toaster } from "react-hot-toast";
-import { Drawer, DrawerContent, DrawerTrigger } from "@/root/ui/dev/shadcn/ui/drawer";
-import { Input } from "@/root/ui/dev/shadcn/ui/input";
-import { Button } from "@/root/ui/dev/shadcn/ui/button";
+
+import React, { ReactNode, useState, useEffect } from "react";
 import { cn } from "@/root/business/lib/utils";
 import { useTranslations } from "next-intl";
-import { DialogHeader } from "@/root/ui/dev/shadcn/ui/dialog";
-import { DialogTitle } from "@radix-ui/react-dialog";
-import axios from "axios";
+import Image from "next/image";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import toast, { Toaster } from "react-hot-toast";
+import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from "@/root/ui/dev/shadcn/ui/drawer";
+import { Input } from "@/root/ui/dev/shadcn/ui/input";
+import { Button } from "@/root/ui/dev/shadcn/ui/button";
 import { OTPModal } from "../otp/OTPModal";
+import axios from "axios";
 
 interface Props {
   className?: string;
@@ -36,6 +34,52 @@ export const RegistrationPage = ({ className, open, onOpenChange, onLoginClick }
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [otpOpen, setOtpOpen] = useState(false);
+
+  // Reset form when modal opens
+  useEffect(() => {
+    if (open) {
+      setPhone("");
+      setPassword("");
+      setName("");
+      setShowPassword(false);
+      setLoading(false);
+    }
+  }, [open]);
+
+  // Prevent scroll jumps and lock viewport when inputs are focused
+  useEffect(() => {
+    const handleFocus = () => {
+      window.scrollTo(0, 0);
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      document.documentElement.style.height = "100%";
+      document.documentElement.style.maxHeight = "100vh";
+    };
+
+    const handleBlur = () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      document.documentElement.style.height = "";
+      document.documentElement.style.maxHeight = "";
+    };
+
+    const inputs = document.querySelectorAll("input");
+    inputs.forEach((input) => {
+      input.addEventListener("focus", handleFocus);
+      input.addEventListener("blur", handleBlur);
+    });
+
+    return () => {
+      inputs.forEach((input) => {
+        input.removeEventListener("focus", handleFocus);
+        input.removeEventListener("blur", handleBlur);
+      });
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      document.documentElement.style.height = "";
+      document.documentElement.style.maxHeight = "";
+    };
+  }, []);
 
   const validateInputs = () => {
     if (!name) {
@@ -86,14 +130,16 @@ export const RegistrationPage = ({ className, open, onOpenChange, onLoginClick }
 
     try {
       const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
-      const response = await axios.post("/api/auth/registration", {
-        phone_number: formattedPhone,
-        password,
-        name,
-        req_type: "register",
-      });
-
-      console.log("Registration response:", response.data);
+      const response = await axios.post(
+        "/api/auth/registration",
+        {
+          phone_number: formattedPhone,
+          password,
+          name,
+          req_type: "register",
+        },
+        { withCredentials: true }
+      );
 
       if (response.data.success) {
         setOtpOpen(true);
@@ -118,32 +164,28 @@ export const RegistrationPage = ({ className, open, onOpenChange, onLoginClick }
   const handleOtpConfirm = async (code: string) => {
     try {
       const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
-      const response = await axios.post("/api/auth/registration", {
-        phone_number: formattedPhone,
-        code,
-        req_type: "otp",
-      });
-
-      console.log("OTP response:", response.data);
+      const response = await axios.post(
+        "/api/auth/registration",
+        {
+          phone_number: formattedPhone,
+          code,
+          req_type: "otp",
+        },
+        { withCredentials: true }
+      );
 
       if (response.data.success && response.data.access_token) {
         toast.success(t("OTP.success"));
         setOtpOpen(false);
-        setTimeout(() => {
-          window.location.reload();
-        }, 500);
+        onOpenChange(false);
       } else {
         toast.error(response.data.message || t("OTP.errors.failed"));
-        if (response.data.error === "user_exists") {
-          toast.error(t("Registration.errors.user_exists"));
-          setTimeout(() => {
-            onLoginClick();
-          }, 150);
-        }
+        onOpenChange(true);
       }
     } catch (error: any) {
       console.error("OTP verification failed:", error.response?.data || error.message);
       toast.error(error.response?.data?.message || t("OTP.errors.failed"));
+      onOpenChange(true);
     }
   };
 
@@ -153,47 +195,56 @@ export const RegistrationPage = ({ className, open, onOpenChange, onLoginClick }
         <DrawerTrigger>{/* External trigger */}</DrawerTrigger>
         <DrawerContent
           className={cn(
-            "flex flex-col max-h-[90dvh] overflow-hidden custom-scrollbar p-4 rounded-t-xl",
+            "flex flex-col bg-maket-bg rounded-t-xl ios-safe-area layout-width",
+            "fixed inset-0 h-[100vh] max-h-[100vh] sm:h-auto sm:max-h-[90vh]",
+            "overflow-hidden",
             className
           )}
         >
-          <DialogHeader>
-            <DialogTitle>
-              <h2 className="text-2xl mt-4 font-bold text-[#001D55] text-center">
+          <div className="flex flex-col flex-1 overflow-y-auto p-6 sm:p-8 custom-scrollbar max-w-[400px] mx-auto w-full">
+            <DrawerTitle>
+              <h2 className="text-2xl font-bold text-[#001D55] text-center">
                 {t("Registration.RegistrationTitle")}
               </h2>
-            </DialogTitle>
-          </DialogHeader>
-          <div className="flex-1 overflow-y-auto px-4 py-2">
-            <div className="flex flex-col gap-4">
+            </DrawerTitle>
+            <div className="flex flex-col gap-4 mt-4">
+              {/* NAME INPUT */}
               <div className="flex flex-col gap-1">
                 <p className="text-sm">{t("Registration.nameTitle")}</p>
-                <Input
-                  className="border-[#CFD9FE] rounded-xl text-[#677294] mb-2 placeholder-[#677294] pr-10"
-                  placeholder={t("Registration.namePlaceholder")}
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
+                <div className="w-full h-[44px] overflow-hidden">
+                  <Input
+                    className="border-[#CFD9FE] rounded-xl text-[#677294] placeholder-[#677294] w-full h-[44px]"
+                    placeholder={t("Registration.namePlaceholder")}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
               </div>
+              {/* PHONE INPUT */}
               <div className="flex flex-col gap-1">
                 <p className="text-sm">{t("login.inputs.phone.title")}</p>
-                <PhoneInput
-                  country={"uz"}
-                  value={phone}
-                  onChange={setPhone}
-                  inputClass="!w-full !h-[44px] !border-[#CFD9FE] !text-[#677294] !placeholder-[#677294]"
-                  containerClass="!w-full"
-                  buttonClass="!bg-transparent"
-                />
+                <div className="w-full h-[44px] overflow-hidden">
+                  <PhoneInput
+                    country={"uz"}
+                    value={phone}
+                    onChange={setPhone}
+                    inputClass="!w-full !h-[44px] !border-[#CFD9FE] !text-[#677294] !placeholder-[#677294] !rounded-xl"
+                    containerClass="!w-full !h-[44px]"
+                    buttonClass="!bg-transparent !h-[44px]"
+                    containerStyle={{ height: "44px" }}
+                    dropdownStyle={{ maxHeight: "200px" }}
+                  />
+                </div>
               </div>
+              {/* PASSWORD INPUT */}
               <div className="flex flex-col gap-1">
                 <p className="text-sm">{t("login.inputs.password.title")}</p>
-                <div className="relative">
+                <div className="relative w-full h-[44px] overflow-hidden">
                   <Input
                     type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="border-[#CFD9FE] rounded-xl text-[#677294] placeholder-[#677294] pr-10"
+                    className="border-[#CFD9FE] rounded-xl text-[#677294] placeholder-[#677294] pr-10 w-full h-[44px]"
                     placeholder={t("login.inputs.password.placeholder")}
                   />
                   <button
@@ -211,33 +262,31 @@ export const RegistrationPage = ({ className, open, onOpenChange, onLoginClick }
                   </button>
                 </div>
               </div>
+              <Button
+                disabled={loading}
+                onClick={handleRegistration}
+                className="w-full bg-maket-primary hover:bg-blue-900 text-lg rounded-xl py-6"
+              >
+                {loading ? t("login.button.loading") : t("Registration.button.title")}
+              </Button>
+              <p className="text-center font-thin mt-4">
+                {t("login.login.text")}{" "}
+                <button
+                  type="button"
+                  onClick={() => {
+                    onOpenChange(false);
+                    setTimeout(() => {
+                      onLoginClick();
+                    }, 150);
+                  }}
+                  className="font-bold text-maket-secondary"
+                >
+                  {t("login.login.action")}
+                </button>
+              </p>
+              <Toaster />
             </div>
           </div>
-          <div className="mt-4 px-4">
-            <Button
-              disabled={loading}
-              onClick={handleRegistration}
-              className="w-full bg-maket-primary hover:bg-blue-900 text-lg rounded-xl py-6"
-            >
-              {loading ? t("login.button.loading") : t("Registration.button.title")}
-            </Button>
-          </div>
-          <p className="text-center font-thin mt-2">
-            {t("login.login.text")}{" "}
-            <button
-              type="button"
-              onClick={() => {
-                onOpenChange(false);
-                setTimeout(() => {
-                  onLoginClick();
-                }, 150);
-              }}
-              className="font-bold text-maket-secondary"
-            >
-              {t("login.login.action")}
-            </button>
-          </p>
-          <Toaster />
         </DrawerContent>
       </Drawer>
       <OTPModal

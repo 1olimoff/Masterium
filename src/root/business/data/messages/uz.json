@@ -131,7 +131,9 @@
       "RegistrationTitle": "Ro'yxatdan o'tish",
       "registrationdesc": "Qaysi maqsadda ro'yxatdan o'tmoqchisiz?",
       "nameTitle": "Ism",
+      "surnameTitle": "Familiya",
       "namePlaceholder": "Ismingizni kiriting",
+      "surnamePlaceholder": "Familiyangizni kiriting",
       "button": {
         "title": "Ro'yxatdan o'tish"
       },

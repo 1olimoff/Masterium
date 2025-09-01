@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { setOtpApi, getAccessToken, getRefreshToken, getAuthType } from "@/app/api/services/auth/registration.controller";
+import { getAccessToken,getAuthType,getRefreshToken, setOtpApi } from "../../services/auth/registration.controller";
+// import { getAccessToken, getRefreshToken, setOtpApi } from "../../services/auth/registration.controller";
+
 
 export async function POST(req: NextRequest) {
   try {
@@ -10,14 +12,14 @@ export async function POST(req: NextRequest) {
 
     if (!res) {
       return NextResponse.json(
-        { success: false, error: "no_response", message: "OTP so'rovi muvaffaqiyatsiz yakunlandi" },
+        { success: false, error: "no_response", message: "So'rov muvaffaqiyatsiz yakunlandi" },
         { status: 500 }
       );
     }
 
     if (!res.success) {
       return NextResponse.json(
-        { success: false, error: res.error || "user_exists", message: res.message || "Bu telefon raqami allaqachon ro‘yxatdan o‘tgan" },
+        { success: false, error: res.error, message: res.message },
         { status: 400 }
       );
     }
@@ -28,28 +30,32 @@ export async function POST(req: NextRequest) {
       response.cookies.set("accessToken", getAccessToken(), {
         httpOnly: true,
         sameSite: "lax",
-        maxAge: 60 * 15, // 15 daqiqa
+        maxAge: 15 * 60, // 15 minutes
         path: "/",
       });
       response.cookies.set("refreshToken", getRefreshToken(), {
         httpOnly: true,
         sameSite: "lax",
-        maxAge: 15 * 24 * 60 * 60, // 15 kun
+        maxAge: 15 * 24 * 60 * 60, // 15 days
         path: "/",
       });
       response.cookies.set("authType", getAuthType(), {
         httpOnly: true,
         sameSite: "lax",
-        maxAge: 15 * 24 * 60 * 60, // 15 kun
+        maxAge: 15 * 24 * 60 * 60, // 15 days
         path: "/",
       });
     }
 
     return response;
   } catch (error: any) {
-    console.error("Registration error caught in route handler:", error.message);
+    console.error("Registration error:", error.message);
     return NextResponse.json(
-      { success: false, error: error.code || "server_error", message: error.message || "Ro‘yxatdan o‘tishda xato yuz berdi" },
+      {
+        success: false,
+        error: error.code || "server_error",
+        message: error.message || "Ro‘yxatdan o‘tishda xato yuz berdi",
+      },
       { status: error.response?.status || 500 }
     );
   }

@@ -1,10 +1,12 @@
-import { OfferPolicy } from '@/root/ui/dev/components/shared/tamplates/OfferPolicy/Policy'
+import { OfferPolicyServer } from '@/root/ui/dev/components/shared/tamplates/OfferPolicy/PolicyServer'
 import React from 'react'
 
-function OfferPrivacyPage() {
+async function OfferPrivacyPage({ params }: any) {
+  const offerid = await params.slug
+
   return (
     <div>
-        <OfferPolicy />
+      <OfferPolicyServer offerId={offerid}/>
     </div>
   )
 }

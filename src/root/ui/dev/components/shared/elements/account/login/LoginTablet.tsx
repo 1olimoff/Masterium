@@ -11,7 +11,7 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { LoginProviderTablet } from "../Registration/RegisterTablet";
 import { OTPModal } from "../otp/OTPModal";
-import Cookies from "js-cookie"; 
+import Cookies from "js-cookie";
 interface Props {
   trigger: React.ReactNode;
 }
@@ -40,7 +40,7 @@ export const LoginProviderDialog = ({ trigger }: Props) => {
       setPhone("");
       setPassword("");
       setShowPassword(false);
-      setLoading(false); 
+      setLoading(false);
     }
   }, [openLogin]);
 
@@ -108,18 +108,16 @@ export const LoginProviderDialog = ({ trigger }: Props) => {
       setLoading(false); // Har qanday holatda loadingni o'chirish
     }
   };
-
   const handleOtpConfirm = async (code: string) => {
     try {
       const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
       const response = await axios.post("/api/auth/login", {
         phone_number: formattedPhone,
-        code,
+        code, // 'otp' o'rniga 'code' ishlatildi
         req_type: "otp",
       });
-  
+
       if (response.data.access_token) {
-        // Tokenlarni cookie'larga saqlash
         Cookies.set("accessToken", response.data.access_token, {
           expires: 15 / (24 * 60),
           sameSite: "lax",
@@ -135,30 +133,20 @@ export const LoginProviderDialog = ({ trigger }: Props) => {
           sameSite: "lax",
           path: "/",
         });
-  
-        // Token holatini true qilish
         token = true;
         toast.success(t("login.success")); // "Siz tizimga kirdingiz :)"
         setOtpOpen(false);
         setOpenLogin(false);
         setTimeout(() => {
           window.location.reload();
-        }, 1150); // 0.1 sekund`
-        // Cookie mavjudligini tekshirish
-        if (Cookies.get("accessToken")) {
-          console.log("Access token saqlandi, token holati true");
-          token = true;
-        } else {
-          console.error("Access token saqlanmadi!");
-          token = false;
-        }
+        }, 1150);
       } else {
-        toast.error(t("OTP.errors.invalid")); 
+        throw new Error("No access token received");
       }
     } catch (error: any) {
       console.error("OTP tasdiqlash muvaffaqiyatsiz:", error.response?.data || error.message);
-      toast.error(t("OTP.errors.minLength")); 
-      token = false; 
+      toast.error(t("OTP.errors.invalid")); // Backend xatosi uchun
+      throw error; // OTPModal ga xato qaytariladi
     }
   };
 

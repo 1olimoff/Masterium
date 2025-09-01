@@ -21,9 +21,9 @@ interface Props {
 }
 
 const OPERATORS = new Set([
-    "20", "33", "50", "55", "61", "62", "65", "66", "67", "69",
-    "70", "71", "72", "73", "74", "75", "76", "77", "78", "79",
-    "88", "90", "91", "93", "94", "95", "97", "98", "99"
+  "20", "33", "50", "55", "61", "62", "65", "66", "67", "69",
+  "70", "71", "72", "73", "74", "75", "76", "77", "78", "79",
+  "88", "90", "91", "93", "94", "95", "97", "98", "99",
 ]);
 
 export const LoginProviderTablet = ({ className, open, onOpenChange, onLoginClick }: Props) => {
@@ -31,6 +31,7 @@ export const LoginProviderTablet = ({ className, open, onOpenChange, onLoginClic
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [otpOpen, setOtpOpen] = useState(false);
@@ -42,6 +43,14 @@ export const LoginProviderTablet = ({ className, open, onOpenChange, onLoginClic
     }
     if (name.length < 2) {
       toast.error(t("Registration.errors.name.minLength"));
+      return false;
+    }
+    if (!surname) {
+      toast.error(t("Registration.errors.surname.required"));
+      return false;
+    }
+    if (surname.length < 2) {
+      toast.error(t("Registration.errors.surname.minLength"));
       return false;
     }
     if (!phone) {
@@ -58,11 +67,11 @@ export const LoginProviderTablet = ({ className, open, onOpenChange, onLoginClic
     }
     const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
     if (formattedPhone.startsWith("+998")) {
-        const operatorCode = formattedPhone.substring(4, 6);
-        if (!OPERATORS.has(operatorCode)) {
-            toast.error(t("Registration.errors.phone.invalidOperatorCode", { code: operatorCode }));
-            return false;
-        }
+      const operatorCode = formattedPhone.substring(4, 6);
+      if (!OPERATORS.has(operatorCode)) {
+        toast.error(t("Registration.errors.phone.invalidOperatorCode", { code: operatorCode }));
+        return false;
+      }
     }
     if (!password) {
       toast.error(t("login.errors.password.required"));
@@ -84,19 +93,23 @@ export const LoginProviderTablet = ({ className, open, onOpenChange, onLoginClic
 
     try {
       const formattedPhone = phone.startsWith("+") ? phone : `+${phone}`;
-      const response = await axios.post('/api/auth/registration', {
+      const response = await axios.post("/api/auth/registration", {
         phone_number: formattedPhone,
         password,
-        name,
-        req_type: "register"
+        first_name: name,
+        last_name: surname,
+        req_type: "register",
       });
 
       if (response.data.success) {
-        setOtpOpen(true); // Faqat OTP modalini ochish
+        toast.success(t("Registration.success"));
+        setOtpOpen(true);
         onOpenChange(false);
+      } else {
+        toast.error(response.data.message || t("Registration.errors.failed"));
       }
     } catch (error: any) {
-      console.error("Ro'yxatdan o'tish xatosi:", error.response?.data || error.message);
+      console.error("Registration error:", error.response?.data || error.message);
       toast.error(error.response?.data?.message || t("Registration.errors.failed"));
     } finally {
       setLoading(false);
@@ -106,7 +119,7 @@ export const LoginProviderTablet = ({ className, open, onOpenChange, onLoginClic
   return (
     <div>
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogTrigger>{/* Tashqi trigger */}</DialogTrigger>
+        <DialogTrigger>{/* External trigger */}</DialogTrigger>
         <DialogContent
           className={cn(
             "flex flex-col max-h-[90dvh] overflow-hidden custom-scrollbar p-4 rounded-t-xl",
@@ -121,7 +134,8 @@ export const LoginProviderTablet = ({ className, open, onOpenChange, onLoginClic
             </DialogTitle>
           </DialogHeader>
           <div className="flex-1 overflow-y-auto px-4 py-2">
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
+              {/* Name */}
               <div className="flex flex-col gap-1">
                 <p className="text-sm">{t("Registration.nameTitle")}</p>
                 <Input
@@ -131,6 +145,17 @@ export const LoginProviderTablet = ({ className, open, onOpenChange, onLoginClic
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
+              {/* Surname */}
+              <div className="flex flex-col gap-1">
+                <p className="text-sm">{t("Registration.surnameTitle")}</p>
+                <Input
+                  className="border-[#CFD9FE] rounded-xl text-[#677294] mb-2 placeholder-[#677294] pr-10"
+                  placeholder={t("Registration.surnamePlaceholder")}
+                  value={surname}
+                  onChange={(e) => setSurname(e.target.value)}
+                />
+              </div>
+              {/* Phone */}
               <div className="flex flex-col gap-1">
                 <p className="text-sm">{t("login.inputs.phone.title")}</p>
                 <PhoneInput
@@ -142,6 +167,7 @@ export const LoginProviderTablet = ({ className, open, onOpenChange, onLoginClic
                   buttonClass="!bg-transparent"
                 />
               </div>
+              {/* Password */}
               <div className="flex flex-col gap-1">
                 <p className="text-sm">{t("login.inputs.password.title")}</p>
                 <div className="relative">
@@ -183,9 +209,7 @@ export const LoginProviderTablet = ({ className, open, onOpenChange, onLoginClic
               type="button"
               onClick={() => {
                 onOpenChange(false);
-                setTimeout(() => {
-                  onLoginClick();
-                }, 150);
+                setTimeout(() => onLoginClick(), 150);
               }}
               className="font-bold text-maket-secondary"
             >
@@ -195,6 +219,7 @@ export const LoginProviderTablet = ({ className, open, onOpenChange, onLoginClic
           <Toaster />
         </DialogContent>
       </Dialog>
+
       <OTPModal
         isOpen={otpOpen}
         phoneNumber={phone}
@@ -208,19 +233,25 @@ export const LoginProviderTablet = ({ className, open, onOpenChange, onLoginClic
             const response = await axios.post("/api/auth/registration", {
               phone_number: formattedPhone,
               code,
-              req_type: "otp"
+              req_type: "otp",
             });
 
-            if (response.data.access_token) {
+            if (response.data.success && response.data.access_token) {
               localStorage.setItem("accessToken", response.data.access_token);
               localStorage.setItem("refreshToken", response.data.refresh_token);
               localStorage.setItem("authType", response.data.token_type);
-              toast.success(t("OTP.success")); // Faqat OTP tasdiqlanganda chiqadi
-              setOtpOpen(false);
+              toast.success(t("OTP.success"));
+              setTimeout(() => {
+                setOtpOpen(false);
+                window.location.reload();
+              }, 1500);
+            } else {
+              throw new Error(response.data.message || t("OTP.errors.failed"));
             }
           } catch (error: any) {
-            console.error("OTP tasdiqlash muvaffaqiyatsiz:", error.response?.data || error.message);
+            console.error("OTP verification error:", error.response?.data || error.message);
             toast.error(error.response?.data?.message || t("OTP.errors.failed"));
+            throw error;
           }
         }}
       />

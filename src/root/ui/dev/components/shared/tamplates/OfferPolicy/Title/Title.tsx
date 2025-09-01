@@ -8,13 +8,19 @@ import {
     BreadcrumbSeparator
 } from "@/root/ui/dev/shadcn/ui/breadcrumb";
 import ServerLink from "@/root/ui/dev/components/shared/elements/Links/ServerLink";
+import { offerdetails } from '../../OfferInfoAds/Gallery/Gallery';
 
 interface Props {
     className?: string;
+  offerData: offerdetails
+
 }
 
-export const Title = ({ className }: Props) => {
-    // NOTE: Bu yerda namespace aniqligi muhim
+interface Props {
+}
+
+export const Title = ({ className, offerData }: Props) => {
+
     const t = useTranslations("ChangeData");
 
     return (
@@ -37,7 +43,7 @@ export const Title = ({ className }: Props) => {
 
                     <BreadcrumbItem className="text-black">
                         <ServerLink path="">
-                            {t("privacypolicy.breadcrumb.job")}
+                            {offerData.title}
                         </ServerLink>
                     </BreadcrumbItem>
                 </BreadcrumbList>
