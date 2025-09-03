@@ -10,6 +10,8 @@ export async function POST(req: NextRequest) {
 
     const res = await setOtpApi(body);
 
+    console.log("[1] [route.ts]", res);
+
     if (!res) {
       return NextResponse.json(
         { success: false, error: "no_response", message: "So'rov muvaffaqiyatsiz yakunlandi" },

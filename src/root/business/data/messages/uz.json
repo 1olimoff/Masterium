@@ -145,6 +145,9 @@
         },
         "phone": {
           "invalidOperatorCode": "Kiritilgan telefon raqami operator kodi O'zbekiston operatorlariga tegishli emas."
+        },
+        "password": {
+          "notValidate": "Parolingiz katta xarif va raqamlardan iborat bo'lishi shart"
         }
       }
     }

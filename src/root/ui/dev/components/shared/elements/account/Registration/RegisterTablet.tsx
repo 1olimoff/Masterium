@@ -81,6 +81,17 @@ export const LoginProviderTablet = ({ className, open, onOpenChange, onLoginClic
       toast.error(t("login.errors.password.minLength"));
       return false;
     }
+
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+    const passwordCheck = (password: string) => {
+      return passwordRegex.test(password)
+    }
+
+    if (!passwordCheck(password)) {
+      toast.error(t("Registration.errors.password.notValidate"));
+      return false;
+    }
     return true;
   };
 
